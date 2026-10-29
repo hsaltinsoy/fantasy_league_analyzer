@@ -8,7 +8,7 @@ from collections import Counter
 
 from analysis.multiweek_backtest import MODELS, load_history
 from analysis.predict_next_week import predict
-from analysis.prediction_tracking import DEFAULT_DB, connect, get_prediction, get_snapshot, latest_evaluation_run, parse_time, save_prediction, save_snapshot
+from analysis.prediction_tracking import DEFAULT_DB, connect, get_prediction, get_snapshot, latest_evaluation_run, parse_time, save_prediction, save_prediction_batch, save_snapshot
 from analysis.production_evaluation import _metrics
 from data_sources.fixture_validation import validate_week
 from data_sources.identity import crosswalk_version, load_crosswalk
@@ -94,7 +94,8 @@ def _fixture_lookup(entry):
 
 
 def generate(*, fixture_archive=None, players=None, records=None, path=DEFAULT_DB,
-             now=None, cached=False):
+             now=None, cached=False, strict_pre_deadline=False,
+             players_retrieved_at=None):
     """Capture once; run each model on deep copies of that snapshot's inputs."""
     now = now or datetime.now(timezone.utc)
     if fixture_archive is None:
@@ -108,6 +109,13 @@ def generate(*, fixture_archive=None, players=None, records=None, path=DEFAULT_D
     if records is None:
         records = load_history()
     week, entry = next_gameweek(fixture_archive, now)
+    if strict_pre_deadline:
+        deadline=parse_time(entry.get('deadline'))
+        retrieved=parse_time(fixture_archive.get('captured_utc'))
+        if cached or fixture_archive.get('source_url')!=BASE+FIXTURE_ENDPOINT or \
+           deadline is None or retrieved is None or not retrieved<=now<deadline or \
+           (now-retrieved).total_seconds()>3600:
+            raise ValueError('Fresh official fixture deadline and live player data required before capture')
     quality = validate_week(entry, players)
     fatal = [w for w in quality['warnings'] if w.startswith(('missing_or_duplicate_fixture_id', 'missing_homeClubId',
                                                               'missing_awayClubId', 'self_fixture', 'double_fixtures'))]
@@ -135,6 +143,8 @@ def generate(*, fixture_archive=None, players=None, records=None, path=DEFAULT_D
                     'crosswalk_version':crosswalk_version(load_crosswalk()),
                     'fixture_source_age_hours':round(age_hours,2) if age_hours is not None else None})
     source = {'players':'cached_players_json' if cached else 'official_tff_player_api',
+              'players_retrieved_at':players_retrieved_at,
+              'capture_kind':'prospective_benchmark' if strict_pre_deadline else 'benchmark',
               'fixtures':fixture_archive.get('source_endpoint'),
               'fixture_source_url':fixture_archive.get('source_url') or BASE+FIXTURE_ENDPOINT,
               'fixtures_retrieved_at':fixture_archive.get('captured_utc'),
@@ -148,19 +158,32 @@ def generate(*, fixture_archive=None, players=None, records=None, path=DEFAULT_D
                              source, deadline_at=entry.get('deadline'),
                              deadline_source=source['deadline_source_url'] if parse_time(entry.get('deadline')) else None,
                              classification='historical_reconstruction' if cached else 'live',
-                             data_quality=quality, path=path)
+                             data_quality=quality, path=path,
+                             require_pre_deadline=strict_pre_deadline)
     fixture_input = {week:lookup}
     from analysis.team_of_week_v36 import load as load_tow
     tow_path = STORE/'team_of_week_verified.json'
     tow = load_tow(tow_path) if tow_path.exists() else {}
     saved = []
+    prepared = []
+    form_status = {}
     for model in ('short_form_3w', *(name for name in MODELS if name != 'short_form_3w')):
-        result = predict(week, copy.deepcopy(players), copy.deepcopy(historical_records),
-                         copy.deepcopy(fixture_input), copy.deepcopy(tow), model=model)
+        try:
+            result = predict(week, copy.deepcopy(players), copy.deepcopy(historical_records),
+                             copy.deepcopy(fixture_input), copy.deepcopy(tow), model=model)
+        except (ValueError, KeyError, TypeError, RuntimeError) as exc:
+            if strict_pre_deadline and model != 'short_form_3w':
+                form_status[model] = f'not_evaluable: {exc}'
+                continue
+            raise
         result['benchmark'] = {'variant':'production' if model == 'short_form_3w' else 'experimental_form',
                                'parameters':copy.deepcopy(MODELS[model]), 'fixture_weight':.5,
                                'tow_weight':0.0, 'snapshot_id':snapshot['id']}
-        saved.append(save_prediction(snapshot['id'], result, model_version=MODEL_VERSION, path=path))
+        if strict_pre_deadline:
+            prepared.append(result)
+        else:
+            saved.append(save_prediction(snapshot['id'], result, model_version=MODEL_VERSION, path=path))
+        form_status[model] = 'saved'
     covariance_status = 'not_evaluable'
     try:
         baseline = predict(week, copy.deepcopy(players), copy.deepcopy(historical_records),
@@ -179,13 +202,19 @@ def generate(*, fixture_archive=None, players=None, records=None, path=DEFAULT_D
                                     'uncertainty':{'variance':choice['variance'],
                                                    'standard_deviation':choice['standard_deviation'],
                                                    'evidence':baseline['experimental_covariance']['evidence']}}}
-            saved.append(save_prediction(snapshot['id'], variant, model_version=MODEL_VERSION, path=path))
+            if strict_pre_deadline:
+                prepared.append(variant)
+            else:
+                saved.append(save_prediction(snapshot['id'], variant, model_version=MODEL_VERSION, path=path))
             covariance_status = 'saved'
     except (ValueError, KeyError, TypeError) as exc:
         covariance_status = f'not_evaluable: {exc}'
+    if strict_pre_deadline:
+        saved = save_prediction_batch(snapshot['id'], prepared, model_version=MODEL_VERSION,
+                                      path=path, require_pre_deadline=True)
     return {'gameweek':week, 'gameweek_id':entry.get('gameweek_id'), 'deadline':entry.get('deadline'),
             'snapshot':snapshot, 'predictions':saved, 'data_quality':quality,
-            'variants':{'covariance':covariance_status,
+            'variants':{'form':form_status, 'covariance':covariance_status,
                         'appearance':'not_evaluable: production xPts already includes playing-time adjustment; separate probability would double-count'}}
 
 

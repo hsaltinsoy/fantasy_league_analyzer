@@ -98,6 +98,11 @@ def create_app():
         from analysis.live_benchmark import report
         return jsonify(report())
 
+    @app.get('/api/prospective/report')
+    def prospective_report():
+        from analysis.prospective_monitor import report
+        return jsonify(report())
+
     @app.get('/api/benchmark/player-accuracy')
     def benchmark_player_accuracy():
         import json
@@ -381,6 +386,7 @@ def create_app():
     def home():
         from app.dashboard_view import dashboard_data
         from analysis.live_benchmark import report
+        from analysis.prospective_monitor import report as prospective_report
         from pathlib import Path
         import json
         view=dashboard_data()
@@ -390,10 +396,14 @@ def create_app():
             path=recovered/name
             return json.loads(path.read_text(encoding='utf-8')) if path.exists() else None
         return render_template('index.html', dashboard=view, benchmark=benchmark,
+                               prospective=prospective_report(),
                                phase11=json.loads(Path('historical_data/player_level_phase11/player_level_report.json').read_text(encoding='utf-8')) if Path('historical_data/player_level_phase11/player_level_report.json').exists() else None,
                                player_accuracy=read('model_evaluation.json'),
                                player_ranking=read('player_ranking_official.json'),
-                               recovery=read('coverage_report.json'))
+                               recovery=read('coverage_report.json'),
+                               experimental={tier: json.loads(path.read_text(encoding='utf-8')) if path.exists() else None
+                                   for tier, path in ((name, Path('historical_data/experimental_phase15')/f'ridge_{name}.json')
+                                                      for name in ('official','combined'))})
 
     @app.get('/tools')
     def legacy_tools():

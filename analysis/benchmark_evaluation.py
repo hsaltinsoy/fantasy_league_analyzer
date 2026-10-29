@@ -8,6 +8,7 @@ from datetime import datetime, timezone
 from analysis.prediction_tracking import (DEFAULT_DB, connect, get_prediction, get_snapshot,
                                           parse_time, save_evaluation_run)
 from analysis.production_evaluation import _metrics, evaluate_saved
+from analysis.player_ranking_evaluation import ranking_metrics
 from data_sources.tff_official import BASE, PROFILE, _browser, TFFFeedError
 
 FIXTURE_ENDPOINT='/api/backend/projection/stats/fixtures?league-id=1'
@@ -178,6 +179,12 @@ def evaluate_gameweek(snapshot_id, *, fixture_archive=None, rows_provider=None, 
             if 'actual_points' in evaluation:
                 evaluation['status']='complete'
                 evaluation['verification_status']=prediction['status']
+                ranking_rows=[{'player_id':str(player['id']),
+                               'actual':float(actual[str(player['id'])]),
+                               'predictions':{'saved_forecast':float(player['xpts'])}}
+                              for player in prediction['payload']['starting_xi']]
+                evaluation['xi_ranking']=ranking_metrics(ranking_rows,'saved_forecast')
+                evaluation['xi_ranking']['population']='selected_starting_xi_only'
             else:
                 evaluation['status']='incomplete'
                 invalid={str(p['id']):player_issues[str(p['id'])] for p in prediction['payload']['starting_xi']
@@ -209,6 +216,7 @@ def evaluate_gameweek(snapshot_id, *, fixture_archive=None, rows_provider=None, 
              'prediction_results':results,'by_model':by_model,
              'complete_predictions':len(complete),'total_predictions':len(predictions),
              'limitations':['A single gameweek cannot establish model superiority.',
+                            'Ranking is within each selected XI; complete candidate-pool rankings were not saved.',
                             'No missing appearance or result is replaced with zero.',
                             'Existing GW10 snapshot lacks the official gameweek ID at capture; current official ID is checked against player rows and saved fixture IDs.']}
     digest=_digest(entry,fetched.get('rows_by_player') if fetched else None,[p['id'] for p in predictions])

@@ -21,6 +21,7 @@ __pycache__/
 # Local captures, recovered history, reports, and immutable prediction database
 historical_data/
 .phase14_recovery_*/
+.phase17_backup_*/
 *recovery_backup*/
 *backup*/
 *.sqlite
@@ -28,6 +29,7 @@ historical_data/
 *.sqlite3-*
 *.db
 *.db-*
+*.dump
 
 # Generated exports and API responses
 *.json

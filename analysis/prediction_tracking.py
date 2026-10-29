@@ -70,7 +70,8 @@ def verification(captured_at, deadline_at, deadline_source=None, classification=
 
 
 def save_snapshot(gameweek, players, fixtures, histories, source, *, deadline_at=None,
-                  deadline_source=None, classification='live', data_quality=None, path=DEFAULT_DB):
+                  deadline_source=None, classification='live', data_quality=None, path=DEFAULT_DB,
+                  require_pre_deadline=False):
     if not isinstance(gameweek, int) or gameweek < 1 or not isinstance(players, list) or not players:
         raise ValueError('Gameweek and player data required')
     if not isinstance(fixtures, list) or not isinstance(histories, list):
@@ -82,6 +83,8 @@ def save_snapshot(gameweek, players, fixtures, histories, source, *, deadline_at
                'deadline_at': deadline_at, 'deadline_source': deadline_source,
                'data_quality': data_quality}
     status = verification(captured_at, deadline_at, deadline_source, classification)
+    if require_pre_deadline and status != 'locally_recorded_pre_deadline_not_verified':
+        raise ValueError('Official pre-deadline snapshot required; no snapshot saved')
     with connect(path) as db:
         db.execute('INSERT INTO snapshots VALUES (?,?,?,?,?,?,?,?)',
                    (snapshot_id, gameweek, captured_at, deadline_at, deadline_source,
@@ -104,7 +107,8 @@ def get_snapshot(snapshot_id, path=DEFAULT_DB):
     return item
 
 
-def save_prediction(snapshot_id, result, *, model_version='1', path=DEFAULT_DB):
+def save_prediction(snapshot_id, result, *, model_version='1', path=DEFAULT_DB,
+                    require_pre_deadline=False):
     created_at = utc_now()
     with connect(path) as db:
         row = db.execute('SELECT gameweek,captured_at,deadline_at,deadline_source,classification FROM snapshots WHERE id=?',
@@ -113,6 +117,8 @@ def save_prediction(snapshot_id, result, *, model_version='1', path=DEFAULT_DB):
             raise ValueError('Unknown snapshot')
         gameweek, captured, deadline, deadline_source, classification = row
         status = verification(created_at, deadline, deadline_source, classification)
+        if require_pre_deadline and status != 'locally_recorded_pre_deadline_not_verified':
+            raise ValueError('Official deadline passed or unknown; no prediction saved')
         if status != 'post_deadline' and verification(captured, deadline, deadline_source, classification) != 'verified_pre_deadline':
             status = verification(captured, deadline, deadline_source, classification)
         xi = result.get('starting_xi', [])
@@ -126,6 +132,42 @@ def save_prediction(snapshot_id, result, *, model_version='1', path=DEFAULT_DB):
                     raw_expected, result.get('risk_adjusted_objective'),
                     json.dumps(result, ensure_ascii=False)))
     return {'id': prediction_id, 'snapshot_id': snapshot_id, 'created_at': created_at, 'status': status}
+
+
+def save_prediction_batch(snapshot_id, results, *, model_version='1', path=DEFAULT_DB,
+                          require_pre_deadline=False):
+    """Insert a complete benchmark set atomically; rollback on any invalid lineup."""
+    if not isinstance(results, list) or not results:
+        raise ValueError('At least one prediction required')
+    with connect(path) as db:
+        row = db.execute('SELECT gameweek,captured_at,deadline_at,deadline_source,classification FROM snapshots WHERE id=?',
+                         (snapshot_id,)).fetchone()
+        if row is None:
+            raise ValueError('Unknown snapshot')
+        gameweek, captured, deadline, deadline_source, classification = row
+        created_at = utc_now()
+        status = verification(created_at, deadline, deadline_source, classification)
+        if require_pre_deadline and status != 'locally_recorded_pre_deadline_not_verified':
+            raise ValueError('Official deadline passed or unknown; no predictions saved')
+        if status != 'post_deadline' and verification(captured, deadline, deadline_source, classification) != 'verified_pre_deadline':
+            status = verification(captured, deadline, deadline_source, classification)
+        saved = []
+        for result in results:
+            xi = result.get('starting_xi', [])
+            if len(xi) != 11 or sum(bool(p.get('captain')) for p in xi) != 1 or len(result.get('bench', [])) != 4:
+                raise ValueError('A complete XI, captain and bench are required')
+            if result.get('week') != gameweek:
+                raise ValueError('Prediction gameweek does not match snapshot')
+            raw_expected = sum(float(p['xpts']) * (2 if p.get('captain') else 1) for p in xi)
+            prediction_id = str(uuid.uuid4())
+            db.execute('INSERT INTO predictions VALUES (?,?,?,?,?,?,?,?,?,?,?)',
+                       (prediction_id, snapshot_id, gameweek, created_at, status,
+                        result['model'], model_version, result['risk_profile'],
+                        raw_expected, result.get('risk_adjusted_objective'),
+                        json.dumps(result, ensure_ascii=False)))
+            saved.append({'id':prediction_id,'snapshot_id':snapshot_id,
+                          'created_at':created_at,'status':status})
+    return saved
 
 
 def get_prediction(prediction_id, path=DEFAULT_DB):
