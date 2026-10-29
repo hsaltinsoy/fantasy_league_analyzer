@@ -1,0 +1,12 @@
+{
+  "weeks": {
+    "5": {
+      "captured_utc": "REPLACE_WITH_REAL_CAPTURE_TIMESTAMP_IN_UTC",
+      "deadline_utc": "REPLACE_WITH_REAL_DEADLINE_TIMESTAMP_IN_UTC",
+      "source": "REPLACE_WITH_REAL_PREDEADLINE_SOURCE_URL_OR_ARCHIVE",
+      "matches": [
+        {"home_club_id": "REPLACE_WITH_EXACT_TEAM_ID_FROM_PLAYERS", "away_club_id": "REPLACE_WITH_EXACT_OPPONENT_TEAM_ID"}
+      ]
+    }
+  }
+}

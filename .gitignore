@@ -1,0 +1,39 @@
+# Local Python environment and editor files
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.idea/
+.env
+.env.*
+!.env.example
+!**/.env.example
+*credentials*
+*secret*
+*session*
+*cookie*
+*token*
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Local captures, recovered history, reports, and immutable prediction database
+historical_data/
+.phase14_recovery_*/
+*recovery_backup*/
+*backup*/
+*.sqlite
+*.sqlite3
+*.sqlite3-*
+*.db
+*.db-*
+
+# Generated exports and API responses
+*.json
+*.csv
+
+# Keep documented input examples in the repository
+!*.example.json
+!examples/*_template.csv
+!data_sources/examples/*_template.csv
