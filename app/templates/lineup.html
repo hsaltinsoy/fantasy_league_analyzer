@@ -1,0 +1,57 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TFF Fantasy | Kadro</title><style>
+:root{font-family:Inter,system-ui,Arial,sans-serif;color:#ecf6ff;background:#091425}*{box-sizing:border-box}body{margin:0}.shell{max-width:1180px;margin:auto;padding:26px 16px}header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}h1{font-size:27px;margin:0}p{color:#aabbd1}.toolbar{display:flex;flex-wrap:wrap;align-items:end;gap:10px;background:#13233a;border:1px solid #29425d;border-radius:16px;padding:15px;margin:22px 0}label{font-size:12px;color:#b7c9de;display:grid;gap:5px}select,input,button{border:1px solid #395673;border-radius:9px;background:#0b1b30;color:white;padding:10px;font:inherit}button{background:#18c39d;color:#032820;font-weight:800;cursor:pointer;border:0}button:disabled{opacity:.5;cursor:wait}.status{min-height:23px;color:#b7c9de}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}.stat{background:#13233a;border:1px solid #29425d;border-radius:13px;padding:14px}.stat small{display:block;color:#9eb5cb}.stat strong{font-size:24px}.pitch{background:repeating-linear-gradient(to bottom,#087f55 0%,#087f55 16.66%,#07885b 16.66%,#07885b 33.33%);border:3px solid #a1eacb;border-radius:20px;padding:20px 12px;min-height:610px;position:relative;overflow:hidden}.pitch:before{content:'';position:absolute;inset:18px;border:2px solid #b6f2db9c;border-radius:3px;pointer-events:none}.pitch:after{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border:2px solid #b6f2db9c;border-radius:50%;width:110px;height:110px;pointer-events:none}.line{position:relative;z-index:1;display:flex;justify-content:space-around;gap:5px;align-items:center;min-height:135px}.player{text-align:center;width:150px;max-width:24%;padding:9px 4px;border-radius:13px;background:#063d36cf;border:1px solid #ffffff35;box-shadow:0 6px 12px #0002}.shirt{display:block;font-size:28px}.player b{display:block;font-size:12px;overflow-wrap:anywhere}.player small{font-size:11px;color:#d5fff2}.captain{display:inline-block;background:#f4d35e;color:#102016;border-radius:100px;padding:2px 6px;font-weight:900;margin-left:4px}.bench{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.bench .player{max-width:none;width:100%;background:#13233a}.section-title{margin-top:24px}.error{color:#ff9f9f}.team-logo{height:28px;width:28px;object-fit:contain;display:block;margin:3px auto}.captain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}.cap-option{background:#13233a;border:1px solid #29425d;border-radius:12px;padding:12px}.compare{background:#13233a;border:1px solid #29425d;border-radius:14px;padding:16px}.compare textarea{width:100%;min-height:75px;background:#0b1b30;color:white;border:1px solid #395673;border-radius:9px;padding:10px}.compare-results{white-space:pre-wrap;line-height:1.7}.error{color:#ff9f9f}.note{font-size:13px}.muted{color:#aabbd1}@media(max-width:650px){.stats{grid-template-columns:repeat(2,1fr)}.player{max-width:25%;padding:7px 2px}.player b{font-size:10px}.player small{font-size:9px}.shirt{font-size:20px}.pitch{padding:10px 3px;min-height:560px}.line{min-height:130px}.bench{grid-template-columns:repeat(2,1fr)}}
+</style></head><body><div class="shell"><header><div><h1>⚽ TFF Fantasy Kadro Optimizasyonu</h1><p>İlk 11 · kaptan · yedekler · beklenen puan</p></div><nav aria-label="Project navigation" style="display:flex;gap:12px;flex-wrap:wrap"><a href="/">Dashboard</a><a aria-current="page" href="/lineup">Lineup</a><a href="/benchmark">Benchmark</a><a href="/tools">Legacy tools</a></nav></header><form class="toolbar" id="controls"><label>Hafta<input type="number" name="week" min="2" max="34" value="10" style="width:75px"></label><label>Model<select name="model"><option value="short_form_3w">Son 3 hafta formu</option><option value="robust_5w">Dengeli 5 hafta (deneysel)</option><option value="baseline_5w">Son 5 hafta</option><option value="conservative_5w">Temkinli 5 hafta</option><option value="stable_8w">İstikrarlı 8 hafta</option></select></label><label>Maç riski<select name="risk_profile"><option value="balanced">Dengeli</option><option value="aggressive">Agresif</option><option value="cautious">Düşük risk</option></select></label><label>Haftanın Takımı etkisi<select name="tow_weight"><option value="0">Kapalı (önerilen)</option><option value="0.05">%5</option><option value="0.10">%10</option></select></label><label><span>Güncel TFF fiyatları/durumu</span><select name="live"><option value="1">Canlı veri</option><option value="0">Kayıtlı veri</option></select></label><button id="run" type="submit">Kadroyu oluştur</button><button id="cached" type="button" style="background:#244d67;color:white">Son kaydı göster</button></form><div class="status" id="status">Kadroyu oluştur düğmesine basın. Canlı veri için TFF oturumu gerekli.</div><div id="result" hidden><div class="stats"><div class="stat"><small>Hafta</small><strong id="week"></strong></div><div class="stat"><small>Diziliş</small><strong id="formation"></strong></div><div class="stat"><small>Beklenen puan</small><strong id="points"></strong></div><div class="stat"><small>Kadro maliyeti</small><strong id="cost"></strong></div></div><h2 class="section-title">İlk 11 <span id="captain" class="muted"></span></h2><div class="pitch" id="pitch"></div><h2 class="section-title">Maç bazlı risk</h2><div class="stat" id="risk-explanation"></div><h2 class="section-title">Kaptan alternatifleri</h2><div class="captain-grid" id="captain-options"></div><h2 class="section-title">Yedekler</h2><div class="bench" id="bench"></div><p class="note" id="warning"></p><section class="compare"><h2>Kendi ilk 11'inle karşılaştır</h2><p>Oyuncu ID'lerini virgülle ayırarak gir. Bu özellik şu an oyuncu seçimlerinin örtüşmesini gösterir; gerçek takım puanını yeniden hesaplamaz.</p><textarea id="your-ids" placeholder="Örnek: 12, 148, 172, ... (11 oyuncu)"></textarea><p><button type="button" id="compare-button">İlk 11'leri karşılaştır</button></p><div class="compare-results" id="compare-result"></div></section></div></div><script>
+const $=id=>document.getElementById(id);
+const names={GK:'Kaleci',DEF:'Defans',MID:'Orta saha',FWD:'Forvet'};
+const icons={GK:'🧤',DEF:'👕',MID:'👕',FWD:'👕'};
+let activeWeek=10;
+function node(tag,cls,text){const el=document.createElement(tag);if(cls)el.className=cls;if(text!==undefined)el.textContent=text;return el}
+function club(d,id){return d.clubs?.[String(id)]||null}
+function card(p,d){
+ const el=node('div','player'),shirt=node('span','shirt',icons[p.position]||'👕'),name=node('b','',p.name);
+ const own=club(d,p.team),opp=club(d,p.opponent);
+ if(own?.logo_url){const img=node('img','team-logo');img.src=own.logo_url;img.alt=own.name;img.loading='lazy';img.referrerPolicy='no-referrer';img.onerror=()=>img.remove();el.append(img)}else el.append(shirt);
+ const meta=node('small','',`${names[p.position]||p.position} · ${Number(p.xpts).toFixed(1)} xPts`);
+ const price=node('small','',`Fiyat: ${p.price} · Rakip: ${opp?.short_name||'Kulüp '+(p.opponent??'?')}`);
+ const clubName=node('small','',own?.short_name||'Kulüp '+(p.team??'?'));
+ el.append(name,clubName,meta,price);
+ if(p.captain)name.append(node('span','captain','C'));
+ return el;
+}
+function render(d){
+ const conflicts=d.opposing_pairs||[];
+ const profile={'balanced':'Dengeli','aggressive':'Agresif','cautious':'Düşük risk'}[d.risk_profile]||'Eski kayıt';
+ const diag=d.diagnostics;
+ $('risk-explanation').textContent=`Strateji: ${profile} · Risk cezası: ${Number(d.risk_penalty||0).toFixed(2)} puan · Rakip defans–hücum eşleşmesi: ${conflicts.length}` + (conflicts.length?' · '+conflicts.map(x=>x.defender+' / '+x.attacker).join('; '):' · Çatışma yok') + (diag?` · Kaptan xPts: ${diag.captain.player_expected_points}, risk ayarlı ek katkı: ${diag.captain.risk_adjusted_bonus}, risk indirimi: ${diag.captain.risk_discount}, ikinciye fark: ${diag.captain.selection_margin}. Aynı kulüpten savunma kümeleri: ${diag.same_club_defensive_clusters.map(x=>x.team+' ('+x.players.map(p=>p.name).join(', ')+')').join('; ')||'yok'}; mevcut modelde buna ceza yok. Ham ilk 11 + kaptan: ${diag.objective.raw_xi_plus_captain}, yedek eşitlik katkısı: ${diag.objective.bench_tiebreak}, amaç: ${diag.objective.reconstructed_objective}. Kaptan tavan puanı modellenmiyor.`:'');
+ activeWeek=d.week;$('result').hidden=false;$('week').textContent='GW'+d.week;
+ $('formation').textContent=d.formation;$('points').textContent=Number(d.expected_points).toFixed(1);
+ $('cost').textContent=Number(d.cost).toFixed(1);$('captain').textContent='· Kaptan: '+d.captain;
+ const pitch=$('pitch');pitch.replaceChildren();
+ for(const pos of ['GK','DEF','MID','FWD']){
+   const line=node('div','line');(d.starting_xi||[]).filter(p=>p.position===pos).forEach(p=>line.append(card(p,d)));pitch.append(line);
+ }
+ $('bench').replaceChildren(...(d.bench||[]).map(p=>card(p,d)));
+ const alternatives=(d.captain_alternatives||[...(d.starting_xi||[])].sort((a,b)=>b.xpts-a.xpts).slice(0,5));
+ $('captain-options').replaceChildren(...alternatives.map(p=>{
+   const el=node('div','cap-option');el.append(node('b','',p.name),node('p','',`${Number(p.xpts).toFixed(2)} xPts · ${Number(p.captain_bonus_xpts??p.xpts).toFixed(2)} risk ayarlı kaptan katkısı`));
+   if(p.captain||d.starting_xi.some(x=>x.id===p.id&&x.captain))el.append(node('span','captain','Model kaptanı'));
+   return el;
+ }));
+ $('warning').textContent=(d.warning||'Tahmin; garanti edilmiş puan değildir.') + (d.optimization_status?' · Çözücü: '+d.optimization_status:'') + (d.budget_remaining!=null?' · Kalan bütçe: '+d.budget_remaining:'');
+ $('compare-result').textContent='';
+}
+async function load(url){$('run').disabled=true;$('status').className='status';$('status').textContent='Kadro hazırlanıyor; optimizasyon biraz sürebilir…';try{const r=await fetch(url);const d=await r.json();if(!r.ok)throw Error(d.error||'Sunucu hatası');render(d);$('status').textContent='Kadro hazır.'}catch(e){$('status').className='status error';$('status').textContent=e.message}finally{$('run').disabled=false}}
+$('controls').addEventListener('submit',e=>{e.preventDefault();const q=new URLSearchParams(new FormData(e.target));load('/api/lineup/generate?'+q)});
+$('cached').onclick=()=>load('/api/lineup/latest?week='+encodeURIComponent(document.querySelector('[name=week]').value));
+$('compare-button').onclick=async()=>{
+ const ids=$('your-ids').value.split(/[\s,;]+/).filter(Boolean);
+ const output=$('compare-result');
+ if(ids.length!==11||ids.some(i=>!/^[0-9]+$/.test(i))){output.textContent='11 adet sayısal oyuncu ID gir.';return}
+ output.textContent='Karşılaştırılıyor…';
+ try{
+   const r=await fetch('/api/lineup/compare',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({week:activeWeek,player_ids:ids})});
+   const d=await r.json();if(!r.ok)throw Error(d.error||'Karşılaştırma hatası');
+   output.textContent=`Ortak oyuncu: ${d.overlap}/11\n\nOrtak:\n${d.same.join(', ')||'Yok'}\n\nSadece senin kadron:\n${d.yours_only.join(', ')||'Yok'}\n\nSadece model:\n${d.model_only.join(', ')||'Yok'}\n\n${d.warning}`;
+ }catch(e){output.textContent=e.message}
+};
+</script></body></html>

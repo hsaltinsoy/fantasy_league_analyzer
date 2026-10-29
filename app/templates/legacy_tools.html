@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TFF Fantasy Optimizer</title>
+<style>
+:root{color-scheme:dark}body{font-family:system-ui,sans-serif;background:#101827;color:#e9eff9;max-width:1100px;margin:32px auto;padding:16px}main{background:#1e293b;padding:28px;border-radius:16px}button{background:#38bdf8;color:#071526;border:0;border-radius:8px;padding:12px 18px;cursor:pointer;font-weight:700}button:disabled{opacity:.55;cursor:wait}table{border-collapse:collapse;width:100%;margin-top:16px}td,th{padding:10px;border-bottom:1px solid #475569;text-align:left}small,.muted{color:#cbd5e1}.panel{padding:18px;border:1px solid #475569;border-radius:12px;margin-top:20px;overflow:auto}.status{margin-top:12px;white-space:pre-wrap}.error{color:#fca5a5}.hint{font-size:.9rem;color:#cbd5e1}</style>
+</head>
+<body><main><nav aria-label="Project navigation" style="display:flex;gap:14px;flex-wrap:wrap"><a href="/">Dashboard</a><a href="/lineup">Lineup</a><a href="/benchmark">Benchmark</a><a aria-current="page" href="/tools">Legacy tools</a></nav><p class="hint">Legacy utilities. Browser-only backtest records here are not independently verified; use the saved benchmark for tracked predictions.</p>
+<h1>⚽ TFF Fantasy Legacy Tools</h1>
+<p>Gelecek haftanın fikstürü, takım formu ve oyuncu istatistikleri için otomatik veri güncelleme.</p>
+<section class="panel">
+<h2>📅 Fikstür ve takım formu</h2>
+<p class="hint">Open Matchday üzerinden maçları alır ve FDR hesaplar. CSV yüklemek gerekmez.</p>
+<button type="button" id="refresh-live">Fikstür ve takım formunu güncelle</button>
+<p id="live-status" class="status" role="status"></p><div id="live-output"></div>
+</section>
+<section class="panel">
+<h2>👟 Oyuncu istatistikleri</h2>
+<p class="hint">xgEdge'den oyuncu verilerini getirmeyi dener. Erişim veya site yapısı nedeniyle başarısız olabilir.</p>
+<button type="button" id="xgedge-refresh">Oyuncuları internetten getir</button>
+<p id="xgedge-status" class="status" role="status"></p><div id="xgedge-output"></div>
+</section>
+<section class="panel">
+<h2>🏆 Resmî TFF Fantasy fiyatları ve pozisyonları</h2>
+<p class="hint">İlk kullanım: terminalde <code>python -m data_sources.tff_official login</code>. Giriş yalnızca kendi bilgisayarında saklanır. Oturum süresi dolarsa yeniden giriş yap.</p>
+<button type="button" id="tff-refresh">TFF oyuncularını getir</button>
+<p id="tff-status" class="status" role="status"></p><div id="tff-output"></div>
+</section>
+<section class="panel">
+<h2>📈 Gelecek hafta puan tahminleri</h2>
+<p class="hint">Önce yukarıdaki iki veri kaynağını güncelle, sonra tahminleri hesapla. Tahminler sezon toplamları ve rakip FDR üzerinden hesaplanır; resmî fantasy puanları değildir.</p>
+<button type="button" id="project-next" disabled>Tahmini puanları hesapla</button>
+<p id="projection-status" class="status" role="status"></p><div id="projection-output"></div>
+</section>
+<section class="panel"><h2>10. hafta oyuncu uygunluğu</h2>
+<p class="hint">TFF API durumu otomatik okunur. Resmî ceza/sakatlık bilgisi API'de yoksa, doğruladığınız bilgiyi aşağıdaki alana JSON olarak ekleyebilirsiniz. Yalnızca bu haftaya uygulanır. Otomatik haber taraması henüz yoktur.</p>
+<label for="availability-overrides">Doğrulanmış durumlar (JSON)</label>
+<textarea id="availability-overrides" rows="5" style="width:100%;max-width:800px" spellcheck="false">[]</textarea>
+<p class="hint">Örnek: [{"player_id":123,"round":10,"status":"OUT","source":"Resmî PFDK kararı bağlantısı","checked_at":"2026-10-27"}] — gerçek oyuncu ID'sini kullanın. OUT / DOUBTFUL / AVAILABLE.</p>
+</section>
+<section class="panel"><h2>Optimum kadro</h2>
+<p class="hint">Önce TFF, xgEdge ve fikstür verilerini getirip tahminleri hesapla. Sadece güvenle eşleştirilen oyuncular kullanılır. Eksik oyuncular yüzünden geçerli kadro kurulamıyorsa hata gösterilir.</p>
+<button type="button" id="optimize-squad" disabled>En iyi 15 kişilik kadroyu hesapla</button>
+<p id="optimize-status" class="status" role="status"></p><div id="optimize-output"></div></section>
+<section class="panel"><h2>🃏 Menajer kartı senaryoları</h2>
+<p class="hint">Seçili kadro için kartların bu haftaki teorik etkisi. Sezonun en iyi kullanım haftası için gelecek haftaların tahminleri ve kalan kart hakları gerekir. Bir haftada yalnızca bir kart uygulanır.</p>
+<label for="used-cards">Kullanılmış kartlar (bu tarayıcıda saklanır)</label>
+<div id="card-usage" style="display:flex;flex-wrap:wrap;gap:10px;margin:10px 0"></div>
+<p id="chips-status" class="status" role="status"></p><div id="chips-output"></div>
+</section>
+<section class="panel"><h2>📈 Son yayınlanan hafta — oyuncu analizi</h2>
+<p class="hint">TFF API'nin güncel roundPoints değerlerinden en yüksek puanlı oyuncuları gösterir. Haftanın numarasını ve maçların tamamlandığını ayrıca kontrol et. Menajer liderinin kadrosu değildir ve geçmişe dönük gerçek backtest yerine geçmez.</p>
+<button type="button" id="load-last-round">Son haftanın oyuncu puanlarını getir</button>
+<p id="last-round-status" class="status" role="status"></p><div id="last-round-output"></div>
+</section>
+<section class="panel"><h2>📊 Haftalık backtesting</h2>
+<p class="hint">10. hafta başlamadan önce optimizasyon yaptığında tahminini kaydet. Hafta tamamlandıktan sonra TFF verilerini güncelleyip gerçekleşen puanlarla karşılaştır. Önceden kaydedilmemiş 8/9. haftalar için sonuç uydurulmaz. Bu kayıt sadece bu tarayıcıda tutulur.</p>
+<button type="button" id="save-backtest" disabled>10. hafta tahminini kaydet</button>
+<button type="button" id="evaluate-backtest">Kaydı sonuçlarla karşılaştır</button>
+<p id="backtest-status" class="status" role="status"></p><div id="backtest-output"></div>
+</section>
+</main>
+<script>
+function renderTable(container, columns, records){
+ const table=document.createElement('table'),head=document.createElement('thead'),hr=document.createElement('tr');
+ for(const [label] of columns){const th=document.createElement('th');th.textContent=label;hr.append(th)}head.append(hr);table.append(head);
+ const body=document.createElement('tbody');
+ for(const record of records){const tr=document.createElement('tr');for(const [,key] of columns){const td=document.createElement('td');const value=typeof key==='function'?key(record):record[key];td.textContent=value===null||value===undefined||value===''?'—':String(value);tr.append(td)}body.append(tr)}table.append(body);container.replaceChildren(table)
+}
+let fixtureCache=null, playerCache=null, tffCache=null, projectionCache=null, clubMap=null;
+function normName(value){return String(value||'').toLocaleLowerCase('tr-TR').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]/g,'')}
+function matchPlayers(rows){
+ const lookup=new Map();
+ for(const p of tffCache.players){for(const n of [p.name,p.match_name]){const key=normName(n);if(!key)continue;if(!lookup.has(key))lookup.set(key,[]);if(!lookup.get(key).includes(p))lookup.get(key).push(p)}}
+ let matched=0, ambiguous=0;
+ const enriched=rows.map(p=>{const candidates=lookup.get(normName(p.name))||[];
+ if(candidates.length!==1){if(candidates.length>1)ambiguous++;return p}
+ const official=candidates[0];matched++;
+ return {...p,official_position:official.position,official_id:official.id,official_price:official.price,official_club_id:official.club_id,official_availability:official.availability};});
+ return {enriched,matched,ambiguous};
+}
+// Never assume that TFF club IDs are identical to another provider's IDs.
+// Resolve club IDs using players matched by their exact normalized names.
+function normTeam(value){
+ const v=String(value||'').toLocaleLowerCase('tr-TR').replace(/ı/g,'i').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,' ').trim();
+ const aliases={'besiktas jk':'besiktas','istanbul basaksehir fk':'basaksehir','istanbul basaksehir':'basaksehir','basaksehir fk':'basaksehir','caykur rizespor':'rizespor','goztepe sk':'goztepe','gaziantep fk':'gaziantep','kasimpasa sk':'kasimpasa','genclerbirligi sk':'genclerbirligi','amed sportif faaliyetler':'amedspor','fatih karagumruk':'karagumruk','trabzon':'trabzonspor','corum fk':'corum','arca corum fk':'corum','corumspor':'corum','corum':'corum','erzurumspor fk':'erzurumspor','erzurumspor futbol kulubu':'erzurumspor'};
+ return aliases[v]||v;
+}
+function resolveClubFixtures(enriched){
+ const votes=new Map(), fixtures=new Map();
+ for(const f of fixtureCache.fixtures||[]){const k=normTeam(f.team);if(k)fixtures.set(k,f)}
+ for(const p of enriched){if(p.official_id==null||p.official_club_id==null||!p.team)continue;
+   const id=String(p.official_club_id),team=normTeam(p.team);
+   if(!votes.has(id))votes.set(id,new Map());
+   const tally=votes.get(id);tally.set(team,(tally.get(team)||0)+1);
+ }
+ const mapping=new Map(), conflicts=[];
+ for(const [id,tally] of votes){const sorted=[...tally].sort((a,b)=>b[1]-a[1]);
+   // At least two independent player-name matches; any disagreement requires review.
+   if(sorted.length!==1||sorted[0][1]<2){conflicts.push(id);continue}
+   if(fixtures.has(sorted[0][0]))mapping.set(id,{team:sorted[0][0],fixture:fixtures.get(sorted[0][0]),evidence:sorted[0][1]});else conflicts.push(id);
+ }
+ // A fixture team cannot be assigned to two different official clubs.
+ const reverse=new Map();for(const [id,m] of mapping){if(reverse.has(m.team)){mapping.delete(id);mapping.delete(reverse.get(m.team));conflicts.push(id)}else reverse.set(m.team,id)}
+ return {mapping,conflicts,fixtureTeams:fixtures.size};
+}
+function updateProjectionButton(){document.getElementById('project-next').disabled=!(fixtureCache&&playerCache)}
+async function loadData(buttonId,statusId,outputId,url,columns,transform,summary,onSuccess){
+ const button=document.getElementById(buttonId),status=document.getElementById(statusId),output=document.getElementById(outputId);
+ button.disabled=true;status.classList.remove('error');status.textContent='Veriler alınıyor...';output.replaceChildren();
+ try{const response=await fetch(url);const data=await response.json();if(!response.ok)throw Error(data.error||`HTTP ${response.status}`);
+ const rows=transform(data);if(onSuccess)onSuccess(data);status.textContent=summary(data);if(rows.length)renderTable(output,columns,rows);else status.textContent+=' Gösterilecek kayıt bulunamadı.';
+ }catch(error){status.classList.add('error');status.textContent=`Veri alınamadı: ${error.message}`}
+ finally{button.disabled=false}
+}
+document.getElementById('refresh-live').addEventListener('click',()=>loadData('refresh-live','live-status','live-output','/api/free/refresh',[
+ ['Takım','team'],['Rakip','opponent'],['Saha',r=>r.venue==='home'?'Ev':'Deplasman'],['FDR','fdr'],['Durum','data_status']
+],d=>d.fixtures||[],d=>`${d.matches_loaded??0} geçmiş maç; ${(d.fixtures||[]).length/2} gelecek maç (beklenen 9).  ${(d.warnings||[]).join(' ')}`,d=>{fixtureCache=d;clubMap=null;projectionCache=null;updateProjectionButton();document.getElementById('optimize-squad').disabled=true;}));
+document.getElementById('xgedge-refresh').addEventListener('click',()=>loadData('xgedge-refresh','xgedge-status','xgedge-output','/api/players/xgedge?positions=1',[
+ ['Oyuncu','name'],['Takım','team'],['Dakika','minutes'],['Gol','goals'],['Asist','assists'],['xG','xg'],['xA','xa']
+],d=>d.players||[],d=>`${d.count??0} oyuncu, ${d.pages_fetched??0} sayfa. Profil linki: ${d.position_enrichment?.eligible_profiles??0}, kontrol edilen: ${d.position_enrichment?.checked??0}, pozisyon bulunan: ${d.position_enrichment?.resolved??0}. ${d.position_enrichment?.warning||''} ${d.warning||''}`,d=>{playerCache=d;clubMap=null;projectionCache=null;updateProjectionButton();document.getElementById('optimize-squad').disabled=true;}));
+document.getElementById('tff-refresh').addEventListener('click',()=>loadData('tff-refresh','tff-status','tff-output','/api/players/tff',[
+ ['Oyuncu','name'],['Pozisyon','position'],['Fiyat (milyon)','price'],['Puan','total_points'],['Durum','availability']
+],d=>d.players||[],d=>`${d.count} resmî TFF oyuncusu yüklendi.`,d=>{tffCache=d;clubMap=null;projectionCache=null;document.getElementById('optimize-squad').disabled=true;}));
+let lastOptimizedSquad=null;
+document.getElementById('optimize-squad').addEventListener('click',async()=>{
+ const status=document.getElementById('optimize-status'),out=document.getElementById('optimize-output');status.textContent='Kadro hesaplanıyor (yalnızca kulübü fikstürle eşleşen oyuncular)...';out.replaceChildren();
+ try{
+ // Use the full official player pool; missing projections are zero, not invented.
+ // Build a conservative next-match estimate using official points, xgEdge and fixture data.
+ // Official PPM is descriptive, not a forecast. Shrink it to avoid rewarding small samples.
+ if(!clubMap)throw Error('Önce TFF, xgEdge ve fikstür verilerini yükleyip tahminleri hesaplayın.');
+ const projected=new Map(projectionCache.filter(p=>p.official_id!=null).map(p=>[String(p.official_id),p]));
+ let overrides;
+ try {overrides=JSON.parse(document.getElementById('availability-overrides').value||'[]'); if(!Array.isArray(overrides))throw Error('Dizi gerekli');}
+ catch(e){throw Error('Oyuncu uygunluk JSON hatası: '+e.message)}
+ const availabilityResponse=await fetch('/api/availability/check',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({players:tffCache.players,overrides,round:10})});
+ const availabilityData=await availabilityResponse.json();if(!availabilityResponse.ok)throw Error(availabilityData.error||'Uygunluk kontrolü başarısız');
+ const decisions=availabilityData.decisions;
+ const excludedCount=tffCache.players.filter(p=>decisions[String(p.id)]?.eligible===false).length;
+ const eligible=tffCache.players.filter(p=>p.id!=null && p.price!=null && Number.isFinite(Number(p.price)) && Number(p.price)>=0 && ['GK','DEF','MID','FWD'].includes(p.position) && decisions[String(p.id)]?.eligible!==false).map(p=>{
+   const prediction=projected.get(String(p.id));
+   const mapped=clubMap.mapping.get(String(p.club_id));
+   // Do not optimize a player without a verified club-to-fixture mapping.
+   if(!mapped)return null;
+   const officialFixture=mapped.fixture;
+   const minutes=Math.max(0,Number(p.minutes)||0);
+   const ppm=Number(p.points_per_match);
+   const total=Number(p.total_points);
+   const form=Number(p.form);
+   const decision=decisions[String(p.id)];
+   const availability=decision?.factor??1;
+   // Nine completed matchdays before round 10. Season exposure includes substitutes.
+   const expectedMinutes=prediction?.expected_minutes!=null?Math.max(0,Math.min(90,Number(prediction.expected_minutes))):Math.min(90,minutes/9);
+   const minutesFactor=Math.min(1,expectedMinutes/75);
+   const seasonAverage=Number.isFinite(total)&&total>=0?total/9:null;
+   const historical=seasonAverage!=null?seasonAverage:(Number.isFinite(ppm)&&ppm>=0?ppm:null);
+   if(historical==null && (!prediction || prediction.expected_points==null))return null;
+   // Blend season average and recent form, cap outliers and apply sample shrinkage.
+   const recent=Number.isFinite(form)&&form>=0?Math.min(9,form):null;
+   const base=Math.min(9,Math.max(0,(historical??0)*0.8+(recent??historical??0)*0.2));
+   const exposure=Math.min(1,minutes/540);
+   let estimate=(base*(0.55+0.45*exposure)*minutesFactor);
+   // xgEdge projection only includes attacking/appearance points; use as a signal,
+   // not as a directly comparable alternative to full official fantasy PPM.
+   if(prediction?.expected_points!=null && Number.isFinite(Number(prediction.expected_points))){
+      const attacking=Math.max(0,Number(prediction.expected_points));
+      estimate=0.7*estimate+0.3*Math.min(9,attacking+((p.position==='GK'||p.position==='DEF')?1.2:0.5)*minutesFactor);
+   }
+   // Fixture difficulty applies only if a correctly matched official player has a fixture.
+   const fdr=officialFixture?.fdr==null?NaN:Number(officialFixture.fdr);
+   const fixtureKnown=Boolean(officialFixture?.opponent) && Number.isFinite(fdr) && fdr>=1 && fdr<=5;
+   if(fixtureKnown)estimate*=Math.max(0.75,Math.min(1.25,1+(3-fdr)*0.08));
+   estimate*=availability;
+   if(expectedMinutes<15)estimate*=0.35;
+   return {id:p.id,name:p.name,team:String(p.club_id),position:p.position,price:Number(p.price),xpts:Math.round(Math.max(0,estimate)*100)/100,
+     has_projection:prediction?.expected_points!=null,estimate_source:prediction?.expected_points!=null?'TFF + xgEdge':'TFF temkinli',
+     opponent:officialFixture?.opponent||'Bilinmiyor',venue:officialFixture?.venue||'—',fdr:fixtureKnown?fdr:null,expected_minutes:Math.round(expectedMinutes),
+     fixture_status:fixtureKnown?'Fikstür eşleşti':'Fikstür doğrulanamadı',availability_status:decision?.status||'UNKNOWN',availability_source:decision?.source||'Bilinmiyor'};
+ }).filter(Boolean);
+ const predictedCount=eligible.filter(p=>p.has_projection).length;
+ if(!eligible.length)throw Error('Hiçbir TFF kulübü fikstürle güvenilir biçimde eşleşmedi. Takım adları, sezon ve 10. hafta fikstürünü kontrol edin.');
+ const sourceById=new Map(tffCache.players.map(p=>[String(p.id),p]));
+ const scoreRows=eligible.map(p=>({player:sourceById.get(String(p.id)),prediction:projected.get(String(p.id))||null,
+   fixture:clubMap.mapping.get(String(p.team))?.fixture||null,decision:decisions[String(p.id)]||null}));
+ const scoreResponse=await fetch('/api/dashboard/score',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({rows:scoreRows,completed_rounds:9})});
+ const scoreData=await scoreResponse.json();if(!scoreResponse.ok)throw Error(scoreData.error||'Puan hesabı başarısız');
+ const scoredEligible=eligible.map((p,i)=>{const score=scoreData.points[i];if(score==null||Math.abs(score-p.xpts)>0.01)throw Error('Tarayıcı ve Python puan hesapları uyuşmuyor');return {...p,xpts:score}});
+ const response=await fetch('/api/optimize',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({players:scoredEligible,budget:100})});const data=await response.json();if(!response.ok)throw Error(data.error||`HTTP ${response.status}`);
+ const trackedResponse=await fetch('/api/dashboard/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({week:10,solution:data,players:tffCache.players,fixtures:fixtureCache.fixtures,data_quality:identity?.report||null})});
+ const tracked=await trackedResponse.json();if(!trackedResponse.ok)throw Error(tracked.error||'Tahmin kaydı oluşturulamadı');
+ const solutions=data.formation_solutions||{[data.formation]:data};
+ const bestFormation=data.formation;
+ const heading=document.createElement('h3');heading.textContent='Formasyon karşılaştırması';out.appendChild(heading);
+ const explanation=document.createElement('p');explanation.className='hint';explanation.textContent='Her formasyon tüm uygun oyuncular arasından ayrı bir 15 kişilik kadro, ilk 11 ve kaptan seçer. Formasyon düğmelerine basarak kadroyu inceleyebilirsin. Optimal olmayan sonuçlar zaman sınırına takılmış olabilir.';out.appendChild(explanation);
+ const compare=document.createElement('div');out.appendChild(compare);
+ renderTable(compare,[['Formasyon',p=>p.formation===bestFormation?p.formation+' ★':p.formation],['Tahmini puan',p=>p.expected_points==null?'—':p.expected_points.toFixed(2)],['Kadro maliyeti',p=>p.squad_cost??'—'],['Çözüm durumu','status']],data.formation_comparison||[]);
+ const note=document.createElement('p');note.className='hint';note.textContent=data.all_formations_proven_optimal?'Tüm formasyonlar matematiksel olarak optimal çözüldü.':'Bazı formasyonlar zaman sınırında uygun çözüm buldu; sıralama kesin küresel optimum garantisi değildir.';out.appendChild(note);
+ const chooser=document.createElement('div');chooser.style.cssText='display:flex;flex-wrap:wrap;gap:8px;margin:16px 0';out.appendChild(chooser);
+ const selectedHeading=document.createElement('h3');out.appendChild(selectedHeading);
+ const xiTitle=document.createElement('h3');xiTitle.textContent='İlk 11';out.appendChild(xiTitle);
+ const xiTable=document.createElement('div');out.appendChild(xiTable);
+ const squadTitle=document.createElement('h3');squadTitle.textContent='15 kişilik kadro ve yedekler';out.appendChild(squadTitle);
+ const squadTable=document.createElement('div');out.appendChild(squadTable);
+ const buttons={};
+ function selectFormation(name){
+   const current=solutions[name];if(!current)return;
+   lastOptimizedSquad=current;
+   document.getElementById('save-backtest').disabled=false;
+   selectedHeading.textContent=`${name} · ${current.expected_points.toFixed(2)} puan · ${current.squad_cost.toFixed(2)} M bütçe · Kaptan: ${current.captain.name}`;
+   status.textContent=`Seçilen formasyon: ${name} (${name===bestFormation?'otomatik öneri':'alternatif'}). ${excludedCount} oyuncu durum nedeniyle elendi. ${eligible.length} uygun oyuncu (${predictedCount} xgEdge, ${eligible.length-predictedCount} TFF tahmini). Fikstür eşleşmesi: ${eligible.length}/${tffCache.players.length}, ${clubMap.mapping.size} kulüp. Tahmini ilk 11 + kaptan: ${current.expected_points.toFixed(2)}.`;
+   xiTable.replaceChildren();squadTable.replaceChildren();
+   renderTable(xiTable,[['Oyuncu','name'],['Pozisyon','position'],['Tahmini puan','xpts'],['Rakip','opponent'],['Kaptan',p=>current.captain.id===p.id?'★':'']],current.starting_xi.slice().sort((a,b)=>({GK:0,DEF:1,MID:2,FWD:3}[a.position]-{GK:0,DEF:1,MID:2,FWD:3}[b.position])));
+   renderTable(squadTable,[['Oyuncu','name'],['Takım ID','team'],['Pozisyon','position'],['Fiyat','price'],['Tahmini puan','xpts'],['Tahmin kaynağı','estimate_source'],['Rakip','opponent'],['FDR','fdr'],['Beklenen dk','expected_minutes'],['Fikstür','fixture_status'],['Durum','availability_status'],['Durum kaynağı','availability_source'],['İlk 11',p=>current.starting_xi.some(x=>x.id===p.id)?'✓':'Yedek'],['Kaptan',p=>current.captain.id===p.id?'★':'']],current.squad);
+   updateChipScenarios(current);
+   Object.entries(buttons).forEach(([key,button])=>{button.disabled=key===name;button.setAttribute('aria-pressed',String(key===name));});
+ }
+ for(const item of data.formation_comparison||[]){
+   const button=document.createElement('button');button.type='button';button.textContent=item.formation+(item.formation===bestFormation?' ★':'');button.disabled=!solutions[item.formation];button.addEventListener('click',()=>selectFormation(item.formation));chooser.appendChild(button);buttons[item.formation]=button;
+ }
+ selectFormation(bestFormation);
+
+ }catch(e){status.textContent='Optimizasyon başarısız: '+e.message}
+});
+const cardNames=['Tripleks Kaptan','Dört Dörtlük Kaptan','Tüm Takım Sahaya','Hücum','Limitsiz Bütçe'];
+const cardUsageKey='tff_optimizer_used_cards_v23';
+function getUsedCards(){try{return JSON.parse(localStorage.getItem(cardUsageKey)||'{}')}catch{return {}}}
+function setupCardUsage(){
+ const area=document.getElementById('card-usage');area.replaceChildren();const used=getUsedCards();
+ cardNames.forEach(name=>{const label=document.createElement('label');const cb=document.createElement('input');cb.type='checkbox';cb.checked=!!used[name];cb.addEventListener('change',()=>{const next=getUsedCards();next[name]=cb.checked;localStorage.setItem(cardUsageKey,JSON.stringify(next));if(lastOptimizedSquad)updateChipScenarios(lastOptimizedSquad)});label.append(cb,document.createTextNode(' '+name+' kullanıldı'));area.appendChild(label)});
+}
+async function updateChipScenarios(solution){
+ const out=document.getElementById('chips-output'),status=document.getElementById('chips-status');out.replaceChildren();
+ try{
+  const response=await fetch('/api/chips/scenarios',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({solution})});
+  const data=await response.json();if(!response.ok)throw Error(data.error||'Kart hesabı başarısız');
+  const used=getUsedCards();
+  renderTable(out,[['Kart','card'],['Toplam puan',p=>p.projected_total===null?'Yeniden optimizasyon gerekli':p.projected_total.toFixed(2)],['Ek puan',p=>p.increment===null?'—':p.increment.toFixed(2)],['Kullanım',p=>used[p.card]?'Kullanıldı':'—'],['Hesaplama','basis']],data);
+  status.textContent='Seçili formasyon: '+solution.formation+'. Bunlar yalnızca tek haftalık tahmini senaryolardır; gelecek haftaların en iyi kart kullanım zamanını henüz hesaplamaz.';
+ }catch(e){status.textContent=e.message}
+}
+setupCardUsage();
+document.getElementById('load-last-round').addEventListener('click',async()=>{
+ const status=document.getElementById('last-round-status'),out=document.getElementById('last-round-output');out.replaceChildren();status.textContent='TFF son hafta puanları alınıyor...';
+ try{const response=await fetch('/api/history/latest-round');const data=await response.json();if(!response.ok)throw Error(data.error||'Veri alınamadı');status.textContent=data.count+' puan kaydı. '+data.warning;
+ renderTable(out,[['Oyuncu','name'],['Pozisyon','position'],['Kulüp ID','team'],['Son hafta puanı','round_points']],data.players);
+ }catch(e){status.textContent=e.message}
+});
+const backtestKey='tff_optimizer_round_10_snapshot_v1';
+document.getElementById('save-backtest').addEventListener('click',()=>{
+ const status=document.getElementById('backtest-status');
+ if(!lastOptimizedSquad){status.textContent='Önce kadroyu hesaplayın.';return;}
+ if(localStorage.getItem(backtestKey)){status.textContent='Bu haftanın tahmini zaten kaydedilmiş. Sonradan değiştirilmedi.';return;}
+ const snap={round:10,recorded_at:new Date().toISOString(),pre_round_confirmed:true,
+   starting_xi:lastOptimizedSquad.starting_xi.map(p=>p.id),captain_id:lastOptimizedSquad.captain.id,
+   predictions:Object.fromEntries(lastOptimizedSquad.starting_xi.map(p=>[String(p.id),p.xpts])),
+   expected_points:lastOptimizedSquad.expected_points,formation:lastOptimizedSquad.formation};
+ localStorage.setItem(backtestKey,JSON.stringify(snap));
+ status.textContent='10. hafta tahmini tarayıcıda kaydedildi: '+snap.recorded_at+' (UTC). Kayıt sonradan değiştirilmez.';
+});
+document.getElementById('evaluate-backtest').addEventListener('click',async()=>{
+ const status=document.getElementById('backtest-status'),output=document.getElementById('backtest-output');output.replaceChildren();
+ try{
+   const raw=localStorage.getItem(backtestKey);if(!raw)throw Error('Maç öncesinden kaydedilmiş tahmin bulunamadı.');
+   const snap=JSON.parse(raw);
+   // Fetch a fresh official feed. roundPoints represents the latest round only.
+   const r=await fetch('/api/players/tff');const feed=await r.json();if(!r.ok)throw Error(feed.error||'TFF verisi alınamadı');
+   const entered=prompt('TFF API roundPoints alanı şu anda hangi haftayı gösteriyor? (Sadece 10 ise değerlendireceğiz)','10');
+   if(entered===null)return;
+   if(entered.trim()!=='10')throw Error('TFF roundPoints 10. haftaya ait değilse karşılaştırma yapılamaz.');
+   if(!confirm('10. haftanın bütün maçları bitti mi ve TFF puanları güncellendi mi?'))return;
+   const response=await fetch('/api/backtest/evaluate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({snapshot:snap,round:10,actual_players:feed.players})});
+   const result=await response.json();if(!response.ok)throw Error(result.error||'Karşılaştırma başarısız');
+   if(result.status!=='complete'){status.textContent=result.warning+' Eksik ID: '+result.missing_player_ids.join(', ');return;}
+   status.textContent=`Tahmin ${result.predicted_total} · Gerçekleşen ${result.actual_total} · Fark ${result.difference} · Ortalama mutlak hata ${result.mae_xi}. ${result.warning}`;
+   renderTable(output,[['Oyuncu ID','id'],['Tahmin','predicted'],['Gerçek','actual'],['Hata','error'],['Kaptan',p=>p.captain?'★':'']],result.players);
+ }catch(e){status.textContent='Backtesting: '+e.message}
+});
+document.getElementById('project-next').addEventListener('click',async()=>{
+ const button=document.getElementById('project-next'),status=document.getElementById('projection-status'),output=document.getElementById('projection-output');
+ button.disabled=true;status.classList.remove('error');status.textContent='Tahminler hesaplanıyor...';output.replaceChildren();
+ try{
+  let match={enriched:playerCache.players,matched:0,ambiguous:0}, identity=null;
+  if(tffCache){
+    const identityResponse=await fetch('/api/identity/resolve',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({tff_players:tffCache.players,external_players:playerCache.players,fixtures:fixtureCache.fixtures,week:10})});
+    identity=await identityResponse.json();if(!identityResponse.ok)throw Error(identity.error||'Oyuncu kimliği doğrulanamadı');
+    match={enriched:identity.enriched,matched:identity.report.matched_players,ambiguous:identity.report.ambiguous_matches};
+  }
+  const response=await fetch('/api/projections/next-week',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({players:match.enriched,fixtures:fixtureCache.fixtures,team_matches:fixtureCache.team_matches})});
+  const data=await response.json();if(!response.ok)throw Error(data.error||`HTTP ${response.status}`);
+  projectionCache=data.players;
+  clubMap=identity?{mapping:new Map(Object.entries(identity.club_mappings)),conflicts:identity.report.warnings,fixtureTeams:identity.report.fixture_coverage.teams_with_fixture}:null;
+  document.getElementById('optimize-squad').disabled=!(clubMap&&clubMap.mapping.size>0);
+  const quality=identity?.report;
+  status.textContent=`Veri kalitesi: TFF oyuncusu ${quality?.total_tff_players||0}, eşleşen ${match.matched}, belirsiz ${match.ambiguous}, eşleşmeyen ${quality?.unmatched_players||0}, dış istatistiği eksik ${quality?.missing_statistics||0}, geçersiz kulüp eşlemesi ${quality?.invalid_club_mappings||0}, fikstür kapsamı ${quality?.fixture_coverage?.teams_with_fixture||0}/${quality?.fixture_coverage?.teams_in_player_pool||0}. Crosswalk: ${quality?.crosswalk_version||'yok'}. Uyarılar: ${(quality?.warnings||[]).join('; ')||'yok'}. ${data.projected} / ${data.count} oyuncu için tahmin üretildi. ${data.warning}`;
+  renderTable(output,[['Oyuncu','name'],['Takım','team'],['Pozisyon (tahmini)','estimated_position'],['Pozisyon kaynağı','position_source'],['Kaynak çelişkisi',r=>r.position_conflict?'⚠ Evet':'Hayır'],['Rakip','opponent'],['Saha',r=>r.venue==='home'?'Ev':r.venue==='away'?'Deplasman':'—'],['FDR','fdr'],['Beklenen dakika','expected_minutes'],['Kısmi tahmini puan','expected_points'],['Durum','projection_status'],['Açıklama','fixture_note']],data.players);
+ }catch(error){status.classList.add('error');status.textContent=`Tahmin hesaplanamadı: ${error.message}`}
+ finally{updateProjectionButton()}
+});
+</script>
+</body></html>

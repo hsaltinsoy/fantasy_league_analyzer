@@ -1,0 +1,6 @@
+Flask>=3.0,<4
+ortools>=9.10
+requests>=2.32
+pytest>=8
+beautifulsoup4>=4.12,<5
+playwright>=1.48,<2
