@@ -146,9 +146,14 @@ def evaluate_gameweek(snapshot_id, *, fixture_archive=None, rows_provider=None, 
     if snapshot is None:
         raise ValueError('Unknown immutable snapshot')
     week=snapshot['gameweek']
-    with connect(path) as db:
-        ids=[row[0] for row in db.execute('SELECT id FROM predictions WHERE snapshot_id=? ORDER BY created_at,id',
-                                          (snapshot_id,))]
+    from analysis.prediction_tracking import _postgres
+    pg = _postgres(path)
+    if pg:
+        ids = pg.prediction_ids(snapshot_id)
+    else:
+        with connect(path) as db:
+            ids=[row[0] for row in db.execute('SELECT id FROM predictions WHERE snapshot_id=? ORDER BY created_at,id',
+                                              (snapshot_id,))]
     predictions=[get_prediction(pid,path) for pid in ids]
     predictions=[p for p in predictions if 'benchmark' in p['payload']]
     if not predictions:

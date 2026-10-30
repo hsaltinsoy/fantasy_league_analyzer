@@ -19,12 +19,16 @@ ORIGINAL = '1e9f5094-9b24-42f6-a0ff-ddf201685aa8'
 
 
 @pytest.fixture(scope='module')
-def engine():
+def engine(tmp_path_factory):
+    global SOURCE
     url = os.getenv('PHASE17_TEST_DATABASE_URL')
     if not url:
         pytest.skip('Set PHASE17_TEST_DATABASE_URL for isolated PostgreSQL integration tests')
     if not url.endswith('/fantasy_league_phase17_test'):
         pytest.fail('Integration tests require the dedicated fantasy_league_phase17_test DB')
+    isolated_source = tmp_path_factory.mktemp('phase17-source') / 'tracking.sqlite3'
+    shutil.copy2(SOURCE, isolated_source)
+    SOURCE = str(isolated_source)
     db = create_engine(url, pool_pre_ping=True)
     import_tracking(SOURCE, db)
     yield db
@@ -33,9 +37,12 @@ def engine():
 
 def test_connection_schema_and_repeatable_import(engine):
     second = import_tracking(SOURCE, engine)
-    assert second['snapshots']['source'] == 9
+    with sqlite3.connect(f'file:{SOURCE}?mode=ro', uri=True) as source:
+        snapshot_count = source.execute('SELECT count(*) FROM snapshots').fetchone()[0]
+        prediction_count = source.execute('SELECT count(*) FROM predictions').fetchone()[0]
+    assert second['snapshots']['source'] == snapshot_count
     assert second['snapshots']['inserted'] == 0
-    assert second['predictions']['already_identical'] == 19
+    assert second['predictions']['already_identical'] == prediction_count
     assert reconcile(SOURCE, engine)['status'] == 'passed'
 
 

@@ -1,5 +1,6 @@
 """Next-week XI using historical form and current official player prices/status."""
 import argparse,json
+import os
 from pathlib import Path
 from datetime import datetime,timezone
 from analysis.multiweek_backtest import load_history, MODELS, project
@@ -87,7 +88,50 @@ def main():
     parser.add_argument('--model',choices=sorted(MODELS),default='short_form_3w')
     parser.add_argument('--tow-weight',type=float,default=0.)
     parser.add_argument('--experimental-covariance',action='store_true')
+    parser.add_argument('--as-of', help='ISO 8601 evidence cutoff for a historical forecast')
     args=parser.parse_args()
+    if os.environ.get('STORAGE_BACKEND', 'postgres').lower() == 'postgres':
+        from storage.db import engine_from_env
+        from storage.runtime_repository import RuntimeRepository
+        repository = RuntimeRepository(engine_from_env())
+        players = repository.current_player_pool(max_age_seconds=3600)
+        archive = repository.fixture_archive(max_age_seconds=3600)
+        from analysis.live_benchmark import _fixture_lookup
+        entry = archive['weeks'].get(str(args.week))
+        if not entry:
+            raise ValueError(f'No PostgreSQL fixture entry for GW{args.week}')
+        from analysis.prediction_tracking import parse_time
+        deadline = parse_time(entry.get('deadline'))
+        cutoff = parse_time(args.as_of) if args.as_of else None
+        if args.as_of and cutoff is None:
+            raise ValueError('--as-of must include a timezone')
+        if cutoff is not None:
+            raise ValueError('Historical PostgreSQL forecast requires dated player-state evidence; current pool cannot satisfy --as-of')
+        if deadline and deadline <= datetime.now(timezone.utc):
+            raise ValueError('Historical PostgreSQL forecast requires a dated player-state snapshot; current pool is not deadline evidence')
+        histories = repository.historical_records(before_week=args.week, as_of=cutoff)
+        records = [(player, histories.get(str(player['id']), [])) for player in players]
+        fixtures = {args.week: _fixture_lookup(entry)}
+        tow = repository.team_of_week() if args.tow_weight else {}
+        result = predict(args.week, players, records, fixtures, tow, args.model,
+            tow_weight=args.tow_weight, risk_profile=args.risk_profile,
+            experimental_covariance=args.experimental_covariance,
+            fixture_archive=archive)
+        from analysis.prediction_tracking import save_snapshot, save_prediction
+        from storage.repository import tracking_transaction
+        with tracking_transaction(repository.engine):
+            snapshot = save_snapshot(args.week, players, entry['matches'],
+                [{'player_id': player['id'], 'rows': histories.get(str(player['id']), [])}
+                 for player in players],
+                {'players': 'postgres_current_official_api',
+                 'fixtures': archive['source_url'],
+                 'fixtures_retrieved_at': archive['captured_utc'],
+                 'histories': 'postgres_source_payloads'},
+                deadline_at=entry.get('deadline'), deadline_source=archive['source_url'])
+            result['prediction_tracking'] = save_prediction(snapshot['id'], result,
+                model_version='v3.9')
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+        return
     if args.live:
         from data_sources.tff_official import fetch_players
         players=fetch_players()['players']

@@ -1,5 +1,33 @@
 # TFF Fantasy Optimizer v0.6
 
+## PostgreSQL runtime (Windows 11)
+
+PostgreSQL 17 is the application's runtime store. Docker Desktop must be running.
+Copy `.env.example` to `.env`, set a unique PostgreSQL password, and use the
+same password in `DATABASE_URL`. In PowerShell from the repository root:
+
+```powershell
+docker compose up -d db
+docker compose ps
+$env:DATABASE_URL = ((Get-Content .env | Where-Object { $_ -like 'DATABASE_URL=*' }) -replace '^DATABASE_URL=','')
+$env:STORAGE_BACKEND = 'postgres'
+.\.venv\Scripts\python.exe -m alembic upgrade head
+.\.venv\Scripts\python.exe -m storage.migrate_sqlite reconcile
+.\.venv\Scripts\python.exe -m storage.ingest_current
+.\.venv\Scripts\python.exe -m storage.import_runtime_metadata
+.\.venv\Scripts\python.exe run.py
+```
+
+In PyCharm, select the project's `.venv` interpreter and run `run.py`.
+The database connection reads `DATABASE_URL` from the project `.env` when it
+is not set in the run configuration. An explicit environment value takes
+precedence. PostgreSQL is the default backend.
+The original SQLite database and historical archives remain intact. To use
+the explicit legacy rollback, stop Flask, set `STORAGE_BACKEND=sqlite`, and
+restart `run.py`. PostgreSQL-only writes are not copied back to SQLite.
+See [PostgreSQL runtime operations](docs/postgres_runtime.md) for backup,
+restore, test, and reconciliation commands.
+
 ## Çalıştırma
 
 ```bash

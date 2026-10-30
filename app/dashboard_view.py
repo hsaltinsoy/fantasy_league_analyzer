@@ -1,5 +1,6 @@
 """Read-only presentation data for the integrated dashboard."""
 import json
+import os
 import sqlite3
 from datetime import datetime, timezone
 from pathlib import Path
@@ -37,6 +38,33 @@ def next_gameweek(store=STORE, now=None):
 
 
 def dashboard_data(store=STORE, *, now=None, prediction_path=None):
+    if os.environ.get('STORAGE_BACKEND', 'postgres').lower() == 'postgres' and Path(store) == STORE:
+        from storage.db import engine_from_env
+        from storage.runtime_repository import RuntimeRepository
+        from analysis.live_benchmark import next_gameweek as official_next_gameweek
+        repository = RuntimeRepository(engine_from_env())
+        archive = repository.fixture_archive()
+        try:
+            week, entry = official_next_gameweek(archive, now)
+            upcoming = {'number': week, 'id': entry.get('gameweek_id'),
+                'deadline': entry.get('deadline'), 'fixtures': len(entry['matches']),
+                'source': archive['source_endpoint'],
+                'source_captured_at': archive['captured_utc']}
+        except ValueError as exc:
+            if 'No wholly upcoming gameweek' not in str(exc):
+                raise
+            upcoming = None
+        lineup = repository.latest_lineup(upcoming['number']) if upcoming else None
+        prediction = snapshot = provenance = None
+        if lineup:
+            tracking = lineup['prediction_tracking']
+            prediction = get_prediction(tracking['id'])
+            snapshot = get_snapshot(tracking['snapshot_id'])
+            if prediction and snapshot:
+                from analysis.benchmark_verification import provenance as inspect_provenance
+                provenance = inspect_provenance(prediction, snapshot)
+        return {'upcoming': upcoming, 'lineup': lineup, 'prediction': prediction,
+                'snapshot': snapshot, 'provenance': provenance}
     store = Path(store)
     upcoming = next_gameweek(store, now)
     cached = None

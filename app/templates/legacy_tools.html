@@ -33,7 +33,7 @@
 <button type="button" id="project-next" disabled>Tahmini puanları hesapla</button>
 <p id="projection-status" class="status" role="status"></p><div id="projection-output"></div>
 </section>
-<section class="panel"><h2>10. hafta oyuncu uygunluğu</h2>
+<section class="panel"><h2>{{ upcoming_week or 'Gelecek' }}. hafta oyuncu uygunluğu</h2>
 <p class="hint">TFF API durumu otomatik okunur. Resmî ceza/sakatlık bilgisi API'de yoksa, doğruladığınız bilgiyi aşağıdaki alana JSON olarak ekleyebilirsiniz. Yalnızca bu haftaya uygulanır. Otomatik haber taraması henüz yoktur.</p>
 <label for="availability-overrides">Doğrulanmış durumlar (JSON)</label>
 <textarea id="availability-overrides" rows="5" style="width:100%;max-width:800px" spellcheck="false">[]</textarea>
@@ -55,8 +55,8 @@
 <p id="last-round-status" class="status" role="status"></p><div id="last-round-output"></div>
 </section>
 <section class="panel"><h2>📊 Haftalık backtesting</h2>
-<p class="hint">10. hafta başlamadan önce optimizasyon yaptığında tahminini kaydet. Hafta tamamlandıktan sonra TFF verilerini güncelleyip gerçekleşen puanlarla karşılaştır. Önceden kaydedilmemiş 8/9. haftalar için sonuç uydurulmaz. Bu kayıt sadece bu tarayıcıda tutulur.</p>
-<button type="button" id="save-backtest" disabled>10. hafta tahminini kaydet</button>
+<p class="hint">Hafta başlamadan önce tahminini kaydet. Hafta tamamlandıktan sonra TFF verilerini güncelleyip gerçekleşen puanlarla karşılaştır. PostgreSQL modunda kayıtlar veritabanında saklanır ve bağımsız deadline doğrulaması olmayan sonuçlar açıkça işaretlenir.</p>
+<button type="button" id="save-backtest" disabled>{{ upcoming_week or 'Gelecek' }}. hafta tahminini kaydet</button>
 <button type="button" id="evaluate-backtest">Kaydı sonuçlarla karşılaştır</button>
 <p id="backtest-status" class="status" role="status"></p><div id="backtest-output"></div>
 </section>
@@ -68,7 +68,11 @@ function renderTable(container, columns, records){
  const body=document.createElement('tbody');
  for(const record of records){const tr=document.createElement('tr');for(const [,key] of columns){const td=document.createElement('td');const value=typeof key==='function'?key(record):record[key];td.textContent=value===null||value===undefined||value===''?'—':String(value);tr.append(td)}body.append(tr)}table.append(body);container.replaceChildren(table)
 }
+const postgresMode={{ 'true' if postgres_mode else 'false' }};
+const activeWeek={{ upcoming_week|tojson }};
+const completedRounds=Math.max(1,(activeWeek||10)-1);
 let fixtureCache=null, playerCache=null, tffCache=null, projectionCache=null, clubMap=null;
+let trackedPredictionId=null;
 function normName(value){return String(value||'').toLocaleLowerCase('tr-TR').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]/g,'')}
 function matchPlayers(rows){
  const lookup=new Map();
@@ -135,7 +139,8 @@ document.getElementById('optimize-squad').addEventListener('click',async()=>{
  let overrides;
  try {overrides=JSON.parse(document.getElementById('availability-overrides').value||'[]'); if(!Array.isArray(overrides))throw Error('Dizi gerekli');}
  catch(e){throw Error('Oyuncu uygunluk JSON hatası: '+e.message)}
- const availabilityResponse=await fetch('/api/availability/check',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({players:tffCache.players,overrides,round:10})});
+ if(postgresMode&&!activeWeek)throw Error('No upcoming official gameweek is available in PostgreSQL.');
+ const availabilityResponse=await fetch('/api/availability/check',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({players:tffCache.players,overrides,round:activeWeek})});
  const availabilityData=await availabilityResponse.json();if(!availabilityResponse.ok)throw Error(availabilityData.error||'Uygunluk kontrolü başarısız');
  const decisions=availabilityData.decisions;
  const excludedCount=tffCache.players.filter(p=>decisions[String(p.id)]?.eligible===false).length;
@@ -152,9 +157,9 @@ document.getElementById('optimize-squad').addEventListener('click',async()=>{
    const decision=decisions[String(p.id)];
    const availability=decision?.factor??1;
    // Nine completed matchdays before round 10. Season exposure includes substitutes.
-   const expectedMinutes=prediction?.expected_minutes!=null?Math.max(0,Math.min(90,Number(prediction.expected_minutes))):Math.min(90,minutes/9);
+   const expectedMinutes=prediction?.expected_minutes!=null?Math.max(0,Math.min(90,Number(prediction.expected_minutes))):Math.min(90,minutes/completedRounds);
    const minutesFactor=Math.min(1,expectedMinutes/75);
-   const seasonAverage=Number.isFinite(total)&&total>=0?total/9:null;
+   const seasonAverage=Number.isFinite(total)&&total>=0?total/completedRounds:null;
    const historical=seasonAverage!=null?seasonAverage:(Number.isFinite(ppm)&&ppm>=0?ppm:null);
    if(historical==null && (!prediction || prediction.expected_points==null))return null;
    // Blend season average and recent form, cap outliers and apply sample shrinkage.
@@ -184,12 +189,13 @@ document.getElementById('optimize-squad').addEventListener('click',async()=>{
  const sourceById=new Map(tffCache.players.map(p=>[String(p.id),p]));
  const scoreRows=eligible.map(p=>({player:sourceById.get(String(p.id)),prediction:projected.get(String(p.id))||null,
    fixture:clubMap.mapping.get(String(p.team))?.fixture||null,decision:decisions[String(p.id)]||null}));
- const scoreResponse=await fetch('/api/dashboard/score',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({rows:scoreRows,completed_rounds:9})});
+ const scoreResponse=await fetch('/api/dashboard/score',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({rows:scoreRows,completed_rounds:completedRounds})});
  const scoreData=await scoreResponse.json();if(!scoreResponse.ok)throw Error(scoreData.error||'Puan hesabı başarısız');
  const scoredEligible=eligible.map((p,i)=>{const score=scoreData.points[i];if(score==null||Math.abs(score-p.xpts)>0.01)throw Error('Tarayıcı ve Python puan hesapları uyuşmuyor');return {...p,xpts:score}});
  const response=await fetch('/api/optimize',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({players:scoredEligible,budget:100})});const data=await response.json();if(!response.ok)throw Error(data.error||`HTTP ${response.status}`);
- const trackedResponse=await fetch('/api/dashboard/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({week:10,solution:data,players:tffCache.players,fixtures:fixtureCache.fixtures,data_quality:identity?.report||null})});
+ const trackedResponse=await fetch('/api/dashboard/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({week:activeWeek,solution:data,players:tffCache.players,fixtures:fixtureCache.fixtures,data_quality:identity?.report||null})});
  const tracked=await trackedResponse.json();if(!trackedResponse.ok)throw Error(tracked.error||'Tahmin kaydı oluşturulamadı');
+ trackedPredictionId=tracked.id;
  const solutions=data.formation_solutions||{[data.formation]:data};
  const bestFormation=data.formation;
  const heading=document.createElement('h3');heading.textContent='Formasyon karşılaştırması';out.appendChild(heading);
@@ -247,12 +253,18 @@ document.getElementById('load-last-round').addEventListener('click',async()=>{
  renderTable(out,[['Oyuncu','name'],['Pozisyon','position'],['Kulüp ID','team'],['Son hafta puanı','round_points']],data.players);
  }catch(e){status.textContent=e.message}
 });
-const backtestKey='tff_optimizer_round_10_snapshot_v1';
-document.getElementById('save-backtest').addEventListener('click',()=>{
+const backtestKey=`tff_optimizer_round_${activeWeek}_snapshot_v1`;
+document.getElementById('save-backtest').addEventListener('click',async()=>{
  const status=document.getElementById('backtest-status');
  if(!lastOptimizedSquad){status.textContent='Önce kadroyu hesaplayın.';return;}
+ if(postgresMode){
+   const response=await fetch('/api/dashboard/latest?week='+encodeURIComponent(activeWeek));
+   const saved=await response.json();
+   status.textContent=response.ok?`Tahmin PostgreSQL'de kaydedildi: ${saved.lineup.prediction_tracking.id}. Kaynak doğrulaması: ${saved.lineup.prediction_tracking.status}.`:(saved.error||'PostgreSQL kaydı bulunamadı');
+   return;
+ }
  if(localStorage.getItem(backtestKey)){status.textContent='Bu haftanın tahmini zaten kaydedilmiş. Sonradan değiştirilmedi.';return;}
- const snap={round:10,recorded_at:new Date().toISOString(),pre_round_confirmed:true,
+ const snap={round:activeWeek,recorded_at:new Date().toISOString(),pre_round_confirmed:true,
    starting_xi:lastOptimizedSquad.starting_xi.map(p=>p.id),captain_id:lastOptimizedSquad.captain.id,
    predictions:Object.fromEntries(lastOptimizedSquad.starting_xi.map(p=>[String(p.id),p.xpts])),
    expected_points:lastOptimizedSquad.expected_points,formation:lastOptimizedSquad.formation};
@@ -262,6 +274,19 @@ document.getElementById('save-backtest').addEventListener('click',()=>{
 document.getElementById('evaluate-backtest').addEventListener('click',async()=>{
  const status=document.getElementById('backtest-status'),output=document.getElementById('backtest-output');output.replaceChildren();
  try{
+   if(postgresMode){
+     const r=await fetch('/api/players/tff');const feed=await r.json();if(!r.ok)throw Error(feed.error||'TFF data unavailable');
+     const entered=prompt(`TFF roundPoints currently refers to which week? Enter ${activeWeek} only if verified.`,String(activeWeek));
+     if(entered===null)return;
+     if(entered.trim()!==String(activeWeek))throw Error('Round results do not match the saved prediction week.');
+     if(!confirm(`Have all fixtures for week ${activeWeek} finished and official points updated?`))return;
+     const response=await fetch('/api/dashboard/backtest/evaluate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({week:activeWeek,actual_players:feed.players})});
+     const result=await response.json();if(!response.ok)throw Error(result.error||'PostgreSQL backtest unavailable');
+     if(result.status!=='complete'){status.textContent=result.warning+' Missing IDs: '+result.missing_player_ids.join(', ');return;}
+     status.textContent=`Saved report ${result.report_id}; provenance: ${result.source_provenance}. Predicted ${result.predicted_total}; actual ${result.actual_total}.`;
+     renderTable(output,[['Player ID','id'],['Forecast','predicted'],['Actual','actual'],['Error','error'],['Captain',p=>p.captain?'★':'']],result.players);
+     return;
+   }
    const raw=localStorage.getItem(backtestKey);if(!raw)throw Error('Maç öncesinden kaydedilmiş tahmin bulunamadı.');
    const snap=JSON.parse(raw);
    // Fetch a fresh official feed. roundPoints represents the latest round only.
@@ -283,7 +308,7 @@ document.getElementById('project-next').addEventListener('click',async()=>{
  try{
   let match={enriched:playerCache.players,matched:0,ambiguous:0}, identity=null;
   if(tffCache){
-    const identityResponse=await fetch('/api/identity/resolve',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({tff_players:tffCache.players,external_players:playerCache.players,fixtures:fixtureCache.fixtures,week:10})});
+    const identityResponse=await fetch('/api/identity/resolve',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({tff_players:tffCache.players,external_players:playerCache.players,fixtures:fixtureCache.fixtures,week:activeWeek})});
     identity=await identityResponse.json();if(!identityResponse.ok)throw Error(identity.error||'Oyuncu kimliği doğrulanamadı');
     match={enriched:identity.enriched,matched:identity.report.matched_players,ambiguous:identity.report.ambiguous_matches};
   }

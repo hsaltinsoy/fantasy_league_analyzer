@@ -1,5 +1,6 @@
 """Auditable TFF to xgEdge identity resolution; no guessed statistics."""
 import hashlib
+import os
 import json
 import re
 import unicodedata
@@ -17,6 +18,10 @@ def normalize(value):
 
 
 def load_crosswalk(path=DEFAULT_CROSSWALK):
+    if os.environ.get('STORAGE_BACKEND', 'postgres').lower() == 'postgres' and Path(path) == DEFAULT_CROSSWALK:
+        from storage.db import engine_from_env
+        from storage.runtime_repository import RuntimeRepository
+        return RuntimeRepository(engine_from_env()).verified_identity_crosswalk()
     path = Path(path)
     if not path.exists():
         return {'version': 1, 'entries': []}
@@ -35,6 +40,11 @@ def add_verified_identity(tff_id, profile_url, evidence, *, aliases=(), path=DEF
     """Record a manually reviewed stable-ID link with revision history."""
     if not str(tff_id).isdigit() or not str(profile_url).startswith('https://www.xg-edge.com/players/') or not evidence:
         raise ValueError('TFF ID, xgEdge profile URL and evidence are required')
+    if os.environ.get('STORAGE_BACKEND', 'postgres').lower() == 'postgres' and Path(path) == DEFAULT_CROSSWALK:
+        from storage.db import engine_from_env
+        from storage.runtime_repository import RuntimeRepository
+        return RuntimeRepository(engine_from_env()).add_verified_identity(
+            tff_id, profile_url, evidence, aliases=aliases)
     path = Path(path)
     crosswalk = load_crosswalk(path)
     existing = [e for e in crosswalk['entries'] if str(e.get('tff_id')) == str(tff_id)]
@@ -53,7 +63,7 @@ def add_verified_identity(tff_id, profile_url, evidence, *, aliases=(), path=DEF
     return crosswalk_version(crosswalk)
 
 
-def resolve_players(tff_players, external_players, crosswalk=None):
+def resolve_players(tff_players, external_players, crosswalk=None, *, verified_only=False):
     crosswalk = crosswalk or {'version': 1, 'entries': []}
     entries = {str(e['tff_id']): e for e in crosswalk['entries'] if e.get('tff_id') is not None}
     by_url = {}
@@ -75,7 +85,7 @@ def resolve_players(tff_players, external_players, crosswalk=None):
             candidate = by_url.get(entry['profile_url'], [])
             if len(candidate) == 1 and entry.get('verified'):
                 level = 'verified'
-        if not candidate:
+        if not candidate and not verified_only:
             aliases = [player.get('name'), player.get('match_name')]
             if entry:
                 aliases += entry.get('aliases', [])
@@ -89,7 +99,9 @@ def resolve_players(tff_players, external_players, crosswalk=None):
             # A name-only match must agree on club; persistent provider IDs survive transfers.
             stable = bool(entry and entry.get('profile_url') == external.get('profile_url'))
             club_name = normalize_team(player.get('club_name'))
-            if not stable and (not club_name or normalize_team(external.get('team')) != club_name):
+            if verified_only and not (stable and entry.get('verified')):
+                level = 'ambiguous'
+            elif not stable and (not club_name or normalize_team(external.get('team')) != club_name):
                 level = 'ambiguous'
             elif id(external) in used:
                 level = 'ambiguous'

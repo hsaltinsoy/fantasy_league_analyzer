@@ -10,7 +10,7 @@ from pathlib import Path
 from analysis import live_benchmark
 from analysis.benchmark_evaluation import _fixture_check, evaluate_gameweek
 from analysis.benchmark_verification import provenance
-from analysis.prediction_tracking import DEFAULT_DB, get_prediction, get_snapshot, latest_evaluation_run, parse_time
+from analysis.prediction_tracking import DEFAULT_DB, _postgres, get_prediction, get_snapshot, latest_evaluation_run, parse_time
 from analysis.production_evaluation import _metrics
 from data_sources.tff_official import BASE
 
@@ -42,7 +42,38 @@ def _capture_lock(path):
                 fcntl.flock(handle, fcntl.LOCK_UN)
 
 
+@contextmanager
+def _postgres_capture_lock(repository, week_key='prospective_capture'):
+    from sqlalchemy import text
+    with repository.engine.connect() as db:
+        db.execute(text('SELECT pg_advisory_lock(hashtextextended(:key, 0))'), {'key': week_key})
+        try:
+            yield
+        finally:
+            db.execute(text('SELECT pg_advisory_unlock(hashtextextended(:key, 0))'), {'key': week_key})
+
+
 def _benchmark_snapshots(path=DEFAULT_DB, week=None):
+    pg = _postgres(path)
+    if pg:
+        from sqlalchemy import select
+        from storage import models as m
+        query = (select(m.snapshots.c.id, m.snapshots.c.gameweek, m.snapshots.c.captured_at_text,
+                        m.snapshots.c.deadline_at_text, m.snapshots.c.source_text,
+                        m.snapshots.c.classification)
+                 .join(m.predictions, m.predictions.c.snapshot_id == m.snapshots.c.id)
+                 .distinct().order_by(m.snapshots.c.gameweek, m.snapshots.c.captured_at_text))
+        if week is not None:
+            query = query.where(m.snapshots.c.gameweek == week)
+        with pg.engine.connect() as db:
+            rows = db.execute(query).all()
+        found = []
+        for sid, gameweek, _captured, deadline, raw, classification in rows:
+            source = json.loads(raw)
+            predictions = [pg.get_prediction(pid) for pid in pg.prediction_ids(sid)]
+            if classification == 'live' and any('benchmark' in p['payload'] for p in predictions):
+                found.append({'id': sid, 'gameweek': gameweek, 'deadline': deadline, 'source': source})
+        return found
     path = Path(path)
     if not path.exists():
         return []
@@ -74,7 +105,9 @@ def capture(*, path=DEFAULT_DB, fixture_archive=None, players_provider=None,
     """Idempotently create one live benchmark set for the official next week."""
     if now is not None and now.tzinfo is None:
         raise ValueError('Capture time must include a timezone')
-    with _capture_lock(path):
+    pg = _postgres(path)
+    lock = _capture_lock(path) if not pg else _postgres_capture_lock(pg)
+    with lock:
         archive = fixture_archive if fixture_archive is not None else live_benchmark.fetch_official_fixtures()
         now = now or datetime.now(timezone.utc)
         if archive.get('source_url') != BASE+live_benchmark.FIXTURE_ENDPOINT:
@@ -102,17 +135,30 @@ def capture(*, path=DEFAULT_DB, fixture_archive=None, players_provider=None,
         if not isinstance(players, list) or not players:
             raise ValueError('Official player feed returned no players')
         player_time = datetime.now(timezone.utc).isoformat()
-        records = records_provider() if records_provider is not None else live_benchmark.load_history()
+        records = (records_provider() if records_provider is not None else
+                   None if pg else live_benchmark.load_history())
         # generate() validates the deadline again at the snapshot and every prediction INSERT.
-        result = live_benchmark.generate(fixture_archive=archive, players=players, records=records,
-            path=path, now=now, strict_pre_deadline=True, players_retrieved_at=player_time)
-        experimental = {'status':'not_requested'}
-        if include_phase15:
-            from analysis.experimental_prospective import save_variants
-            try:
-                experimental=save_variants(result['snapshot']['id'],path=path)
-            except (ValueError, KeyError, OSError, TypeError) as exc:
-                experimental={'status':'not_available','reason':str(exc)}
+        def create_predictions():
+            result = live_benchmark.generate(fixture_archive=archive, players=players, records=records,
+                path=path, now=now, strict_pre_deadline=True, players_retrieved_at=player_time)
+            experimental = {'status':'not_requested'}
+            if include_phase15:
+                from analysis.experimental_prospective import save_variants
+                if pg:
+                    # An opt-in variant failure must roll back the entire PostgreSQL capture.
+                    experimental = save_variants(result['snapshot']['id'], path=path)
+                else:
+                    try:
+                        experimental = save_variants(result['snapshot']['id'], path=path)
+                    except (ValueError, KeyError, OSError, TypeError) as exc:
+                        experimental = {'status':'not_available','reason':str(exc)}
+            return result, experimental
+        if pg:
+            from storage.repository import tracking_transaction
+            with tracking_transaction(pg.engine):
+                result, experimental = create_predictions()
+        else:
+            result, experimental = create_predictions()
         return {'status':'captured','gameweek':week,'gameweek_id':entry['gameweek_id'],
                 'deadline':entry['deadline'],'snapshot_id':result['snapshot']['id'],
                 'predictions_created':len(result['predictions']),
@@ -161,9 +207,13 @@ def report(path=DEFAULT_DB):
             continue
         snapshot = get_snapshot(item['id'], path)
         run = latest_evaluation_run(item['id'], path)
-        with sqlite3.connect(f'file:{Path(path).resolve().as_posix()}?mode=ro', uri=True) as db:
-            ids = [row[0] for row in db.execute('SELECT id FROM predictions WHERE snapshot_id=? ORDER BY created_at,id',
-                                               (item['id'],))]
+        pg = _postgres(path)
+        if pg:
+            ids = pg.prediction_ids(item['id'])
+        else:
+            with sqlite3.connect(f'file:{Path(path).resolve().as_posix()}?mode=ro', uri=True) as db:
+                ids = [row[0] for row in db.execute('SELECT id FROM predictions WHERE snapshot_id=? ORDER BY created_at,id',
+                                                   (item['id'],))]
         for pid in ids:
             prediction = get_prediction(pid, path)
             if 'benchmark' not in prediction['payload']:

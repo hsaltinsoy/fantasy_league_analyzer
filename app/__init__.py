@@ -21,6 +21,11 @@ from data_sources.football_data import parse_results, parse_fixtures, upcoming_f
 def create_app():
     app = Flask(__name__)
 
+    def postgres_report(source_path):
+        from storage.db import engine_from_env
+        from storage.runtime_repository import RuntimeRepository
+        return RuntimeRepository(engine_from_env()).historical_report(source_path)
+
     def json_object():
         payload = request.get_json(silent=True)
         return payload if isinstance(payload, dict) else {}
@@ -36,10 +41,46 @@ def create_app():
         from data_sources.club_metadata import load_clubs
         import json
         from pathlib import Path
-        result=report()
-        comparison=comparison_view(result,request.args.get('left'),request.args.get('right'),load_clubs())
+        try:
+            result=report()
+        except Exception as exc:
+            if os.environ.get('STORAGE_BACKEND', 'postgres').lower() != 'postgres':
+                raise
+            app.logger.exception('PostgreSQL benchmark unavailable')
+            return jsonify(error='PostgreSQL benchmark unavailable: ' + str(exc)), 503
+        if os.environ.get('STORAGE_BACKEND', 'postgres').lower() == 'postgres':
+            from storage.db import engine_from_env
+            from storage.runtime_repository import RuntimeRepository
+            club_repository = RuntimeRepository(engine_from_env())
+            clubs = {str(team['id']): {'name': team['name']} for team in club_repository.teams()}
+        else:
+            clubs = load_clubs()
+        comparison=comparison_view(result,request.args.get('left'),request.args.get('right'),clubs)
         chart=risk_chart_view(result,comparison['left']['saved']['snapshot_id'],
                               (comparison['left']['id'],comparison['right']['id'])) if comparison else None
+        if os.environ.get('STORAGE_BACKEND', 'postgres').lower() == 'postgres':
+            from storage.db import engine_from_env
+            from storage.runtime_repository import RuntimeRepository
+            try:
+                repository = RuntimeRepository(engine_from_env())
+                read = repository.historical_report
+                player_accuracy = read('historical_data/player_level_phase11/player_level_report.json')
+                recovered_coverage = read('historical_data/recovered/coverage_report.json')
+                recovered_models = read('historical_data/recovered/model_evaluation.json')
+                recovered_combined = read('historical_data/recovered/model_evaluation_combined.json')
+                ranking_reports = {source: read(f'historical_data/recovered/player_ranking_{source}.json')
+                                   for source in ('official', 'combined')}
+                player_chart_max = (max((item['baselines'][name]['unconditional']['mae'] or 0)
+                    for item in player_accuracy['by_gameweek']
+                    for name in ('recent_3_average', 'season_to_date_average'))
+                    if player_accuracy else None)
+                return render_template('benchmark.html', report=result, comparison=comparison, chart=chart,
+                    player_accuracy=player_accuracy, player_chart_max=player_chart_max,
+                    recovered_coverage=recovered_coverage, recovered_models=recovered_models,
+                    recovered_combined=recovered_combined, ranking_reports=ranking_reports)
+            except Exception as exc:
+                app.logger.exception('PostgreSQL benchmark reports unavailable')
+                return jsonify(error='PostgreSQL benchmark reports unavailable: ' + str(exc)), 503
         player_report_path=Path('historical_data/player_level_phase11/player_level_report.json')
         player_accuracy=json.loads(player_report_path.read_text(encoding='utf-8')) if player_report_path.exists() else None
         recovered_path=Path('historical_data/recovered')
@@ -96,7 +137,35 @@ def create_app():
     @app.get('/api/benchmark/report')
     def benchmark_report():
         from analysis.live_benchmark import report
-        return jsonify(report())
+        try:
+            if os.environ.get('STORAGE_BACKEND', 'postgres').lower() == 'postgres' and request.args.get('saved') == '1':
+                from storage.db import engine_from_env
+                from storage.runtime_repository import RuntimeRepository
+                saved = RuntimeRepository(engine_from_env()).latest_generated_report('benchmark')
+                return (jsonify(saved), 200) if saved else (jsonify(error='No saved benchmark report'), 404)
+            return jsonify(report())
+        except Exception as exc:
+            if os.environ.get('STORAGE_BACKEND', 'postgres').lower() != 'postgres':
+                raise
+            app.logger.exception('PostgreSQL benchmark report unavailable')
+            return jsonify(error='PostgreSQL benchmark report unavailable: ' + str(exc)), 503
+
+    @app.post('/api/benchmark/report/save')
+    def save_benchmark_report():
+        if os.environ.get('STORAGE_BACKEND', 'postgres').lower() != 'postgres':
+            return jsonify(error='Persistent report storage requires PostgreSQL'), 409
+        try:
+            from analysis.live_benchmark import report
+            from storage.db import engine_from_env
+            from storage.runtime_repository import RuntimeRepository
+            repository = RuntimeRepository(engine_from_env())
+            content = report()
+            report_id = repository.save_generated_report('benchmark', content)
+            saved = repository.latest_generated_report('benchmark')
+            return jsonify(id=report_id, content_sha256=saved['content_sha256'])
+        except Exception as exc:
+            app.logger.exception('PostgreSQL benchmark report save failed')
+            return jsonify(error='PostgreSQL benchmark report save failed: ' + str(exc)), 503
 
     @app.get('/api/prospective/report')
     def prospective_report():
@@ -105,6 +174,12 @@ def create_app():
 
     @app.get('/api/benchmark/player-accuracy')
     def benchmark_player_accuracy():
+        if os.environ.get('STORAGE_BACKEND', 'postgres').lower() == 'postgres':
+            try:
+                data = postgres_report('historical_data/player_level_phase11/player_level_report.json')
+                return (jsonify(data), 200) if data is not None else (jsonify(error='Report unavailable'), 404)
+            except Exception as exc:
+                return jsonify(error='PostgreSQL report unavailable: ' + str(exc)), 503
         import json
         from pathlib import Path
         path=Path('historical_data/player_level_phase11/player_level_report.json')
@@ -114,6 +189,12 @@ def create_app():
 
     @app.get('/api/benchmark/recovered-history')
     def benchmark_recovered_history():
+        if os.environ.get('STORAGE_BACKEND', 'postgres').lower() == 'postgres':
+            try:
+                data = postgres_report('historical_data/recovered/coverage_report.json')
+                return (jsonify(data), 200) if data is not None else (jsonify(error='Report unavailable'), 404)
+            except Exception as exc:
+                return jsonify(error='PostgreSQL report unavailable: ' + str(exc)), 503
         import json
         from pathlib import Path
         path=Path('historical_data/recovered/coverage_report.json')
@@ -128,6 +209,12 @@ def create_app():
         if source not in ('official','combined'):
             return jsonify(error='Unknown recovered source policy'),400
         filename='model_evaluation.json' if source=='official' else 'model_evaluation_combined.json'
+        if os.environ.get('STORAGE_BACKEND', 'postgres').lower() == 'postgres':
+            try:
+                data = postgres_report('historical_data/recovered/' + filename)
+                return (jsonify(data), 200) if data is not None else (jsonify(error='Report unavailable'), 404)
+            except Exception as exc:
+                return jsonify(error='PostgreSQL report unavailable: ' + str(exc)), 503
         path=Path('historical_data/recovered')/filename
         return (jsonify(json.loads(path.read_text(encoding='utf-8'))),200) if path.exists() else \
                (jsonify(error='Recovered-model report unavailable'),404)
@@ -139,6 +226,12 @@ def create_app():
         source=request.args.get('source','official')
         if source not in ('official','combined'):
             return jsonify(error='Unknown ranking source policy'),400
+        if os.environ.get('STORAGE_BACKEND', 'postgres').lower() == 'postgres':
+            try:
+                data = postgres_report(f'historical_data/recovered/player_ranking_{source}.json')
+                return (jsonify(data), 200) if data is not None else (jsonify(error='Report unavailable'), 404)
+            except Exception as exc:
+                return jsonify(error='PostgreSQL report unavailable: ' + str(exc)), 503
         path=Path('historical_data/recovered')/f'player_ranking_{source}.json'
         return (jsonify(json.loads(path.read_text(encoding='utf-8'))),200) if path.exists() else \
                (jsonify(error='Player-ranking report unavailable'),404)
@@ -159,6 +252,15 @@ def create_app():
         try:
             week=int(request.args.get('week','10'))
             if not 2 <= week <= 34: raise ValueError('Invalid week')
+            if os.environ.get('STORAGE_BACKEND', 'postgres').lower() == 'postgres':
+                from storage.db import engine_from_env
+                from storage.runtime_repository import RuntimeRepository
+                try:
+                    data = RuntimeRepository(engine_from_env()).latest_lineup(week)
+                except Exception as exc:
+                    app.logger.exception('PostgreSQL lineup unavailable')
+                    return jsonify(error='PostgreSQL lineup unavailable: ' + str(exc)), 503
+                return (jsonify(data), 200) if data else (jsonify(error='No saved lineup'), 404)
             path=Path('historical_data')/f'next_week_gw{week}.json'
             if not path.exists():
                 return jsonify(error='Henüz kayıtlı kadro yok. Önce Kadroyu oluştur düğmesine basın.'),404
@@ -190,6 +292,42 @@ def create_app():
             experimental_covariance=request.args.get('experimental_covariance','0')=='1'
             if not 2 <= week <= 34 or model not in MODELS or weight not in (0,.05,.1) or risk_profile not in ("aggressive","balanced","cautious"):
                 return jsonify(error='Geçersiz parametre'),400
+            if os.environ.get('STORAGE_BACKEND', 'postgres').lower() == 'postgres':
+                if not live:
+                    raise ValueError('PostgreSQL lineup requires the ingested current official player pool')
+                from storage.db import engine_from_env
+                from storage.runtime_repository import RuntimeRepository
+                from analysis.live_benchmark import _fixture_lookup
+                from analysis.prediction_tracking import parse_time
+                from datetime import datetime, timezone
+                repository = RuntimeRepository(engine_from_env())
+                archive = repository.fixture_archive(max_age_seconds=3600)
+                entry = archive['weeks'].get(str(week))
+                if not entry:
+                    raise ValueError('No official fixture evidence for selected week')
+                deadline = parse_time(entry.get('deadline'))
+                if deadline is None or deadline <= datetime.now(timezone.utc):
+                    raise ValueError('Selected week is past or lacks a current official deadline')
+                players = repository.current_player_pool(max_age_seconds=3600)
+                histories = repository.historical_records(before_week=week)
+                records = [(p, histories.get(str(p['id']), [])) for p in players]
+                tow = repository.team_of_week() if weight else {}
+                result = predict(week, players, records, {week: _fixture_lookup(entry)}, tow, model,
+                    tow_weight=weight, risk_profile=risk_profile,
+                    experimental_covariance=experimental_covariance, fixture_archive=archive)
+                source = {'players': 'postgres_current_official_api',
+                    'fixtures': archive['source_url'], 'histories': 'postgres_source_payloads',
+                    'fixtures_retrieved_at': archive['captured_utc']}
+                from storage.repository import tracking_transaction
+                with tracking_transaction(repository.engine):
+                    snapshot = save_snapshot(week, players, entry['matches'],
+                        [{'player_id': p['id'], 'rows': histories.get(str(p['id']), [])} for p in players],
+                        source, deadline_at=entry.get('deadline'),
+                        deadline_source=archive['source_url'], classification='live')
+                    tracking = save_prediction(snapshot['id'], result, model_version='v3.9')
+                result['prediction_tracking'] = tracking
+                result['clubs'] = {str(t['id']): {'name': t['name']} for t in repository.teams()}
+                return jsonify(result)
             store=Path('historical_data')
             if live:
                 players=fetch_tff_players()['players']
@@ -256,13 +394,24 @@ def create_app():
         if not isinstance(tff,list) or not isinstance(external,list) or len(tff)>2000 or len(external)>2000:
             return jsonify(error='Player lists required'),400
         try:
-            clubs=load_clubs()
+            if os.environ.get('STORAGE_BACKEND', 'postgres').lower() == 'postgres':
+                from storage.db import engine_from_env
+                from storage.runtime_repository import RuntimeRepository
+                identity_repository = RuntimeRepository(engine_from_env())
+                clubs = {str(team['id']): {'name': team['name']}
+                         for team in identity_repository.teams()}
+            else:
+                clubs=load_clubs()
             tff=[{**p,'club_name':clubs.get(str(p.get('club_id')),{}).get('name')}
                  for p in tff]
-            resolved,report=resolve_players(tff,external,load_crosswalk())
+            resolved,report=resolve_players(tff,external,load_crosswalk(),
+                verified_only=os.environ.get('STORAGE_BACKEND', 'postgres').lower() == 'postgres')
             week=int(payload.get('week',10))
-            store=Path('historical_data')
-            fixture_file=json.loads((store/'tff_fixtures_verified_v5.json').read_text(encoding='utf-8'))
+            if os.environ.get('STORAGE_BACKEND', 'postgres').lower() == 'postgres':
+                fixture_file = identity_repository.fixture_archive()
+            else:
+                store=Path('historical_data')
+                fixture_file=json.loads((store/'tff_fixtures_verified_v5.json').read_text(encoding='utf-8'))
             entry=fixture_file['weeks'][str(week)]
             report.update(validate_week(entry,tff))
             official_clubs={str(m[k]) for m in entry['matches'] for k in ('homeClubId','awayClubId')}
@@ -293,6 +442,11 @@ def create_app():
             return jsonify(players=resolved,enriched=enriched,club_mappings=mappings,report=report)
         except (ValueError,KeyError,OSError,TypeError) as exc:
             return jsonify(error=str(exc)),400
+        except Exception as exc:
+            if os.environ.get('STORAGE_BACKEND', 'postgres').lower() != 'postgres':
+                raise
+            app.logger.exception('PostgreSQL identity resolution unavailable')
+            return jsonify(error='PostgreSQL identity resolution unavailable: ' + str(exc)), 503
 
     @app.post('/api/predictions/<prediction_id>/evaluate')
     def evaluate_saved_prediction(prediction_id):
@@ -314,6 +468,23 @@ def create_app():
             if not isinstance(ids,list) or len(ids)!=11 or any(isinstance(i,bool) or not str(i).isdigit() for i in ids):
                 return jsonify(error='İlk 11 için 11 adet oyuncu ID girin.'),400
             ids=[int(i) for i in ids]
+            if os.environ.get('STORAGE_BACKEND', 'postgres').lower() == 'postgres':
+                from storage.db import engine_from_env
+                from storage.runtime_repository import RuntimeRepository
+                repository = RuntimeRepository(engine_from_env())
+                model = repository.latest_lineup(week)
+                if model is None:
+                    return jsonify(error='No saved lineup for selected week'), 404
+                selected = {int(p['id']) for p in model['starting_xi']}
+                players = {int(p['id']): p for p in repository.current_player_pool()}
+                unknown = [i for i in ids if i not in players]
+                if unknown:
+                    return jsonify(error=f'Unknown player IDs: {unknown}'), 400
+                return jsonify(overlap=len(selected.intersection(ids)),
+                    same=[players[i]['name'] for i in ids if i in selected],
+                    yours_only=[players[i]['name'] for i in ids if i not in selected],
+                    model_only=[p['name'] for p in model['starting_xi'] if int(p['id']) not in ids],
+                    warning='Only player overlap is compared.')
             if len(set(ids))!=11:return jsonify(error='Oyuncu ID değerleri tekrarlanmamalı.'),400
             path=Path('historical_data')/f'next_week_gw{week}.json'
             if not path.exists():return jsonify(error='Önce bu haftanın model kadrosunu oluşturun.'),404
@@ -334,9 +505,14 @@ def create_app():
     @app.get('/api/players/tff')
     def tff_players():
         try:
+            if os.environ.get('STORAGE_BACKEND', 'postgres').lower() == 'postgres':
+                from storage.db import engine_from_env
+                from storage.runtime_repository import RuntimeRepository
+                players = RuntimeRepository(engine_from_env()).current_player_pool()
+                return jsonify(players=players, count=len(players), source='postgres_official_tff_api')
             return jsonify(fetch_tff_players())
         except (TFFFeedError, OSError, RuntimeError) as exc:
-            return jsonify(error=str(exc)), 502
+            return jsonify(error=str(exc)), (503 if os.environ.get('STORAGE_BACKEND', 'postgres').lower() == 'postgres' else 502)
 
     @app.get('/api/players/xgedge')
     def xgedge_players():
@@ -389,6 +565,23 @@ def create_app():
         from analysis.prospective_monitor import report as prospective_report
         from pathlib import Path
         import json
+        if os.environ.get('STORAGE_BACKEND', 'postgres').lower() == 'postgres':
+            from storage.db import engine_from_env
+            from storage.runtime_repository import RuntimeRepository
+            try:
+                repository = RuntimeRepository(engine_from_env())
+                read = repository.historical_report
+                return render_template('index.html', dashboard=dashboard_data(), benchmark=report(),
+                    prospective=prospective_report(),
+                    phase11=read('historical_data/player_level_phase11/player_level_report.json'),
+                    player_accuracy=read('historical_data/recovered/model_evaluation.json'),
+                    player_ranking=read('historical_data/recovered/player_ranking_official.json'),
+                    recovery=read('historical_data/recovered/coverage_report.json'),
+                    experimental={tier: read(f'historical_data/experimental_phase15/ridge_{tier}.json')
+                                  for tier in ('official', 'combined')})
+            except Exception as exc:
+                app.logger.exception('PostgreSQL dashboard unavailable')
+                return jsonify(error='PostgreSQL dashboard unavailable: ' + str(exc)), 503
         view=dashboard_data()
         benchmark=report()
         recovered=Path('historical_data/recovered')
@@ -407,7 +600,76 @@ def create_app():
 
     @app.get('/tools')
     def legacy_tools():
-        return render_template('legacy_tools.html')
+        if os.environ.get('STORAGE_BACKEND', 'postgres').lower() == 'postgres':
+            try:
+                from app.dashboard_view import dashboard_data
+                upcoming = dashboard_data()['upcoming']
+                return render_template('legacy_tools.html', postgres_mode=True,
+                                       upcoming_week=upcoming['number'] if upcoming else None)
+            except Exception as exc:
+                app.logger.exception('PostgreSQL tools unavailable')
+                return jsonify(error='PostgreSQL tools unavailable: ' + str(exc)), 503
+        return render_template('legacy_tools.html', postgres_mode=False, upcoming_week=10)
+
+    @app.get('/api/dashboard/latest')
+    def latest_dashboard_tracking():
+        if os.environ.get('STORAGE_BACKEND', 'postgres').lower() != 'postgres':
+            return jsonify(error='PostgreSQL tracking required'), 409
+        try:
+            week = int(request.args['week'])
+            if not 2 <= week <= 34:
+                raise ValueError('Invalid week')
+            from storage.db import engine_from_env
+            from storage.runtime_repository import RuntimeRepository
+            from storage.repository import TrackingRepository
+            repository = RuntimeRepository(engine_from_env())
+            lineup = repository.latest_lineup(week, model_version='v3.9-dashboard')
+            if lineup is None:
+                return jsonify(error='No tracked dashboard prediction'), 404
+            tracking = lineup['prediction_tracking']
+            snapshot = TrackingRepository(repository.engine).get_snapshot(tracking['snapshot_id'])
+            return jsonify(lineup=lineup, snapshot=snapshot)
+        except (ValueError, KeyError) as exc:
+            return jsonify(error=str(exc)), 400
+        except Exception as exc:
+            app.logger.exception('PostgreSQL dashboard tracking unavailable')
+            return jsonify(error='PostgreSQL dashboard tracking unavailable: ' + str(exc)), 503
+
+    @app.post('/api/dashboard/backtest/evaluate')
+    def evaluate_saved_dashboard_tracking():
+        if os.environ.get('STORAGE_BACKEND', 'postgres').lower() != 'postgres':
+            return jsonify(error='PostgreSQL tracking required'), 409
+        payload = json_object()
+        try:
+            week = int(payload['week'])
+            actual = payload['actual_players']
+            if not 2 <= week <= 34 or not isinstance(actual, list) or len(actual) > 1500:
+                raise ValueError('Valid week and player results required')
+            from storage.db import engine_from_env
+            from storage.runtime_repository import RuntimeRepository
+            from analysis.backtesting import evaluate_snapshot
+            repository = RuntimeRepository(engine_from_env())
+            lineup = repository.latest_lineup(week, model_version='v3.9-dashboard')
+            if lineup is None:
+                return jsonify(error='No tracked dashboard prediction'), 404
+            xi = lineup['starting_xi']
+            snapshot = {'round': week, 'pre_round_confirmed': True,
+                'starting_xi': [player['id'] for player in xi],
+                'captain_id': next(player['id'] for player in xi if player.get('captain')),
+                'predictions': {str(player['id']): player['xpts'] for player in xi}}
+            result = evaluate_snapshot(snapshot, actual, week)
+            result['prediction_id'] = lineup['prediction_tracking']['id']
+            result['verification_status'] = lineup['prediction_tracking']['status']
+            result['source_provenance'] = 'browser_confirmed_round_points_not_independently_verified'
+            if result['status'] == 'complete':
+                result['report_id'] = repository.save_generated_report(
+                    f'dashboard_backtest_week_{week}_{result["prediction_id"]}', result)
+            return jsonify(result)
+        except (ValueError, KeyError, TypeError, StopIteration) as exc:
+            return jsonify(error=str(exc)), 400
+        except Exception as exc:
+            app.logger.exception('PostgreSQL dashboard backtest unavailable')
+            return jsonify(error='PostgreSQL dashboard backtest unavailable: ' + str(exc)), 503
 
     @app.post('/api/projections/next-week')
     def next_week_projections():
@@ -457,16 +719,25 @@ def create_app():
             xi=[{**p,'captain':p['id']==solution['captain']['id']} for p in solution['starting_xi']]
             ids={p['id'] for p in xi}
             bench=[p for p in solution['squad'] if p['id'] not in ids]
-            result={'model':'dashboard_blend_v1','risk_profile':solution.get('risk_profile','balanced'),
+            result={'week':week,'model':'dashboard_blend_v1','risk_profile':solution.get('risk_profile','balanced'),
                     'expected_points':solution['expected_points'],
                     'risk_adjusted_objective':solution.get('risk_adjusted_objective'),
                     'starting_xi':xi,'bench':bench,'formation':solution['formation'],
                     'squad_cost':solution['squad_cost']}
+            if os.environ.get('STORAGE_BACKEND', 'postgres').lower() == 'postgres':
+                from storage.db import engine_from_env
+                from storage.repository import tracking_transaction
+                with tracking_transaction(engine_from_env()):
+                    snapshot=save_snapshot(week,players,fixtures,[],
+                        {'players':'browser-supplied current TFF/xgEdge data',
+                         'fixtures':'browser-supplied free fixture feed'},
+                        classification='live', data_quality=payload.get('data_quality'))
+                    saved=save_prediction(snapshot['id'],result,model_version='v3.9-dashboard')
+                return jsonify(saved)
             snapshot=save_snapshot(week,players,fixtures,[],
                 {'players':'browser-supplied current TFF/xgEdge data',
                  'fixtures':'browser-supplied free fixture feed'},
-                classification='live',
-                data_quality=payload.get('data_quality'))
+                classification='live', data_quality=payload.get('data_quality'))
             return jsonify(save_prediction(snapshot['id'],result,model_version='v3.9-dashboard'))
         except (ValueError,TypeError,KeyError) as exc:
             return jsonify(error=str(exc)),400
@@ -510,10 +781,15 @@ def create_app():
     @app.get('/api/history/latest-round')
     def latest_round_history():
         try:
-            feed = fetch_tff_players()
+            if os.environ.get('STORAGE_BACKEND', 'postgres').lower() == 'postgres':
+                from storage.db import engine_from_env
+                from storage.runtime_repository import RuntimeRepository
+                feed = {'players': RuntimeRepository(engine_from_env()).current_player_pool()}
+            else:
+                feed = fetch_tff_players()
             return jsonify(last_round_players(feed['players']))
         except (TFFFeedError, OSError, RuntimeError) as exc:
-            return jsonify(error=str(exc)), 502
+            return jsonify(error=str(exc)), (503 if os.environ.get('STORAGE_BACKEND', 'postgres').lower() == 'postgres' else 502)
 
     @app.post('/api/optimize')
     def run_optimization():

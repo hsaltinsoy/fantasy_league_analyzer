@@ -56,7 +56,7 @@ def _extract(payload):
     if not result: raise TFFFeedError('Oyuncu listesi boş veya pozisyon bilgisi eksik.')
     return result
 
-def fetch_players():
+def fetch_players(*, include_evidence=False):
     if not PROFILE.exists():
         raise TFFFeedError('Önce terminalde python -m data_sources.tff_official login çalıştırın.')
     with _browser() as pw:
@@ -69,7 +69,12 @@ def fetch_players():
             try: payload=response.json()
             except ValueError as exc: raise TFFFeedError('API JSON döndürmedi.') from exc
             players=_extract(payload)
-            return {'players':players,'count':len(players),'source':'tfffantezilig.com'}
+            result = {'players':players,'count':len(players),'source':'tfffantezilig.com'}
+            if include_evidence:
+                from datetime import datetime, timezone
+                result.update(raw_payload=payload, retrieved_at=datetime.now(timezone.utc),
+                              source_url=BASE+ENDPOINT)
+            return result
         finally:
             browser.close()
 

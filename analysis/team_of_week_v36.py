@@ -4,6 +4,9 @@ from pathlib import Path
 
 def load(path):
     payload=json.loads(Path(path).read_text(encoding='utf-8'))
+    return parse(payload)
+
+def parse(payload):
     if payload.get('classification')!='RETROSPECTIVE_API_FETCH_NOT_PREDEADLINE_SNAPSHOT':
         raise ValueError('Unknown team-of-week provenance')
     result={}

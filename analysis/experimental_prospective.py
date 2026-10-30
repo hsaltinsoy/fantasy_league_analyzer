@@ -1,6 +1,7 @@
 """Opt-in Phase 15 models on an existing immutable prospective snapshot."""
 import hashlib
 import json
+import os
 from pathlib import Path
 
 from analysis.experimental_forecasting import (ALPHA, BLEND, FEATURES, GAP_WEEKS,
@@ -20,7 +21,16 @@ def train_for_target(target_week, *, store=Path('historical_data'),
     """Freeze a historical ridge fit using labels no later than target minus two."""
     if source_policy not in ('official_only', 'combined'):
         raise ValueError('Unknown historical evidence tier')
-    _, positions, fixtures, records = _load_inputs(Path(store), Path(recovered))
+    if (os.environ.get('STORAGE_BACKEND', 'postgres').lower() == 'postgres'
+            and Path(store) == Path('historical_data')
+            and Path(recovered) == Path('historical_data/recovered')):
+        from storage.db import engine_from_env
+        from storage.runtime_repository import RuntimeRepository
+        _, positions, fixtures, records, coverage_digest = (
+            RuntimeRepository(engine_from_env()).phase15_training_inputs(target_week))
+    else:
+        _, positions, fixtures, records = _load_inputs(Path(store), Path(recovered))
+        coverage_digest = hashlib.sha256((Path(recovered)/'coverage_report.json').read_bytes()).hexdigest()
     training = []
     weeks = list(range(4, min(9, target_week-GAP_WEEKS-1)+1))
     # For target N and one-week gap, the latest training label is N-2.
@@ -35,10 +45,9 @@ def train_for_target(target_week, *, store=Path('historical_data'),
     if len(weeks) < 2 or len(training) < MIN_TRAIN:
         raise ValueError(f'Insufficient dated training observations: {len(training)} across {len(weeks)} weeks')
     fitted = fit_ridge(training)
-    evidence_path = Path(recovered)/'coverage_report.json'
     return fitted, {'source_policy':source_policy,'training_weeks':weeks,
                     'training_n':len(training),'gap_gameweeks':GAP_WEEKS,
-                    'position_coverage_digest':hashlib.sha256(evidence_path.read_bytes()).hexdigest(),
+                    'position_coverage_digest':coverage_digest,
                     'features':list(FEATURES),'alpha':ALPHA}
 
 

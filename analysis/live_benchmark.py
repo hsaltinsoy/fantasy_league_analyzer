@@ -2,13 +2,14 @@
 import argparse
 import copy
 import json
+import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 from collections import Counter
 
 from analysis.multiweek_backtest import MODELS, load_history
 from analysis.predict_next_week import predict
-from analysis.prediction_tracking import DEFAULT_DB, connect, get_prediction, get_snapshot, latest_evaluation_run, parse_time, save_prediction, save_prediction_batch, save_snapshot
+from analysis.prediction_tracking import DEFAULT_DB, _postgres, connect, get_prediction, get_snapshot, latest_evaluation_run, parse_time, save_prediction, save_prediction_batch, save_snapshot
 from analysis.production_evaluation import _metrics
 from data_sources.fixture_validation import validate_week
 from data_sources.identity import crosswalk_version, load_crosswalk
@@ -22,7 +23,7 @@ FINISHED = {'FT', 'FINISHED', 'COMPLETED'}
 DIRECT_RISK_VERSION = 'phase8.1'
 
 
-def fetch_official_fixtures():
+def fetch_official_fixtures(*, include_evidence=False):
     """Fetch current official gameweek IDs, deadlines and matches without rewriting an archive."""
     from data_sources.tff_official import BASE, PROFILE, _browser, TFFFeedError
     if not PROFILE.exists():
@@ -52,10 +53,13 @@ def fetch_official_fixtures():
         if key in result:
             raise TFFFeedError('Duplicate official gameweek')
         result[key] = {'gameweek_id':week.get('id'), 'deadline':week.get('deadline'), 'matches':matches}
-    return {'classification':'LIVE_API_FIXTURES_NOT_PREDEADLINE_SNAPSHOT',
+    result = {'classification':'LIVE_API_FIXTURES_NOT_PREDEADLINE_SNAPSHOT',
             'captured_utc':datetime.now(timezone.utc).isoformat(),
             'source_endpoint':FIXTURE_ENDPOINT, 'source_url':BASE+FIXTURE_ENDPOINT,
             'weeks':result}
+    if include_evidence:
+        result['raw_payload'] = payload
+    return result
 
 
 def next_gameweek(archive, now=None):
@@ -98,17 +102,31 @@ def generate(*, fixture_archive=None, players=None, records=None, path=DEFAULT_D
              players_retrieved_at=None):
     """Capture once; run each model on deep copies of that snapshot's inputs."""
     now = now or datetime.now(timezone.utc)
-    if fixture_archive is None:
-        fixture_archive = fetch_official_fixtures()
-    if players is None:
+    pg_runtime = _postgres(path)
+    repository = None
+    if pg_runtime:
+        from storage.runtime_repository import RuntimeRepository
+        repository = RuntimeRepository(pg_runtime.engine)
         if cached:
+            raise ValueError('Cached file inputs are unavailable in PostgreSQL mode')
+    if fixture_archive is None:
+        fixture_archive = (repository.fixture_archive(max_age_seconds=3600 if strict_pre_deadline else None)
+                           if repository else fetch_official_fixtures())
+    if players is None:
+        if repository:
+            players = repository.current_player_pool(max_age_seconds=3600 if strict_pre_deadline else None)
+        elif cached:
             players = json.loads((STORE/'players.json').read_text(encoding='utf-8'))
         else:
             from data_sources.tff_official import fetch_players
             players = fetch_players()['players']
-    if records is None:
-        records = load_history()
     week, entry = next_gameweek(fixture_archive, now)
+    if records is None:
+        if repository:
+            histories = repository.historical_records(before_week=week)
+            records = [(p, histories.get(str(p['id']), [])) for p in players]
+        else:
+            records = load_history()
     if strict_pre_deadline:
         deadline=parse_time(entry.get('deadline'))
         retrieved=parse_time(fixture_archive.get('captured_utc'))
@@ -154,16 +172,20 @@ def generate(*, fixture_archive=None, players=None, records=None, path=DEFAULT_D
               'official_gameweek_id':entry.get('gameweek_id'),
               'histories':'local_player_archives_filtered_before_target_week',
               'deadline_evidence':'official_api_value; local capture timestamp is not independent proof'}
-    snapshot = save_snapshot(week, copy.deepcopy(players), copy.deepcopy(entry['matches']), histories,
-                             source, deadline_at=entry.get('deadline'),
-                             deadline_source=source['deadline_source_url'] if parse_time(entry.get('deadline')) else None,
-                             classification='historical_reconstruction' if cached else 'live',
-                             data_quality=quality, path=path,
-                             require_pre_deadline=strict_pre_deadline)
+    snapshot_args = dict(deadline_at=entry.get('deadline'),
+                         deadline_source=source['deadline_source_url'] if parse_time(entry.get('deadline')) else None,
+                         classification='historical_reconstruction' if cached else 'live',
+                         data_quality=quality, path=path,
+                         require_pre_deadline=strict_pre_deadline)
+    if pg_runtime:
+        snapshot = {'id': str(uuid.uuid4())}
+    else:
+        snapshot = save_snapshot(week, copy.deepcopy(players), copy.deepcopy(entry['matches']), histories,
+                                 source, **snapshot_args)
     fixture_input = {week:lookup}
     from analysis.team_of_week_v36 import load as load_tow
     tow_path = STORE/'team_of_week_verified.json'
-    tow = load_tow(tow_path) if tow_path.exists() else {}
+    tow = {} if repository else (load_tow(tow_path) if tow_path.exists() else {})
     saved = []
     prepared = []
     form_status = {}
@@ -179,7 +201,7 @@ def generate(*, fixture_archive=None, players=None, records=None, path=DEFAULT_D
         result['benchmark'] = {'variant':'production' if model == 'short_form_3w' else 'experimental_form',
                                'parameters':copy.deepcopy(MODELS[model]), 'fixture_weight':.5,
                                'tow_weight':0.0, 'snapshot_id':snapshot['id']}
-        if strict_pre_deadline:
+        if strict_pre_deadline or pg_runtime:
             prepared.append(result)
         else:
             saved.append(save_prediction(snapshot['id'], result, model_version=MODEL_VERSION, path=path))
@@ -202,14 +224,21 @@ def generate(*, fixture_archive=None, players=None, records=None, path=DEFAULT_D
                                     'uncertainty':{'variance':choice['variance'],
                                                    'standard_deviation':choice['standard_deviation'],
                                                    'evidence':baseline['experimental_covariance']['evidence']}}}
-            if strict_pre_deadline:
+            if strict_pre_deadline or pg_runtime:
                 prepared.append(variant)
             else:
                 saved.append(save_prediction(snapshot['id'], variant, model_version=MODEL_VERSION, path=path))
             covariance_status = 'saved'
     except (ValueError, KeyError, TypeError) as exc:
         covariance_status = f'not_evaluable: {exc}'
-    if strict_pre_deadline:
+    if pg_runtime:
+        from storage.repository import tracking_transaction
+        with tracking_transaction(pg_runtime.engine, join_existing=True):
+            save_snapshot(week, copy.deepcopy(players), copy.deepcopy(entry['matches']), histories,
+                          source, snapshot_id=snapshot['id'], **snapshot_args)
+            saved = save_prediction_batch(snapshot['id'], prepared, model_version=MODEL_VERSION,
+                                          path=path, require_pre_deadline=strict_pre_deadline)
+    elif strict_pre_deadline:
         saved = save_prediction_batch(snapshot['id'], prepared, model_version=MODEL_VERSION,
                                       path=path, require_pre_deadline=True)
     return {'gameweek':week, 'gameweek_id':entry.get('gameweek_id'), 'deadline':entry.get('deadline'),
@@ -291,8 +320,12 @@ def save_direct_risk(*, snapshot_id, path=DEFAULT_DB, time_limit=12):
         raise ValueError('Original GW10 snapshot required')
     analysis=compare_saved_gw10(snapshot_id=snapshot_id,time_limit=time_limit,path=path)
     pool,_=_snapshot_pool(snapshot,10)
-    with connect(path) as db:
-        rows=[r[0] for r in db.execute('SELECT id FROM predictions WHERE snapshot_id=?',(snapshot_id,))]
+    pg = _postgres(path)
+    if pg:
+        rows = pg.prediction_ids(snapshot_id)
+    else:
+        with connect(path) as db:
+            rows=[r[0] for r in db.execute('SELECT id FROM predictions WHERE snapshot_id=?',(snapshot_id,))]
     predictions=[get_prediction(pid,path) for pid in rows]
     baseline=next((p for p in predictions if p['model']=='short_form_3w' and
                    p['payload'].get('benchmark',{}).get('variant')=='production'),None)
@@ -304,7 +337,12 @@ def save_direct_risk(*, snapshot_id, path=DEFAULT_DB, time_limit=12):
     frontier=analysis['direct']['observed_frontier']
     prepared=[_direct_payload(solution,pool,evidence,baseline,snapshot_id,
                               analysis['direct']['max_mean']['expected_points']) for solution in frontier]
-    saved=[save_prediction(snapshot_id,payload,model_version=DIRECT_RISK_VERSION,path=path) for payload in prepared]
+    if pg:
+        saved=save_prediction_batch(snapshot_id,prepared,model_version=DIRECT_RISK_VERSION,
+                                    path=path)
+    else:
+        saved=[save_prediction(snapshot_id,payload,model_version=DIRECT_RISK_VERSION,path=path)
+               for payload in prepared]
     return {'snapshot_id':snapshot_id,'gameweek':10,'classification':'experimental_conditional_on_appearance',
             'saved':saved,'solver_statuses':[p['benchmark']['solver']['status'] for p in prepared],
             'limitations':analysis['limitations']}
@@ -312,12 +350,16 @@ def save_direct_risk(*, snapshot_id, path=DEFAULT_DB, time_limit=12):
 
 def report(path=DEFAULT_DB, store=STORE):
     path = Path(path)
-    if not path.exists():
+    pg = _postgres(path)
+    if not pg and not path.exists():
         return {'predictions':[], 'risk_return':[], 'evaluation_runs':[], 'by_gameweek':{}, 'by_model':{},
                 'counts':{'verified':0,'unverified':0,'locally_recorded_pre_deadline':0,
                           'post_deadline':0,'complete_evaluations':0}}
-    with connect(path) as db:
-        ids = [r[0] for r in db.execute('SELECT id FROM predictions ORDER BY created_at,id')]
+    if pg:
+        ids = pg.prediction_ids()
+    else:
+        with connect(path) as db:
+            ids = [r[0] for r in db.execute('SELECT id FROM predictions ORDER BY created_at,id')]
     predictions=[get_prediction(pid,path) for pid in ids]
     benchmark_predictions=[p for p in predictions if 'benchmark' in p['payload']]
     latest_by_snapshot={sid:latest_evaluation_run(sid,path)

@@ -2,11 +2,25 @@
 import json
 import sqlite3
 import uuid
+import os
 from datetime import datetime, timezone
 from pathlib import Path
 
 DEFAULT_DB = Path('historical_data/prediction_tracking.sqlite3')
 OFFICIAL_DEADLINE_URL = 'https://tfffantezilig.com/api/backend/projection/stats/fixtures?league-id=1'
+
+
+def _postgres(path):
+    backend = os.environ.get('STORAGE_BACKEND', 'postgres').lower()
+    if backend not in ('sqlite', 'postgres'):
+        raise ValueError('STORAGE_BACKEND must be sqlite or postgres')
+    if backend != 'postgres':
+        return None
+    if Path(path) != DEFAULT_DB:
+        raise ValueError('Custom SQLite tracking paths require STORAGE_BACKEND=sqlite')
+    from storage.db import engine_from_env
+    from storage.repository import TrackingRepository
+    return TrackingRepository(engine_from_env())
 
 
 def utc_now():
@@ -71,13 +85,13 @@ def verification(captured_at, deadline_at, deadline_source=None, classification=
 
 def save_snapshot(gameweek, players, fixtures, histories, source, *, deadline_at=None,
                   deadline_source=None, classification='live', data_quality=None, path=DEFAULT_DB,
-                  require_pre_deadline=False):
+                  require_pre_deadline=False, snapshot_id=None):
     if not isinstance(gameweek, int) or gameweek < 1 or not isinstance(players, list) or not players:
         raise ValueError('Gameweek and player data required')
     if not isinstance(fixtures, list) or not isinstance(histories, list):
         raise ValueError('Fixtures and historical statistics must be lists')
     captured_at = utc_now()
-    snapshot_id = str(uuid.uuid4())
+    snapshot_id = snapshot_id or str(uuid.uuid4())
     payload = {'gameweek': gameweek, 'players': players, 'fixtures': fixtures,
                'histories': histories, 'source': source, 'retrieved_at': captured_at,
                'deadline_at': deadline_at, 'deadline_source': deadline_source,
@@ -85,6 +99,13 @@ def save_snapshot(gameweek, players, fixtures, histories, source, *, deadline_at
     status = verification(captured_at, deadline_at, deadline_source, classification)
     if require_pre_deadline and status != 'locally_recorded_pre_deadline_not_verified':
         raise ValueError('Official pre-deadline snapshot required; no snapshot saved')
+    pg = _postgres(path)
+    if pg:
+        pg.save_snapshot({'id': snapshot_id, 'gameweek': gameweek, 'captured_at': captured_at,
+            'deadline_at': deadline_at, 'deadline_source': deadline_source,
+            'source': json.dumps(source, ensure_ascii=False), 'classification': classification,
+            'payload': json.dumps(payload, ensure_ascii=False)})
+        return {'id': snapshot_id, 'captured_at': captured_at, 'status': status}
     with connect(path) as db:
         db.execute('INSERT INTO snapshots VALUES (?,?,?,?,?,?,?,?)',
                    (snapshot_id, gameweek, captured_at, deadline_at, deadline_source,
@@ -94,6 +115,9 @@ def save_snapshot(gameweek, players, fixtures, histories, source, *, deadline_at
 
 
 def get_snapshot(snapshot_id, path=DEFAULT_DB):
+    pg = _postgres(path)
+    if pg:
+        return pg.get_snapshot(snapshot_id)
     with connect(path) as db:
         row = db.execute('SELECT gameweek,captured_at,deadline_at,deadline_source,source,classification,payload FROM snapshots WHERE id=?',
                          (snapshot_id,)).fetchone()
@@ -109,6 +133,10 @@ def get_snapshot(snapshot_id, path=DEFAULT_DB):
 
 def save_prediction(snapshot_id, result, *, model_version='1', path=DEFAULT_DB,
                     require_pre_deadline=False):
+    pg = _postgres(path)
+    if pg:
+        return save_prediction_batch(snapshot_id, [result], model_version=model_version,
+                                     path=path, require_pre_deadline=require_pre_deadline)[0]
     created_at = utc_now()
     with connect(path) as db:
         row = db.execute('SELECT gameweek,captured_at,deadline_at,deadline_source,classification FROM snapshots WHERE id=?',
@@ -139,6 +167,34 @@ def save_prediction_batch(snapshot_id, results, *, model_version='1', path=DEFAU
     """Insert a complete benchmark set atomically; rollback on any invalid lineup."""
     if not isinstance(results, list) or not results:
         raise ValueError('At least one prediction required')
+    pg = _postgres(path)
+    if pg:
+        snapshot = pg.get_snapshot(snapshot_id)
+        if snapshot is None:
+            raise ValueError('Unknown snapshot')
+        created_at = utc_now()
+        status = verification(created_at, snapshot['deadline_at'], snapshot['deadline_source'], snapshot['classification'])
+        if require_pre_deadline and status != 'locally_recorded_pre_deadline_not_verified':
+            raise ValueError('Official deadline passed or unknown; no predictions saved')
+        if status != 'post_deadline':
+            status = verification(snapshot['captured_at'], snapshot['deadline_at'],
+                                  snapshot['deadline_source'], snapshot['classification'])
+        rows = []
+        for result in results:
+            xi = result.get('starting_xi', [])
+            if len(xi) != 11 or sum(bool(p.get('captain')) for p in xi) != 1 or len(result.get('bench', [])) != 4:
+                raise ValueError('A complete XI, captain and bench are required')
+            if result.get('week') != snapshot['gameweek']:
+                raise ValueError('Prediction gameweek does not match snapshot')
+            rows.append({'id': str(uuid.uuid4()), 'snapshot_id': snapshot_id,
+                'gameweek': snapshot['gameweek'], 'created_at': created_at, 'status': status,
+                'model': result['model'], 'model_version': model_version,
+                'risk_strategy': result['risk_profile'],
+                'raw_expected_points': sum(float(p['xpts']) * (2 if p.get('captain') else 1) for p in xi),
+                'risk_adjusted_objective': result.get('risk_adjusted_objective'),
+                'payload': json.dumps(result, ensure_ascii=False)})
+        saved = pg.save_predictions(rows)
+        return [{k: row[k] for k in ('id', 'snapshot_id', 'created_at', 'status')} for row in saved]
     with connect(path) as db:
         row = db.execute('SELECT gameweek,captured_at,deadline_at,deadline_source,classification FROM snapshots WHERE id=?',
                          (snapshot_id,)).fetchone()
@@ -171,6 +227,9 @@ def save_prediction_batch(snapshot_id, results, *, model_version='1', path=DEFAU
 
 
 def get_prediction(prediction_id, path=DEFAULT_DB):
+    pg = _postgres(path)
+    if pg:
+        return pg.get_prediction(prediction_id)
     with connect(path) as db:
         row = db.execute('SELECT snapshot_id,gameweek,created_at,status,model,model_version,risk_strategy,raw_expected_points,risk_adjusted_objective,payload FROM predictions WHERE id=?',
                          (prediction_id,)).fetchone()
@@ -187,6 +246,12 @@ def save_evaluation_run(snapshot_id, gameweek, source_digest, status, source, pa
     """Append once for identical official evidence; never update earlier evaluations."""
     if not isinstance(source_digest,str) or len(source_digest)!=64:
         raise ValueError('A SHA-256 source digest is required')
+    pg = _postgres(path)
+    if pg:
+        return pg.save_evaluation_run({'id': str(uuid.uuid4()), 'snapshot_id': snapshot_id,
+            'gameweek': gameweek, 'created_at': utc_now(), 'source_digest': source_digest,
+            'status': status, 'source': json.dumps(source, ensure_ascii=False),
+            'payload': json.dumps(payload, ensure_ascii=False)})
     with connect(path) as db:
         row=db.execute('SELECT gameweek FROM snapshots WHERE id=?',(snapshot_id,)).fetchone()
         if row is None or row[0]!=gameweek:
@@ -201,6 +266,9 @@ def save_evaluation_run(snapshot_id, gameweek, source_digest, status, source, pa
 
 
 def get_evaluation_run(run_id, path=DEFAULT_DB):
+    pg = _postgres(path)
+    if pg:
+        return pg.get_evaluation_run(run_id)
     with connect(path) as db:
         row=db.execute('SELECT snapshot_id,gameweek,created_at,source_digest,status,source,payload FROM evaluation_runs WHERE id=?',
                        (run_id,)).fetchone()
@@ -214,6 +282,9 @@ def get_evaluation_run(run_id, path=DEFAULT_DB):
 
 
 def latest_evaluation_run(snapshot_id, path=DEFAULT_DB):
+    pg = _postgres(path)
+    if pg:
+        return pg.latest_evaluation_run(snapshot_id)
     with connect(path) as db:
         row=db.execute('SELECT id FROM evaluation_runs WHERE snapshot_id=? ORDER BY created_at DESC,id DESC LIMIT 1',
                        (snapshot_id,)).fetchone()
