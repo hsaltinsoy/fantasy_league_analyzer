@@ -30,7 +30,20 @@ def test_dashboard_and_existing_pages_render_without_mutating_original_gw10():
     assert before[0] == 11
 
 
-def test_dashboard_uses_production_api_and_shows_saved_squad():
+def test_dashboard_uses_production_api_and_shows_saved_squad(tmp_path, monkeypatch):
+    from app import dashboard_view
+    fixture = {'weeks': {'10': {'gameweek_id': 10,
+        'deadline': '2026-10-30T16:00:00Z', 'matches': [{'id': 1}]}}}
+    (tmp_path/'tff_fixtures_verified_v5.json').write_text(json.dumps(fixture), encoding='utf-8')
+    (tmp_path/'next_week_gw10.json').write_text(json.dumps({
+        'week': 10, 'starting_xi': [{'id': i, 'position': 'MID', 'xpts': 1}
+                                    for i in range(11)], 'bench': [],
+        'expected_points': 12, 'cost': 50, 'budget_remaining': 50,
+        'formation': '4-4-2', 'model': 'short_form_3w', 'captain': 'Fixture captain'}), encoding='utf-8')
+    original_dashboard_data = dashboard_view.dashboard_data
+    monkeypatch.setattr(dashboard_view, 'dashboard_data',
+        lambda: original_dashboard_data(tmp_path, now=datetime(2026, 10, 29,
+            tzinfo=timezone.utc), prediction_path=tmp_path/'absent.db'))
     client = create_app().test_client()
     page = client.get('/').get_data(as_text=True)
     assert 'Dashboard v2.0' in page

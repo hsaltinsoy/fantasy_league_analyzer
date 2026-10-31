@@ -1,5 +1,5 @@
 """Relational storage schema. Raw evidence and immutable source text are retained."""
-from sqlalchemy import (MetaData, Table, Column, Text, Integer, BigInteger, Numeric,
+from sqlalchemy import (MetaData, Table, Column, Text, Integer, BigInteger, Numeric, Date, Time,
                         Boolean, DateTime, ForeignKey, UniqueConstraint, Index, CheckConstraint, LargeBinary)
 from sqlalchemy.dialects.postgresql import JSONB
 
@@ -8,6 +8,37 @@ metadata = MetaData()
 
 def table(name, *columns, **kwargs):
     return Table(name, metadata, *columns, **kwargs)
+
+
+football_data_imports = table('football_data_imports',
+    Column('id', Text, primary_key=True), Column('provider', Text, nullable=False),
+    Column('season', Text, nullable=False), Column('original_filename', Text, nullable=False),
+    Column('source_sha256', Text, nullable=False, unique=True),
+    Column('raw_bytes', LargeBinary, nullable=False),
+    Column('imported_at', DateTime(timezone=True), nullable=False),
+    Column('row_count', Integer, nullable=False), Column('metadata', JSONB, nullable=False))
+football_data_team_mappings = table('football_data_team_mappings',
+    Column('provider_name', Text, primary_key=True),
+    Column('team_id', Text, ForeignKey('teams.id'), nullable=False),
+    Column('verification', Text, nullable=False),
+    Column('evidence', Text, nullable=False))
+football_data_matches = table('football_data_matches',
+    Column('id', Text, primary_key=True),
+    Column('import_id', Text, ForeignKey('football_data_imports.id'), nullable=False),
+    Column('season', Text, nullable=False), Column('match_date', Date, nullable=False),
+    Column('match_time', Time), Column('home_name', Text, nullable=False),
+    Column('away_name', Text, nullable=False),
+    Column('home_team_id', Text, ForeignKey('teams.id')),
+    Column('away_team_id', Text, ForeignKey('teams.id')),
+    Column('fixture_id', Text, ForeignKey('fixtures.id')),
+    Column('home_goals', Integer), Column('away_goals', Integer),
+    Column('full_time_result', Text), Column('half_home_goals', Integer),
+    Column('half_away_goals', Integer), Column('half_time_result', Text),
+    Column('home_xg', Numeric(10, 4)), Column('away_xg', Numeric(10, 4)),
+    Column('home_shots', Integer), Column('away_shots', Integer),
+    Column('home_sot', Integer), Column('away_sot', Integer),
+    Column('raw_record', JSONB, nullable=False), Column('row_sha256', Text, nullable=False),
+    UniqueConstraint('import_id', 'match_date', 'home_name', 'away_name'))
 
 
 data_sources = table('data_sources', Column('id', Text, primary_key=True),

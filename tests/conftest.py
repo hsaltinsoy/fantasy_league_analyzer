@@ -3,5 +3,8 @@ import pytest
 
 
 @pytest.fixture(autouse=True)
-def explicit_test_storage_backend(monkeypatch):
+def explicit_test_storage_backend(monkeypatch, tmp_path):
     monkeypatch.setenv('STORAGE_BACKEND', 'sqlite')
+    monkeypatch.delenv('DATABASE_URL', raising=False)
+    from storage import db
+    monkeypatch.setattr(db, 'CONFIG_PATH', tmp_path / 'no-project-env')

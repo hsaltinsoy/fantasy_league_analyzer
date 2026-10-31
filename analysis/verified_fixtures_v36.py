@@ -38,6 +38,8 @@ def make_optimizer(records, week, captain_risk, minutes_risk, tow_weeks=None, to
         for original in pool:
             p = dict(original)
             trend, no_show = minutes_trend(histories.get(str(p['id']), []), week)
+            if 'baseline_xpts' in p:
+                p['baseline_xpts'] = round(max(.1, p['baseline_xpts'] * (1 - minutes_risk * (.65*trend + .35*no_show)) * (tow_boost(tow_weeks,week,int(p['id']),tow_weight) if tow_weeks else 1.0)), 3)
             # The baseline projection already accounts for minutes; use modest
             # *additional* trend penalty only, avoiding a second full scaling.
             p['xpts'] = round(max(.1, p['xpts'] * (1 - minutes_risk * (.65*trend + .35*no_show)) * (tow_boost(tow_weeks,week,int(p['id']),tow_weight) if tow_weeks else 1.0)), 3)

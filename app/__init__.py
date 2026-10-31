@@ -274,6 +274,7 @@ def create_app():
 
     @app.get('/api/lineup/generate')
     def lineup_generate():
+        from storage.runtime_repository import OfficialDataUnavailable
         import json
         from pathlib import Path
         from analysis.predict_next_week import predict
@@ -290,6 +291,12 @@ def create_app():
             live=request.args.get('live','1')=='1'
             risk_profile=request.args.get('risk_profile','balanced')
             experimental_covariance=request.args.get('experimental_covariance','0')=='1'
+            adjustment_model=request.args.get('adjustment_model','none')
+            sensitivity=float(request.args.get('sensitivity','0'))
+            if adjustment_model not in ('none','position_aware_xg','uniform_xg') or \
+               (adjustment_model == 'none' and sensitivity != 0) or \
+               (adjustment_model != 'none' and sensitivity != .4):
+                return jsonify(error='Invalid experimental adjustment or sensitivity'),400
             if not 2 <= week <= 34 or model not in MODELS or weight not in (0,.05,.1) or risk_profile not in ("aggressive","balanced","cautious"):
                 return jsonify(error='Geçersiz parametre'),400
             if os.environ.get('STORAGE_BACKEND', 'postgres').lower() == 'postgres':
@@ -312,9 +319,47 @@ def create_app():
                 histories = repository.historical_records(before_week=week)
                 records = [(p, histories.get(str(p['id']), [])) for p in players]
                 tow = repository.team_of_week() if weight else {}
+                from analysis.lineup_snapshot import fingerprint, source_versions
+                input_sha256 = fingerprint(week, players, histories, entry, model, risk_profile, weight)
+                input_sources = source_versions(repository.engine)
+                adjuster = None
+                experimental_metadata = None
+                if adjustment_model != 'none':
+                    from analysis.football_data_live import make_adjuster
+                    adjuster, experimental_metadata = make_adjuster(
+                        repository.engine, archive, week, datetime.now(timezone.utc),
+                        adjustment_model, sensitivity)
                 result = predict(week, players, records, {week: _fixture_lookup(entry)}, tow, model,
                     tow_weight=weight, risk_profile=risk_profile,
-                    experimental_covariance=experimental_covariance, fixture_archive=archive)
+                    experimental_covariance=experimental_covariance, fixture_archive=archive,
+                    pool_adjuster=adjuster)
+                if experimental_metadata is not None:
+                    experimental_metadata['input_snapshot_sha256'] = input_sha256
+                    experimental_metadata['input_sources'] = input_sources
+                    experimental_metadata['fixture_retrieved_at'] = archive['captured_utc']
+                    experimental_metadata['optimizer'] = {'budget': 100, 'max_per_team': 3,
+                                                           'risk_profile': risk_profile}
+                    experimental_metadata['base_model'] = model
+                    experimental_metadata['live'] = live
+                    experimental_metadata['tow_weight'] = weight
+                    result['experimental_adjustment'] = experimental_metadata
+                    result['display_model'] = ('Position-aware xG' if adjustment_model == 'position_aware_xg'
+                                               else 'Uniform xG')
+                    result['report_id'] = repository.save_generated_report(
+                        f'lineup_{adjustment_model}_gw{week}', result)
+                    result['clubs'] = {str(t['id']): {'name': t['name']} for t in repository.teams()}
+                    for player in result['starting_xi'] + result['bench']:
+                        club = result['clubs'].get(str(player['team']))
+                        if club is None or club['name'] == str(player['team']):
+                            app.logger.warning('Missing verified team name for TFF club %s', player['team'])
+                            player['team_name'] = f'Unknown team #{player["team"]}'
+                        else:
+                            player['team_name'] = club['name']
+                    app.logger.info('Experimental lineup week=%s model=%s adjustment=%s sensitivity=%s risk=%s live=%s tow=%s input=%s fixtures=%s formation=%s captain=%s total=%s',
+                        week, model, adjustment_model, sensitivity, risk_profile, live, weight,
+                        input_sha256, archive['captured_utc'], result['formation'], result['captain'],
+                        result['expected_points'])
+                    return jsonify(result)
                 source = {'players': 'postgres_current_official_api',
                     'fixtures': archive['source_url'], 'histories': 'postgres_source_payloads',
                     'fixtures_retrieved_at': archive['captured_utc']}
@@ -364,6 +409,9 @@ def create_app():
                 result['warning']+=' Kayıtlı oyuncu verisi kullanıldı; güncel olmayabilir.'
             (store/f'next_week_gw{week}.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
             return jsonify(result)
+        except OfficialDataUnavailable as exc:
+            app.logger.warning('Current official lineup inputs unavailable: %s', exc)
+            return jsonify(error=f'{exc}. Refresh with: python -m storage.ingest_current'), 503
         except Exception as exc:
             app.logger.exception('Lineup generation failed')
             return jsonify(error=f'Kadro oluşturulamadı: {exc}'),500

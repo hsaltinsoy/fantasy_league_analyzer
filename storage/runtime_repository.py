@@ -12,6 +12,10 @@ from storage.history_repository import HistoricalRepository
 from analysis.prediction_tracking import parse_time
 
 
+class OfficialDataUnavailable(RuntimeError):
+    """Required current official API evidence is absent or past its freshness limit."""
+
+
 def _upsert(db, table, values, keys):
     statement = insert(table).values(**values)
     db.execute(statement.on_conflict_do_update(index_elements=keys, set_={
@@ -191,11 +195,11 @@ class RuntimeRepository(HistoricalRepository):
         with self.engine.connect() as db:
             row = db.execute(query).first()
         if row is None:
-            raise RuntimeError('No current official player pool in PostgreSQL; run ingestion')
+            raise OfficialDataUnavailable('No current official player pool in PostgreSQL; run ingestion')
         raw, retrieved = row
         if max_age_seconds is not None and (retrieved is None or
             (datetime.now(timezone.utc) - retrieved).total_seconds() > max_age_seconds):
-            raise RuntimeError('Current official player pool is stale; run ingestion')
+            raise OfficialDataUnavailable('Current official player pool is stale; run ingestion')
         return _extract(raw)
 
     def historical_records(self, *, before_week, as_of=None):
@@ -229,11 +233,11 @@ class RuntimeRepository(HistoricalRepository):
         with self.engine.connect() as db:
             row = db.execute(query).first()
         if row is None:
-            raise RuntimeError('No current official fixtures in PostgreSQL; run ingestion')
+            raise OfficialDataUnavailable('No current official fixtures in PostgreSQL; run ingestion')
         raw, retrieved = row
         if max_age_seconds is not None and (retrieved is None or
             (datetime.now(timezone.utc) - retrieved).total_seconds() > max_age_seconds):
-            raise RuntimeError('Current official fixtures are stale; run ingestion')
+            raise OfficialDataUnavailable('Current official fixtures are stale; run ingestion')
         weeks = (raw.get('data') or {}).get('gameweeks') if isinstance(raw, dict) else None
         if not isinstance(weeks, list):
             raise ValueError('Persisted official fixture payload is invalid')

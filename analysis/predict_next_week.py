@@ -14,6 +14,20 @@ from analysis.production_scoring import lineup_player_points
 
 STORE=Path('historical_data')
 
+
+def annotate_player_changes(players):
+    """Compare final optimized xPts to final optimized baseline xPts."""
+    for player in players:
+        baseline = player.get('baseline_xpts')
+        adjusted = player.get('xpts')
+        if baseline is None or adjusted is None:
+            player['absolute_delta'] = None
+            player['percentage_delta'] = None
+        else:
+            player['absolute_delta'] = adjusted - baseline
+            player['percentage_delta'] = (100 * player['absolute_delta'] / baseline
+                                          if baseline else None)
+
 def build_candidate_pool(week,players,records,fixtures,model='short_form_3w',fixture_weight=.5):
     """Production eligibility and xPts calculation, exposed for read-only experiments."""
     history={int(p['id']):rows for p,rows in records}
@@ -42,9 +56,11 @@ def build_candidate_pool(week,players,records,fixtures,model='short_form_3w',fix
     return pool, excluded
 
 
-def predict(week,players,records,fixtures,tow,model='short_form_3w',fixture_weight=.5,tow_weight=0.,risk_profile='balanced',experimental_covariance=False,fixture_archive=None):
+def predict(week,players,records,fixtures,tow,model='short_form_3w',fixture_weight=.5,tow_weight=0.,risk_profile='balanced',experimental_covariance=False,fixture_archive=None,pool_adjuster=None):
     pool, excluded=build_candidate_pool(week,players,records,fixtures,model,fixture_weight)
     if len(pool)<15:raise ValueError(f'Not enough players: {len(pool)}, exclusions: {excluded}')
+    if pool_adjuster is not None:
+        pool=pool_adjuster(pool)
     from analysis.optimizer import optimize
     def risk_optimize(items):
         return optimize(items,risk_profile=risk_profile)
@@ -54,6 +70,8 @@ def predict(week,players,records,fixtures,tow,model='short_form_3w',fixture_weig
     order={'GK':0,'DEF':1,'MID':2,'FWD':3}
     xi=sorted((dict(p,captain=p['id']==solution['captain']['id']) for p in solution['starting_xi']),key=lambda p:(order[p['position']],-p['xpts']))
     bench=sorted((p for p in solution['squad'] if p['id'] not in ids),key=lambda p:(order[p['position']],-p['xpts']))
+    if pool_adjuster is not None:
+        annotate_player_changes(xi + bench)
     captain_bonus=solution['captain'].get('captain_bonus_xpts',solution['captain']['xpts'])
     result={'optimization_status':solution.get('status'),'all_formations_proven_optimal':solution.get('all_formations_proven_optimal'),
         'captain_bonus_xpts':captain_bonus,

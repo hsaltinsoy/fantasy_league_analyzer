@@ -27,6 +27,7 @@ def test_next_week_uses_official_future_fixture():
 
 
 def test_shared_snapshot_model_isolation_and_deadline(tmp_path, monkeypatch):
+    monkeypatch.setattr('analysis.prediction_tracking.utc_now', lambda: NOW.isoformat())
     players = [{'id':i,'name':f'P{i}','position':'DEF','price':5,'club_id':1 if i%2 else 2}
                for i in range(1,16)]
     records = [(dict(p), [{'gameweekOrder':9,'points':3,'minutesPlayed':90}]) for p in players]
