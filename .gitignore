@@ -20,6 +20,7 @@ __pycache__/
 
 # Local captures, recovered history, reports, and immutable prediction database
 historical_data/
+experimental_data/
 .phase14_recovery_*/
 .phase17_backup_*/
 *recovery_backup*/
@@ -37,5 +38,17 @@ historical_data/
 
 # Keep documented input examples in the repository
 !*.example.json
+!docs/phase32_gw11_walkforward.json
+!docs/phase32b_gw11_price_sensitivity.json
+!docs/phase33_gw11_error_attribution.json
+!docs/phase33b_human_vs_ai.json
+!docs/phase34_bonus_prediction_audit.json
+!docs/phase35_player_availability_audit.json
+!docs/phase36_free_external_data.json
+!docs/phase37_model_robustness.json
+!docs/phase38_optimizer_audit.json
+!docs/phase39_formation_coverage.json
+!docs/phase40_projection_error_analysis.json
+!docs/phase40b_top_manager_intelligence.json
+!docs/phase40c_turkiye_manager_analysis.json
 !examples/*_template.csv
-!data_sources/examples/*_template.csv
