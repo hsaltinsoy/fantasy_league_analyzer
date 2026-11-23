@@ -100,8 +100,25 @@ def _existing_for_week(week, official_id, path):
     return matches[0] if matches else None
 
 
+def _record_six_batch(pg, snapshot_id, batch, started_at):
+    """Append batch status to the existing generated-report store."""
+    if not pg or batch.get('status') == 'not_requested':
+        return None
+    from storage.runtime_repository import RuntimeRepository
+    content = {'batch_id': batch.get('batch_id'), 'snapshot_id': snapshot_id,
+               'started_at': started_at, 'completed_at': datetime.now(timezone.utc).isoformat(),
+               'status': batch['status'], 'input_hash': batch.get('input_hash'),
+               'model_version': batch.get('model_version'),
+               'variant_statuses': batch.get('statuses'),
+               'prediction_ids': batch.get('prediction_ids', [])}
+    return RuntimeRepository(pg.engine).save_generated_report('six_model_batch', content)
+
+
 def capture(*, path=DEFAULT_DB, fixture_archive=None, players_provider=None,
-            records_provider=None, now=None, include_phase15=False):
+            records_provider=None, now=None, include_phase15=False,
+            six_model=False, external_matches_provider=None,
+            history_probe_provider=None, history_refresh_provider=None,
+            allow_source_unavailable=False):
     """Idempotently create one live benchmark set for the official next week."""
     if now is not None and now.tzinfo is None:
         raise ValueError('Capture time must include a timezone')
@@ -137,10 +154,93 @@ def capture(*, path=DEFAULT_DB, fixture_archive=None, players_provider=None,
         player_time = datetime.now(timezone.utc).isoformat()
         records = (records_provider() if records_provider is not None else
                    None if pg else live_benchmark.load_history())
+        if records is None:
+            from storage.runtime_repository import RuntimeRepository
+            histories = RuntimeRepository(pg.engine).historical_records(before_week=week,
+                                                                         as_of=now)
+            records = [(p, histories.get(str(p['id']), [])) for p in players]
+        from analysis.history_freshness import audit, require_capture_ready
+        history_by_id = {str(p['id']): rows for p, rows in records}
+        preliminary = audit(week, players, history_by_id, archive)
+        probe = None
+        if preliminary['missing_gameweeks']:
+            latest_completed = preliminary['latest_completed_gameweek']
+            if history_probe_provider is not None:
+                probe = history_probe_provider(latest_completed,
+                    [p['id'] for p in players[:5]])
+            else:
+                from analysis.benchmark_evaluation import fetch_official_player_rows
+                sample_ids = [p['id'] for p in players if history_by_id.get(str(p['id']))][:5]
+                sample_ids = sample_ids or [p['id'] for p in players[:5]]
+                if sample_ids:
+                    observed = fetch_official_player_rows(latest_completed, sample_ids)
+                    probe = {'source':'official_tff_history_api',
+                             'retrieved_at': observed['retrieved_at'],
+                             'source_url': observed.get('source_url'),
+                             'gameweek': latest_completed,
+                             'available_player_ids': [pid for pid, rows in
+                                                      observed['rows_by_player'].items() if rows],
+                             'status': 'available' if any(observed['rows_by_player'].values())
+                                       else 'unavailable'}
+            if probe and probe.get('status') in ('available', 'unavailable'):
+                if history_refresh_provider is None:
+                    from data_sources.tff_official import fetch_player_histories
+                    history_refresh_provider = fetch_player_histories
+                refreshed = history_refresh_provider([p['id'] for p in players],
+                    completed_through=latest_completed, target_week=week)
+                if not refreshed.get('retrieved_at') or not isinstance(
+                        refreshed.get('rows_by_player'), dict):
+                    raise ValueError('Official history refresh lacks provenance or player rows')
+                observed_at = parse_time(refreshed['retrieved_at'])
+                if observed_at is None:
+                    raise ValueError('Official history refresh timestamp is invalid')
+                now = max(now, observed_at)
+                history_by_id = refreshed['rows_by_player']
+                records = [(p, history_by_id.get(str(p['id']), [])) for p in players]
+                available_ids = [pid for pid, rows in history_by_id.items() if any(
+                    int(r['gameweekOrder']) == latest_completed for r in rows)]
+                probe = {'source':'official_tff_history_api',
+                         'retrieved_at': refreshed['retrieved_at'],
+                         'source_url': refreshed.get('source_url'),
+                         'gameweek': latest_completed,
+                         'available_player_ids': available_ids,
+                         'sampled_player_count': len(players),
+                         'status':'available' if available_ids else 'unavailable'}
+        freshness = audit(week, players, history_by_id, archive,
+                          source_probe=probe, allow_source_unavailable=allow_source_unavailable)
+        require_capture_ready(freshness)
+        external_matches = None
+        if six_model:
+            if external_matches_provider is not None:
+                external_matches = external_matches_provider(now)
+            elif pg:
+                from storage.football_data_repository import FootballDataRepository
+                external_matches = FootballDataRepository(pg.engine).matches_before(now)
+            if external_matches is not None:
+                external_matches = json.loads(json.dumps(external_matches, default=str))
         # generate() validates the deadline again at the snapshot and every prediction INSERT.
         def create_predictions():
             result = live_benchmark.generate(fixture_archive=archive, players=players, records=records,
-                path=path, now=now, strict_pre_deadline=True, players_retrieved_at=player_time)
+                path=path, now=now, strict_pre_deadline=True, players_retrieved_at=player_time,
+                external_matches=external_matches, history_freshness=freshness)
+            six = {'status': 'not_requested'}
+            if six_model:
+                from analysis.six_model_batch import replay
+                from analysis.prediction_tracking import save_prediction_batch
+                frozen = get_snapshot(result['snapshot']['id'], path)
+                payload = frozen['payload']
+                bundle = {'gameweek': week, 'players': payload['players'],
+                          'fixtures': payload['fixtures'], 'histories': payload['histories'],
+                          'cutoff_utc': frozen['captured_at'], 'deadline_at': frozen['deadline_at'],
+                          'external_matches': (payload.get('feature_evidence') or {}).get('football_data_matches'),
+                          'team_features': {}, 'fixture_date': None}
+                from analysis.capture_integrity import validate_inputs
+                bundle['input_hash'] = validate_inputs(week, bundle['players'], bundle['fixtures'], bundle['histories'])
+                six = replay(bundle)
+                if six['status'] == 'complete':
+                    saved = save_prediction_batch(frozen['id'], list(six['predictions'].values()),
+                        model_version=six['model_version'], path=path, require_pre_deadline=True)
+                    six = {**six, 'prediction_ids': [item['id'] for item in saved], 'predictions': {}}
             experimental = {'status':'not_requested'}
             if include_phase15:
                 from analysis.experimental_prospective import save_variants
@@ -152,18 +252,23 @@ def capture(*, path=DEFAULT_DB, fixture_archive=None, players_provider=None,
                         experimental = save_variants(result['snapshot']['id'], path=path)
                     except (ValueError, KeyError, OSError, TypeError) as exc:
                         experimental = {'status':'not_available','reason':str(exc)}
-            return result, experimental
+            return result, experimental, six
         if pg:
             from storage.repository import tracking_transaction
             with tracking_transaction(pg.engine):
-                result, experimental = create_predictions()
+                result, experimental, six = create_predictions()
         else:
-            result, experimental = create_predictions()
+            result, experimental, six = create_predictions()
+        batch_report_id = _record_six_batch(pg, result['snapshot']['id'], six,
+                                            result['snapshot'].get('captured_at'))
         return {'status':'captured','gameweek':week,'gameweek_id':entry['gameweek_id'],
                 'deadline':entry['deadline'],'snapshot_id':result['snapshot']['id'],
                 'predictions_created':len(result['predictions']),
                 'model_ids':[item['id'] for item in result['predictions']],
                 'variants':result['variants'],'experimental_phase15':experimental,
+                'six_model_batch':{**six, 'report_id':batch_report_id,
+                                   'deadline_verification':'locally_recorded_pre_deadline_not_verified'},
+                'history_freshness': freshness,
                 'data_quality':result['data_quality']}
 
 
@@ -198,6 +303,24 @@ def evaluate(*, gameweek=None, snapshot_id=None, path=DEFAULT_DB, fixture_archiv
             'player_issues':run['payload']['player_issues']}
 
 
+def replay_six(snapshot_id, path=DEFAULT_DB):
+    """Offline replay; reads only the existing immutable snapshot store."""
+    from analysis.capture_integrity import validate_inputs
+    from analysis.six_model_batch import replay
+    snapshot = get_snapshot(snapshot_id, path)
+    if snapshot is None:
+        raise ValueError('Unknown snapshot')
+    payload = snapshot['payload']
+    bundle = {'gameweek': snapshot['gameweek'], 'players': payload['players'],
+              'fixtures': payload['fixtures'], 'histories': payload['histories'],
+              'cutoff_utc': snapshot['captured_at'], 'deadline_at': snapshot['deadline_at'],
+              'external_matches': (payload.get('feature_evidence') or {}).get('football_data_matches'),
+              'team_features': {}, 'fixture_date': None}
+    bundle['input_hash'] = validate_inputs(bundle['gameweek'], bundle['players'],
+                                           bundle['fixtures'], bundle['histories'])
+    return replay(bundle)
+
+
 def report(path=DEFAULT_DB):
     """Cumulative prospective scores, separated from legacy and retrospective records."""
     rows = []
@@ -225,6 +348,9 @@ def report(path=DEFAULT_DB):
             evidence = provenance(prediction, snapshot)
             rows.append({'prediction_id':pid,'snapshot_id':item['id'],'gameweek':item['gameweek'],
                          'model':prediction['model'],'model_version':prediction['model_version'],
+                         'batch_id':(prediction['payload'].get('benchmark') or {}).get('batch_id'),
+                         'input_hash':(prediction['payload'].get('benchmark') or {}).get('input_hash') or
+                                      snapshot['payload'].get('input_sha256'),
                          'verification_status':evidence['status'],
                          'independently_verified':evidence['independently_verified'],
                          'evaluation_status':evaluation['status'],
@@ -268,15 +394,24 @@ def main():
     capture_cmd=sub.add_parser('capture', help='Save next official gameweek once before its deadline')
     capture_cmd.add_argument('--include-phase15', action='store_true',
                              help='Opt in to ridge and fixed blend if dated training inputs suffice')
+    capture_cmd.add_argument('--six-model', action='store_true',
+                             help='Opt in to an atomic six-variant replay from frozen inputs')
+    capture_cmd.add_argument('--allow-source-unavailable', action='store_true',
+                             help='Allow only documented official history API unavailability')
     evaluation = sub.add_parser('evaluate', help='Score a completed saved gameweek')
     evaluation.add_argument('--gameweek', type=int)
     evaluation.add_argument('--snapshot-id')
+    replay_cmd=sub.add_parser('replay-six', help='Offline six-model replay from one saved snapshot')
+    replay_cmd.add_argument('--snapshot-id', required=True)
     sub.add_parser('status', help='Read-only cumulative report')
     args = parser.parse_args()
     if args.action == 'capture':
-        result = capture(include_phase15=args.include_phase15)
+        result = capture(include_phase15=args.include_phase15, six_model=args.six_model,
+                         allow_source_unavailable=args.allow_source_unavailable)
     elif args.action == 'evaluate':
         result = evaluate(gameweek=args.gameweek, snapshot_id=args.snapshot_id)
+    elif args.action == 'replay-six':
+        result = replay_six(args.snapshot_id)
     else:
         result = report()
     print(json.dumps(result, ensure_ascii=False, indent=2))

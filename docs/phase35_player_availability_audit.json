@@ -1,0 +1,1078 @@
+{
+  "classification": "approximate_historical_participation_audit",
+  "observed_at": "2026-11-09T10:39:20.370818+00:00",
+  "population": 572,
+  "player_weeks": 3432,
+  "weeks": [
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "metrics": {
+    "proxy": {
+      "n": 3432,
+      "tp": 1371,
+      "fp": 254,
+      "tn": 1475,
+      "fn": 332,
+      "accuracy": 0.829,
+      "precision": 0.844,
+      "recall": 0.805,
+      "brier": 0.122,
+      "mae": 0.214
+    },
+    "alternative": {
+      "n": 3432,
+      "tp": 1527,
+      "fp": 367,
+      "tn": 1362,
+      "fn": 176,
+      "accuracy": 0.842,
+      "precision": 0.806,
+      "recall": 0.897,
+      "brier": 0.123,
+      "mae": 0.289
+    }
+  },
+  "by_week": {
+    "6": {
+      "proxy": {
+        "n": 572,
+        "tp": 230,
+        "fp": 43,
+        "tn": 248,
+        "fn": 51,
+        "accuracy": 0.836,
+        "precision": 0.842,
+        "recall": 0.819,
+        "brier": 0.115,
+        "mae": 0.208
+      },
+      "alternative": {
+        "n": 572,
+        "tp": 255,
+        "fp": 65,
+        "tn": 226,
+        "fn": 26,
+        "accuracy": 0.841,
+        "precision": 0.797,
+        "recall": 0.907,
+        "brier": 0.121,
+        "mae": 0.29
+      },
+      "gate": {
+        "n": 572,
+        "tp": 257,
+        "fp": 71,
+        "tn": 220,
+        "fn": 24,
+        "accuracy": 0.834,
+        "precision": 0.784,
+        "recall": 0.915,
+        "brier": 0.115,
+        "mae": 0.208
+      }
+    },
+    "7": {
+      "proxy": {
+        "n": 572,
+        "tp": 227,
+        "fp": 39,
+        "tn": 250,
+        "fn": 56,
+        "accuracy": 0.834,
+        "precision": 0.853,
+        "recall": 0.802,
+        "brier": 0.12,
+        "mae": 0.211
+      },
+      "alternative": {
+        "n": 572,
+        "tp": 250,
+        "fp": 61,
+        "tn": 228,
+        "fn": 33,
+        "accuracy": 0.836,
+        "precision": 0.804,
+        "recall": 0.883,
+        "brier": 0.123,
+        "mae": 0.289
+      },
+      "gate": {
+        "n": 572,
+        "tp": 252,
+        "fp": 67,
+        "tn": 222,
+        "fn": 31,
+        "accuracy": 0.829,
+        "precision": 0.79,
+        "recall": 0.89,
+        "brier": 0.12,
+        "mae": 0.211
+      }
+    },
+    "8": {
+      "proxy": {
+        "n": 572,
+        "tp": 227,
+        "fp": 38,
+        "tn": 248,
+        "fn": 59,
+        "accuracy": 0.83,
+        "precision": 0.857,
+        "recall": 0.794,
+        "brier": 0.118,
+        "mae": 0.208
+      },
+      "alternative": {
+        "n": 572,
+        "tp": 261,
+        "fp": 53,
+        "tn": 233,
+        "fn": 25,
+        "accuracy": 0.864,
+        "precision": 0.831,
+        "recall": 0.913,
+        "brier": 0.117,
+        "mae": 0.282
+      },
+      "gate": {
+        "n": 572,
+        "tp": 262,
+        "fp": 56,
+        "tn": 230,
+        "fn": 24,
+        "accuracy": 0.86,
+        "precision": 0.824,
+        "recall": 0.916,
+        "brier": 0.118,
+        "mae": 0.208
+      }
+    },
+    "9": {
+      "proxy": {
+        "n": 572,
+        "tp": 234,
+        "fp": 39,
+        "tn": 249,
+        "fn": 50,
+        "accuracy": 0.844,
+        "precision": 0.857,
+        "recall": 0.824,
+        "brier": 0.105,
+        "mae": 0.199
+      },
+      "alternative": {
+        "n": 572,
+        "tp": 263,
+        "fp": 53,
+        "tn": 235,
+        "fn": 21,
+        "accuracy": 0.871,
+        "precision": 0.832,
+        "recall": 0.926,
+        "brier": 0.11,
+        "mae": 0.277
+      },
+      "gate": {
+        "n": 572,
+        "tp": 263,
+        "fp": 60,
+        "tn": 228,
+        "fn": 21,
+        "accuracy": 0.858,
+        "precision": 0.814,
+        "recall": 0.926,
+        "brier": 0.105,
+        "mae": 0.199
+      }
+    },
+    "10": {
+      "proxy": {
+        "n": 572,
+        "tp": 227,
+        "fp": 45,
+        "tn": 240,
+        "fn": 60,
+        "accuracy": 0.816,
+        "precision": 0.835,
+        "recall": 0.791,
+        "brier": 0.144,
+        "mae": 0.234
+      },
+      "alternative": {
+        "n": 572,
+        "tp": 249,
+        "fp": 68,
+        "tn": 217,
+        "fn": 38,
+        "accuracy": 0.815,
+        "precision": 0.785,
+        "recall": 0.868,
+        "brier": 0.135,
+        "mae": 0.3
+      },
+      "gate": {
+        "n": 572,
+        "tp": 250,
+        "fp": 70,
+        "tn": 215,
+        "fn": 37,
+        "accuracy": 0.813,
+        "precision": 0.781,
+        "recall": 0.871,
+        "brier": 0.144,
+        "mae": 0.234
+      }
+    },
+    "11": {
+      "proxy": {
+        "n": 572,
+        "tp": 226,
+        "fp": 50,
+        "tn": 240,
+        "fn": 56,
+        "accuracy": 0.815,
+        "precision": 0.819,
+        "recall": 0.801,
+        "brier": 0.13,
+        "mae": 0.224
+      },
+      "alternative": {
+        "n": 572,
+        "tp": 249,
+        "fp": 67,
+        "tn": 223,
+        "fn": 33,
+        "accuracy": 0.825,
+        "precision": 0.788,
+        "recall": 0.883,
+        "brier": 0.13,
+        "mae": 0.296
+      },
+      "gate": {
+        "n": 572,
+        "tp": 255,
+        "fp": 69,
+        "tn": 221,
+        "fn": 27,
+        "accuracy": 0.832,
+        "precision": 0.787,
+        "recall": 0.904,
+        "brier": 0.13,
+        "mae": 0.224
+      }
+    }
+  },
+  "calibration": {
+    "proxy": [
+      {
+        "lower": 0.0,
+        "upper": 0.1,
+        "n": 1255,
+        "mean_prediction": 0.05,
+        "observed_rate": 0.055
+      },
+      {
+        "lower": 0.1,
+        "upper": 0.2,
+        "n": 189,
+        "mean_prediction": 0.176,
+        "observed_rate": 0.402
+      },
+      {
+        "lower": 0.2,
+        "upper": 0.3,
+        "n": 94,
+        "mean_prediction": 0.239,
+        "observed_rate": 0.33
+      },
+      {
+        "lower": 0.3,
+        "upper": 0.4,
+        "n": 132,
+        "mean_prediction": 0.362,
+        "observed_rate": 0.5
+      },
+      {
+        "lower": 0.4,
+        "upper": 0.5,
+        "n": 137,
+        "mean_prediction": 0.445,
+        "observed_rate": 0.657
+      },
+      {
+        "lower": 0.5,
+        "upper": 0.6,
+        "n": 167,
+        "mean_prediction": 0.547,
+        "observed_rate": 0.641
+      },
+      {
+        "lower": 0.6,
+        "upper": 0.7,
+        "n": 124,
+        "mean_prediction": 0.652,
+        "observed_rate": 0.734
+      },
+      {
+        "lower": 0.7,
+        "upper": 0.8,
+        "n": 225,
+        "mean_prediction": 0.747,
+        "observed_rate": 0.756
+      },
+      {
+        "lower": 0.8,
+        "upper": 0.9,
+        "n": 181,
+        "mean_prediction": 0.839,
+        "observed_rate": 0.812
+      },
+      {
+        "lower": 0.9,
+        "upper": 1.0,
+        "n": 928,
+        "mean_prediction": 0.987,
+        "observed_rate": 0.922
+      }
+    ],
+    "alternative": [
+      {
+        "lower": 0.0,
+        "upper": 0.1,
+        "n": 0,
+        "mean_prediction": null,
+        "observed_rate": null
+      },
+      {
+        "lower": 0.1,
+        "upper": 0.2,
+        "n": 1235,
+        "mean_prediction": 0.167,
+        "observed_rate": 0.053
+      },
+      {
+        "lower": 0.2,
+        "upper": 0.3,
+        "n": 20,
+        "mean_prediction": 0.225,
+        "observed_rate": 0.15
+      },
+      {
+        "lower": 0.3,
+        "upper": 0.4,
+        "n": 279,
+        "mean_prediction": 0.333,
+        "observed_rate": 0.369
+      },
+      {
+        "lower": 0.4,
+        "upper": 0.5,
+        "n": 4,
+        "mean_prediction": 0.4,
+        "observed_rate": 1
+      },
+      {
+        "lower": 0.5,
+        "upper": 0.6,
+        "n": 312,
+        "mean_prediction": 0.5,
+        "observed_rate": 0.583
+      },
+      {
+        "lower": 0.6,
+        "upper": 0.7,
+        "n": 415,
+        "mean_prediction": 0.666,
+        "observed_rate": 0.696
+      },
+      {
+        "lower": 0.7,
+        "upper": 0.8,
+        "n": 10,
+        "mean_prediction": 0.75,
+        "observed_rate": 0.8
+      },
+      {
+        "lower": 0.8,
+        "upper": 0.9,
+        "n": 1157,
+        "mean_prediction": 0.833,
+        "observed_rate": 0.906
+      },
+      {
+        "lower": 0.9,
+        "upper": 1.0,
+        "n": 0,
+        "mean_prediction": null,
+        "observed_rate": null
+      }
+    ]
+  },
+  "fantasy_error_by_minutes": {
+    "zero": {
+      "n": 1729,
+      "mae_xpts": 0.311,
+      "mean_xpts": 0.311,
+      "mean_actual": 0
+    },
+    "under60": {
+      "n": 620,
+      "mae_xpts": 1.188,
+      "mean_xpts": 0.953,
+      "mean_actual": 1.285
+    },
+    "60plus": {
+      "n": 1083,
+      "mae_xpts": 2.785,
+      "mean_xpts": 2.472,
+      "mean_actual": 3.722
+    }
+  },
+  "gw11_high_projection_zero_minutes": [
+    {
+      "id": 600,
+      "name": "Samuel Leo Beat Ballet",
+      "position": "MID",
+      "week": 11,
+      "proxy": 1.0,
+      "alternative": 0.8333333333333334,
+      "avg_last4_minutes": 88.8,
+      "starts_rate": 1.0,
+      "predicted_xpts": 5.796,
+      "minutes": 0,
+      "played": false,
+      "started": false,
+      "actual_points": 0,
+      "prior_minutes": [
+        90,
+        90,
+        85,
+        90
+      ]
+    },
+    {
+      "id": 507,
+      "name": "Victor James Osimhen",
+      "position": "FWD",
+      "week": 11,
+      "proxy": 0.944,
+      "alternative": 0.8333333333333334,
+      "avg_last4_minutes": 63.0,
+      "starts_rate": 1.0,
+      "predicted_xpts": 3.647,
+      "minutes": 0,
+      "played": false,
+      "started": false,
+      "actual_points": 0,
+      "prior_minutes": [
+        13,
+        90,
+        88,
+        61
+      ]
+    },
+    {
+      "id": 1471,
+      "name": "Franculino Gluda Dju",
+      "position": "FWD",
+      "week": 11,
+      "proxy": 0.778,
+      "alternative": 0.6666666666666666,
+      "avg_last4_minutes": 62.2,
+      "starts_rate": 0.75,
+      "predicted_xpts": 3.395,
+      "minutes": 0,
+      "played": false,
+      "started": false,
+      "actual_points": 0,
+      "prior_minutes": [
+        71,
+        88,
+        90,
+        0
+      ]
+    },
+    {
+      "id": 380,
+      "name": "Muhammed Şengezer",
+      "position": "GK",
+      "week": 11,
+      "proxy": 1.0,
+      "alternative": 0.8333333333333334,
+      "avg_last4_minutes": 90.0,
+      "starts_rate": 1.0,
+      "predicted_xpts": 3.364,
+      "minutes": 0,
+      "played": false,
+      "started": false,
+      "actual_points": 0,
+      "prior_minutes": [
+        90,
+        90,
+        90,
+        90
+      ]
+    },
+    {
+      "id": 205,
+      "name": "Deniz Türüç",
+      "position": "MID",
+      "week": 11,
+      "proxy": 1.0,
+      "alternative": 0.8333333333333334,
+      "avg_last4_minutes": 84.5,
+      "starts_rate": 1.0,
+      "predicted_xpts": 3.157,
+      "minutes": 0,
+      "played": false,
+      "started": false,
+      "actual_points": 0,
+      "prior_minutes": [
+        90,
+        74,
+        84,
+        90
+      ]
+    },
+    {
+      "id": 391,
+      "name": "Saba Kharebashvili",
+      "position": "DEF",
+      "week": 11,
+      "proxy": 0.986,
+      "alternative": 0.8333333333333334,
+      "avg_last4_minutes": 72.0,
+      "starts_rate": 1.0,
+      "predicted_xpts": 3.022,
+      "minutes": 0,
+      "played": false,
+      "started": false,
+      "actual_points": 0,
+      "prior_minutes": [
+        63,
+        45,
+        90,
+        90
+      ]
+    },
+    {
+      "id": 533,
+      "name": "Abdülkerim Bardakcı",
+      "position": "DEF",
+      "week": 11,
+      "proxy": 0.787,
+      "alternative": 0.6666666666666666,
+      "avg_last4_minutes": 64.2,
+      "starts_rate": 0.75,
+      "predicted_xpts": 2.778,
+      "minutes": 0,
+      "played": false,
+      "started": false,
+      "actual_points": 0,
+      "prior_minutes": [
+        77,
+        90,
+        90,
+        0
+      ]
+    },
+    {
+      "id": 435,
+      "name": "Gaïus Abraham Jered Makouta",
+      "position": "MID",
+      "week": 11,
+      "proxy": 0.977,
+      "alternative": 0.8333333333333334,
+      "avg_last4_minutes": 70.0,
+      "starts_rate": 1.0,
+      "predicted_xpts": 2.596,
+      "minutes": 0,
+      "played": false,
+      "started": false,
+      "actual_points": 0,
+      "prior_minutes": [
+        90,
+        90,
+        45,
+        55
+      ]
+    },
+    {
+      "id": 235,
+      "name": "Gökhan Sazdağı",
+      "position": "DEF",
+      "week": 11,
+      "proxy": 1.0,
+      "alternative": 0.8333333333333334,
+      "avg_last4_minutes": 85.0,
+      "starts_rate": 1.0,
+      "predicted_xpts": 2.59,
+      "minutes": 0,
+      "played": false,
+      "started": false,
+      "actual_points": 0,
+      "prior_minutes": [
+        73,
+        90,
+        90,
+        87
+      ]
+    },
+    {
+      "id": 301,
+      "name": "Jonatan Noah Kemeseng Sonko Sundberg",
+      "position": "DEF",
+      "week": 11,
+      "proxy": 1.0,
+      "alternative": 0.8333333333333334,
+      "avg_last4_minutes": 90.0,
+      "starts_rate": 1.0,
+      "predicted_xpts": 2.399,
+      "minutes": 0,
+      "played": false,
+      "started": false,
+      "actual_points": 0,
+      "prior_minutes": [
+        90,
+        90,
+        90,
+        90
+      ]
+    },
+    {
+      "id": 365,
+      "name": "Modibo Sagnan",
+      "position": "DEF",
+      "week": 11,
+      "proxy": 1.0,
+      "alternative": 0.8333333333333334,
+      "avg_last4_minutes": 90.0,
+      "starts_rate": 1.0,
+      "predicted_xpts": 2.226,
+      "minutes": 0,
+      "played": false,
+      "started": false,
+      "actual_points": 0,
+      "prior_minutes": [
+        90,
+        90,
+        90,
+        90
+      ]
+    },
+    {
+      "id": 554,
+      "name": "Kacper Tobiasz",
+      "position": "GK",
+      "week": 11,
+      "proxy": 0.802,
+      "alternative": 0.6666666666666666,
+      "avg_last4_minutes": 67.5,
+      "starts_rate": 0.75,
+      "predicted_xpts": 2.064,
+      "minutes": 0,
+      "played": false,
+      "started": false,
+      "actual_points": 0,
+      "prior_minutes": [
+        90,
+        90,
+        90,
+        0
+      ]
+    },
+    {
+      "id": 180,
+      "name": "Nathan Benjamin Ake",
+      "position": "DEF",
+      "week": 11,
+      "proxy": 0.535,
+      "alternative": 0.5,
+      "avg_last4_minutes": 45.0,
+      "starts_rate": 0.5,
+      "predicted_xpts": 2.038,
+      "minutes": 0,
+      "played": false,
+      "started": false,
+      "actual_points": 0,
+      "prior_minutes": [
+        90,
+        90,
+        0,
+        0
+      ]
+    },
+    {
+      "id": 362,
+      "name": "Yahia Fofana",
+      "position": "GK",
+      "week": 11,
+      "proxy": 0.802,
+      "alternative": 0.6666666666666666,
+      "avg_last4_minutes": 67.5,
+      "starts_rate": 0.75,
+      "predicted_xpts": 2.013,
+      "minutes": 0,
+      "played": false,
+      "started": false,
+      "actual_points": 0,
+      "prior_minutes": [
+        90,
+        90,
+        90,
+        0
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Doğuhan Aral Şimşir",
+      "position": "MID",
+      "week": 11,
+      "proxy": 0.784,
+      "alternative": 0.6666666666666666,
+      "avg_last4_minutes": 63.5,
+      "starts_rate": 0.75,
+      "predicted_xpts": 1.723,
+      "minutes": 0,
+      "played": false,
+      "started": false,
+      "actual_points": 0,
+      "prior_minutes": [
+        84,
+        81,
+        89,
+        0
+      ]
+    },
+    {
+      "id": 279,
+      "name": "Vaclav Cerny",
+      "position": "MID",
+      "week": 11,
+      "proxy": 0.903,
+      "alternative": 0.8333333333333334,
+      "avg_last4_minutes": 54.2,
+      "starts_rate": 1.0,
+      "predicted_xpts": 1.67,
+      "minutes": 0,
+      "played": false,
+      "started": false,
+      "actual_points": 0,
+      "prior_minutes": [
+        39,
+        77,
+        56,
+        45
+      ]
+    },
+    {
+      "id": 182,
+      "name": "Archibald Norman Brown",
+      "position": "DEF",
+      "week": 11,
+      "proxy": 0.713,
+      "alternative": 0.6666666666666666,
+      "avg_last4_minutes": 48.2,
+      "starts_rate": 0.75,
+      "predicted_xpts": 1.638,
+      "minutes": 0,
+      "played": false,
+      "started": false,
+      "actual_points": 0,
+      "prior_minutes": [
+        90,
+        13,
+        90,
+        0
+      ]
+    },
+    {
+      "id": 426,
+      "name": "Fatih Aksoy",
+      "position": "DEF",
+      "week": 11,
+      "proxy": 0.778,
+      "alternative": 0.6666666666666666,
+      "avg_last4_minutes": 62.2,
+      "starts_rate": 0.75,
+      "predicted_xpts": 1.558,
+      "minutes": 0,
+      "played": false,
+      "started": false,
+      "actual_points": 0,
+      "prior_minutes": [
+        83,
+        90,
+        76,
+        0
+      ]
+    },
+    {
+      "id": 387,
+      "name": "Umut Güneş",
+      "position": "MID",
+      "week": 11,
+      "proxy": 0.722,
+      "alternative": 0.6666666666666666,
+      "avg_last4_minutes": 50.2,
+      "starts_rate": 0.75,
+      "predicted_xpts": 1.469,
+      "minutes": 0,
+      "played": false,
+      "started": false,
+      "actual_points": 0,
+      "prior_minutes": [
+        90,
+        33,
+        78,
+        0
+      ]
+    },
+    {
+      "id": 339,
+      "name": "Dimitrios Goutas",
+      "position": "DEF",
+      "week": 11,
+      "proxy": 0.733,
+      "alternative": 0.6666666666666666,
+      "avg_last4_minutes": 52.5,
+      "starts_rate": 0.75,
+      "predicted_xpts": 1.18,
+      "minutes": 0,
+      "played": false,
+      "started": false,
+      "actual_points": 0,
+      "prior_minutes": [
+        90,
+        90,
+        30,
+        0
+      ]
+    }
+  ],
+  "gw11_excluded_60plus_minutes": [
+    {
+      "id": 175,
+      "name": "İsmail Yüksek",
+      "position": "MID",
+      "week": 11,
+      "proxy": 0.165,
+      "alternative": 0.3333333333333333,
+      "avg_last4_minutes": 0.5,
+      "starts_rate": 0.25,
+      "predicted_xpts": 0.114,
+      "minutes": 90,
+      "played": true,
+      "started": true,
+      "actual_points": 3,
+      "prior_minutes": [
+        2,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": 109,
+      "name": "Tayfur Bingöl",
+      "position": "MID",
+      "week": 11,
+      "proxy": 0.244,
+      "alternative": 0.3333333333333333,
+      "avg_last4_minutes": 17.5,
+      "starts_rate": 0.25,
+      "predicted_xpts": 0.139,
+      "minutes": 84,
+      "played": true,
+      "started": true,
+      "actual_points": 2,
+      "prior_minutes": [
+        70,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": 386,
+      "name": "Deniz Dilmen",
+      "position": "GK",
+      "week": 11,
+      "proxy": 0.05,
+      "alternative": 0.16666666666666666,
+      "avg_last4_minutes": 0,
+      "starts_rate": 0.0,
+      "predicted_xpts": 0.1,
+      "minutes": 90,
+      "played": true,
+      "started": true,
+      "actual_points": 2,
+      "prior_minutes": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": 416,
+      "name": "Yusuf Özdemir",
+      "position": "MID",
+      "week": 11,
+      "proxy": 0.195,
+      "alternative": 0.3333333333333333,
+      "avg_last4_minutes": 7.0,
+      "starts_rate": 0.25,
+      "predicted_xpts": 0.1,
+      "minutes": 90,
+      "played": true,
+      "started": true,
+      "actual_points": 2,
+      "prior_minutes": [
+        0,
+        0,
+        0,
+        28
+      ]
+    },
+    {
+      "id": 501,
+      "name": "Christ Otiniel Sadia",
+      "position": "MID",
+      "week": 11,
+      "proxy": 0.05,
+      "alternative": 0.16666666666666666,
+      "avg_last4_minutes": 0,
+      "starts_rate": 0.0,
+      "predicted_xpts": 0.1,
+      "minutes": 72,
+      "played": true,
+      "started": true,
+      "actual_points": 2,
+      "prior_minutes": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": 813,
+      "name": "Cheikh Ahmet Tidiane Niasse",
+      "position": "MID",
+      "week": 11,
+      "proxy": 0.248,
+      "alternative": 0.3333333333333333,
+      "avg_last4_minutes": 18.2,
+      "starts_rate": 0.25,
+      "predicted_xpts": 0.193,
+      "minutes": 90,
+      "played": true,
+      "started": true,
+      "actual_points": 2,
+      "prior_minutes": [
+        0,
+        0,
+        0,
+        73
+      ]
+    },
+    {
+      "id": 286,
+      "name": "Allan Godoi Santos",
+      "position": "DEF",
+      "week": 11,
+      "proxy": 0.164,
+      "alternative": 0.3333333333333333,
+      "avg_last4_minutes": 0.2,
+      "starts_rate": 0.25,
+      "predicted_xpts": 0.1,
+      "minutes": 88,
+      "played": true,
+      "started": true,
+      "actual_points": 1,
+      "prior_minutes": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": 401,
+      "name": "Festy Oseiwe Ebosele",
+      "position": "DEF",
+      "week": 11,
+      "proxy": 0.176,
+      "alternative": 0.3333333333333333,
+      "avg_last4_minutes": 3.0,
+      "starts_rate": 0.25,
+      "predicted_xpts": 0.1,
+      "minutes": 77,
+      "played": true,
+      "started": true,
+      "actual_points": 1,
+      "prior_minutes": [
+        0,
+        0,
+        0,
+        12
+      ]
+    },
+    {
+      "id": 646,
+      "name": "Ömer Ahmet Ceyhan",
+      "position": "DEF",
+      "week": 11,
+      "proxy": 0.05,
+      "alternative": 0.16666666666666666,
+      "avg_last4_minutes": 0,
+      "starts_rate": 0.0,
+      "predicted_xpts": 0.1,
+      "minutes": 63,
+      "played": true,
+      "started": true,
+      "actual_points": 1,
+      "prior_minutes": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "gw11_excluded_60plus_count": 9,
+  "gw11_osimhen": {
+    "id": 507,
+    "name": "Victor James Osimhen",
+    "position": "FWD",
+    "week": 11,
+    "proxy": 0.944,
+    "alternative": 0.8333333333333334,
+    "avg_last4_minutes": 63.0,
+    "starts_rate": 1.0,
+    "predicted_xpts": 3.647,
+    "minutes": 0,
+    "played": false,
+    "started": false,
+    "actual_points": 0,
+    "prior_minutes": [
+      13,
+      90,
+      88,
+      61
+    ]
+  },
+  "warnings": [
+    "Proxy is a heuristic, not a trained probability",
+    "No production expected-minutes forecast is persisted for lineup models",
+    "All history rows retrieved after GW11; historical source publication time unverified",
+    "Historical player availability/status and club metadata at each deadline unavailable",
+    "Current player archive used only for ID, name, position; transferred positions may be stale"
+  ]
+}

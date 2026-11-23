@@ -1,0 +1,588 @@
+{
+  "classification": "retrospective_formation_policy_replay",
+  "official_rules_url": "https://tfffantezilig.com/yardim?tab=sss",
+  "current_formations": [
+    "3-4-3",
+    "3-5-2",
+    "4-3-3",
+    "4-4-2",
+    "4-5-1",
+    "5-2-3",
+    "5-3-2",
+    "5-4-1"
+  ],
+  "legacy_formations": [
+    "3-4-3",
+    "3-5-2",
+    "4-3-3",
+    "4-4-2",
+    "4-5-1",
+    "5-3-2",
+    "5-4-1"
+  ],
+  "weeks": {
+    "6": {
+      "candidate_count": 572,
+      "legacy": {
+        "policy": "legacy_pre39_v1",
+        "formation": "3-4-3",
+        "xi_ids": [
+          12,
+          132,
+          148,
+          172,
+          362,
+          404,
+          532,
+          539,
+          567,
+          573,
+          75
+        ],
+        "bench_ids": [
+          120,
+          273,
+          436,
+          554
+        ],
+        "captain_id": 75,
+        "predicted_fantasy_points": 67.94,
+        "objective": 68.1174,
+        "actual_points": 67.0,
+        "all_formations_optimal": true,
+        "formation_comparison": [
+          {
+            "formation": "3-4-3",
+            "status": "optimal",
+            "expected_points": 67.94,
+            "squad_cost": 88.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 68.1174
+          },
+          {
+            "formation": "4-3-3",
+            "status": "optimal",
+            "expected_points": 67.56,
+            "squad_cost": 88.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 67.7471
+          },
+          {
+            "formation": "4-4-2",
+            "status": "optimal",
+            "expected_points": 66.78,
+            "squad_cost": 88.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 66.9729
+          },
+          {
+            "formation": "3-5-2",
+            "status": "optimal",
+            "expected_points": 66.39,
+            "squad_cost": 88.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 66.5898
+          },
+          {
+            "formation": "5-3-2",
+            "status": "optimal",
+            "expected_points": 66.25,
+            "squad_cost": 88.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 66.4443
+          },
+          {
+            "formation": "5-4-1",
+            "status": "optimal",
+            "expected_points": 64.96,
+            "squad_cost": 88.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 65.1711
+          },
+          {
+            "formation": "4-5-1",
+            "status": "optimal",
+            "expected_points": 64.73,
+            "squad_cost": 88.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 64.9464
+          }
+        ]
+      },
+      "current": {
+        "policy": "current_tff_v2",
+        "formation": "3-4-3",
+        "xi_ids": [
+          12,
+          132,
+          148,
+          172,
+          362,
+          404,
+          532,
+          539,
+          567,
+          573,
+          75
+        ],
+        "bench_ids": [
+          120,
+          273,
+          436,
+          554
+        ],
+        "captain_id": 75,
+        "predicted_fantasy_points": 67.94,
+        "objective": 68.1174,
+        "actual_points": 67.0,
+        "all_formations_optimal": true,
+        "formation_comparison": [
+          {
+            "formation": "3-4-3",
+            "status": "optimal",
+            "expected_points": 67.94,
+            "squad_cost": 88.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 68.1174
+          },
+          {
+            "formation": "4-3-3",
+            "status": "optimal",
+            "expected_points": 67.56,
+            "squad_cost": 88.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 67.7471
+          },
+          {
+            "formation": "5-2-3",
+            "status": "optimal",
+            "expected_points": 66.87,
+            "squad_cost": 88.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 67.064
+          },
+          {
+            "formation": "4-4-2",
+            "status": "optimal",
+            "expected_points": 66.78,
+            "squad_cost": 88.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 66.9729
+          },
+          {
+            "formation": "3-5-2",
+            "status": "optimal",
+            "expected_points": 66.39,
+            "squad_cost": 88.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 66.5898
+          },
+          {
+            "formation": "5-3-2",
+            "status": "optimal",
+            "expected_points": 66.25,
+            "squad_cost": 88.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 66.4443
+          },
+          {
+            "formation": "5-4-1",
+            "status": "optimal",
+            "expected_points": 64.96,
+            "squad_cost": 88.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 65.1711
+          },
+          {
+            "formation": "4-5-1",
+            "status": "optimal",
+            "expected_points": 64.73,
+            "squad_cost": 88.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 64.9464
+          }
+        ]
+      },
+      "xi_overlap": 11,
+      "objective_gain": 0.0,
+      "actual_delta": 0.0
+    },
+    "8": {
+      "candidate_count": 572,
+      "legacy": {
+        "policy": "legacy_pre39_v1",
+        "formation": "3-4-3",
+        "xi_ids": [
+          12,
+          136,
+          148,
+          15,
+          166,
+          172,
+          176,
+          37,
+          404,
+          608,
+          75
+        ],
+        "bench_ids": [
+          281,
+          47,
+          48,
+          51
+        ],
+        "captain_id": 12,
+        "predicted_fantasy_points": 73.71,
+        "objective": 73.9088,
+        "actual_points": 85.0,
+        "all_formations_optimal": true,
+        "formation_comparison": [
+          {
+            "formation": "3-4-3",
+            "status": "optimal",
+            "expected_points": 73.71,
+            "squad_cost": 92.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 73.9088
+          },
+          {
+            "formation": "4-4-2",
+            "status": "optimal",
+            "expected_points": 73.57,
+            "squad_cost": 92.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 73.7652
+          },
+          {
+            "formation": "3-5-2",
+            "status": "optimal",
+            "expected_points": 73.53,
+            "squad_cost": 92.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 73.7326
+          },
+          {
+            "formation": "4-3-3",
+            "status": "optimal",
+            "expected_points": 73.29,
+            "squad_cost": 92.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 73.491
+          },
+          {
+            "formation": "5-3-2",
+            "status": "optimal",
+            "expected_points": 73.11,
+            "squad_cost": 86.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 73.3133
+          },
+          {
+            "formation": "4-5-1",
+            "status": "optimal",
+            "expected_points": 72.77,
+            "squad_cost": 92.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 72.9762
+          },
+          {
+            "formation": "5-4-1",
+            "status": "optimal",
+            "expected_points": 72.67,
+            "squad_cost": 92.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 72.8835
+          }
+        ]
+      },
+      "current": {
+        "policy": "current_tff_v2",
+        "formation": "3-4-3",
+        "xi_ids": [
+          12,
+          136,
+          148,
+          15,
+          166,
+          172,
+          176,
+          37,
+          404,
+          608,
+          75
+        ],
+        "bench_ids": [
+          281,
+          47,
+          48,
+          51
+        ],
+        "captain_id": 12,
+        "predicted_fantasy_points": 73.71,
+        "objective": 73.9088,
+        "actual_points": 85.0,
+        "all_formations_optimal": true,
+        "formation_comparison": [
+          {
+            "formation": "3-4-3",
+            "status": "optimal",
+            "expected_points": 73.71,
+            "squad_cost": 92.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 73.9088
+          },
+          {
+            "formation": "4-4-2",
+            "status": "optimal",
+            "expected_points": 73.57,
+            "squad_cost": 92.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 73.7652
+          },
+          {
+            "formation": "3-5-2",
+            "status": "optimal",
+            "expected_points": 73.53,
+            "squad_cost": 92.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 73.7326
+          },
+          {
+            "formation": "4-3-3",
+            "status": "optimal",
+            "expected_points": 73.29,
+            "squad_cost": 92.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 73.491
+          },
+          {
+            "formation": "5-3-2",
+            "status": "optimal",
+            "expected_points": 73.11,
+            "squad_cost": 86.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 73.3133
+          },
+          {
+            "formation": "5-2-3",
+            "status": "optimal",
+            "expected_points": 72.84,
+            "squad_cost": 86.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 73.0391
+          },
+          {
+            "formation": "4-5-1",
+            "status": "optimal",
+            "expected_points": 72.77,
+            "squad_cost": 92.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 72.9762
+          },
+          {
+            "formation": "5-4-1",
+            "status": "optimal",
+            "expected_points": 72.67,
+            "squad_cost": 92.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 72.8835
+          }
+        ]
+      },
+      "xi_overlap": 11,
+      "objective_gain": 0.0,
+      "actual_delta": 0.0
+    },
+    "11": {
+      "candidate_count": 572,
+      "legacy": {
+        "policy": "legacy_pre39_v1",
+        "formation": "3-4-3",
+        "xi_ids": [
+          12,
+          136,
+          148,
+          212,
+          22,
+          27,
+          404,
+          48,
+          600,
+          75,
+          94
+        ],
+        "bench_ids": [
+          216,
+          346,
+          516,
+          53
+        ],
+        "captain_id": 148,
+        "predicted_fantasy_points": 72.4,
+        "objective": 72.5836,
+        "actual_points": 70.0,
+        "all_formations_optimal": true,
+        "formation_comparison": [
+          {
+            "formation": "3-4-3",
+            "status": "optimal",
+            "expected_points": 72.4,
+            "squad_cost": 80.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 72.5836
+          },
+          {
+            "formation": "3-5-2",
+            "status": "optimal",
+            "expected_points": 71.81,
+            "squad_cost": 80.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 72.0025
+          },
+          {
+            "formation": "4-3-3",
+            "status": "optimal",
+            "expected_points": 71.5,
+            "squad_cost": 80.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 71.6986
+          },
+          {
+            "formation": "4-4-2",
+            "status": "optimal",
+            "expected_points": 71.45,
+            "squad_cost": 80.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 71.6451
+          },
+          {
+            "formation": "4-5-1",
+            "status": "optimal",
+            "expected_points": 70.67,
+            "squad_cost": 80.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 70.8799
+          },
+          {
+            "formation": "5-3-2",
+            "status": "optimal",
+            "expected_points": 70.12,
+            "squad_cost": 80.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 70.3344
+          },
+          {
+            "formation": "5-4-1",
+            "status": "optimal",
+            "expected_points": 69.88,
+            "squad_cost": 80.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 70.0968
+          }
+        ]
+      },
+      "current": {
+        "policy": "current_tff_v2",
+        "formation": "3-4-3",
+        "xi_ids": [
+          12,
+          136,
+          148,
+          212,
+          22,
+          27,
+          404,
+          48,
+          600,
+          75,
+          94
+        ],
+        "bench_ids": [
+          216,
+          346,
+          516,
+          53
+        ],
+        "captain_id": 148,
+        "predicted_fantasy_points": 72.4,
+        "objective": 72.5836,
+        "actual_points": 70.0,
+        "all_formations_optimal": true,
+        "formation_comparison": [
+          {
+            "formation": "3-4-3",
+            "status": "optimal",
+            "expected_points": 72.4,
+            "squad_cost": 80.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 72.5836
+          },
+          {
+            "formation": "3-5-2",
+            "status": "optimal",
+            "expected_points": 71.81,
+            "squad_cost": 80.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 72.0025
+          },
+          {
+            "formation": "4-3-3",
+            "status": "optimal",
+            "expected_points": 71.5,
+            "squad_cost": 80.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 71.6986
+          },
+          {
+            "formation": "4-4-2",
+            "status": "optimal",
+            "expected_points": 71.45,
+            "squad_cost": 80.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 71.6451
+          },
+          {
+            "formation": "4-5-1",
+            "status": "optimal",
+            "expected_points": 70.67,
+            "squad_cost": 80.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 70.8799
+          },
+          {
+            "formation": "5-2-3",
+            "status": "optimal",
+            "expected_points": 70.17,
+            "squad_cost": 80.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 70.3839
+          },
+          {
+            "formation": "5-3-2",
+            "status": "optimal",
+            "expected_points": 70.12,
+            "squad_cost": 80.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 70.3344
+          },
+          {
+            "formation": "5-4-1",
+            "status": "optimal",
+            "expected_points": 69.88,
+            "squad_cost": 80.0,
+            "risk_penalty": 0.0,
+            "risk_adjusted_objective": 70.0968
+          }
+        ]
+      },
+      "xi_overlap": 11,
+      "objective_gain": 0.0,
+      "actual_delta": 0.0
+    }
+  },
+  "warnings": [
+    "Current TFF rules observed now; historical rule versions were not archived",
+    "Historical player prices and clubs are reconstructed, not verified deadline snapshots",
+    "Actual GW outcomes used only after optimizer selection"
+  ]
+}

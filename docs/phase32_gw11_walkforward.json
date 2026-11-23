@@ -1,0 +1,2696 @@
+{
+  "classification": "approximate_retrospective_simulation",
+  "integrity": {
+    "snapshot_id": "72226192-1049-4d89-b9a9-aec4d9da4709",
+    "original_hash": "3d10cc948ef74a9a21d4ebe1fa004158078b58633f4e095edc752676f0a207a0",
+    "replay_hash": "697a6a942b3c190be52943b5a1140becded4e15587b72846111cac4a61b67727",
+    "snapshot_captured_at": "2026-10-31T20:57:09.759788+00:00",
+    "official_deadline": "2026-11-06T16:00:00Z",
+    "gw10_rows_retrieved_at": "2026-11-09T09:59:22.453463+00:00",
+    "gw10_rows": 572,
+    "external_matches": 81,
+    "official_fixture_checked_at": "2026-11-09T11:50:54.162071+00:00",
+    "snapshot_vs_gw10_cost_mismatches": [
+      {
+        "id": 1009,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 104,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 1042,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 1075,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 108,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 109,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 11,
+        "snapshot_price": 7.5,
+        "gw10_history_cost": 7
+      },
+      {
+        "id": 1109,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 116,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 119,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 120,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 122,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 1240,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 127,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 1306,
+        "snapshot_price": 10.5,
+        "gw10_history_cost": 10
+      },
+      {
+        "id": 1307,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 131,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 132,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 135,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 136,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 1373,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 1438,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 1471,
+        "snapshot_price": 9.5,
+        "gw10_history_cost": 9
+      },
+      {
+        "id": 149,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 15,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 1504,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 152,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 1538,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 1539,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 1540,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 1545,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 1571,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 1573,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 1603,
+        "snapshot_price": 6.5,
+        "gw10_history_cost": 6
+      },
+      {
+        "id": 165,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 168,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 169,
+        "snapshot_price": 8.5,
+        "gw10_history_cost": 8
+      },
+      {
+        "id": 17,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 172,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 173,
+        "snapshot_price": 8.5,
+        "gw10_history_cost": 8
+      },
+      {
+        "id": 174,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 177,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 178,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 18,
+        "snapshot_price": 10.5,
+        "gw10_history_cost": 10
+      },
+      {
+        "id": 184,
+        "snapshot_price": 6.5,
+        "gw10_history_cost": 6
+      },
+      {
+        "id": 185,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 187,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 188,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 189,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 190,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 192,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 193,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 195,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 20,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 200,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 202,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 210,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 211,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 212,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 213,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 214,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 215,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 216,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 217,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 220,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 222,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 229,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 235,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 236,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 237,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 239,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 247,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 249,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 252,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 254,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 257,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 258,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 259,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 260,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 262,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 263,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 268,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 27,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 271,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 273,
+        "snapshot_price": 9.5,
+        "gw10_history_cost": 9
+      },
+      {
+        "id": 275,
+        "snapshot_price": 6.5,
+        "gw10_history_cost": 6
+      },
+      {
+        "id": 282,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 286,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 288,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 290,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 295,
+        "snapshot_price": 6.5,
+        "gw10_history_cost": 6
+      },
+      {
+        "id": 297,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 298,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 30,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 300,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 301,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 303,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 310,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 311,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 314,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 32,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 33,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 332,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 336,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 338,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 339,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 34,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 345,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 348,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 354,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 356,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 359,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 36,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 362,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 365,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 367,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 371,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 373,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 377,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 378,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 379,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 38,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 380,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 382,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 387,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 389,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 390,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 398,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 400,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 402,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 404,
+        "snapshot_price": 7.5,
+        "gw10_history_cost": 7
+      },
+      {
+        "id": 408,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 409,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 41,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 410,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 415,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 416,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 419,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 420,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 428,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 435,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 436,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 438,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 445,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 446,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 448,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 45,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 451,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 453,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 456,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 457,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 459,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 461,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 462,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 463,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 466,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 470,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 471,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 472,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 474,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 477,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 478,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 483,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 495,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 504,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 505,
+        "snapshot_price": 7.5,
+        "gw10_history_cost": 7
+      },
+      {
+        "id": 511,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 514,
+        "snapshot_price": 8.5,
+        "gw10_history_cost": 8
+      },
+      {
+        "id": 516,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 520,
+        "snapshot_price": 8.5,
+        "gw10_history_cost": 8
+      },
+      {
+        "id": 522,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 525,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 527,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 530,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 531,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 533,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 537,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 540,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 545,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 550,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 554,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 555,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 556,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 557,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 560,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 561,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 567,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 572,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 58,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 59,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 590,
+        "snapshot_price": 8.5,
+        "gw10_history_cost": 8
+      },
+      {
+        "id": 592,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 597,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 6,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 608,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 610,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 613,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 617,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 635,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 67,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 679,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 7,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 74,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 77,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 778,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 78,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 80,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 811,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 812,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 813,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 82,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 84,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 86,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 88,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 9,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 92,
+        "snapshot_price": 5.5,
+        "gw10_history_cost": 5
+      },
+      {
+        "id": 93,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 94,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 97,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      },
+      {
+        "id": 976,
+        "snapshot_price": 4.5,
+        "gw10_history_cost": 4
+      }
+    ]
+  },
+  "warnings": [
+    "GW10 history first retrieved after deadline",
+    "Oct 31 player metadata may be stale at Nov 6 deadline",
+    "220 positive GW10 history costs differ from snapshot prices",
+    "Legacy availability policy can include DEPARTED",
+    "No automatic substitutions modeled"
+  ],
+  "official_actual_retrieved_at": "2026-11-09T10:39:20.370818+00:00",
+  "models": {
+    "baseline_5w": {
+      "eligible_players": 317,
+      "excluded": {
+        "history": 0,
+        "fixture": 0,
+        "minutes": 248,
+        "availability": 7,
+        "price": 0
+      },
+      "starting_xi": [
+        {
+          "id": 22,
+          "name": "Andre Onana Onana",
+          "position": "GK",
+          "club_id": "1",
+          "predicted_xpts": 6.174,
+          "actual_points": 6,
+          "difference": 0.174,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "club_id": "3",
+          "predicted_xpts": 6.37,
+          "actual_points": 7,
+          "difference": -0.63,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "club_id": "2",
+          "predicted_xpts": 5.978,
+          "actual_points": 1,
+          "difference": 4.978,
+          "actual_minutes": 89,
+          "captain": false
+        },
+        {
+          "id": 27,
+          "name": "Stefan Savic",
+          "position": "DEF",
+          "club_id": "1",
+          "predicted_xpts": 5.592,
+          "actual_points": 6,
+          "difference": -0.408,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 12,
+          "name": "Mohamed Salah Hamed Mahrous Ghaly",
+          "position": "MID",
+          "club_id": "1",
+          "predicted_xpts": 7.148,
+          "actual_points": 10,
+          "difference": -2.852,
+          "actual_minutes": 89,
+          "captain": true
+        },
+        {
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "club_id": "4",
+          "predicted_xpts": 5.975,
+          "actual_points": 11,
+          "difference": -5.025,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "club_id": "5",
+          "predicted_xpts": 5.647,
+          "actual_points": 0,
+          "difference": 5.647,
+          "actual_minutes": 0,
+          "captain": false
+        },
+        {
+          "id": 136,
+          "name": "Diaa Sabi'a",
+          "position": "MID",
+          "club_id": "5",
+          "predicted_xpts": 5.358,
+          "actual_points": 10,
+          "difference": -4.642,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 148,
+          "name": "Gift Emmanuel Orban",
+          "position": "FWD",
+          "club_id": "5",
+          "predicted_xpts": 6.492,
+          "actual_points": 5,
+          "difference": 1.492,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 404,
+          "name": "Eldor Shomurodov",
+          "position": "FWD",
+          "club_id": "13",
+          "predicted_xpts": 5.789,
+          "actual_points": 2,
+          "difference": 3.789,
+          "actual_minutes": 86,
+          "captain": false
+        },
+        {
+          "id": 75,
+          "name": "Adrian Dawid Benedyczak",
+          "position": "FWD",
+          "club_id": "3",
+          "predicted_xpts": 5.615,
+          "actual_points": 7,
+          "difference": -1.385,
+          "actual_minutes": 86,
+          "captain": false
+        }
+      ],
+      "bench": [
+        {
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "club_id": "4",
+          "predicted_xpts": 4.986,
+          "actual_points": 9,
+          "difference": -4.014,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 53,
+          "name": "Amar Gerxhaliu",
+          "position": "DEF",
+          "club_id": "2",
+          "predicted_xpts": 4.929,
+          "actual_points": 1,
+          "difference": 3.929,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 217,
+          "name": "Chidozie Collins Awaziem",
+          "position": "DEF",
+          "club_id": "7",
+          "predicted_xpts": 4.061,
+          "actual_points": 2,
+          "difference": 2.061,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 346,
+          "name": "Franco Daryl Tongya Heubang",
+          "position": "MID",
+          "club_id": "11",
+          "predicted_xpts": 4.91,
+          "actual_points": 2,
+          "difference": 2.91,
+          "actual_minutes": 90,
+          "captain": false
+        }
+      ],
+      "captain_id": 12,
+      "captain": "Mohamed Salah Hamed Mahrous Ghaly",
+      "formation": "3-4-3",
+      "squad_cost": 82.0,
+      "predicted_points": 73.29,
+      "actual_xi_points": 65,
+      "captain_extra_points": 10,
+      "actual_points": 75,
+      "predicted_minus_actual": -1.71,
+      "optimization_objective": 72.8809,
+      "mae_selected_15": 2.929,
+      "rmse_selected_15": 3.415,
+      "spearman_selected_15": 0.259
+    },
+    "short_form_3w": {
+      "eligible_players": 317,
+      "excluded": {
+        "history": 0,
+        "fixture": 0,
+        "minutes": 248,
+        "availability": 7,
+        "price": 0
+      },
+      "starting_xi": [
+        {
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "club_id": "4",
+          "predicted_xpts": 5.3,
+          "actual_points": 9,
+          "difference": -3.7,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "club_id": "3",
+          "predicted_xpts": 6.748,
+          "actual_points": 7,
+          "difference": -0.252,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 27,
+          "name": "Stefan Savic",
+          "position": "DEF",
+          "club_id": "1",
+          "predicted_xpts": 5.923,
+          "actual_points": 6,
+          "difference": -0.077,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "club_id": "2",
+          "predicted_xpts": 5.289,
+          "actual_points": 1,
+          "difference": 4.289,
+          "actual_minutes": 89,
+          "captain": false
+        },
+        {
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "club_id": "1",
+          "predicted_xpts": 7.672,
+          "actual_points": 3,
+          "difference": 4.672,
+          "actual_minutes": 80,
+          "captain": true
+        },
+        {
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "club_id": "5",
+          "predicted_xpts": 6.052,
+          "actual_points": 0,
+          "difference": 6.052,
+          "actual_minutes": 0,
+          "captain": false
+        },
+        {
+          "id": 12,
+          "name": "Mohamed Salah Hamed Mahrous Ghaly",
+          "position": "MID",
+          "club_id": "1",
+          "predicted_xpts": 6.018,
+          "actual_points": 10,
+          "difference": -3.982,
+          "actual_minutes": 89,
+          "captain": false
+        },
+        {
+          "id": 346,
+          "name": "Franco Daryl Tongya Heubang",
+          "position": "MID",
+          "club_id": "11",
+          "predicted_xpts": 5.687,
+          "actual_points": 2,
+          "difference": 3.687,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "club_id": "4",
+          "predicted_xpts": 5.606,
+          "actual_points": 11,
+          "difference": -5.394,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 148,
+          "name": "Gift Emmanuel Orban",
+          "position": "FWD",
+          "club_id": "5",
+          "predicted_xpts": 6.623,
+          "actual_points": 5,
+          "difference": 1.623,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 507,
+          "name": "Victor James Osimhen",
+          "position": "FWD",
+          "club_id": "17",
+          "predicted_xpts": 5.802,
+          "actual_points": 0,
+          "difference": 5.802,
+          "actual_minutes": 0,
+          "captain": false
+        }
+      ],
+      "bench": [
+        {
+          "id": 195,
+          "name": "İrfan Can Eğribayat",
+          "position": "GK",
+          "club_id": "11",
+          "predicted_xpts": 4.654,
+          "actual_points": 3,
+          "difference": 1.654,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 217,
+          "name": "Chidozie Collins Awaziem",
+          "position": "DEF",
+          "club_id": "7",
+          "predicted_xpts": 5.149,
+          "actual_points": 2,
+          "difference": 3.149,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 84,
+          "name": "Adem Arous",
+          "position": "DEF",
+          "club_id": "3",
+          "predicted_xpts": 4.927,
+          "actual_points": 7,
+          "difference": -2.073,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 404,
+          "name": "Eldor Shomurodov",
+          "position": "FWD",
+          "club_id": "13",
+          "predicted_xpts": 5.453,
+          "actual_points": 2,
+          "difference": 3.453,
+          "actual_minutes": 86,
+          "captain": false
+        }
+      ],
+      "captain_id": 4,
+      "captain": "Ernest Muçi",
+      "formation": "3-5-2",
+      "squad_cost": 90.5,
+      "predicted_points": 74.39,
+      "actual_xi_points": 54,
+      "captain_extra_points": 3,
+      "actual_points": 57,
+      "predicted_minus_actual": 17.39,
+      "optimization_objective": 74.1378,
+      "mae_selected_15": 3.324,
+      "rmse_selected_15": 3.78,
+      "spearman_selected_15": 0.0485
+    },
+    "stable_8w": {
+      "eligible_players": 317,
+      "excluded": {
+        "history": 0,
+        "fixture": 0,
+        "minutes": 248,
+        "availability": 7,
+        "price": 0
+      },
+      "starting_xi": [
+        {
+          "id": 22,
+          "name": "Andre Onana Onana",
+          "position": "GK",
+          "club_id": "1",
+          "predicted_xpts": 5.912,
+          "actual_points": 6,
+          "difference": -0.088,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "club_id": "2",
+          "predicted_xpts": 5.635,
+          "actual_points": 1,
+          "difference": 4.635,
+          "actual_minutes": 89,
+          "captain": false
+        },
+        {
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "club_id": "3",
+          "predicted_xpts": 5.32,
+          "actual_points": 7,
+          "difference": -1.68,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 53,
+          "name": "Amar Gerxhaliu",
+          "position": "DEF",
+          "club_id": "2",
+          "predicted_xpts": 4.557,
+          "actual_points": 1,
+          "difference": 3.557,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 12,
+          "name": "Mohamed Salah Hamed Mahrous Ghaly",
+          "position": "MID",
+          "club_id": "1",
+          "predicted_xpts": 8.37,
+          "actual_points": 10,
+          "difference": -1.63,
+          "actual_minutes": 89,
+          "captain": true
+        },
+        {
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "club_id": "4",
+          "predicted_xpts": 5.667,
+          "actual_points": 11,
+          "difference": -5.333,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 136,
+          "name": "Diaa Sabi'a",
+          "position": "MID",
+          "club_id": "5",
+          "predicted_xpts": 5.252,
+          "actual_points": 10,
+          "difference": -4.748,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "club_id": "1",
+          "predicted_xpts": 4.68,
+          "actual_points": 3,
+          "difference": 1.68,
+          "actual_minutes": 80,
+          "captain": false
+        },
+        {
+          "id": 404,
+          "name": "Eldor Shomurodov",
+          "position": "FWD",
+          "club_id": "13",
+          "predicted_xpts": 6.225,
+          "actual_points": 2,
+          "difference": 4.225,
+          "actual_minutes": 86,
+          "captain": false
+        },
+        {
+          "id": 75,
+          "name": "Adrian Dawid Benedyczak",
+          "position": "FWD",
+          "club_id": "3",
+          "predicted_xpts": 6.055,
+          "actual_points": 7,
+          "difference": -0.945,
+          "actual_minutes": 86,
+          "captain": false
+        },
+        {
+          "id": 148,
+          "name": "Gift Emmanuel Orban",
+          "position": "FWD",
+          "club_id": "5",
+          "predicted_xpts": 5.795,
+          "actual_points": 5,
+          "difference": 0.795,
+          "actual_minutes": 90,
+          "captain": false
+        }
+      ],
+      "bench": [
+        {
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "club_id": "4",
+          "predicted_xpts": 4.953,
+          "actual_points": 9,
+          "difference": -4.047,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 172,
+          "name": "Milan Skriniar",
+          "position": "DEF",
+          "club_id": "6",
+          "predicted_xpts": 4.301,
+          "actual_points": 6,
+          "difference": -1.699,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 120,
+          "name": "Anfernee Jamal Dijksteel",
+          "position": "DEF",
+          "club_id": "4",
+          "predicted_xpts": 3.955,
+          "actual_points": 6,
+          "difference": -2.045,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "club_id": "5",
+          "predicted_xpts": 4.315,
+          "actual_points": 0,
+          "difference": 4.315,
+          "actual_minutes": 0,
+          "captain": false
+        }
+      ],
+      "captain_id": 12,
+      "captain": "Mohamed Salah Hamed Mahrous Ghaly",
+      "formation": "3-4-3",
+      "squad_cost": 86.0,
+      "predicted_points": 71.84,
+      "actual_xi_points": 63,
+      "captain_extra_points": 10,
+      "actual_points": 73,
+      "predicted_minus_actual": -1.16,
+      "optimization_objective": 71.3182,
+      "mae_selected_15": 2.761,
+      "rmse_selected_15": 3.213,
+      "spearman_selected_15": 0.2947
+    },
+    "uniform_xg": {
+      "eligible_players": 317,
+      "excluded": {
+        "history": 0,
+        "fixture": 0,
+        "minutes": 248,
+        "availability": 7,
+        "price": 0
+      },
+      "starting_xi": [
+        {
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "club_id": "4",
+          "predicted_xpts": 5.555,
+          "actual_points": 9,
+          "difference": -3.445,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "club_id": "3",
+          "predicted_xpts": 6.584,
+          "actual_points": 7,
+          "difference": -0.416,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 27,
+          "name": "Stefan Savic",
+          "position": "DEF",
+          "club_id": "1",
+          "predicted_xpts": 6.511,
+          "actual_points": 6,
+          "difference": 0.511,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 217,
+          "name": "Chidozie Collins Awaziem",
+          "position": "DEF",
+          "club_id": "7",
+          "predicted_xpts": 5.136,
+          "actual_points": 2,
+          "difference": 3.136,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "club_id": "1",
+          "predicted_xpts": 8.434,
+          "actual_points": 3,
+          "difference": 5.434,
+          "actual_minutes": 80,
+          "captain": true
+        },
+        {
+          "id": 12,
+          "name": "Mohamed Salah Hamed Mahrous Ghaly",
+          "position": "MID",
+          "club_id": "1",
+          "predicted_xpts": 6.616,
+          "actual_points": 10,
+          "difference": -3.384,
+          "actual_minutes": 89,
+          "captain": false
+        },
+        {
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "club_id": "5",
+          "predicted_xpts": 6.093,
+          "actual_points": 0,
+          "difference": 6.093,
+          "actual_minutes": 0,
+          "captain": false
+        },
+        {
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "club_id": "4",
+          "predicted_xpts": 5.876,
+          "actual_points": 11,
+          "difference": -5.124,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 148,
+          "name": "Gift Emmanuel Orban",
+          "position": "FWD",
+          "club_id": "5",
+          "predicted_xpts": 6.667,
+          "actual_points": 5,
+          "difference": 1.667,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 507,
+          "name": "Victor James Osimhen",
+          "position": "FWD",
+          "club_id": "17",
+          "predicted_xpts": 6.041,
+          "actual_points": 0,
+          "difference": 6.041,
+          "actual_minutes": 0,
+          "captain": false
+        },
+        {
+          "id": 404,
+          "name": "Eldor Shomurodov",
+          "position": "FWD",
+          "club_id": "13",
+          "predicted_xpts": 5.615,
+          "actual_points": 2,
+          "difference": 3.615,
+          "actual_minutes": 86,
+          "captain": false
+        }
+      ],
+      "bench": [
+        {
+          "id": 280,
+          "name": "Alexander Nübel",
+          "position": "GK",
+          "club_id": "9",
+          "predicted_xpts": 4.587,
+          "actual_points": 7,
+          "difference": -2.413,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 277,
+          "name": "Michael Amir Murillo Bermudez",
+          "position": "DEF",
+          "club_id": "9",
+          "predicted_xpts": 4.9,
+          "actual_points": 5,
+          "difference": -0.1,
+          "actual_minutes": 70,
+          "captain": false
+        },
+        {
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "club_id": "2",
+          "predicted_xpts": 4.837,
+          "actual_points": 1,
+          "difference": 3.837,
+          "actual_minutes": 89,
+          "captain": false
+        },
+        {
+          "id": 273,
+          "name": "Leandro Trossard",
+          "position": "MID",
+          "club_id": "9",
+          "predicted_xpts": 5.104,
+          "actual_points": 15,
+          "difference": -9.896,
+          "actual_minutes": 90,
+          "captain": false
+        }
+      ],
+      "captain_id": 4,
+      "captain": "Ernest Muçi",
+      "formation": "3-4-3",
+      "squad_cost": 96.0,
+      "predicted_points": 77.56,
+      "actual_xi_points": 55,
+      "captain_extra_points": 3,
+      "actual_points": 58,
+      "predicted_minus_actual": 19.56,
+      "optimization_objective": 77.2543,
+      "mae_selected_15": 3.674,
+      "rmse_selected_15": 4.452,
+      "spearman_selected_15": -0.0197
+    },
+    "position_aware_xg": {
+      "eligible_players": 317,
+      "excluded": {
+        "history": 0,
+        "fixture": 0,
+        "minutes": 248,
+        "availability": 7,
+        "price": 0
+      },
+      "starting_xi": [
+        {
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "club_id": "4",
+          "predicted_xpts": 6.095,
+          "actual_points": 9,
+          "difference": -2.905,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "club_id": "3",
+          "predicted_xpts": 7.285,
+          "actual_points": 7,
+          "difference": 0.285,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 27,
+          "name": "Stefan Savic",
+          "position": "DEF",
+          "club_id": "1",
+          "predicted_xpts": 6.078,
+          "actual_points": 6,
+          "difference": 0.078,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 217,
+          "name": "Chidozie Collins Awaziem",
+          "position": "DEF",
+          "club_id": "7",
+          "predicted_xpts": 5.528,
+          "actual_points": 2,
+          "difference": 3.528,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "club_id": "2",
+          "predicted_xpts": 5.427,
+          "actual_points": 1,
+          "difference": 4.427,
+          "actual_minutes": 89,
+          "captain": false
+        },
+        {
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "club_id": "1",
+          "predicted_xpts": 8.365,
+          "actual_points": 3,
+          "difference": 5.365,
+          "actual_minutes": 80,
+          "captain": true
+        },
+        {
+          "id": 12,
+          "name": "Mohamed Salah Hamed Mahrous Ghaly",
+          "position": "MID",
+          "club_id": "1",
+          "predicted_xpts": 6.561,
+          "actual_points": 10,
+          "difference": -3.439,
+          "actual_minutes": 89,
+          "captain": false
+        },
+        {
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "club_id": "5",
+          "predicted_xpts": 5.935,
+          "actual_points": 0,
+          "difference": 5.935,
+          "actual_minutes": 0,
+          "captain": false
+        },
+        {
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "club_id": "4",
+          "predicted_xpts": 5.926,
+          "actual_points": 11,
+          "difference": -5.074,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 148,
+          "name": "Gift Emmanuel Orban",
+          "position": "FWD",
+          "club_id": "5",
+          "predicted_xpts": 6.482,
+          "actual_points": 5,
+          "difference": 1.482,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 507,
+          "name": "Victor James Osimhen",
+          "position": "FWD",
+          "club_id": "17",
+          "predicted_xpts": 6.055,
+          "actual_points": 0,
+          "difference": 6.055,
+          "actual_minutes": 0,
+          "captain": false
+        }
+      ],
+      "bench": [
+        {
+          "id": 280,
+          "name": "Alexander Nübel",
+          "position": "GK",
+          "club_id": "9",
+          "predicted_xpts": 4.543,
+          "actual_points": 7,
+          "difference": -2.457,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 84,
+          "name": "Adem Arous",
+          "position": "DEF",
+          "club_id": "3",
+          "predicted_xpts": 5.319,
+          "actual_points": 7,
+          "difference": -1.681,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 346,
+          "name": "Franco Daryl Tongya Heubang",
+          "position": "MID",
+          "club_id": "11",
+          "predicted_xpts": 5.339,
+          "actual_points": 2,
+          "difference": 3.339,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 404,
+          "name": "Eldor Shomurodov",
+          "position": "FWD",
+          "club_id": "13",
+          "predicted_xpts": 5.42,
+          "actual_points": 2,
+          "difference": 3.42,
+          "actual_minutes": 86,
+          "captain": false
+        }
+      ],
+      "captain_id": 4,
+      "captain": "Ernest Muçi",
+      "formation": "4-4-2",
+      "squad_cost": 91.0,
+      "predicted_points": 78.1,
+      "actual_xi_points": 54,
+      "captain_extra_points": 3,
+      "actual_points": 57,
+      "predicted_minus_actual": 21.1,
+      "optimization_objective": 77.8102,
+      "mae_selected_15": 3.298,
+      "rmse_selected_15": 3.766,
+      "spearman_selected_15": 0.1926
+    },
+    "rest_days_control": {
+      "eligible_players": 317,
+      "excluded": {
+        "history": 0,
+        "fixture": 0,
+        "minutes": 248,
+        "availability": 7,
+        "price": 0
+      },
+      "starting_xi": [
+        {
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "club_id": "4",
+          "predicted_xpts": 5.3,
+          "actual_points": 9,
+          "difference": -3.7,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "club_id": "3",
+          "predicted_xpts": 6.748,
+          "actual_points": 7,
+          "difference": -0.252,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 27,
+          "name": "Stefan Savic",
+          "position": "DEF",
+          "club_id": "1",
+          "predicted_xpts": 5.923,
+          "actual_points": 6,
+          "difference": -0.077,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "club_id": "2",
+          "predicted_xpts": 5.289,
+          "actual_points": 1,
+          "difference": 4.289,
+          "actual_minutes": 89,
+          "captain": false
+        },
+        {
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "club_id": "1",
+          "predicted_xpts": 7.672,
+          "actual_points": 3,
+          "difference": 4.672,
+          "actual_minutes": 80,
+          "captain": true
+        },
+        {
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "club_id": "5",
+          "predicted_xpts": 6.052,
+          "actual_points": 0,
+          "difference": 6.052,
+          "actual_minutes": 0,
+          "captain": false
+        },
+        {
+          "id": 12,
+          "name": "Mohamed Salah Hamed Mahrous Ghaly",
+          "position": "MID",
+          "club_id": "1",
+          "predicted_xpts": 6.018,
+          "actual_points": 10,
+          "difference": -3.982,
+          "actual_minutes": 89,
+          "captain": false
+        },
+        {
+          "id": 346,
+          "name": "Franco Daryl Tongya Heubang",
+          "position": "MID",
+          "club_id": "11",
+          "predicted_xpts": 5.687,
+          "actual_points": 2,
+          "difference": 3.687,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "club_id": "4",
+          "predicted_xpts": 5.606,
+          "actual_points": 11,
+          "difference": -5.394,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 148,
+          "name": "Gift Emmanuel Orban",
+          "position": "FWD",
+          "club_id": "5",
+          "predicted_xpts": 6.623,
+          "actual_points": 5,
+          "difference": 1.623,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 507,
+          "name": "Victor James Osimhen",
+          "position": "FWD",
+          "club_id": "17",
+          "predicted_xpts": 5.802,
+          "actual_points": 0,
+          "difference": 5.802,
+          "actual_minutes": 0,
+          "captain": false
+        }
+      ],
+      "bench": [
+        {
+          "id": 195,
+          "name": "İrfan Can Eğribayat",
+          "position": "GK",
+          "club_id": "11",
+          "predicted_xpts": 4.654,
+          "actual_points": 3,
+          "difference": 1.654,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 217,
+          "name": "Chidozie Collins Awaziem",
+          "position": "DEF",
+          "club_id": "7",
+          "predicted_xpts": 5.149,
+          "actual_points": 2,
+          "difference": 3.149,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 84,
+          "name": "Adem Arous",
+          "position": "DEF",
+          "club_id": "3",
+          "predicted_xpts": 4.927,
+          "actual_points": 7,
+          "difference": -2.073,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 404,
+          "name": "Eldor Shomurodov",
+          "position": "FWD",
+          "club_id": "13",
+          "predicted_xpts": 5.453,
+          "actual_points": 2,
+          "difference": 3.453,
+          "actual_minutes": 86,
+          "captain": false
+        }
+      ],
+      "captain_id": 4,
+      "captain": "Ernest Muçi",
+      "formation": "3-5-2",
+      "squad_cost": 90.5,
+      "predicted_points": 74.39,
+      "actual_xi_points": 54,
+      "captain_extra_points": 3,
+      "actual_points": 57,
+      "predicted_minus_actual": 17.39,
+      "optimization_objective": 74.1378,
+      "mae_selected_15": 3.324,
+      "rmse_selected_15": 3.78,
+      "spearman_selected_15": 0.0485
+    }
+  },
+  "largest_selected_errors": [
+    {
+      "model": "uniform_xg",
+      "id": 273,
+      "name": "Leandro Trossard",
+      "position": "MID",
+      "club_id": "9",
+      "predicted_xpts": 5.104,
+      "actual_points": 15,
+      "difference": -9.896,
+      "actual_minutes": 90,
+      "captain": false
+    },
+    {
+      "model": "uniform_xg",
+      "id": 600,
+      "name": "Samuel Leo Beat Ballet",
+      "position": "MID",
+      "club_id": "5",
+      "predicted_xpts": 6.093,
+      "actual_points": 0,
+      "difference": 6.093,
+      "actual_minutes": 0,
+      "captain": false
+    },
+    {
+      "model": "position_aware_xg",
+      "id": 507,
+      "name": "Victor James Osimhen",
+      "position": "FWD",
+      "club_id": "17",
+      "predicted_xpts": 6.055,
+      "actual_points": 0,
+      "difference": 6.055,
+      "actual_minutes": 0,
+      "captain": false
+    },
+    {
+      "model": "short_form_3w",
+      "id": 600,
+      "name": "Samuel Leo Beat Ballet",
+      "position": "MID",
+      "club_id": "5",
+      "predicted_xpts": 6.052,
+      "actual_points": 0,
+      "difference": 6.052,
+      "actual_minutes": 0,
+      "captain": false
+    },
+    {
+      "model": "rest_days_control",
+      "id": 600,
+      "name": "Samuel Leo Beat Ballet",
+      "position": "MID",
+      "club_id": "5",
+      "predicted_xpts": 6.052,
+      "actual_points": 0,
+      "difference": 6.052,
+      "actual_minutes": 0,
+      "captain": false
+    },
+    {
+      "model": "uniform_xg",
+      "id": 507,
+      "name": "Victor James Osimhen",
+      "position": "FWD",
+      "club_id": "17",
+      "predicted_xpts": 6.041,
+      "actual_points": 0,
+      "difference": 6.041,
+      "actual_minutes": 0,
+      "captain": false
+    },
+    {
+      "model": "position_aware_xg",
+      "id": 600,
+      "name": "Samuel Leo Beat Ballet",
+      "position": "MID",
+      "club_id": "5",
+      "predicted_xpts": 5.935,
+      "actual_points": 0,
+      "difference": 5.935,
+      "actual_minutes": 0,
+      "captain": false
+    },
+    {
+      "model": "short_form_3w",
+      "id": 507,
+      "name": "Victor James Osimhen",
+      "position": "FWD",
+      "club_id": "17",
+      "predicted_xpts": 5.802,
+      "actual_points": 0,
+      "difference": 5.802,
+      "actual_minutes": 0,
+      "captain": false
+    },
+    {
+      "model": "rest_days_control",
+      "id": 507,
+      "name": "Victor James Osimhen",
+      "position": "FWD",
+      "club_id": "17",
+      "predicted_xpts": 5.802,
+      "actual_points": 0,
+      "difference": 5.802,
+      "actual_minutes": 0,
+      "captain": false
+    },
+    {
+      "model": "baseline_5w",
+      "id": 600,
+      "name": "Samuel Leo Beat Ballet",
+      "position": "MID",
+      "club_id": "5",
+      "predicted_xpts": 5.647,
+      "actual_points": 0,
+      "difference": 5.647,
+      "actual_minutes": 0,
+      "captain": false
+    },
+    {
+      "model": "uniform_xg",
+      "id": 4,
+      "name": "Ernest Muçi",
+      "position": "MID",
+      "club_id": "1",
+      "predicted_xpts": 8.434,
+      "actual_points": 3,
+      "difference": 5.434,
+      "actual_minutes": 80,
+      "captain": true
+    },
+    {
+      "model": "short_form_3w",
+      "id": 212,
+      "name": "Berkan İsmail Kutlu",
+      "position": "MID",
+      "club_id": "4",
+      "predicted_xpts": 5.606,
+      "actual_points": 11,
+      "difference": -5.394,
+      "actual_minutes": 90,
+      "captain": false
+    },
+    {
+      "model": "rest_days_control",
+      "id": 212,
+      "name": "Berkan İsmail Kutlu",
+      "position": "MID",
+      "club_id": "4",
+      "predicted_xpts": 5.606,
+      "actual_points": 11,
+      "difference": -5.394,
+      "actual_minutes": 90,
+      "captain": false
+    },
+    {
+      "model": "position_aware_xg",
+      "id": 4,
+      "name": "Ernest Muçi",
+      "position": "MID",
+      "club_id": "1",
+      "predicted_xpts": 8.365,
+      "actual_points": 3,
+      "difference": 5.365,
+      "actual_minutes": 80,
+      "captain": true
+    },
+    {
+      "model": "stable_8w",
+      "id": 212,
+      "name": "Berkan İsmail Kutlu",
+      "position": "MID",
+      "club_id": "4",
+      "predicted_xpts": 5.667,
+      "actual_points": 11,
+      "difference": -5.333,
+      "actual_minutes": 90,
+      "captain": false
+    },
+    {
+      "model": "uniform_xg",
+      "id": 212,
+      "name": "Berkan İsmail Kutlu",
+      "position": "MID",
+      "club_id": "4",
+      "predicted_xpts": 5.876,
+      "actual_points": 11,
+      "difference": -5.124,
+      "actual_minutes": 90,
+      "captain": false
+    },
+    {
+      "model": "position_aware_xg",
+      "id": 212,
+      "name": "Berkan İsmail Kutlu",
+      "position": "MID",
+      "club_id": "4",
+      "predicted_xpts": 5.926,
+      "actual_points": 11,
+      "difference": -5.074,
+      "actual_minutes": 90,
+      "captain": false
+    },
+    {
+      "model": "baseline_5w",
+      "id": 212,
+      "name": "Berkan İsmail Kutlu",
+      "position": "MID",
+      "club_id": "4",
+      "predicted_xpts": 5.975,
+      "actual_points": 11,
+      "difference": -5.025,
+      "actual_minutes": 90,
+      "captain": false
+    },
+    {
+      "model": "baseline_5w",
+      "id": 48,
+      "name": "Guram Giorbelidze",
+      "position": "DEF",
+      "club_id": "2",
+      "predicted_xpts": 5.978,
+      "actual_points": 1,
+      "difference": 4.978,
+      "actual_minutes": 89,
+      "captain": false
+    },
+    {
+      "model": "stable_8w",
+      "id": 136,
+      "name": "Diaa Sabi'a",
+      "position": "MID",
+      "club_id": "5",
+      "predicted_xpts": 5.252,
+      "actual_points": 10,
+      "difference": -4.748,
+      "actual_minutes": 90,
+      "captain": false
+    }
+  ],
+  "high_actual_not_in_any_xi": [
+    {
+      "id": 176,
+      "name": "Mason Will John Greenwood",
+      "points": 16,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 28,
+      "name": "Wagner Fabricio Cardoso de Pina",
+      "points": 15,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 273,
+      "name": "Leandro Trossard",
+      "points": 15,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 178,
+      "name": "Oğuz Aydın",
+      "points": 13,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 199,
+      "name": "İrfan Can Kahveci",
+      "points": 13,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 353,
+      "name": "Ali Sowe",
+      "points": 13,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 593,
+      "name": "Dusan Vlahovic",
+      "points": 12,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 92,
+      "name": "Haris Hajradinovic",
+      "points": 11,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 463,
+      "name": "Yirigue Foungognan Sekongo",
+      "points": 11,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 37,
+      "name": "Chibuike Godfrey Nwaiwu",
+      "points": 10,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 520,
+      "name": "Barış Alper Yılmaz",
+      "points": 10,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 877,
+      "name": "Aleksey Batrakov",
+      "points": 10,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 80,
+      "name": "Andreas Gianniotis",
+      "points": 9,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 108,
+      "name": "Daniel Ebenezer Kwasi Agyei",
+      "points": 9,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 166,
+      "name": "Ederson Santana de Moraes",
+      "points": 9,
+      "short_form_eligibility": "eligible"
+    }
+  ],
+  "focus_actuals": {
+    "507": {
+      "gameweekId": 11,
+      "gameweekOrder": 11,
+      "points": 0,
+      "bonus": 0,
+      "minutesPlayed": 0,
+      "started": false,
+      "goals": 0,
+      "assists": 0,
+      "cleanSheets": 0,
+      "goalsConceded": 0,
+      "ownGoals": 0,
+      "yellowCards": 0,
+      "redCards": 0,
+      "saves": 0,
+      "xG": 0,
+      "xA": 0,
+      "cost": 12,
+      "selectedByPct": 73.9,
+      "totalPoints": 70,
+      "form": 4.8,
+      "pointsPerMatch": 8.8,
+      "opponentClubId": 5,
+      "opponentClubName": "Amed",
+      "homeAway": "H",
+      "result": "4-3",
+      "played": false
+    },
+    "12": {
+      "gameweekId": 11,
+      "gameweekOrder": 11,
+      "points": 10,
+      "bonus": 2,
+      "minutesPlayed": 89,
+      "started": true,
+      "goals": 1,
+      "assists": 0,
+      "cleanSheets": 0,
+      "goalsConceded": 0,
+      "ownGoals": 0,
+      "yellowCards": 0,
+      "redCards": 0,
+      "saves": 0,
+      "xG": 0,
+      "xA": 0,
+      "cost": 12,
+      "selectedByPct": 53.5,
+      "totalPoints": 96,
+      "form": 6.4,
+      "pointsPerMatch": 8.7,
+      "opponentClubId": 14,
+      "opponentClubName": "Alanyaspor",
+      "homeAway": "A",
+      "result": "0-2",
+      "played": true,
+      "breakdown": [
+        {
+          "eventType": "GOAL",
+          "count": 1,
+          "pointsPer": 5,
+          "subtotal": 5
+        },
+        {
+          "eventType": "CLEAN_SHEET",
+          "count": 1,
+          "pointsPer": 1,
+          "subtotal": 1
+        },
+        {
+          "eventType": "APPEARANCE_60_PLUS",
+          "count": 1,
+          "pointsPer": 2,
+          "subtotal": 2
+        },
+        {
+          "eventType": "BONUS",
+          "count": 1,
+          "pointsPer": 2,
+          "subtotal": 2
+        }
+      ]
+    }
+  }
+}

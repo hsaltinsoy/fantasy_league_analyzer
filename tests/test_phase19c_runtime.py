@@ -112,7 +112,9 @@ def test_phase15_failure_rolls_back_production_capture(monkeypatch):
     from analysis.prediction_tracking import save_snapshot
     from data_sources.tff_official import BASE
 
-    url = os.environ['PHASE17_TEST_DATABASE_URL']
+    url = os.getenv('PHASE17_TEST_DATABASE_URL')
+    if not url:
+        pytest.skip('PHASE17_TEST_DATABASE_URL required')
     monkeypatch.setenv('DATABASE_URL', url)
     monkeypatch.setenv('STORAGE_BACKEND', 'postgres')
     now = datetime(2099, 1, 1, tzinfo=timezone.utc)
@@ -127,7 +129,10 @@ def test_phase15_failure_rolls_back_production_capture(monkeypatch):
     snapshot_id = 'phase19d-rollback-phase15'
 
     def production(**kwargs):
-        save_snapshot(94, [{'id': 94001}], [], [], {'official_gameweek_id': 94001},
+        save_snapshot(94, [{'id': 94001, 'name': 'Synthetic player',
+                            'club_id': 1, 'position': 'MID', 'price': 5}],
+                      [{'id': 94001}], [{'player_id': 94001, 'rows': []}],
+                      {'official_gameweek_id': 94001},
                       snapshot_id=snapshot_id, deadline_at=deadline,
                       deadline_source=archive['source_url'], require_pre_deadline=True)
         return {'snapshot': {'id': snapshot_id}, 'predictions': [],

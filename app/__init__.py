@@ -21,6 +21,124 @@ from data_sources.football_data import parse_results, parse_fixtures, upcoming_f
 def create_app():
     app = Flask(__name__)
 
+    @app.before_request
+    def restrict_manager_collector_to_localhost():
+        if request.path.startswith('/manager-collector') or request.path.startswith('/api/manager-collector/'):
+            if request.remote_addr not in ('127.0.0.1', '::1'):
+                return jsonify(error='Manager collector is local only'), 403
+
+    @app.get('/manager-collector')
+    def manager_collector_page():
+        return render_template('manager_collector.html')
+
+    @app.get('/manager-collector/top10')
+    def manager_collector_top10_page():
+        from flask import make_response
+        response = make_response(render_template('manager_top10.html'))
+        response.headers['Cache-Control'] = 'no-store'
+        return response
+
+    @app.post('/api/manager-collector/top10/preview')
+    def manager_collector_top10_preview():
+        from analysis.manual_manager_collector import catalogue, preview_named_batch
+        try:
+            result = preview_named_batch(json_object().get('managers'), catalogue())
+            return jsonify(**result, records=[r['record'] for r in result['managers'] if r.get('record')],
+                           message='Review all ten statuses before confirming.')
+        except (ValueError, KeyError, TypeError) as exc:
+            return jsonify(error=str(exc)), 400
+
+    @app.post('/api/manager-collector/top10/save')
+    def manager_collector_top10_save():
+        from analysis.manual_manager_collector import catalogue, save_batch, validate_named_batch
+        payload = json_object()
+        if payload.get('confirmed') is not True:
+            return jsonify(error='Explicit batch confirmation required'), 400
+        try:
+            managers = payload.get('managers')
+            confirmed_keys = payload.get('manual_confirmed_manager_keys', [])
+            if not isinstance(managers, list) or not isinstance(confirmed_keys, list) or any(not isinstance(key, str) for key in confirmed_keys):
+                raise ValueError('Invalid manager batch or manual confirmations')
+            confirmed_keys = set(confirmed_keys)
+            available_attack_keys = {item.get('manager_key') for item in managers
+                                     if isinstance(item, dict) and item.get('manager_card') == 'attack'}
+            if not confirmed_keys <= available_attack_keys:
+                raise ValueError('Manual confirmation must identify an Attack Card manager in this batch')
+            submitted = [{**item, 'attack_rules_unverified_confirmed': True}
+                         if isinstance(item, dict) and item.get('manager_key') in confirmed_keys else item
+                         for item in managers]
+            records = validate_named_batch(submitted, catalogue())
+            path = app.config.get('MANAGER_COLLECTOR_STORE')
+            return jsonify(saved=len(save_batch(records, path)) if path else len(save_batch(records))), 201
+        except (ValueError, KeyError, TypeError, OSError) as exc:
+            if ('manual_confirmed_manager_keys' not in payload
+                    and 'Confirm the displayed squad manually' in str(exc)):
+                return jsonify(error='This collector page is outdated. Reload /manager-collector/top10, review Manager 1, and check the confirmation box in its preview before saving.'), 409
+            return jsonify(error=str(exc)), 400
+
+    @app.get('/api/manager-collector/players')
+    def manager_collector_players():
+        from analysis.manual_manager_collector import catalogue
+        try:
+            return jsonify(players=list(catalogue().values()))
+        except ValueError as exc:
+            return jsonify(error=str(exc)), 503
+
+    @app.get('/api/manager-collector/dashboard')
+    def manager_collector_dashboard():
+        from analysis.manual_manager_collector import catalogue, dashboard, read_records
+        try:
+            week = request.args.get('week', type=int)
+            return jsonify(dashboard(read_records(app.config.get('MANAGER_COLLECTOR_STORE')) if app.config.get('MANAGER_COLLECTOR_STORE') else read_records(), catalogue(), week=week))
+        except (ValueError, OSError) as exc:
+            return jsonify(error=str(exc)), 503
+
+    @app.post('/api/manager-collector/preview')
+    def manager_collector_preview():
+        from analysis.manual_manager_collector import catalogue, validate
+        try:
+            record = validate(json_object(), catalogue())
+            return jsonify(record=record, message='Review every field and confirm before saving.')
+        except (ValueError, KeyError, TypeError) as exc:
+            return jsonify(error=str(exc)), 400
+
+    @app.post('/api/manager-collector/save')
+    def manager_collector_save():
+        from analysis.manual_manager_collector import catalogue, save_record, validate
+        payload = json_object()
+        if payload.get('confirmed') is not True:
+            return jsonify(error='Explicit confirmation is required'), 400
+        try:
+            record = validate({k: v for k, v in payload.items() if k != 'confirmed'}, catalogue())
+            return jsonify(record=save_record(record, app.config['MANAGER_COLLECTOR_STORE']) if app.config.get('MANAGER_COLLECTOR_STORE') else save_record(record)), 201
+        except (ValueError, KeyError, TypeError, OSError) as exc:
+            return jsonify(error=str(exc)), 400
+
+    @app.post('/api/manager-collector/screenshot-hints')
+    def manager_collector_screenshot_hints():
+        from analysis.manual_manager_collector import catalogue, screenshot_hints
+        uploaded = request.files.get('screenshot')
+        if not uploaded or uploaded.mimetype not in ('image/png', 'image/jpeg', 'image/webp'):
+            return jsonify(error='PNG, JPEG or WebP screenshot required'), 400
+        data = uploaded.read(4_000_001)
+        if len(data) > 4_000_000:
+            return jsonify(error='Screenshot exceeds 4 MB'), 413
+        try:
+            return jsonify(screenshot_hints(data, catalogue()))
+        except ValueError as exc:
+            return jsonify(error=str(exc)), 400
+
+    @app.get('/api/manager-collector/export.<format>')
+    def manager_collector_export(format):
+        from analysis.manual_manager_collector import export_csv, read_records, safe_export_rows
+        from flask import Response
+        if format not in ('json', 'csv'):
+            return jsonify(error='Use json or csv'), 404
+        rows = read_records(app.config['MANAGER_COLLECTOR_STORE']) if app.config.get('MANAGER_COLLECTOR_STORE') else read_records()
+        if format == 'json':
+            return Response(__import__('json').dumps(safe_export_rows(rows), ensure_ascii=False, indent=2), mimetype='application/json', headers={'Content-Disposition': 'attachment; filename=manager_squads.json'})
+        return Response(export_csv(rows), mimetype='text/csv', headers={'Content-Disposition': 'attachment; filename=manager_squads.csv'})
+
     def postgres_report(source_path):
         from storage.db import engine_from_env
         from storage.runtime_repository import RuntimeRepository
@@ -33,6 +151,11 @@ def create_app():
     @app.get('/lineup')
     def lineup_page():
         return render_template('lineup.html')
+
+    @app.get('/api/research/phase23b-audit')
+    def phase23b_audit():
+        from analysis.phase23b_audit import build
+        return jsonify(build())
 
     @app.get('/benchmark')
     def benchmark_page():
@@ -317,7 +440,12 @@ def create_app():
                     raise ValueError('Selected week is past or lacks a current official deadline')
                 players = repository.current_player_pool(max_age_seconds=3600)
                 histories = repository.historical_records(before_week=week)
+                from analysis.lineup_history_refresh import resolve as resolve_lineup_history
+                histories, history_freshness = resolve_lineup_history(
+                    week, players, histories, archive, deadline)
                 records = [(p, histories.get(str(p['id']), [])) for p in players]
+                if datetime.now(timezone.utc) >= deadline:
+                    raise ValueError('Official deadline passed during history refresh')
                 tow = repository.team_of_week() if weight else {}
                 from analysis.lineup_snapshot import fingerprint, source_versions
                 input_sha256 = fingerprint(week, players, histories, entry, model, risk_profile, weight)
@@ -361,8 +489,11 @@ def create_app():
                         result['expected_points'])
                     return jsonify(result)
                 source = {'players': 'postgres_current_official_api',
-                    'fixtures': archive['source_url'], 'histories': 'postgres_source_payloads',
-                    'fixtures_retrieved_at': archive['captured_utc']}
+                    'fixtures': archive['source_url'],
+                    'histories': ('official_tff_history_api' if history_freshness.get('history_source_retrieved_at')
+                                  else 'postgres_source_payloads'),
+                    'fixtures_retrieved_at': archive['captured_utc'],
+                    'history_freshness': history_freshness}
                 from storage.repository import tracking_transaction
                 with tracking_transaction(repository.engine):
                     snapshot = save_snapshot(week, players, entry['matches'],
@@ -412,6 +543,16 @@ def create_app():
         except OfficialDataUnavailable as exc:
             app.logger.warning('Current official lineup inputs unavailable: %s', exc)
             return jsonify(error=f'{exc}. Refresh with: python -m storage.ingest_current'), 503
+        except TFFFeedError as exc:
+            app.logger.warning('Official player history unavailable: %s', exc)
+            return jsonify(error=f'Kadro oluşturulamadı: Resmî oyuncu geçmişi alınamadı: {exc}'), 503
+        except ValueError as exc:
+            if str(exc).startswith(('Historical freshness gate:', 'Official history',
+                                    'Official deadline passed')):
+                app.logger.warning('Lineup history unavailable: %s', exc)
+                return jsonify(error=f'Kadro oluşturulamadı: {exc}'), 503
+            app.logger.exception('Lineup generation failed')
+            return jsonify(error=f'Kadro oluşturulamadı: {exc}'), 500
         except Exception as exc:
             app.logger.exception('Lineup generation failed')
             return jsonify(error=f'Kadro oluşturulamadı: {exc}'),500
@@ -621,6 +762,7 @@ def create_app():
                 read = repository.historical_report
                 return render_template('index.html', dashboard=dashboard_data(), benchmark=report(),
                     prospective=prospective_report(),
+                    six_batch=repository.latest_generated_report('six_model_batch'),
                     phase11=read('historical_data/player_level_phase11/player_level_report.json'),
                     player_accuracy=read('historical_data/recovered/model_evaluation.json'),
                     player_ranking=read('historical_data/recovered/player_ranking_official.json'),

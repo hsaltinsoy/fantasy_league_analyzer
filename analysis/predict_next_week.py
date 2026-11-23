@@ -28,7 +28,8 @@ def annotate_player_changes(players):
             player['percentage_delta'] = (100 * player['absolute_delta'] / baseline
                                           if baseline else None)
 
-def build_candidate_pool(week,players,records,fixtures,model='short_form_3w',fixture_weight=.5):
+def build_candidate_pool(week,players,records,fixtures,model='short_form_3w',fixture_weight=.5,
+                         min_probability=.25,availability_policy='current'):
     """Production eligibility and xPts calculation, exposed for read-only experiments."""
     history={int(p['id']):rows for p,rows in records}
     strengths=fixture_multipliers(records,week)
@@ -41,8 +42,15 @@ def build_candidate_pool(week,players,records,fixtures,model='short_form_3w',fix
         opponent=fixtures[week].get(club)
         if opponent is None:excluded['fixture']+=1;continue
         probability=participation(past)['probability']
-        if probability<.25:excluded['minutes']+=1;continue
-        availability=evaluate_availability(p,round_number=week)
+        if probability<min_probability:excluded['minutes']+=1;continue
+        if availability_policy not in ('current', 'legacy_pre31a'):
+            raise ValueError('Unknown availability policy')
+        # Frozen pre-31A batches treated DEPARTED as available. Explicit replay
+        # compatibility preserves their candidate count without changing captures.
+        availability_player = (dict(p, availability='AVAILABLE')
+            if availability_policy == 'legacy_pre31a' and
+               str(p.get('availability') or '').strip().upper() == 'DEPARTED' else p)
+        availability=evaluate_availability(availability_player,round_number=week)
         if not availability['eligible'] or availability['factor']<.25:
             excluded['availability']+=1;continue
         try:price=float(p['price'])
@@ -56,14 +64,14 @@ def build_candidate_pool(week,players,records,fixtures,model='short_form_3w',fix
     return pool, excluded
 
 
-def predict(week,players,records,fixtures,tow,model='short_form_3w',fixture_weight=.5,tow_weight=0.,risk_profile='balanced',experimental_covariance=False,fixture_archive=None,pool_adjuster=None):
-    pool, excluded=build_candidate_pool(week,players,records,fixtures,model,fixture_weight)
+def predict(week,players,records,fixtures,tow,model='short_form_3w',fixture_weight=.5,tow_weight=0.,risk_profile='balanced',experimental_covariance=False,fixture_archive=None,pool_adjuster=None,availability_policy='current',formation_policy='current_tff_v2'):
+    pool, excluded=build_candidate_pool(week,players,records,fixtures,model,fixture_weight,availability_policy=availability_policy)
     if len(pool)<15:raise ValueError(f'Not enough players: {len(pool)}, exclusions: {excluded}')
     if pool_adjuster is not None:
         pool=pool_adjuster(pool)
     from analysis.optimizer import optimize
     def risk_optimize(items):
-        return optimize(items,risk_profile=risk_profile)
+        return optimize(items,risk_profile=risk_profile,formation_policy=formation_policy)
     solution=make_optimizer(records,week,.2,.15,tow,tow_weight,optimizer_func=risk_optimize)(pool)
     if 'error' in solution:raise RuntimeError(solution['error'])
     ids={p['id'] for p in solution['starting_xi']}
@@ -79,11 +87,13 @@ def predict(week,players,records,fixtures,tow,model='short_form_3w',fixture_weig
            'captain_bonus_xpts':q.get('captain_bonus_xpts',q['xpts'])} for q in solution['starting_xi']],
            key=lambda q:-q['captain_bonus_xpts'])[:5],
         'budget_remaining':round(100-solution['squad_cost'],2),
-        'risk_profile':risk_profile,'risk_penalty':solution.get('risk_penalty',0),
+        'risk_profile':risk_profile,'formation_policy':solution.get('formation_policy',formation_policy),
+        'risk_penalty':solution.get('risk_penalty',0),
         'opposing_pairs':solution.get('opposing_pairs',[]),
         'risk_adjusted_objective':solution.get('risk_adjusted_objective'),
         'week':week,'generated_utc':datetime.now(timezone.utc).isoformat(),
         'model':model,'formation':solution['formation'],'expected_points':solution['expected_points'],
+        'expected_fantasy_points':solution.get('expected_fantasy_points', round(sum(p['xpts'] for p in xi)+solution['captain']['xpts'],2)),
         'captain':solution['captain']['name'],'cost':solution['squad_cost'],
         'starting_xi':xi,'bench':bench,'eligible_players':len(pool),'excluded':excluded,
         'formation_comparison':solution['formation_comparison'],

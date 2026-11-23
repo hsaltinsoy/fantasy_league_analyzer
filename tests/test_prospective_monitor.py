@@ -199,7 +199,9 @@ def test_phase15_prospective_fit_excludes_last_and_target_week(tmp_path, monkeyp
 def test_atomic_batch_rolls_back_invalid_model_and_rejects_late_insert(tmp_path, monkeypatch):
     path=tmp_path/'tracking.sqlite3'
     url=BASE+live_benchmark.FIXTURE_ENDPOINT
-    snapshot=save_snapshot(20,[{'id':i} for i in range(1,16)],[],[],{},
+    snapshot=save_snapshot(20,[{'id':i,'name':f'P{i}','club_id':i,
+                                'position':'MID','price':5} for i in range(1,16)],
+        [{'id':1}], [{'player_id':i,'rows':[]} for i in range(1,16)],{},
         deadline_at='2099-01-02T12:00:00Z',deadline_source=url,path=path,
         require_pre_deadline=True)
     valid={'week':20,'model':'short_form_3w','risk_profile':'balanced',

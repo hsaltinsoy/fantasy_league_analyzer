@@ -9,14 +9,19 @@ def test_dashboard_exposes_explicit_experimental_parameters():
         assert 'value="position_aware_xg"' in page
         assert 'name="sensitivity"' in page
         assert 'value="0.4"' in page
-        assert "new URLSearchParams(new FormData(" in page
         if route == '/':
-            assert 'team_name' in page
-            assert 'percentage_delta' in page
-            assert 'Captain-adjusted total' in page
-            assert 'XI before captain' in page
-            assert "['Base model',data.model]" in page
-            assert "['Risk',data.risk_profile]" in page
+            assert 'experimental_lineup.js' in page
+        else:
+            assert "new URLSearchParams(new FormData(" in page
+        if route == '/':
+            script = client.get('/static/experimental_lineup.js').get_data(as_text=True)
+            assert 'team_name' in script
+            assert 'percentage_delta' in script
+            assert 'Expected total fantasy points' in script
+            assert 'Risk-adjusted optimization score' in script
+            assert 'XI expected xPts' in script
+            assert "['Base model', data.model]" in script
+            assert "['Risk profile', data.risk_profile]" in script
 
 
 def test_experimental_parameter_pair_must_be_explicit():

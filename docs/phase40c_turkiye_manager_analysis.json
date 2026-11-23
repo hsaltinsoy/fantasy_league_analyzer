@@ -1,0 +1,20 @@
+{
+  "phase": "40C",
+  "status": "access_and_historical_timing_unverified",
+  "source_inventory": [
+    {"source": "user_observed_authenticated_UI", "path": "Ligler ve Kupalar > Türkiye > manager", "observed_fields": ["starting_xi", "bench", "captain", "vice_captain", "player_points", "manager_performance"], "independently_verified": false},
+    {"source": "official_public_rules", "url": "https://tfffantezilig.com/yardim", "observed_fields": ["country_league_exists", "cumulative_ranking_rule", "one_hour_before_first_match_squad_lock", "manager_card_rules"]},
+    {"source": "existing_repository_integration", "path": "data_sources/tff_official.py", "observed_fields": ["player_statistics", "player_histories"], "manager_endpoints": 0}
+  ],
+  "permission": {"automated_collection_authorized": false, "reason": "No verified API/export documentation or terms granting automated collection of other managers' selections.", "authenticated_manager_requests_made": 0},
+  "historical_coverage": {"historical_week_navigation": "unverified", "historical_xi_and_bench": "unverified", "historical_captain_and_vice_captain": "unverified", "historical_weekly_points": "unverified", "prior_week_rank": "unverified", "historical_capture_timestamps": "unverified", "records_available_for_analysis": 0},
+  "manual_import_contract": {"required": ["gameweek", "pseudonymous_manager_id", "league", "rank_at_capture", "rank_basis_gameweek", "captured_at_utc", "source_viewed_at_utc", "visibility_status", "starting_xi_player_ids", "bench_player_ids", "captain_player_id", "vice_captain_player_id", "formation", "manager_card", "provenance_note"], "optional": ["historical_points_through_prior_week", "weekly_points_after_finalization"], "excluded": ["manager_name", "email", "profile_url", "account_id", "free_text_biography"], "storage": "isolated local file outside production tables; no real manager rows generated in this phase"},
+  "candidate_features": [
+    {"name": "top_manager_selection_share", "definition": "pre-deadline top-N selecting player / observed pre-deadline top-N", "eligible_only_if": "rank and selection were captured before target deadline"},
+    {"name": "top_manager_captain_share", "definition": "pre-deadline top-N captaining player / observed pre-deadline top-N", "eligible_only_if": "same"},
+    {"name": "top_minus_general_popularity", "definition": "top-N selection share minus same-cutoff all-manager selection share", "eligible_only_if": "same-cutoff all-manager data and permissions exist"},
+    {"name": "manager_decision_consistency", "definition": "lagged overlap of a pseudonymous manager's previous selections", "eligible_only_if": "stable pseudonym and at least two prior pre-deadline captures exist"}
+  ],
+  "results": {"top_10_top_25_top_50_consensus": null, "optimizer_agreement": null, "general_popularity_comparison": null, "weekly_changes": null, "baseline_vs_consensus_variants": null, "reason": "No permitted time-stamped manager-week dataset or historical rank snapshots."},
+  "recommendation": "Use an explicitly permitted export or user-entered manual observations. Verify historical gameweek navigation and visibility timing. Prospectively capture rank and selections before each deadline; evaluate only later weeks against unchanged Phase 40 candidate pools and scoring."
+}

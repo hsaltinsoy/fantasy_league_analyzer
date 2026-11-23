@@ -168,6 +168,11 @@ def evaluate_gameweek(snapshot_id, *, fixture_archive=None, rows_provider=None, 
     entry,fixture_issues=_fixture_check(snapshot,fixture_archive)
     selected_ids={str(player['id']) for prediction in predictions
                   for player in prediction['payload'].get('starting_xi',[])}
+    six_predictions = [p for p in predictions if
+                       (p['payload'].get('benchmark') or {}).get('batch_id')]
+    if six_predictions:
+        selected_ids.update(str(player['id']) for prediction in six_predictions
+                            for player in prediction['payload'].get('bench', []))
     fetched=None
     actual={}
     player_issues={}
@@ -219,6 +224,7 @@ def evaluate_gameweek(snapshot_id, *, fixture_archive=None, rows_provider=None, 
              'fixture_issues':fixture_issues,'player_issues':player_issues,
              'selected_player_count':len(selected_ids),'valid_actual_player_count':len(actual),
              'prediction_results':results,'by_model':by_model,
+             'six_model_common': _six_model_common(six_predictions, actual, fixture_issues),
              'complete_predictions':len(complete),'total_predictions':len(predictions),
              'limitations':['A single gameweek cannot establish model superiority.',
                             'Ranking is within each selected XI; complete candidate-pool rankings were not saved.',
@@ -226,3 +232,14 @@ def evaluate_gameweek(snapshot_id, *, fixture_archive=None, rows_provider=None, 
                             'Existing GW10 snapshot lacks the official gameweek ID at capture; current official ID is checked against player rows and saved fixture IDs.']}
     digest=_digest(entry,fetched.get('rows_by_player') if fetched else None,[p['id'] for p in predictions])
     return save_evaluation_run(snapshot_id,week,digest,status,source,payload,path)
+
+
+def _six_model_common(predictions, actual, fixture_issues):
+    if not predictions:
+        return {'status': 'not_available'}
+    batches = {p['payload']['benchmark']['batch_id'] for p in predictions}
+    if len(batches) != 1:
+        return {'status': 'incomplete_batch', 'reason': 'Multiple batch IDs'}
+    from analysis.six_model_evaluation import evaluate
+    by_name = {p['model']: p['payload'] for p in predictions}
+    return evaluate(by_name, actual, official_finalized=not fixture_issues)

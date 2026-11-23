@@ -1,0 +1,39 @@
+# Phase 40E - Türkiye top-10 manual manager collection
+
+## Access decision
+
+The [official TFF fantasy help](https://tfffantezilig.com/yardim) documents country leagues and manager scoring, but no supported manager-squad export or automated collection permission was verified. The [privacy notice](https://tfffantezilig.com/yardim?tab=kisisel-verilerin-islenmesine-dair-aydinlatma-metni-ve-gizlilik-politikasi) covers user IDs, performance and ranking information. The existing [official client](../data_sources/tff_official.py) retrieves players and their histories only. **No one-click authenticated manager import was added**, and no manager endpoint, account, rate limit or anti-bot control was probed. The workflow is manual and limited to ten managers.
+
+## Use the batch page
+
+Run the local app (`python run.py` with the project interpreter) and open `http://127.0.0.1:5000/manager-collector/top10`. The page is linked from the main dashboard and the [single-squad collector](phase40d_manual_squad_collector.md). It is restricted to loopback access.
+
+1. Set one gameweek, the latest gameweek included in the displayed ranking, an observation type, and a verified deadline if available.
+2. For ranks 1–10, enter or reuse a generated UUIDv4 pseudonym, displayed rank, capture time, formation, captain/vice captain, optional weekly points, and 11 starters plus four substitutes. Player fields accept **names**, with autocomplete from the existing local TFF catalogue. Numeric player IDs are resolved internally.
+3. Optionally upload one screenshot per manager. Local OCR, if installed, offers exact full-name or uniquely matched short-name suggestions. Click a name field then a suggestion to fill it. OCR does not infer order, role, captain badges, points, gameweek, or rank because that would be unreliable. Enter and verify those fields yourself.
+4. Select **Validate all ten**. The preview displays all ten complete squads, captains, bench, displayed weekly points, and timing classification. Missing or ambiguous names block the batch; the error identifies the manager card and offers candidate labels.
+5. Inspect the preview, then select **Confirm and save all ten**. The server validates again and commits the ten records atomically to the separate ignored `experimental_data/manual_manager_squads.json` file. Failed validation or a duplicate manager-week saves none.
+
+The dashboard shows most-selected players, most popular captains, and top-10 shares for the selected gameweek. Archived GW6–11 comparisons use the Phase 36 baseline XI+captain score and ignore cards and automatic substitutions. A screenshot after the deadline is retrospective; server receipt time after the deadline prevents its row from becoming a target-week feature even if the entered capture time is earlier. The page makes no TFF manager requests. JSON/CSV export remains available through the collector routes.
+
+## Data and limits
+
+The player catalogue must already exist at `historical_data/players.json`. The importer does not fetch it automatically. Name matching accepts a unique exact full name, unique exact short match name, or a selected catalogue label; ambiguous and missing names are never guessed. Screenshot OCR requires optional local Pillow, pytesseract and Tesseract; without them, name entry and autocomplete work normally. Screenshots are processed in memory and not stored. Manager names, profile links and raw account IDs are not part of the record format. Only pseudonymous UUIDs are saved.
+
+The displayed weekly points field is stored as an observation, not substituted for official player-level results or used to generate predictions. Current top-10 rank does not establish historical top-10 status. No consensus feature was added to production.
+
+## Attack Card validation correction
+
+The [official TFF rules](https://tfffantezilig.com/yardim) describe the standard 15-player **2 GK, 5 DEF, 5 MID, 3 FWD** squad. The [FAQ](https://tfffantezilig.com/yardim?tab=sss) says the Attack Card permits an attack-oriented formation outside standard limits, but does **not** enumerate the resulting squad-position distributions. The rules page also mentions **+5M** budget for that week. A user observed a 2 GK / 3 DEF / 5 MID / 5 FWD Attack Card squad. The earlier conclusion that 2/5/5/3 necessarily remained fixed was unsupported. The collector now keeps strict standard validation for other cards and stores nonstandard Attack Card squads only after explicit manual confirmation, labelled `rules_unverified`. That label makes no claim that every alternative composition is permitted.
+
+For a standard-squad composition mismatch, preview reports actual and expected counts for each affected position and names entries in excessive positions. For a nonstandard Attack Card observation, select the card, enter all 15 names and the matching XI formation, then check the explicit manual-confirmation box. The preview shows card, `rules_unverified` status, observed position counts, and all player IDs/names. These records are excluded from leakage-safe feature eligibility and archived model-score comparison; existing stored rows are not rewritten. Older Attack Card rows without a rules status are treated as unverified when exported or shown in the dashboard. No Manager 1 draft or screenshot was present in the isolated store.
+
+The batch preview now shows a status for **each of the ten managers**. An unconfirmed nonstandard Attack Card squad is `needs_confirmation`, so its preview remains visible while the save button is disabled. Check that manager's confirmation box; the page reruns validation and enables **Confirm and save all ten** when every manager is valid. Missing names, duplicate IDs, incorrect captain/vice captain and wrong squad size remain hard errors, with the manager number and field shown. A failed save leaves the validated preview visible for correction or retry. The server always revalidates the complete batch before writing any record.
+
+The Attack Card checkbox is also shown **inside the manager's preview card**, with the exact acknowledgement “I have verified that this squad matches the official TFF Fantasy screen.” Checking it updates only that manager's confirmation, reruns the already-working validation, and freezes the validated input used by the save request. This fixes a mismatch where save recollected the editable form instead of submitting the confirmed preview input. Saved nonstandard Attack Card records include `validation_status: rules_unverified`, `manual_confirmation: true`, `manager_card: attack`, the original player IDs and positions, captain/vice captain, and capture timestamps. An unconfirmed preview record explicitly has `manual_confirmation: false` and cannot be saved.
+
+The save request also sends the pseudonymous keys of the Attack Card managers checked in the **preview**. The server applies those explicit confirmations to the corresponding manager before revalidating all ten records, so a stale editable checkbox cannot silently drop confirmation. A stale page that omits this request field receives an actionable `409` reload message. The page response is `Cache-Control: no-store`; reload it after updating the app. A real Chromium-to-Flask test fills ten squads, confirms a 2 GK / 3 DEF / 5 MID / 5 FWD Attack Card preview, clicks save, and checks all ten persisted records in an isolated file.
+
+## Verification
+
+Focused backend tests and a [browser button-state regression](../tests/test_manual_manager_top10_browser.py) cover name resolution, standard and Attack Card observations, mixed-batch atomic save, hard errors, preview-before-save, confirmation-driven button state, failed-save preview preservation, exports, timing isolation and consensus counts. No existing prediction, snapshot, optimizer rule or production weight was changed.

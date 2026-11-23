@@ -47,7 +47,8 @@ def test_dashboard_uses_production_api_and_shows_saved_squad(tmp_path, monkeypat
     client = create_app().test_client()
     page = client.get('/').get_data(as_text=True)
     assert 'Dashboard v2.0' in page
-    assert 'fetch(\'/api/lineup/generate?' in page
+    assert 'experimental_lineup.js' in page
+    assert "fetch('/api/lineup/generate?'" in client.get('/static/experimental_lineup.js').get_data(as_text=True)
     assert 'Starting XI' in page
     assert 'Bench' in page
     assert 'Snapshot' in page

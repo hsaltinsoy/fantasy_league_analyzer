@@ -1,0 +1,4818 @@
+{
+  "classification": "approximate_retrospective_phase36_baseline_error_audit",
+  "source_retrieved_at": "2026-11-09T10:39:20.370818+00:00",
+  "n_player_weeks": 3432,
+  "overall": {
+    "n": 3432,
+    "mae": 1.25,
+    "rmse": 2.392,
+    "mean_predicted": 1.109,
+    "mean_actual": 1.407
+  },
+  "by_position": {
+    "GK": {
+      "n": 348,
+      "mae": 1.137,
+      "rmse": 2.193,
+      "mean_predicted": 1.216,
+      "mean_actual": 1.27
+    },
+    "DEF": {
+      "n": 1104,
+      "mae": 1.447,
+      "rmse": 2.527,
+      "mean_predicted": 1.211,
+      "mean_actual": 1.391
+    },
+    "MID": {
+      "n": 1440,
+      "mae": 1.208,
+      "rmse": 2.405,
+      "mean_predicted": 1.076,
+      "mean_actual": 1.511
+    },
+    "FWD": {
+      "n": 540,
+      "mae": 1.033,
+      "rmse": 2.187,
+      "mean_predicted": 0.919,
+      "mean_actual": 1.248
+    }
+  },
+  "by_predicted_band": {
+    "0-2": {
+      "n": 2608,
+      "mae": 0.774,
+      "rmse": 1.835,
+      "mean_predicted": 0.397,
+      "mean_actual": 0.798
+    },
+    "2-4": {
+      "n": 634,
+      "mae": 2.503,
+      "rmse": 3.46,
+      "mean_predicted": 2.851,
+      "mean_actual": 3.047
+    },
+    "4-6": {
+      "n": 164,
+      "mae": 3.462,
+      "rmse": 3.902,
+      "mean_predicted": 4.783,
+      "mean_actual": 4.122
+    },
+    "6-8": {
+      "n": 23,
+      "mae": 4.587,
+      "rmse": 5.485,
+      "mean_predicted": 6.55,
+      "mean_actual": 5.217
+    },
+    "8-plus": {
+      "n": 3,
+      "mae": 4.377,
+      "rmse": 4.897,
+      "mean_predicted": 9.426,
+      "mean_actual": 6.333
+    }
+  },
+  "by_actual_participation": {
+    "zero": {
+      "n": 1729,
+      "mae": 0.311,
+      "rmse": 0.703,
+      "mean_predicted": 0.311,
+      "mean_actual": 0
+    },
+    "under60": {
+      "n": 620,
+      "mae": 1.188,
+      "rmse": 1.924,
+      "mean_predicted": 0.953,
+      "mean_actual": 1.285
+    },
+    "60plus": {
+      "n": 1083,
+      "mae": 2.785,
+      "rmse": 3.901,
+      "mean_predicted": 2.472,
+      "mean_actual": 3.722
+    }
+  },
+  "high_actual_10plus": {
+    "n": 91,
+    "mae": 8.97,
+    "rmse": 9.533,
+    "mean_predicted": 3.118,
+    "mean_actual": 12.088
+  },
+  "repeated_underpredicted": [
+    {
+      "id": 199,
+      "name": "İrfan Can Kahveci",
+      "weeks": [
+        6,
+        7,
+        9,
+        11
+      ],
+      "total_underprediction": 32.151
+    },
+    {
+      "id": 453,
+      "name": "Tanguy Bemin Coulibaly",
+      "weeks": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "total_underprediction": 23.943
+    },
+    {
+      "id": 48,
+      "name": "Guram Giorbelidze",
+      "weeks": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "total_underprediction": 22.104
+    },
+    {
+      "id": 593,
+      "name": "Dusan Vlahovic",
+      "weeks": [
+        6,
+        7,
+        10,
+        11
+      ],
+      "total_underprediction": 20.725
+    },
+    {
+      "id": 136,
+      "name": "Diaa Sabi'a",
+      "weeks": [
+        6,
+        7,
+        8,
+        11
+      ],
+      "total_underprediction": 16.397
+    },
+    {
+      "id": 166,
+      "name": "Ederson Santana de Moraes",
+      "weeks": [
+        6,
+        7,
+        8,
+        11
+      ],
+      "total_underprediction": 16.372
+    },
+    {
+      "id": 84,
+      "name": "Adem Arous",
+      "weeks": [
+        8,
+        9,
+        11
+      ],
+      "total_underprediction": 25.672
+    },
+    {
+      "id": 877,
+      "name": "Aleksey Batrakov",
+      "weeks": [
+        7,
+        10,
+        11
+      ],
+      "total_underprediction": 24.455
+    },
+    {
+      "id": 178,
+      "name": "Oğuz Aydın",
+      "weeks": [
+        7,
+        9,
+        11
+      ],
+      "total_underprediction": 24.115
+    },
+    {
+      "id": 4,
+      "name": "Ernest Muçi",
+      "weeks": [
+        7,
+        9,
+        10
+      ],
+      "total_underprediction": 23.364
+    },
+    {
+      "id": 746,
+      "name": "Miguel Felipe Nunes Cardoso",
+      "weeks": [
+        6,
+        8,
+        9
+      ],
+      "total_underprediction": 23.202
+    },
+    {
+      "id": 92,
+      "name": "Haris Hajradinovic",
+      "weeks": [
+        9,
+        10,
+        11
+      ],
+      "total_underprediction": 21.769
+    },
+    {
+      "id": 212,
+      "name": "Berkan İsmail Kutlu",
+      "weeks": [
+        6,
+        8,
+        11
+      ],
+      "total_underprediction": 21.475
+    },
+    {
+      "id": 391,
+      "name": "Saba Kharebashvili",
+      "weeks": [
+        6,
+        7,
+        10
+      ],
+      "total_underprediction": 20.892
+    },
+    {
+      "id": 37,
+      "name": "Chibuike Godfrey Nwaiwu",
+      "weeks": [
+        6,
+        7,
+        11
+      ],
+      "total_underprediction": 20.745
+    },
+    {
+      "id": 396,
+      "name": "Ousseynou Ba",
+      "weeks": [
+        6,
+        7,
+        10
+      ],
+      "total_underprediction": 20.707
+    },
+    {
+      "id": 169,
+      "name": "Muhammed Kerem Aktürkoğlu",
+      "weeks": [
+        6,
+        7,
+        8
+      ],
+      "total_underprediction": 20.611
+    },
+    {
+      "id": 63,
+      "name": "Mustafa Yumlu",
+      "weeks": [
+        6,
+        7,
+        8
+      ],
+      "total_underprediction": 18.912
+    },
+    {
+      "id": 520,
+      "name": "Barış Alper Yılmaz",
+      "weeks": [
+        7,
+        9,
+        11
+      ],
+      "total_underprediction": 18.475
+    },
+    {
+      "id": 216,
+      "name": "Bahadır Han Güngördü",
+      "weeks": [
+        6,
+        7,
+        9
+      ],
+      "total_underprediction": 18.432
+    },
+    {
+      "id": 28,
+      "name": "Wagner Fabricio Cardoso de Pina",
+      "weeks": [
+        6,
+        7,
+        11
+      ],
+      "total_underprediction": 17.798
+    },
+    {
+      "id": 80,
+      "name": "Andreas Gianniotis",
+      "weeks": [
+        6,
+        9,
+        11
+      ],
+      "total_underprediction": 17.527
+    },
+    {
+      "id": 148,
+      "name": "Gift Emmanuel Orban",
+      "weeks": [
+        6,
+        9,
+        10
+      ],
+      "total_underprediction": 16.86
+    },
+    {
+      "id": 1543,
+      "name": "Jesurun Rak-Sakyi",
+      "weeks": [
+        7,
+        8,
+        11
+      ],
+      "total_underprediction": 15.732
+    },
+    {
+      "id": 597,
+      "name": "Fuka-Arthur Masuaku Kawela",
+      "weeks": [
+        6,
+        7,
+        9
+      ],
+      "total_underprediction": 15.704
+    },
+    {
+      "id": 130,
+      "name": "Serhat Öztaşdelen",
+      "weeks": [
+        6,
+        10,
+        11
+      ],
+      "total_underprediction": 15.273
+    },
+    {
+      "id": 299,
+      "name": "Arda Okan Kurtulan",
+      "weeks": [
+        6,
+        7,
+        9
+      ],
+      "total_underprediction": 15.232
+    },
+    {
+      "id": 35,
+      "name": "Sidny Lopes Cabral",
+      "weeks": [
+        8,
+        10,
+        11
+      ],
+      "total_underprediction": 14.859
+    },
+    {
+      "id": 94,
+      "name": "Claudio Winck Neto",
+      "weeks": [
+        8,
+        9,
+        10
+      ],
+      "total_underprediction": 14.582
+    },
+    {
+      "id": 590,
+      "name": "Romelu Menama Lukaku Bolingoli",
+      "weeks": [
+        7,
+        8,
+        10
+      ],
+      "total_underprediction": 14.22
+    },
+    {
+      "id": 22,
+      "name": "Andre Onana Onana",
+      "weeks": [
+        7,
+        8,
+        10
+      ],
+      "total_underprediction": 13.545
+    },
+    {
+      "id": 111,
+      "name": "Emir Ortakaya",
+      "weeks": [
+        6,
+        10,
+        11
+      ],
+      "total_underprediction": 13.403
+    },
+    {
+      "id": 221,
+      "name": "Rayyan Baniya",
+      "weeks": [
+        6,
+        7,
+        9
+      ],
+      "total_underprediction": 13.047
+    },
+    {
+      "id": 113,
+      "name": "Uğur Kaan Yıldız",
+      "weeks": [
+        6,
+        10,
+        11
+      ],
+      "total_underprediction": 12.703
+    },
+    {
+      "id": 170,
+      "name": "Nelson Cabral Semedo",
+      "weeks": [
+        6,
+        7,
+        10
+      ],
+      "total_underprediction": 12.238
+    },
+    {
+      "id": 176,
+      "name": "Mason Will John Greenwood",
+      "weeks": [
+        6,
+        11
+      ],
+      "total_underprediction": 28.004
+    },
+    {
+      "id": 217,
+      "name": "Chidozie Collins Awaziem",
+      "weeks": [
+        7,
+        9
+      ],
+      "total_underprediction": 27.745
+    },
+    {
+      "id": 600,
+      "name": "Samuel Leo Beat Ballet",
+      "weeks": [
+        7,
+        10
+      ],
+      "total_underprediction": 21.365
+    },
+    {
+      "id": 12,
+      "name": "Mohamed Salah Hamed Mahrous Ghaly",
+      "weeks": [
+        6,
+        11
+      ],
+      "total_underprediction": 19.656
+    },
+    {
+      "id": 174,
+      "name": "Münir Levent Mercan",
+      "weeks": [
+        8,
+        11
+      ],
+      "total_underprediction": 19.536
+    },
+    {
+      "id": 273,
+      "name": "Leandro Trossard",
+      "weeks": [
+        10,
+        11
+      ],
+      "total_underprediction": 19.479
+    },
+    {
+      "id": 310,
+      "name": "Andre Henrique da Silva Martins",
+      "weeks": [
+        7,
+        10
+      ],
+      "total_underprediction": 18.125
+    },
+    {
+      "id": 388,
+      "name": "Andreas Skov Olsen",
+      "weeks": [
+        6,
+        10
+      ],
+      "total_underprediction": 17.522
+    },
+    {
+      "id": 15,
+      "name": "Mustafa Eskihellaç",
+      "weeks": [
+        6,
+        7
+      ],
+      "total_underprediction": 15.153
+    },
+    {
+      "id": 507,
+      "name": "Victor James Osimhen",
+      "weeks": [
+        9,
+        10
+      ],
+      "total_underprediction": 15.031
+    },
+    {
+      "id": 187,
+      "name": "Çağlar Söyüncü",
+      "weeks": [
+        7,
+        10
+      ],
+      "total_underprediction": 14.982
+    },
+    {
+      "id": 309,
+      "name": "Arda Özçimen",
+      "weeks": [
+        7,
+        9
+      ],
+      "total_underprediction": 14.707
+    },
+    {
+      "id": 461,
+      "name": "Igor Drapinski",
+      "weeks": [
+        9,
+        11
+      ],
+      "total_underprediction": 14.295
+    },
+    {
+      "id": 395,
+      "name": "Davie Selke",
+      "weeks": [
+        6,
+        11
+      ],
+      "total_underprediction": 14.276
+    },
+    {
+      "id": 10,
+      "name": "Noah Jose Damesquita E Melo Saviolo",
+      "weeks": [
+        6,
+        10
+      ],
+      "total_underprediction": 13.557
+    },
+    {
+      "id": 1471,
+      "name": "Franculino Gluda Dju",
+      "weeks": [
+        7,
+        9
+      ],
+      "total_underprediction": 13.545
+    },
+    {
+      "id": 1108,
+      "name": "Ibrahim Yalatif Diabate",
+      "weeks": [
+        10,
+        11
+      ],
+      "total_underprediction": 13.224
+    },
+    {
+      "id": 108,
+      "name": "Daniel Ebenezer Kwasi Agyei",
+      "weeks": [
+        6,
+        11
+      ],
+      "total_underprediction": 13.195
+    },
+    {
+      "id": 402,
+      "name": "Michal Karbownik",
+      "weeks": [
+        6,
+        7
+      ],
+      "total_underprediction": 13.129
+    },
+    {
+      "id": 301,
+      "name": "Jonatan Noah Kemeseng Sonko Sundberg",
+      "weeks": [
+        7,
+        9
+      ],
+      "total_underprediction": 13.044
+    },
+    {
+      "id": 385,
+      "name": "Ivan Brnic",
+      "weeks": [
+        6,
+        10
+      ],
+      "total_underprediction": 12.993
+    },
+    {
+      "id": 14,
+      "name": "Ozan Tufan",
+      "weeks": [
+        6,
+        8
+      ],
+      "total_underprediction": 12.887
+    },
+    {
+      "id": 1306,
+      "name": "Rafael Alexandre da Conceicao Leao",
+      "weeks": [
+        10,
+        11
+      ],
+      "total_underprediction": 12.814
+    },
+    {
+      "id": 51,
+      "name": "Mahmut Ertuğrul Taşkıran",
+      "weeks": [
+        6,
+        7
+      ],
+      "total_underprediction": 12.75
+    },
+    {
+      "id": 193,
+      "name": "Cengiz Ünder",
+      "weeks": [
+        7,
+        8
+      ],
+      "total_underprediction": 12.676
+    },
+    {
+      "id": 608,
+      "name": "Alexandros Kyziridis",
+      "weeks": [
+        6,
+        7
+      ],
+      "total_underprediction": 12.645
+    },
+    {
+      "id": 404,
+      "name": "Eldor Shomurodov",
+      "weeks": [
+        6,
+        8
+      ],
+      "total_underprediction": 12.586
+    },
+    {
+      "id": 380,
+      "name": "Muhammed Şengezer",
+      "weeks": [
+        6,
+        7
+      ],
+      "total_underprediction": 12.543
+    },
+    {
+      "id": 186,
+      "name": "Matteo Elias Kenzo Guendouzi Olie",
+      "weeks": [
+        6,
+        10
+      ],
+      "total_underprediction": 12.339
+    },
+    {
+      "id": 457,
+      "name": "Logi Tomasson",
+      "weeks": [
+        9,
+        11
+      ],
+      "total_underprediction": 12.3
+    },
+    {
+      "id": 214,
+      "name": "Uğurcan Yazğılı",
+      "weeks": [
+        6,
+        7
+      ],
+      "total_underprediction": 11.873
+    },
+    {
+      "id": 53,
+      "name": "Amar Gerxhaliu",
+      "weeks": [
+        6,
+        9
+      ],
+      "total_underprediction": 11.857
+    },
+    {
+      "id": 359,
+      "name": "Adedire Emmanuel Awokoya-Mebude",
+      "weeks": [
+        9,
+        11
+      ],
+      "total_underprediction": 11.803
+    },
+    {
+      "id": 531,
+      "name": "Evren Eren Elmalı",
+      "weeks": [
+        8,
+        10
+      ],
+      "total_underprediction": 11.762
+    },
+    {
+      "id": 533,
+      "name": "Abdülkerim Bardakcı",
+      "weeks": [
+        7,
+        8
+      ],
+      "total_underprediction": 11.691
+    },
+    {
+      "id": 351,
+      "name": "Ibrahim Olawoyin Olasunkanmi",
+      "weeks": [
+        6,
+        11
+      ],
+      "total_underprediction": 11.458
+    },
+    {
+      "id": 336,
+      "name": "Thalisson Kelven da Silva",
+      "weeks": [
+        7,
+        10
+      ],
+      "total_underprediction": 11.353
+    },
+    {
+      "id": 157,
+      "name": "Furkan Soyalp",
+      "weeks": [
+        6,
+        11
+      ],
+      "total_underprediction": 11.254
+    },
+    {
+      "id": 390,
+      "name": "Emin Bayram",
+      "weeks": [
+        6,
+        10
+      ],
+      "total_underprediction": 11.118
+    },
+    {
+      "id": 291,
+      "name": "Malcom Narcisse Bokele Mputu",
+      "weeks": [
+        7,
+        9
+      ],
+      "total_underprediction": 10.691
+    },
+    {
+      "id": 352,
+      "name": "Qazim Laçi",
+      "weeks": [
+        8,
+        9
+      ],
+      "total_underprediction": 10.677
+    },
+    {
+      "id": 811,
+      "name": "Richard Akonnor",
+      "weeks": [
+        7,
+        9
+      ],
+      "total_underprediction": 10.415
+    },
+    {
+      "id": 288,
+      "name": "Taha Altıkardeş",
+      "weeks": [
+        7,
+        9
+      ],
+      "total_underprediction": 10.393
+    },
+    {
+      "id": 419,
+      "name": "Paulo Victor de Mileo Vidotti",
+      "weeks": [
+        7,
+        8
+      ],
+      "total_underprediction": 9.968
+    },
+    {
+      "id": 47,
+      "name": "Nihad Mujakic",
+      "weeks": [
+        6,
+        7
+      ],
+      "total_underprediction": 9.724
+    },
+    {
+      "id": 542,
+      "name": "Roland Sallai",
+      "weeks": [
+        8,
+        10
+      ],
+      "total_underprediction": 9.376
+    },
+    {
+      "id": 104,
+      "name": "Matei Cristian Ilie",
+      "weeks": [
+        9,
+        11
+      ],
+      "total_underprediction": 9.34
+    },
+    {
+      "id": 261,
+      "name": "Badobre Emmanuel Elysee Djedje Agbadou",
+      "weeks": [
+        9,
+        11
+      ],
+      "total_underprediction": 9.292
+    },
+    {
+      "id": 282,
+      "name": "Emirhan Topçu",
+      "weeks": [
+        9,
+        11
+      ],
+      "total_underprediction": 9.116
+    },
+    {
+      "id": 280,
+      "name": "Alexander Nübel",
+      "weeks": [
+        9,
+        11
+      ],
+      "total_underprediction": 8.917
+    },
+    {
+      "id": 259,
+      "name": "Rıdvan Yılmaz",
+      "weeks": [
+        9,
+        11
+      ],
+      "total_underprediction": 8.801
+    },
+    {
+      "id": 127,
+      "name": "Rigoberto Manuel Rivas Vindel",
+      "weeks": [
+        9,
+        11
+      ],
+      "total_underprediction": 8.725
+    },
+    {
+      "id": 623,
+      "name": "Gyrano Emilio Kerk",
+      "weeks": [
+        10,
+        11
+      ],
+      "total_underprediction": 7.555
+    }
+  ],
+  "repeated_overpredicted": [
+    {
+      "id": 176,
+      "name": "Mason Will John Greenwood",
+      "weeks": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "zero_minute_weeks": [
+        10
+      ],
+      "total_overprediction": 16.399
+    },
+    {
+      "id": 567,
+      "name": "Deian Cristian Sorescu",
+      "weeks": [
+        6,
+        7,
+        8,
+        11
+      ],
+      "zero_minute_weeks": [],
+      "total_overprediction": 15.904
+    },
+    {
+      "id": 12,
+      "name": "Mohamed Salah Hamed Mahrous Ghaly",
+      "weeks": [
+        7,
+        9,
+        10
+      ],
+      "zero_minute_weeks": [],
+      "total_overprediction": 15.992
+    },
+    {
+      "id": 533,
+      "name": "Abdülkerim Bardakcı",
+      "weeks": [
+        6,
+        9,
+        10
+      ],
+      "zero_minute_weeks": [
+        10
+      ],
+      "total_overprediction": 14.373
+    },
+    {
+      "id": 75,
+      "name": "Adrian Dawid Benedyczak",
+      "weeks": [
+        6,
+        7,
+        10
+      ],
+      "zero_minute_weeks": [],
+      "total_overprediction": 13.305
+    },
+    {
+      "id": 404,
+      "name": "Eldor Shomurodov",
+      "weeks": [
+        7,
+        9,
+        11
+      ],
+      "zero_minute_weeks": [],
+      "total_overprediction": 13.285
+    },
+    {
+      "id": 419,
+      "name": "Paulo Victor de Mileo Vidotti",
+      "weeks": [
+        9,
+        10,
+        11
+      ],
+      "zero_minute_weeks": [],
+      "total_overprediction": 11.945
+    },
+    {
+      "id": 539,
+      "name": "Lucas Sebastian Torreira di Pascua",
+      "weeks": [
+        6,
+        7,
+        8
+      ],
+      "zero_minute_weeks": [
+        8
+      ],
+      "total_overprediction": 10.804
+    },
+    {
+      "id": 362,
+      "name": "Yahia Fofana",
+      "weeks": [
+        7,
+        8,
+        10
+      ],
+      "zero_minute_weeks": [
+        10
+      ],
+      "total_overprediction": 10.115
+    },
+    {
+      "id": 237,
+      "name": "Jesus Andres Ramirez Diaz",
+      "weeks": [
+        7,
+        8,
+        11
+      ],
+      "zero_minute_weeks": [],
+      "total_overprediction": 9.825
+    },
+    {
+      "id": 48,
+      "name": "Guram Giorbelidze",
+      "weeks": [
+        10,
+        11
+      ],
+      "zero_minute_weeks": [],
+      "total_overprediction": 11.554
+    },
+    {
+      "id": 182,
+      "name": "Archibald Norman Brown",
+      "weeks": [
+        8,
+        9
+      ],
+      "zero_minute_weeks": [],
+      "total_overprediction": 10.231
+    },
+    {
+      "id": 63,
+      "name": "Mustafa Yumlu",
+      "weeks": [
+        9,
+        10
+      ],
+      "zero_minute_weeks": [
+        10
+      ],
+      "total_overprediction": 9.269
+    },
+    {
+      "id": 172,
+      "name": "Milan Skriniar",
+      "weeks": [
+        9,
+        10
+      ],
+      "zero_minute_weeks": [],
+      "total_overprediction": 9.004
+    },
+    {
+      "id": 608,
+      "name": "Alexandros Kyziridis",
+      "weeks": [
+        9,
+        10
+      ],
+      "zero_minute_weeks": [],
+      "total_overprediction": 8.976
+    },
+    {
+      "id": 507,
+      "name": "Victor James Osimhen",
+      "weeks": [
+        6,
+        11
+      ],
+      "zero_minute_weeks": [
+        6,
+        11
+      ],
+      "total_overprediction": 8.693
+    },
+    {
+      "id": 180,
+      "name": "Nathan Benjamin Ake",
+      "weeks": [
+        9,
+        10
+      ],
+      "zero_minute_weeks": [
+        9,
+        10
+      ],
+      "total_overprediction": 8.463
+    },
+    {
+      "id": 148,
+      "name": "Gift Emmanuel Orban",
+      "weeks": [
+        7,
+        8
+      ],
+      "zero_minute_weeks": [],
+      "total_overprediction": 8.39
+    },
+    {
+      "id": 281,
+      "name": "Orkun Kökçü",
+      "weeks": [
+        8,
+        9
+      ],
+      "zero_minute_weeks": [
+        8,
+        9
+      ],
+      "total_overprediction": 8.342
+    },
+    {
+      "id": 53,
+      "name": "Amar Gerxhaliu",
+      "weeks": [
+        10,
+        11
+      ],
+      "zero_minute_weeks": [],
+      "total_overprediction": 8.123
+    },
+    {
+      "id": 130,
+      "name": "Serhat Öztaşdelen",
+      "weeks": [
+        7,
+        8
+      ],
+      "zero_minute_weeks": [],
+      "total_overprediction": 7.935
+    },
+    {
+      "id": 1471,
+      "name": "Franculino Gluda Dju",
+      "weeks": [
+        10,
+        11
+      ],
+      "zero_minute_weeks": [
+        10,
+        11
+      ],
+      "total_overprediction": 7.746
+    },
+    {
+      "id": 516,
+      "name": "Davinson Sanchez Mina",
+      "weeks": [
+        6,
+        11
+      ],
+      "zero_minute_weeks": [],
+      "total_overprediction": 7.463
+    },
+    {
+      "id": 161,
+      "name": "Alban-Marc Lafont",
+      "weeks": [
+        7,
+        11
+      ],
+      "zero_minute_weeks": [],
+      "total_overprediction": 7.349
+    },
+    {
+      "id": 132,
+      "name": "Massadio Haidara",
+      "weeks": [
+        6,
+        7
+      ],
+      "zero_minute_weeks": [
+        7
+      ],
+      "total_overprediction": 7.091
+    },
+    {
+      "id": 436,
+      "name": "Nuno Miguel Reis Lima",
+      "weeks": [
+        8,
+        10
+      ],
+      "zero_minute_weeks": [],
+      "total_overprediction": 6.852
+    },
+    {
+      "id": 427,
+      "name": "Florent Hadergjonaj",
+      "weeks": [
+        8,
+        10
+      ],
+      "zero_minute_weeks": [],
+      "total_overprediction": 6.717
+    },
+    {
+      "id": 166,
+      "name": "Ederson Santana de Moraes",
+      "weeks": [
+        9,
+        10
+      ],
+      "zero_minute_weeks": [],
+      "total_overprediction": 6.702
+    },
+    {
+      "id": 212,
+      "name": "Berkan İsmail Kutlu",
+      "weeks": [
+        7,
+        10
+      ],
+      "zero_minute_weeks": [],
+      "total_overprediction": 6.461
+    },
+    {
+      "id": 457,
+      "name": "Logi Tomasson",
+      "weeks": [
+        7,
+        10
+      ],
+      "zero_minute_weeks": [],
+      "total_overprediction": 6.251
+    },
+    {
+      "id": 554,
+      "name": "Kacper Tobiasz",
+      "weeks": [
+        6,
+        10
+      ],
+      "zero_minute_weeks": [
+        10
+      ],
+      "total_overprediction": 6.185
+    }
+  ],
+  "weeks": {
+    "6": {
+      "xi_ids": [
+        12,
+        132,
+        148,
+        172,
+        362,
+        404,
+        532,
+        539,
+        567,
+        573,
+        75
+      ],
+      "bench_ids": [
+        120,
+        273,
+        436,
+        554
+      ],
+      "captain_id": 75,
+      "high_actual_low_predicted": [
+        {
+          "week": 6,
+          "id": 171,
+          "name": "Vedat Muriqi",
+          "position": "FWD",
+          "club_id": "6",
+          "price_postmatch_proxy": 9.0,
+          "predicted": 2.398,
+          "actual": 21,
+          "minutes": 69,
+          "error": -18.602,
+          "participation_proxy": 0.914,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 6,
+          "id": 176,
+          "name": "Mason Will John Greenwood",
+          "position": "MID",
+          "club_id": "6",
+          "price_postmatch_proxy": 11.0,
+          "predicted": 3.607,
+          "actual": 18,
+          "minutes": 90,
+          "error": -14.393,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 6,
+          "id": 199,
+          "name": "İrfan Can Kahveci",
+          "position": "MID",
+          "club_id": "6",
+          "price_postmatch_proxy": 6.0,
+          "predicted": 1.148,
+          "actual": 15,
+          "minutes": 90,
+          "error": -13.852,
+          "participation_proxy": 0.661,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 6,
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "club_id": "4",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 3.264,
+          "actual": 14,
+          "minutes": 90,
+          "error": -10.736,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 6,
+          "id": 388,
+          "name": "Andreas Skov Olsen",
+          "position": "MID",
+          "club_id": "13",
+          "price_postmatch_proxy": 6.0,
+          "predicted": 2.505,
+          "actual": 14,
+          "minutes": 90,
+          "error": -11.495,
+          "participation_proxy": 0.978,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 6,
+          "id": 15,
+          "name": "Mustafa Eskihellaç",
+          "position": "DEF",
+          "club_id": "1",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 2.636,
+          "actual": 11,
+          "minutes": 90,
+          "error": -8.364,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 6,
+          "id": 351,
+          "name": "Ibrahim Olawoyin Olasunkanmi",
+          "position": "MID",
+          "club_id": "12",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 1.606,
+          "actual": 10,
+          "minutes": 87,
+          "error": -8.394,
+          "participation_proxy": 0.984,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 6,
+          "id": 385,
+          "name": "Ivan Brnic",
+          "position": "MID",
+          "club_id": "13",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 0.235,
+          "actual": 10,
+          "minutes": 77,
+          "error": -9.765,
+          "participation_proxy": 0.574,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 6,
+          "id": 435,
+          "name": "Gaïus Abraham Jered Makouta",
+          "position": "MID",
+          "club_id": "14",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 4.093,
+          "actual": 10,
+          "minutes": 90,
+          "error": -5.907,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 6,
+          "id": 746,
+          "name": "Miguel Felipe Nunes Cardoso",
+          "position": "MID",
+          "club_id": "2",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 0.576,
+          "actual": 10,
+          "minutes": 66,
+          "error": -9.424,
+          "participation_proxy": 0.785,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 6,
+          "id": 80,
+          "name": "Andreas Gianniotis",
+          "position": "GK",
+          "club_id": "3",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 3.184,
+          "actual": 10,
+          "minutes": 90,
+          "error": -6.816,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        }
+      ],
+      "high_actual_excluded_by_minutes": [],
+      "high_actual_directly_affordable_unselected": [
+        {
+          "week": 6,
+          "id": 171,
+          "name": "Vedat Muriqi",
+          "position": "FWD",
+          "club_id": "6",
+          "price_postmatch_proxy": 9.0,
+          "predicted": 2.398,
+          "actual": 21,
+          "minutes": 69,
+          "error": -18.602,
+          "participation_proxy": 0.914,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 6,
+          "id": 176,
+          "name": "Mason Will John Greenwood",
+          "position": "MID",
+          "club_id": "6",
+          "price_postmatch_proxy": 11.0,
+          "predicted": 3.607,
+          "actual": 18,
+          "minutes": 90,
+          "error": -14.393,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 6,
+          "id": 199,
+          "name": "İrfan Can Kahveci",
+          "position": "MID",
+          "club_id": "6",
+          "price_postmatch_proxy": 6.0,
+          "predicted": 1.148,
+          "actual": 15,
+          "minutes": 90,
+          "error": -13.852,
+          "participation_proxy": 0.661,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 6,
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "club_id": "4",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 3.264,
+          "actual": 14,
+          "minutes": 90,
+          "error": -10.736,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 6,
+          "id": 388,
+          "name": "Andreas Skov Olsen",
+          "position": "MID",
+          "club_id": "13",
+          "price_postmatch_proxy": 6.0,
+          "predicted": 2.505,
+          "actual": 14,
+          "minutes": 90,
+          "error": -11.495,
+          "participation_proxy": 0.978,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 6,
+          "id": 15,
+          "name": "Mustafa Eskihellaç",
+          "position": "DEF",
+          "club_id": "1",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 2.636,
+          "actual": 11,
+          "minutes": 90,
+          "error": -8.364,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 6,
+          "id": 351,
+          "name": "Ibrahim Olawoyin Olasunkanmi",
+          "position": "MID",
+          "club_id": "12",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 1.606,
+          "actual": 10,
+          "minutes": 87,
+          "error": -8.394,
+          "participation_proxy": 0.984,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 6,
+          "id": 385,
+          "name": "Ivan Brnic",
+          "position": "MID",
+          "club_id": "13",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 0.235,
+          "actual": 10,
+          "minutes": 77,
+          "error": -9.765,
+          "participation_proxy": 0.574,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 6,
+          "id": 435,
+          "name": "Gaïus Abraham Jered Makouta",
+          "position": "MID",
+          "club_id": "14",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 4.093,
+          "actual": 10,
+          "minutes": 90,
+          "error": -5.907,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 6,
+          "id": 746,
+          "name": "Miguel Felipe Nunes Cardoso",
+          "position": "MID",
+          "club_id": "2",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 0.576,
+          "actual": 10,
+          "minutes": 66,
+          "error": -9.424,
+          "participation_proxy": 0.785,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 6,
+          "id": 80,
+          "name": "Andreas Gianniotis",
+          "position": "GK",
+          "club_id": "3",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 3.184,
+          "actual": 10,
+          "minutes": 90,
+          "error": -6.816,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        }
+      ],
+      "high_projection_zero_minutes": [
+        {
+          "week": 6,
+          "id": 507,
+          "name": "Victor James Osimhen",
+          "position": "FWD",
+          "club_id": "17",
+          "price_postmatch_proxy": 0.0,
+          "predicted": 5.046,
+          "actual": 0,
+          "minutes": 0,
+          "error": 5.046,
+          "participation_proxy": 0.736,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 6,
+          "id": 273,
+          "name": "Leandro Trossard",
+          "position": "MID",
+          "club_id": "9",
+          "price_postmatch_proxy": 9.0,
+          "predicted": 4.1,
+          "actual": 0,
+          "minutes": 0,
+          "error": 4.1,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": true,
+          "feasible_direct_squad_replacement": false
+        }
+      ]
+    },
+    "7": {
+      "xi_ids": [
+        12,
+        120,
+        130,
+        148,
+        172,
+        176,
+        182,
+        212,
+        404,
+        435,
+        75
+      ],
+      "bench_ids": [
+        136,
+        362,
+        427,
+        567
+      ],
+      "captain_id": 12,
+      "high_actual_low_predicted": [
+        {
+          "week": 7,
+          "id": 310,
+          "name": "Andre Henrique da Silva Martins",
+          "position": "FWD",
+          "club_id": "10",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 1.823,
+          "actual": 16,
+          "minutes": 45,
+          "error": -14.177,
+          "participation_proxy": 0.941,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 7,
+          "id": 37,
+          "name": "Chibuike Godfrey Nwaiwu",
+          "position": "DEF",
+          "club_id": "1",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 3.092,
+          "actual": 15,
+          "minutes": 90,
+          "error": -11.908,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 7,
+          "id": 608,
+          "name": "Alexandros Kyziridis",
+          "position": "MID",
+          "club_id": "8",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 3.378,
+          "actual": 13,
+          "minutes": 84,
+          "error": -9.622,
+          "participation_proxy": 0.802,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 7,
+          "id": 178,
+          "name": "Oğuz Aydın",
+          "position": "MID",
+          "club_id": "6",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 1.935,
+          "actual": 12,
+          "minutes": 10,
+          "error": -10.065,
+          "participation_proxy": 0.883,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 7,
+          "id": 15,
+          "name": "Mustafa Eskihellaç",
+          "position": "DEF",
+          "club_id": "1",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 4.211,
+          "actual": 11,
+          "minutes": 71,
+          "error": -6.789,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 7,
+          "id": 235,
+          "name": "Gökhan Sazdağı",
+          "position": "DEF",
+          "club_id": "8",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 2.418,
+          "actual": 11,
+          "minutes": 73,
+          "error": -8.582,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 7,
+          "id": 533,
+          "name": "Abdülkerim Bardakcı",
+          "position": "DEF",
+          "club_id": "17",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 3.187,
+          "actual": 11,
+          "minutes": 77,
+          "error": -7.813,
+          "participation_proxy": 0.965,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 7,
+          "id": 131,
+          "name": "Manuel Luis Show da Silva Cafumana",
+          "position": "MID",
+          "club_id": "4",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 3.348,
+          "actual": 10,
+          "minutes": 90,
+          "error": -6.652,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 7,
+          "id": 1545,
+          "name": "Rafael Filipe Gonçalves Soares Luis",
+          "position": "MID",
+          "club_id": "11",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 0.91,
+          "actual": 10,
+          "minutes": 81,
+          "error": -9.09,
+          "participation_proxy": 0.826,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 7,
+          "id": 281,
+          "name": "Orkun Kökçü",
+          "position": "MID",
+          "club_id": "9",
+          "price_postmatch_proxy": 9.0,
+          "predicted": 3.945,
+          "actual": 10,
+          "minutes": 84,
+          "error": -6.055,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 7,
+          "id": 380,
+          "name": "Muhammed Şengezer",
+          "position": "GK",
+          "club_id": "13",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 1.903,
+          "actual": 10,
+          "minutes": 90,
+          "error": -8.097,
+          "participation_proxy": 0.535,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 7,
+          "id": 419,
+          "name": "Paulo Victor de Mileo Vidotti",
+          "position": "GK",
+          "club_id": "14",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 4.027,
+          "actual": 10,
+          "minutes": 90,
+          "error": -5.973,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 7,
+          "id": 51,
+          "name": "Mahmut Ertuğrul Taşkıran",
+          "position": "GK",
+          "club_id": "2",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 3.365,
+          "actual": 10,
+          "minutes": 90,
+          "error": -6.635,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 7,
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "club_id": "5",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 2.196,
+          "actual": 10,
+          "minutes": 90,
+          "error": -7.804,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        }
+      ],
+      "high_actual_excluded_by_minutes": [],
+      "high_actual_directly_affordable_unselected": [
+        {
+          "week": 7,
+          "id": 310,
+          "name": "Andre Henrique da Silva Martins",
+          "position": "FWD",
+          "club_id": "10",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 1.823,
+          "actual": 16,
+          "minutes": 45,
+          "error": -14.177,
+          "participation_proxy": 0.941,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 7,
+          "id": 37,
+          "name": "Chibuike Godfrey Nwaiwu",
+          "position": "DEF",
+          "club_id": "1",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 3.092,
+          "actual": 15,
+          "minutes": 90,
+          "error": -11.908,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 7,
+          "id": 608,
+          "name": "Alexandros Kyziridis",
+          "position": "MID",
+          "club_id": "8",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 3.378,
+          "actual": 13,
+          "minutes": 84,
+          "error": -9.622,
+          "participation_proxy": 0.802,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 7,
+          "id": 178,
+          "name": "Oğuz Aydın",
+          "position": "MID",
+          "club_id": "6",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 1.935,
+          "actual": 12,
+          "minutes": 10,
+          "error": -10.065,
+          "participation_proxy": 0.883,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 7,
+          "id": 15,
+          "name": "Mustafa Eskihellaç",
+          "position": "DEF",
+          "club_id": "1",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 4.211,
+          "actual": 11,
+          "minutes": 71,
+          "error": -6.789,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 7,
+          "id": 235,
+          "name": "Gökhan Sazdağı",
+          "position": "DEF",
+          "club_id": "8",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 2.418,
+          "actual": 11,
+          "minutes": 73,
+          "error": -8.582,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 7,
+          "id": 533,
+          "name": "Abdülkerim Bardakcı",
+          "position": "DEF",
+          "club_id": "17",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 3.187,
+          "actual": 11,
+          "minutes": 77,
+          "error": -7.813,
+          "participation_proxy": 0.965,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 7,
+          "id": 131,
+          "name": "Manuel Luis Show da Silva Cafumana",
+          "position": "MID",
+          "club_id": "4",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 3.348,
+          "actual": 10,
+          "minutes": 90,
+          "error": -6.652,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 7,
+          "id": 1545,
+          "name": "Rafael Filipe Gonçalves Soares Luis",
+          "position": "MID",
+          "club_id": "11",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 0.91,
+          "actual": 10,
+          "minutes": 81,
+          "error": -9.09,
+          "participation_proxy": 0.826,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 7,
+          "id": 281,
+          "name": "Orkun Kökçü",
+          "position": "MID",
+          "club_id": "9",
+          "price_postmatch_proxy": 9.0,
+          "predicted": 3.945,
+          "actual": 10,
+          "minutes": 84,
+          "error": -6.055,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 7,
+          "id": 380,
+          "name": "Muhammed Şengezer",
+          "position": "GK",
+          "club_id": "13",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 1.903,
+          "actual": 10,
+          "minutes": 90,
+          "error": -8.097,
+          "participation_proxy": 0.535,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 7,
+          "id": 419,
+          "name": "Paulo Victor de Mileo Vidotti",
+          "position": "GK",
+          "club_id": "14",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 4.027,
+          "actual": 10,
+          "minutes": 90,
+          "error": -5.973,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 7,
+          "id": 51,
+          "name": "Mahmut Ertuğrul Taşkıran",
+          "position": "GK",
+          "club_id": "2",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 3.365,
+          "actual": 10,
+          "minutes": 90,
+          "error": -6.635,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 7,
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "club_id": "5",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 2.196,
+          "actual": 10,
+          "minutes": 90,
+          "error": -7.804,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        }
+      ],
+      "high_projection_zero_minutes": [
+        {
+          "week": 7,
+          "id": 120,
+          "name": "Anfernee Jamal Dijksteel",
+          "position": "DEF",
+          "club_id": "4",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 4.767,
+          "actual": 0,
+          "minutes": 0,
+          "error": 4.767,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": true,
+          "selected_squad": true,
+          "feasible_direct_squad_replacement": false
+        }
+      ]
+    },
+    "8": {
+      "xi_ids": [
+        12,
+        136,
+        148,
+        15,
+        166,
+        172,
+        176,
+        37,
+        404,
+        608,
+        75
+      ],
+      "bench_ids": [
+        281,
+        47,
+        48,
+        51
+      ],
+      "captain_id": 12,
+      "high_actual_low_predicted": [
+        {
+          "week": 8,
+          "id": 84,
+          "name": "Adem Arous",
+          "position": "DEF",
+          "club_id": "3",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 1.09,
+          "actual": 17,
+          "minutes": 90,
+          "error": -15.91,
+          "participation_proxy": 0.596,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 8,
+          "id": 169,
+          "name": "Muhammed Kerem Aktürkoğlu",
+          "position": "MID",
+          "club_id": "6",
+          "price_postmatch_proxy": 8.0,
+          "predicted": 2.193,
+          "actual": 12,
+          "minutes": 23,
+          "error": -9.807,
+          "participation_proxy": 0.962,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 8,
+          "id": 174,
+          "name": "Münir Levent Mercan",
+          "position": "DEF",
+          "club_id": "6",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 0.121,
+          "actual": 12,
+          "minutes": 77,
+          "error": -11.879,
+          "participation_proxy": 0.168,
+          "minutes_gate_passed": false,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 8,
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "club_id": "2",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 4.99,
+          "actual": 12,
+          "minutes": 89,
+          "error": -7.01,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": true,
+          "feasible_direct_squad_replacement": false
+        },
+        {
+          "week": 8,
+          "id": 63,
+          "name": "Mustafa Yumlu",
+          "position": "DEF",
+          "club_id": "2",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 4.458,
+          "actual": 12,
+          "minutes": 90,
+          "error": -7.542,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 8,
+          "id": 14,
+          "name": "Ozan Tufan",
+          "position": "MID",
+          "club_id": "1",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 1.281,
+          "actual": 11,
+          "minutes": 63,
+          "error": -9.719,
+          "participation_proxy": 0.903,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 8,
+          "id": 511,
+          "name": "Uğurcan Çakır",
+          "position": "GK",
+          "club_id": "17",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 2.271,
+          "actual": 11,
+          "minutes": 90,
+          "error": -8.729,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 8,
+          "id": 193,
+          "name": "Cengiz Ünder",
+          "position": "MID",
+          "club_id": "8",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 3.927,
+          "actual": 10,
+          "minutes": 78,
+          "error": -6.073,
+          "participation_proxy": 0.981,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 8,
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "club_id": "4",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 4.703,
+          "actual": 10,
+          "minutes": 90,
+          "error": -5.297,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 8,
+          "id": 352,
+          "name": "Qazim Laçi",
+          "position": "MID",
+          "club_id": "12",
+          "price_postmatch_proxy": 6.0,
+          "predicted": 2.616,
+          "actual": 10,
+          "minutes": 83,
+          "error": -7.384,
+          "participation_proxy": 0.985,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 8,
+          "id": 746,
+          "name": "Miguel Felipe Nunes Cardoso",
+          "position": "MID",
+          "club_id": "2",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 1.96,
+          "actual": 10,
+          "minutes": 71,
+          "error": -8.04,
+          "participation_proxy": 0.915,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": false
+        }
+      ],
+      "high_actual_excluded_by_minutes": [
+        {
+          "week": 8,
+          "id": 174,
+          "name": "Münir Levent Mercan",
+          "position": "DEF",
+          "club_id": "6",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 0.121,
+          "actual": 12,
+          "minutes": 77,
+          "error": -11.879,
+          "participation_proxy": 0.168,
+          "minutes_gate_passed": false,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        }
+      ],
+      "high_actual_directly_affordable_unselected": [
+        {
+          "week": 8,
+          "id": 84,
+          "name": "Adem Arous",
+          "position": "DEF",
+          "club_id": "3",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 1.09,
+          "actual": 17,
+          "minutes": 90,
+          "error": -15.91,
+          "participation_proxy": 0.596,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 8,
+          "id": 169,
+          "name": "Muhammed Kerem Aktürkoğlu",
+          "position": "MID",
+          "club_id": "6",
+          "price_postmatch_proxy": 8.0,
+          "predicted": 2.193,
+          "actual": 12,
+          "minutes": 23,
+          "error": -9.807,
+          "participation_proxy": 0.962,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 8,
+          "id": 174,
+          "name": "Münir Levent Mercan",
+          "position": "DEF",
+          "club_id": "6",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 0.121,
+          "actual": 12,
+          "minutes": 77,
+          "error": -11.879,
+          "participation_proxy": 0.168,
+          "minutes_gate_passed": false,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 8,
+          "id": 63,
+          "name": "Mustafa Yumlu",
+          "position": "DEF",
+          "club_id": "2",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 4.458,
+          "actual": 12,
+          "minutes": 90,
+          "error": -7.542,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 8,
+          "id": 14,
+          "name": "Ozan Tufan",
+          "position": "MID",
+          "club_id": "1",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 1.281,
+          "actual": 11,
+          "minutes": 63,
+          "error": -9.719,
+          "participation_proxy": 0.903,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 8,
+          "id": 511,
+          "name": "Uğurcan Çakır",
+          "position": "GK",
+          "club_id": "17",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 2.271,
+          "actual": 11,
+          "minutes": 90,
+          "error": -8.729,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 8,
+          "id": 193,
+          "name": "Cengiz Ünder",
+          "position": "MID",
+          "club_id": "8",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 3.927,
+          "actual": 10,
+          "minutes": 78,
+          "error": -6.073,
+          "participation_proxy": 0.981,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 8,
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "club_id": "4",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 4.703,
+          "actual": 10,
+          "minutes": 90,
+          "error": -5.297,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 8,
+          "id": 352,
+          "name": "Qazim Laçi",
+          "position": "MID",
+          "club_id": "12",
+          "price_postmatch_proxy": 6.0,
+          "predicted": 2.616,
+          "actual": 10,
+          "minutes": 83,
+          "error": -7.384,
+          "participation_proxy": 0.985,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        }
+      ],
+      "high_projection_zero_minutes": [
+        {
+          "week": 8,
+          "id": 15,
+          "name": "Mustafa Eskihellaç",
+          "position": "DEF",
+          "club_id": "1",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 5.509,
+          "actual": 0,
+          "minutes": 0,
+          "error": 5.509,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": true,
+          "selected_squad": true,
+          "feasible_direct_squad_replacement": false
+        },
+        {
+          "week": 8,
+          "id": 281,
+          "name": "Orkun Kökçü",
+          "position": "MID",
+          "club_id": "9",
+          "price_postmatch_proxy": 9.0,
+          "predicted": 4.957,
+          "actual": 0,
+          "minutes": 0,
+          "error": 4.957,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": true,
+          "feasible_direct_squad_replacement": false
+        }
+      ]
+    },
+    "9": {
+      "xi_ids": [
+        12,
+        136,
+        172,
+        212,
+        22,
+        37,
+        404,
+        48,
+        608,
+        63,
+        75
+      ],
+      "bench_ids": [
+        148,
+        166,
+        176,
+        533
+      ],
+      "captain_id": 12,
+      "high_actual_low_predicted": [
+        {
+          "week": 9,
+          "id": 217,
+          "name": "Chidozie Collins Awaziem",
+          "position": "DEF",
+          "club_id": "7",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 0.883,
+          "actual": 21,
+          "minutes": 90,
+          "error": -20.117,
+          "participation_proxy": 0.679,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 9,
+          "id": 289,
+          "name": "Alexis Antunes Gomez",
+          "position": "MID",
+          "club_id": "10",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 1.412,
+          "actual": 14,
+          "minutes": 83,
+          "error": -12.588,
+          "participation_proxy": 0.931,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 9,
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "club_id": "1",
+          "price_postmatch_proxy": 8.0,
+          "predicted": 2.673,
+          "actual": 14,
+          "minutes": 90,
+          "error": -11.327,
+          "participation_proxy": 0.956,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 9,
+          "id": 507,
+          "name": "Victor James Osimhen",
+          "position": "FWD",
+          "club_id": "17",
+          "price_postmatch_proxy": 12.0,
+          "predicted": 1.333,
+          "actual": 13,
+          "minutes": 88,
+          "error": -11.667,
+          "participation_proxy": 0.445,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 9,
+          "id": 1471,
+          "name": "Franculino Gluda Dju",
+          "position": "FWD",
+          "club_id": "1",
+          "price_postmatch_proxy": 9.0,
+          "predicted": 2.786,
+          "actual": 12,
+          "minutes": 90,
+          "error": -9.214,
+          "participation_proxy": 0.929,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": false
+        },
+        {
+          "week": 9,
+          "id": 264,
+          "name": "Junior Olaitan Ishola",
+          "position": "MID",
+          "club_id": "9",
+          "price_postmatch_proxy": 6.0,
+          "predicted": 1.666,
+          "actual": 11,
+          "minutes": 90,
+          "error": -9.334,
+          "participation_proxy": 0.744,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 9,
+          "id": 53,
+          "name": "Amar Gerxhaliu",
+          "position": "DEF",
+          "club_id": "2",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 4.384,
+          "actual": 11,
+          "minutes": 90,
+          "error": -6.616,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 9,
+          "id": 117,
+          "name": "Makana Nsimba Baku",
+          "position": "MID",
+          "club_id": "4",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 0.44,
+          "actual": 10,
+          "minutes": 67,
+          "error": -9.56,
+          "participation_proxy": 0.727,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 9,
+          "id": 1544,
+          "name": "Gennaro Borrelli",
+          "position": "FWD",
+          "club_id": "12",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 0.124,
+          "actual": 10,
+          "minutes": 72,
+          "error": -9.876,
+          "participation_proxy": 0.351,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 9,
+          "id": 429,
+          "name": "Ruan Pereira Duarte",
+          "position": "MID",
+          "club_id": "14",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 3.119,
+          "actual": 10,
+          "minutes": 90,
+          "error": -6.881,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 9,
+          "id": 80,
+          "name": "Andreas Gianniotis",
+          "position": "GK",
+          "club_id": "3",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 3.989,
+          "actual": 10,
+          "minutes": 90,
+          "error": -6.011,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        }
+      ],
+      "high_actual_excluded_by_minutes": [],
+      "high_actual_directly_affordable_unselected": [
+        {
+          "week": 9,
+          "id": 217,
+          "name": "Chidozie Collins Awaziem",
+          "position": "DEF",
+          "club_id": "7",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 0.883,
+          "actual": 21,
+          "minutes": 90,
+          "error": -20.117,
+          "participation_proxy": 0.679,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 9,
+          "id": 289,
+          "name": "Alexis Antunes Gomez",
+          "position": "MID",
+          "club_id": "10",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 1.412,
+          "actual": 14,
+          "minutes": 83,
+          "error": -12.588,
+          "participation_proxy": 0.931,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 9,
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "club_id": "1",
+          "price_postmatch_proxy": 8.0,
+          "predicted": 2.673,
+          "actual": 14,
+          "minutes": 90,
+          "error": -11.327,
+          "participation_proxy": 0.956,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 9,
+          "id": 216,
+          "name": "Bahadır Han Güngördü",
+          "position": "GK",
+          "club_id": "7",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 5.123,
+          "actual": 13,
+          "minutes": 90,
+          "error": -7.877,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 9,
+          "id": 507,
+          "name": "Victor James Osimhen",
+          "position": "FWD",
+          "club_id": "17",
+          "price_postmatch_proxy": 12.0,
+          "predicted": 1.333,
+          "actual": 13,
+          "minutes": 88,
+          "error": -11.667,
+          "participation_proxy": 0.445,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 9,
+          "id": 264,
+          "name": "Junior Olaitan Ishola",
+          "position": "MID",
+          "club_id": "9",
+          "price_postmatch_proxy": 6.0,
+          "predicted": 1.666,
+          "actual": 11,
+          "minutes": 90,
+          "error": -9.334,
+          "participation_proxy": 0.744,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 9,
+          "id": 53,
+          "name": "Amar Gerxhaliu",
+          "position": "DEF",
+          "club_id": "2",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 4.384,
+          "actual": 11,
+          "minutes": 90,
+          "error": -6.616,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 9,
+          "id": 117,
+          "name": "Makana Nsimba Baku",
+          "position": "MID",
+          "club_id": "4",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 0.44,
+          "actual": 10,
+          "minutes": 67,
+          "error": -9.56,
+          "participation_proxy": 0.727,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 9,
+          "id": 1544,
+          "name": "Gennaro Borrelli",
+          "position": "FWD",
+          "club_id": "12",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 0.124,
+          "actual": 10,
+          "minutes": 72,
+          "error": -9.876,
+          "participation_proxy": 0.351,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 9,
+          "id": 429,
+          "name": "Ruan Pereira Duarte",
+          "position": "MID",
+          "club_id": "14",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 3.119,
+          "actual": 10,
+          "minutes": 90,
+          "error": -6.881,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 9,
+          "id": 80,
+          "name": "Andreas Gianniotis",
+          "position": "GK",
+          "club_id": "3",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 3.989,
+          "actual": 10,
+          "minutes": 90,
+          "error": -6.011,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        }
+      ],
+      "high_projection_zero_minutes": [
+        {
+          "week": 9,
+          "id": 180,
+          "name": "Nathan Benjamin Ake",
+          "position": "DEF",
+          "club_id": "6",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 4.997,
+          "actual": 0,
+          "minutes": 0,
+          "error": 4.997,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        }
+      ]
+    },
+    "10": {
+      "xi_ids": [
+        12,
+        136,
+        148,
+        212,
+        216,
+        404,
+        48,
+        53,
+        608,
+        75,
+        94
+      ],
+      "bench_ids": [
+        166,
+        193,
+        37,
+        63
+      ],
+      "captain_id": 12,
+      "high_actual_low_predicted": [
+        {
+          "week": 10,
+          "id": 346,
+          "name": "Franco Daryl Tongya Heubang",
+          "position": "MID",
+          "club_id": "11",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 2.397,
+          "actual": 17,
+          "minutes": 86,
+          "error": -14.603,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "club_id": "5",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 3.439,
+          "actual": 17,
+          "minutes": 90,
+          "error": -13.561,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 27,
+          "name": "Stefan Savic",
+          "position": "DEF",
+          "club_id": "1",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 3.489,
+          "actual": 15,
+          "minutes": 90,
+          "error": -11.511,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 812,
+          "name": "Tiago Maria Antunes Gouveia",
+          "position": "MID",
+          "club_id": "11",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 2.258,
+          "actual": 15,
+          "minutes": 81,
+          "error": -12.742,
+          "participation_proxy": 0.973,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 877,
+          "name": "Aleksey Batrakov",
+          "position": "MID",
+          "club_id": "17",
+          "price_postmatch_proxy": 8.0,
+          "predicted": 2.023,
+          "actual": 14,
+          "minutes": 61,
+          "error": -11.977,
+          "participation_proxy": 0.952,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 237,
+          "name": "Jesus Andres Ramirez Diaz",
+          "position": "FWD",
+          "club_id": "8",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 3.745,
+          "actual": 13,
+          "minutes": 83,
+          "error": -9.255,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "club_id": "1",
+          "price_postmatch_proxy": 8.0,
+          "predicted": 4.416,
+          "actual": 13,
+          "minutes": 73,
+          "error": -8.584,
+          "participation_proxy": 0.98,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 195,
+          "name": "İrfan Can Eğribayat",
+          "position": "GK",
+          "club_id": "11",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 2.733,
+          "actual": 11,
+          "minutes": 90,
+          "error": -8.267,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 384,
+          "name": "Jakub Kaluzinski",
+          "position": "MID",
+          "club_id": "13",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 0.597,
+          "actual": 11,
+          "minutes": 90,
+          "error": -10.403,
+          "participation_proxy": 0.813,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "club_id": "4",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 3.542,
+          "actual": 10,
+          "minutes": 90,
+          "error": -6.458,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 1306,
+          "name": "Rafael Alexandre da Conceicao Leao",
+          "position": "MID",
+          "club_id": "17",
+          "price_postmatch_proxy": 10.0,
+          "predicted": 1.08,
+          "actual": 10,
+          "minutes": 90,
+          "error": -8.92,
+          "participation_proxy": 0.882,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 186,
+          "name": "Matteo Elias Kenzo Guendouzi Olie",
+          "position": "MID",
+          "club_id": "6",
+          "price_postmatch_proxy": 6.0,
+          "predicted": 3.189,
+          "actual": 10,
+          "minutes": 90,
+          "error": -6.811,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 187,
+          "name": "Çağlar Söyüncü",
+          "position": "DEF",
+          "club_id": "8",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 0.918,
+          "actual": 10,
+          "minutes": 90,
+          "error": -9.082,
+          "participation_proxy": 0.953,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 273,
+          "name": "Leandro Trossard",
+          "position": "MID",
+          "club_id": "9",
+          "price_postmatch_proxy": 9.0,
+          "predicted": 2.246,
+          "actual": 10,
+          "minutes": 83,
+          "error": -7.754,
+          "participation_proxy": 0.802,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 376,
+          "name": "Zafer Görgen",
+          "position": "GK",
+          "club_id": "12",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 0.1,
+          "actual": 10,
+          "minutes": 90,
+          "error": -9.9,
+          "participation_proxy": 0.05,
+          "minutes_gate_passed": false,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 505,
+          "name": "Yunus Akgün",
+          "position": "MID",
+          "club_id": "17",
+          "price_postmatch_proxy": 7.0,
+          "predicted": 2.134,
+          "actual": 10,
+          "minutes": 61,
+          "error": -7.866,
+          "participation_proxy": 0.987,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 532,
+          "name": "Gabriel Davi Gomes Sara",
+          "position": "MID",
+          "club_id": "17",
+          "price_postmatch_proxy": 7.0,
+          "predicted": 2.189,
+          "actual": 10,
+          "minutes": 61,
+          "error": -7.811,
+          "participation_proxy": 0.915,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "club_id": "3",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 4.976,
+          "actual": 10,
+          "minutes": 90,
+          "error": -5.024,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": true,
+          "selected_squad": true,
+          "feasible_direct_squad_replacement": false
+        }
+      ],
+      "high_actual_excluded_by_minutes": [
+        {
+          "week": 10,
+          "id": 376,
+          "name": "Zafer Görgen",
+          "position": "GK",
+          "club_id": "12",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 0.1,
+          "actual": 10,
+          "minutes": 90,
+          "error": -9.9,
+          "participation_proxy": 0.05,
+          "minutes_gate_passed": false,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 617,
+          "name": "Rayan Lutin",
+          "position": "MID",
+          "club_id": "5",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 0.204,
+          "actual": 9,
+          "minutes": 90,
+          "error": -8.796,
+          "participation_proxy": 0.236,
+          "minutes_gate_passed": false,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        }
+      ],
+      "high_actual_directly_affordable_unselected": [
+        {
+          "week": 10,
+          "id": 346,
+          "name": "Franco Daryl Tongya Heubang",
+          "position": "MID",
+          "club_id": "11",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 2.397,
+          "actual": 17,
+          "minutes": 86,
+          "error": -14.603,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "club_id": "5",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 3.439,
+          "actual": 17,
+          "minutes": 90,
+          "error": -13.561,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 27,
+          "name": "Stefan Savic",
+          "position": "DEF",
+          "club_id": "1",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 3.489,
+          "actual": 15,
+          "minutes": 90,
+          "error": -11.511,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 812,
+          "name": "Tiago Maria Antunes Gouveia",
+          "position": "MID",
+          "club_id": "11",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 2.258,
+          "actual": 15,
+          "minutes": 81,
+          "error": -12.742,
+          "participation_proxy": 0.973,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 877,
+          "name": "Aleksey Batrakov",
+          "position": "MID",
+          "club_id": "17",
+          "price_postmatch_proxy": 8.0,
+          "predicted": 2.023,
+          "actual": 14,
+          "minutes": 61,
+          "error": -11.977,
+          "participation_proxy": 0.952,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 237,
+          "name": "Jesus Andres Ramirez Diaz",
+          "position": "FWD",
+          "club_id": "8",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 3.745,
+          "actual": 13,
+          "minutes": 83,
+          "error": -9.255,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "club_id": "1",
+          "price_postmatch_proxy": 8.0,
+          "predicted": 4.416,
+          "actual": 13,
+          "minutes": 73,
+          "error": -8.584,
+          "participation_proxy": 0.98,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 195,
+          "name": "İrfan Can Eğribayat",
+          "position": "GK",
+          "club_id": "11",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 2.733,
+          "actual": 11,
+          "minutes": 90,
+          "error": -8.267,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 384,
+          "name": "Jakub Kaluzinski",
+          "position": "MID",
+          "club_id": "13",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 0.597,
+          "actual": 11,
+          "minutes": 90,
+          "error": -10.403,
+          "participation_proxy": 0.813,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "club_id": "4",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 3.542,
+          "actual": 10,
+          "minutes": 90,
+          "error": -6.458,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 1306,
+          "name": "Rafael Alexandre da Conceicao Leao",
+          "position": "MID",
+          "club_id": "17",
+          "price_postmatch_proxy": 10.0,
+          "predicted": 1.08,
+          "actual": 10,
+          "minutes": 90,
+          "error": -8.92,
+          "participation_proxy": 0.882,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 186,
+          "name": "Matteo Elias Kenzo Guendouzi Olie",
+          "position": "MID",
+          "club_id": "6",
+          "price_postmatch_proxy": 6.0,
+          "predicted": 3.189,
+          "actual": 10,
+          "minutes": 90,
+          "error": -6.811,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 187,
+          "name": "Çağlar Söyüncü",
+          "position": "DEF",
+          "club_id": "8",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 0.918,
+          "actual": 10,
+          "minutes": 90,
+          "error": -9.082,
+          "participation_proxy": 0.953,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 273,
+          "name": "Leandro Trossard",
+          "position": "MID",
+          "club_id": "9",
+          "price_postmatch_proxy": 9.0,
+          "predicted": 2.246,
+          "actual": 10,
+          "minutes": 83,
+          "error": -7.754,
+          "participation_proxy": 0.802,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 376,
+          "name": "Zafer Görgen",
+          "position": "GK",
+          "club_id": "12",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 0.1,
+          "actual": 10,
+          "minutes": 90,
+          "error": -9.9,
+          "participation_proxy": 0.05,
+          "minutes_gate_passed": false,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 505,
+          "name": "Yunus Akgün",
+          "position": "MID",
+          "club_id": "17",
+          "price_postmatch_proxy": 7.0,
+          "predicted": 2.134,
+          "actual": 10,
+          "minutes": 61,
+          "error": -7.866,
+          "participation_proxy": 0.987,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 532,
+          "name": "Gabriel Davi Gomes Sara",
+          "position": "MID",
+          "club_id": "17",
+          "price_postmatch_proxy": 7.0,
+          "predicted": 2.189,
+          "actual": 10,
+          "minutes": 61,
+          "error": -7.811,
+          "participation_proxy": 0.915,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        }
+      ],
+      "high_projection_zero_minutes": [
+        {
+          "week": 10,
+          "id": 63,
+          "name": "Mustafa Yumlu",
+          "position": "DEF",
+          "club_id": "2",
+          "price_postmatch_proxy": 4.0,
+          "predicted": 4.465,
+          "actual": 0,
+          "minutes": 0,
+          "error": 4.465,
+          "participation_proxy": 0.999,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": true,
+          "feasible_direct_squad_replacement": false
+        },
+        {
+          "week": 10,
+          "id": 533,
+          "name": "Abdülkerim Bardakcı",
+          "position": "DEF",
+          "club_id": "17",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 4.42,
+          "actual": 0,
+          "minutes": 0,
+          "error": 4.42,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 10,
+          "id": 1471,
+          "name": "Franculino Gluda Dju",
+          "position": "FWD",
+          "club_id": "1",
+          "price_postmatch_proxy": 9.0,
+          "predicted": 4.351,
+          "actual": 0,
+          "minutes": 0,
+          "error": 4.351,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        }
+      ]
+    },
+    "11": {
+      "xi_ids": [
+        12,
+        136,
+        148,
+        212,
+        22,
+        27,
+        404,
+        48,
+        600,
+        75,
+        94
+      ],
+      "bench_ids": [
+        216,
+        346,
+        516,
+        53
+      ],
+      "captain_id": 148,
+      "high_actual_low_predicted": [
+        {
+          "week": 11,
+          "id": 176,
+          "name": "Mason Will John Greenwood",
+          "position": "MID",
+          "club_id": "6",
+          "price_postmatch_proxy": 11.0,
+          "predicted": 2.389,
+          "actual": 16,
+          "minutes": 64,
+          "error": -13.611,
+          "participation_proxy": 0.723,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 11,
+          "id": 273,
+          "name": "Leandro Trossard",
+          "position": "MID",
+          "club_id": "9",
+          "price_postmatch_proxy": 9.0,
+          "predicted": 3.275,
+          "actual": 15,
+          "minutes": 90,
+          "error": -11.725,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 11,
+          "id": 28,
+          "name": "Wagner Fabricio Cardoso de Pina",
+          "position": "DEF",
+          "club_id": "1",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 4.181,
+          "actual": 15,
+          "minutes": 90,
+          "error": -10.819,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 11,
+          "id": 178,
+          "name": "Oğuz Aydın",
+          "position": "MID",
+          "club_id": "6",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 2.788,
+          "actual": 13,
+          "minutes": 90,
+          "error": -10.212,
+          "participation_proxy": 0.944,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 11,
+          "id": 199,
+          "name": "İrfan Can Kahveci",
+          "position": "MID",
+          "club_id": "6",
+          "price_postmatch_proxy": 6.0,
+          "predicted": 4.022,
+          "actual": 13,
+          "minutes": 57,
+          "error": -8.978,
+          "participation_proxy": 0.972,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 11,
+          "id": 353,
+          "name": "Ali Sowe",
+          "position": "FWD",
+          "club_id": "12",
+          "price_postmatch_proxy": 6.0,
+          "predicted": 1.817,
+          "actual": 13,
+          "minutes": 89,
+          "error": -11.183,
+          "participation_proxy": 0.917,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 11,
+          "id": 593,
+          "name": "Dusan Vlahovic",
+          "position": "FWD",
+          "club_id": "9",
+          "price_postmatch_proxy": 10.0,
+          "predicted": 4.761,
+          "actual": 12,
+          "minutes": 86,
+          "error": -7.239,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 11,
+          "id": 463,
+          "name": "Yirigue Foungognan Sekongo",
+          "position": "MID",
+          "club_id": "15",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 0.922,
+          "actual": 11,
+          "minutes": 78,
+          "error": -10.078,
+          "participation_proxy": 0.901,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 11,
+          "id": 92,
+          "name": "Haris Hajradinovic",
+          "position": "MID",
+          "club_id": "3",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 1.402,
+          "actual": 11,
+          "minutes": 86,
+          "error": -9.598,
+          "participation_proxy": 0.851,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 11,
+          "id": 37,
+          "name": "Chibuike Godfrey Nwaiwu",
+          "position": "DEF",
+          "club_id": "1",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 4.788,
+          "actual": 10,
+          "minutes": 90,
+          "error": -5.212,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 11,
+          "id": 520,
+          "name": "Barış Alper Yılmaz",
+          "position": "MID",
+          "club_id": "17",
+          "price_postmatch_proxy": 8.0,
+          "predicted": 1.968,
+          "actual": 10,
+          "minutes": 90,
+          "error": -8.032,
+          "participation_proxy": 0.738,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 11,
+          "id": 877,
+          "name": "Aleksey Batrakov",
+          "position": "MID",
+          "club_id": "17",
+          "price_postmatch_proxy": 8.0,
+          "predicted": 3.676,
+          "actual": 10,
+          "minutes": 83,
+          "error": -6.324,
+          "participation_proxy": 0.998,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        }
+      ],
+      "high_actual_excluded_by_minutes": [],
+      "high_actual_directly_affordable_unselected": [
+        {
+          "week": 11,
+          "id": 176,
+          "name": "Mason Will John Greenwood",
+          "position": "MID",
+          "club_id": "6",
+          "price_postmatch_proxy": 11.0,
+          "predicted": 2.389,
+          "actual": 16,
+          "minutes": 64,
+          "error": -13.611,
+          "participation_proxy": 0.723,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 11,
+          "id": 273,
+          "name": "Leandro Trossard",
+          "position": "MID",
+          "club_id": "9",
+          "price_postmatch_proxy": 9.0,
+          "predicted": 3.275,
+          "actual": 15,
+          "minutes": 90,
+          "error": -11.725,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 11,
+          "id": 28,
+          "name": "Wagner Fabricio Cardoso de Pina",
+          "position": "DEF",
+          "club_id": "1",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 4.181,
+          "actual": 15,
+          "minutes": 90,
+          "error": -10.819,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 11,
+          "id": 178,
+          "name": "Oğuz Aydın",
+          "position": "MID",
+          "club_id": "6",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 2.788,
+          "actual": 13,
+          "minutes": 90,
+          "error": -10.212,
+          "participation_proxy": 0.944,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 11,
+          "id": 199,
+          "name": "İrfan Can Kahveci",
+          "position": "MID",
+          "club_id": "6",
+          "price_postmatch_proxy": 6.0,
+          "predicted": 4.022,
+          "actual": 13,
+          "minutes": 57,
+          "error": -8.978,
+          "participation_proxy": 0.972,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 11,
+          "id": 353,
+          "name": "Ali Sowe",
+          "position": "FWD",
+          "club_id": "12",
+          "price_postmatch_proxy": 6.0,
+          "predicted": 1.817,
+          "actual": 13,
+          "minutes": 89,
+          "error": -11.183,
+          "participation_proxy": 0.917,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 11,
+          "id": 593,
+          "name": "Dusan Vlahovic",
+          "position": "FWD",
+          "club_id": "9",
+          "price_postmatch_proxy": 10.0,
+          "predicted": 4.761,
+          "actual": 12,
+          "minutes": 86,
+          "error": -7.239,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 11,
+          "id": 463,
+          "name": "Yirigue Foungognan Sekongo",
+          "position": "MID",
+          "club_id": "15",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 0.922,
+          "actual": 11,
+          "minutes": 78,
+          "error": -10.078,
+          "participation_proxy": 0.901,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 11,
+          "id": 92,
+          "name": "Haris Hajradinovic",
+          "position": "MID",
+          "club_id": "3",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 1.402,
+          "actual": 11,
+          "minutes": 86,
+          "error": -9.598,
+          "participation_proxy": 0.851,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 11,
+          "id": 37,
+          "name": "Chibuike Godfrey Nwaiwu",
+          "position": "DEF",
+          "club_id": "1",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 4.788,
+          "actual": 10,
+          "minutes": 90,
+          "error": -5.212,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 11,
+          "id": 520,
+          "name": "Barış Alper Yılmaz",
+          "position": "MID",
+          "club_id": "17",
+          "price_postmatch_proxy": 8.0,
+          "predicted": 1.968,
+          "actual": 10,
+          "minutes": 90,
+          "error": -8.032,
+          "participation_proxy": 0.738,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        },
+        {
+          "week": 11,
+          "id": 877,
+          "name": "Aleksey Batrakov",
+          "position": "MID",
+          "club_id": "17",
+          "price_postmatch_proxy": 8.0,
+          "predicted": 3.676,
+          "actual": 10,
+          "minutes": 83,
+          "error": -6.324,
+          "participation_proxy": 0.998,
+          "minutes_gate_passed": true,
+          "selected_xi": false,
+          "selected_squad": false,
+          "feasible_direct_squad_replacement": true
+        }
+      ],
+      "high_projection_zero_minutes": [
+        {
+          "week": 11,
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "club_id": "5",
+          "price_postmatch_proxy": 5.0,
+          "predicted": 5.796,
+          "actual": 0,
+          "minutes": 0,
+          "error": 5.796,
+          "participation_proxy": 1.0,
+          "minutes_gate_passed": true,
+          "selected_xi": true,
+          "selected_squad": true,
+          "feasible_direct_squad_replacement": false
+        }
+      ],
+      "human_vs_model": {
+        "human_objective": 50.12,
+        "model_objective": 72.5836,
+        "objective_gap": 22.4636,
+        "selection_component": 17.778,
+        "captain_component": 4.675,
+        "bench_component": 0.0107,
+        "actual_selection_component": -19.0,
+        "actual_captain_component": -11.0,
+        "shared_xi_ids": [
+          27,
+          94,
+          148,
+          212
+        ],
+        "human_only_ids": [
+          120,
+          130,
+          176,
+          281,
+          507,
+          593,
+          877
+        ],
+        "model_only_ids": [
+          12,
+          22,
+          48,
+          75,
+          136,
+          404,
+          600
+        ],
+        "human_players": [
+          {
+            "week": 11,
+            "id": 130,
+            "name": "Serhat Öztaşdelen",
+            "position": "GK",
+            "club_id": "4",
+            "price_postmatch_proxy": 4.0,
+            "predicted": 4.638,
+            "actual": 9,
+            "minutes": 90,
+            "error": -4.362,
+            "participation_proxy": 1.0,
+            "minutes_gate_passed": true,
+            "selected_xi": false,
+            "selected_squad": false,
+            "feasible_direct_squad_replacement": true
+          },
+          {
+            "week": 11,
+            "id": 120,
+            "name": "Anfernee Jamal Dijksteel",
+            "position": "DEF",
+            "club_id": "4",
+            "price_postmatch_proxy": 4.0,
+            "predicted": 3.314,
+            "actual": 6,
+            "minutes": 90,
+            "error": -2.686,
+            "participation_proxy": 0.802,
+            "minutes_gate_passed": true,
+            "selected_xi": false,
+            "selected_squad": false,
+            "feasible_direct_squad_replacement": true
+          },
+          {
+            "week": 11,
+            "id": 94,
+            "name": "Claudio Winck Neto",
+            "position": "DEF",
+            "club_id": "3",
+            "price_postmatch_proxy": 4.0,
+            "predicted": 5.926,
+            "actual": 7,
+            "minutes": 90,
+            "error": -1.074,
+            "participation_proxy": 1.0,
+            "minutes_gate_passed": true,
+            "selected_xi": true,
+            "selected_squad": true,
+            "feasible_direct_squad_replacement": false
+          },
+          {
+            "week": 11,
+            "id": 27,
+            "name": "Stefan Savic",
+            "position": "DEF",
+            "club_id": "1",
+            "price_postmatch_proxy": 4.0,
+            "predicted": 5.469,
+            "actual": 6,
+            "minutes": 90,
+            "error": -0.531,
+            "participation_proxy": 1.0,
+            "minutes_gate_passed": true,
+            "selected_xi": true,
+            "selected_squad": true,
+            "feasible_direct_squad_replacement": false
+          },
+          {
+            "week": 11,
+            "id": 212,
+            "name": "Berkan İsmail Kutlu",
+            "position": "MID",
+            "club_id": "4",
+            "price_postmatch_proxy": 4.0,
+            "predicted": 5.558,
+            "actual": 11,
+            "minutes": 90,
+            "error": -5.442,
+            "participation_proxy": 1.0,
+            "minutes_gate_passed": true,
+            "selected_xi": true,
+            "selected_squad": true,
+            "feasible_direct_squad_replacement": false
+          },
+          {
+            "week": 11,
+            "id": 176,
+            "name": "Mason Will John Greenwood",
+            "position": "MID",
+            "club_id": "6",
+            "price_postmatch_proxy": 11.0,
+            "predicted": 2.389,
+            "actual": 16,
+            "minutes": 64,
+            "error": -13.611,
+            "participation_proxy": 0.723,
+            "minutes_gate_passed": true,
+            "selected_xi": false,
+            "selected_squad": false,
+            "feasible_direct_squad_replacement": true
+          },
+          {
+            "week": 11,
+            "id": 281,
+            "name": "Orkun Kökçü",
+            "position": "MID",
+            "club_id": "9",
+            "price_postmatch_proxy": 9.0,
+            "predicted": 1.112,
+            "actual": 2,
+            "minutes": 70,
+            "error": -0.888,
+            "participation_proxy": 0.261,
+            "minutes_gate_passed": true,
+            "selected_xi": false,
+            "selected_squad": false,
+            "feasible_direct_squad_replacement": true
+          },
+          {
+            "week": 11,
+            "id": 877,
+            "name": "Aleksey Batrakov",
+            "position": "MID",
+            "club_id": "17",
+            "price_postmatch_proxy": 8.0,
+            "predicted": 3.676,
+            "actual": 10,
+            "minutes": 83,
+            "error": -6.324,
+            "participation_proxy": 0.998,
+            "minutes_gate_passed": true,
+            "selected_xi": false,
+            "selected_squad": false,
+            "feasible_direct_squad_replacement": true
+          },
+          {
+            "week": 11,
+            "id": 507,
+            "name": "Victor James Osimhen",
+            "position": "FWD",
+            "club_id": "17",
+            "price_postmatch_proxy": 12.0,
+            "predicted": 3.647,
+            "actual": 0,
+            "minutes": 0,
+            "error": 3.647,
+            "participation_proxy": 0.944,
+            "minutes_gate_passed": true,
+            "selected_xi": false,
+            "selected_squad": false,
+            "feasible_direct_squad_replacement": true
+          },
+          {
+            "week": 11,
+            "id": 148,
+            "name": "Gift Emmanuel Orban",
+            "position": "FWD",
+            "club_id": "5",
+            "price_postmatch_proxy": 6.0,
+            "predicted": 7.064,
+            "actual": 5,
+            "minutes": 90,
+            "error": 2.064,
+            "participation_proxy": 1.0,
+            "minutes_gate_passed": true,
+            "selected_xi": true,
+            "selected_squad": true,
+            "feasible_direct_squad_replacement": false
+          },
+          {
+            "week": 11,
+            "id": 593,
+            "name": "Dusan Vlahovic",
+            "position": "FWD",
+            "club_id": "9",
+            "price_postmatch_proxy": 10.0,
+            "predicted": 4.761,
+            "actual": 12,
+            "minutes": 86,
+            "error": -7.239,
+            "participation_proxy": 1.0,
+            "minutes_gate_passed": true,
+            "selected_xi": false,
+            "selected_squad": false,
+            "feasible_direct_squad_replacement": true
+          },
+          {
+            "week": 11,
+            "id": 216,
+            "name": "Bahadır Han Güngördü",
+            "position": "GK",
+            "club_id": "7",
+            "price_postmatch_proxy": 4.0,
+            "predicted": 4.841,
+            "actual": 2,
+            "minutes": 90,
+            "error": 2.841,
+            "participation_proxy": 1.0,
+            "minutes_gate_passed": true,
+            "selected_xi": false,
+            "selected_squad": true,
+            "feasible_direct_squad_replacement": false
+          },
+          {
+            "week": 11,
+            "id": 277,
+            "name": "Michael Amir Murillo Bermudez",
+            "position": "DEF",
+            "club_id": "9",
+            "price_postmatch_proxy": 5.0,
+            "predicted": 3.739,
+            "actual": 5,
+            "minutes": 70,
+            "error": -1.261,
+            "participation_proxy": 1.0,
+            "minutes_gate_passed": true,
+            "selected_xi": false,
+            "selected_squad": false,
+            "feasible_direct_squad_replacement": true
+          },
+          {
+            "week": 11,
+            "id": 597,
+            "name": "Fuka-Arthur Masuaku Kawela",
+            "position": "DEF",
+            "club_id": "7",
+            "price_postmatch_proxy": 4.0,
+            "predicted": 3.428,
+            "actual": 1,
+            "minutes": 90,
+            "error": 2.428,
+            "participation_proxy": 1.0,
+            "minutes_gate_passed": true,
+            "selected_xi": false,
+            "selected_squad": false,
+            "feasible_direct_squad_replacement": true
+          },
+          {
+            "week": 11,
+            "id": 4,
+            "name": "Ernest Muçi",
+            "position": "MID",
+            "club_id": "1",
+            "price_postmatch_proxy": 8.0,
+            "predicted": 5.687,
+            "actual": 3,
+            "minutes": 80,
+            "error": 2.687,
+            "participation_proxy": 0.996,
+            "minutes_gate_passed": true,
+            "selected_xi": false,
+            "selected_squad": false,
+            "feasible_direct_squad_replacement": true
+          }
+        ],
+        "model_players": [
+          {
+            "week": 11,
+            "id": 12,
+            "name": "Mohamed Salah Hamed Mahrous Ghaly",
+            "position": "MID",
+            "club_id": "1",
+            "price_postmatch_proxy": 12.0,
+            "predicted": 6.803,
+            "actual": 10,
+            "minutes": 89,
+            "error": -3.197,
+            "participation_proxy": 1.0,
+            "minutes_gate_passed": true,
+            "selected_xi": true,
+            "selected_squad": true,
+            "feasible_direct_squad_replacement": false
+          },
+          {
+            "week": 11,
+            "id": 136,
+            "name": "Diaa Sabi'a",
+            "position": "MID",
+            "club_id": "5",
+            "price_postmatch_proxy": 5.0,
+            "predicted": 5.562,
+            "actual": 10,
+            "minutes": 90,
+            "error": -4.438,
+            "participation_proxy": 1.0,
+            "minutes_gate_passed": true,
+            "selected_xi": true,
+            "selected_squad": true,
+            "feasible_direct_squad_replacement": false
+          },
+          {
+            "week": 11,
+            "id": 148,
+            "name": "Gift Emmanuel Orban",
+            "position": "FWD",
+            "club_id": "5",
+            "price_postmatch_proxy": 6.0,
+            "predicted": 7.064,
+            "actual": 5,
+            "minutes": 90,
+            "error": 2.064,
+            "participation_proxy": 1.0,
+            "minutes_gate_passed": true,
+            "selected_xi": true,
+            "selected_squad": true,
+            "feasible_direct_squad_replacement": false
+          },
+          {
+            "week": 11,
+            "id": 212,
+            "name": "Berkan İsmail Kutlu",
+            "position": "MID",
+            "club_id": "4",
+            "price_postmatch_proxy": 4.0,
+            "predicted": 5.558,
+            "actual": 11,
+            "minutes": 90,
+            "error": -5.442,
+            "participation_proxy": 1.0,
+            "minutes_gate_passed": true,
+            "selected_xi": true,
+            "selected_squad": true,
+            "feasible_direct_squad_replacement": false
+          },
+          {
+            "week": 11,
+            "id": 22,
+            "name": "Andre Onana Onana",
+            "position": "GK",
+            "club_id": "1",
+            "price_postmatch_proxy": 5.0,
+            "predicted": 6.087,
+            "actual": 6,
+            "minutes": 90,
+            "error": 0.087,
+            "participation_proxy": 1.0,
+            "minutes_gate_passed": true,
+            "selected_xi": true,
+            "selected_squad": true,
+            "feasible_direct_squad_replacement": false
+          },
+          {
+            "week": 11,
+            "id": 27,
+            "name": "Stefan Savic",
+            "position": "DEF",
+            "club_id": "1",
+            "price_postmatch_proxy": 4.0,
+            "predicted": 5.469,
+            "actual": 6,
+            "minutes": 90,
+            "error": -0.531,
+            "participation_proxy": 1.0,
+            "minutes_gate_passed": true,
+            "selected_xi": true,
+            "selected_squad": true,
+            "feasible_direct_squad_replacement": false
+          },
+          {
+            "week": 11,
+            "id": 404,
+            "name": "Eldor Shomurodov",
+            "position": "FWD",
+            "club_id": "13",
+            "price_postmatch_proxy": 7.0,
+            "predicted": 5.798,
+            "actual": 2,
+            "minutes": 86,
+            "error": 3.798,
+            "participation_proxy": 1.0,
+            "minutes_gate_passed": true,
+            "selected_xi": true,
+            "selected_squad": true,
+            "feasible_direct_squad_replacement": false
+          },
+          {
+            "week": 11,
+            "id": 48,
+            "name": "Guram Giorbelidze",
+            "position": "DEF",
+            "club_id": "2",
+            "price_postmatch_proxy": 4.0,
+            "predicted": 5.657,
+            "actual": 1,
+            "minutes": 89,
+            "error": 4.657,
+            "participation_proxy": 1.0,
+            "minutes_gate_passed": true,
+            "selected_xi": true,
+            "selected_squad": true,
+            "feasible_direct_squad_replacement": false
+          },
+          {
+            "week": 11,
+            "id": 600,
+            "name": "Samuel Leo Beat Ballet",
+            "position": "MID",
+            "club_id": "5",
+            "price_postmatch_proxy": 5.0,
+            "predicted": 5.796,
+            "actual": 0,
+            "minutes": 0,
+            "error": 5.796,
+            "participation_proxy": 1.0,
+            "minutes_gate_passed": true,
+            "selected_xi": true,
+            "selected_squad": true,
+            "feasible_direct_squad_replacement": false
+          },
+          {
+            "week": 11,
+            "id": 75,
+            "name": "Adrian Dawid Benedyczak",
+            "position": "FWD",
+            "club_id": "3",
+            "price_postmatch_proxy": 6.0,
+            "predicted": 5.612,
+            "actual": 7,
+            "minutes": 86,
+            "error": -1.388,
+            "participation_proxy": 1.0,
+            "minutes_gate_passed": true,
+            "selected_xi": true,
+            "selected_squad": true,
+            "feasible_direct_squad_replacement": false
+          },
+          {
+            "week": 11,
+            "id": 94,
+            "name": "Claudio Winck Neto",
+            "position": "DEF",
+            "club_id": "3",
+            "price_postmatch_proxy": 4.0,
+            "predicted": 5.926,
+            "actual": 7,
+            "minutes": 90,
+            "error": -1.074,
+            "participation_proxy": 1.0,
+            "minutes_gate_passed": true,
+            "selected_xi": true,
+            "selected_squad": true,
+            "feasible_direct_squad_replacement": false
+          },
+          {
+            "week": 11,
+            "id": 216,
+            "name": "Bahadır Han Güngördü",
+            "position": "GK",
+            "club_id": "7",
+            "price_postmatch_proxy": 4.0,
+            "predicted": 4.841,
+            "actual": 2,
+            "minutes": 90,
+            "error": 2.841,
+            "participation_proxy": 1.0,
+            "minutes_gate_passed": true,
+            "selected_xi": false,
+            "selected_squad": true,
+            "feasible_direct_squad_replacement": false
+          },
+          {
+            "week": 11,
+            "id": 346,
+            "name": "Franco Daryl Tongya Heubang",
+            "position": "MID",
+            "club_id": "11",
+            "price_postmatch_proxy": 5.0,
+            "predicted": 5.025,
+            "actual": 2,
+            "minutes": 90,
+            "error": 3.025,
+            "participation_proxy": 1.0,
+            "minutes_gate_passed": true,
+            "selected_xi": false,
+            "selected_squad": true,
+            "feasible_direct_squad_replacement": false
+          },
+          {
+            "week": 11,
+            "id": 516,
+            "name": "Davinson Sanchez Mina",
+            "position": "DEF",
+            "club_id": "17",
+            "price_postmatch_proxy": 5.0,
+            "predicted": 4.234,
+            "actual": 1,
+            "minutes": 90,
+            "error": 3.234,
+            "participation_proxy": 1.0,
+            "minutes_gate_passed": true,
+            "selected_xi": false,
+            "selected_squad": true,
+            "feasible_direct_squad_replacement": false
+          },
+          {
+            "week": 11,
+            "id": 53,
+            "name": "Amar Gerxhaliu",
+            "position": "DEF",
+            "club_id": "2",
+            "price_postmatch_proxy": 4.0,
+            "predicted": 4.664,
+            "actual": 1,
+            "minutes": 90,
+            "error": 3.664,
+            "participation_proxy": 1.0,
+            "minutes_gate_passed": true,
+            "selected_xi": false,
+            "selected_squad": true,
+            "feasible_direct_squad_replacement": false
+          }
+        ],
+        "human_project_scoring_actual": 100.0,
+        "model_project_scoring_actual": 70.0,
+        "human_reported_auto_sub_points": 5
+      }
+    }
+  },
+  "warnings": [
+    "Phase 36 pool differs from Phase 32 GW11 pool",
+    "Historical club and price proxies are not verified deadline snapshots",
+    "Official rows were retrieved after evaluated weeks; publication timing unverified",
+    "Actual outcomes were read only for evaluation and reporting, never for lineup selection",
+    "Budget-feasible direct replacement is a one-player test, not proof of globally feasible optimal XI"
+  ]
+}

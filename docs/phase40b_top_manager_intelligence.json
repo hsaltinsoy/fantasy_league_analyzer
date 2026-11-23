@@ -1,0 +1,43 @@
+{
+  "phase": "40B",
+  "audited_at_utc": "2026-11-13T10:03:57Z",
+  "status": "blocked_before_manager_collection",
+  "collection_performed": false,
+  "manager_records_collected": 0,
+  "sources": [
+    {
+      "name": "TFF Fantasy public rules and home page",
+      "urls": ["https://tfffantezilig.com/yardim", "https://tfffantezilig.com/"],
+      "observed": "Country League is documented; rankings use cumulative points. Public home page offers login and registration. No public historical manager lineup or selection export was verified."
+    },
+    {
+      "name": "Existing repository official integration",
+      "paths": ["data_sources/tff_official.py", "docs/phase30_multi_source_research.md"],
+      "observed": "Authenticated integration implements player statistics and player histories only. No manager ranking, lineup, captain, bench, card or manager-score client or archived dataset found."
+    }
+  ],
+  "field_coverage": {
+    "top_50_rankings": "unverified",
+    "manager_identifiers": "unverified",
+    "weekly_squads": "unverified",
+    "starting_xi": "unverified",
+    "captain_and_vice_captain": "unverified",
+    "bench": "unverified",
+    "manager_cards": "unverified",
+    "historical_weekly_scores": "unverified",
+    "historical_rankings": "unverified",
+    "pre_deadline_capture_timestamps": "absent"
+  },
+  "permission_assessment": "Automated access/reuse authorization for other managers' selections was not established; no authenticated manager endpoint was queried or inferred.",
+  "dataset": [],
+  "analysis": {
+    "top_10_top_25_top_50_consensus": null,
+    "captain_popularity": null,
+    "weekly_selection_changes": null,
+    "optimizer_agreement": null,
+    "all_manager_popularity_baseline": null,
+    "lagged_predictive_evaluation": null
+  },
+  "leakage_assessment": "Current cumulative rank cannot establish prior-week rank. No time-stamped pre-deadline manager picks or historical rank snapshots were found. Retrospective lineups, if later obtained, cannot be treated as pre-deadline intelligence.",
+  "recommendation": "Do not integrate manager consensus into prediction. Seek explicit permitted access and prospective timestamped rank/selection snapshots, then compare lagged top-manager and all-manager consensus with unchanged Phase 40 baseline on identical pools and rules."
+}
