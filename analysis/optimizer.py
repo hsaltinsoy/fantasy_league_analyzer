@@ -2,10 +2,23 @@ from ortools.sat.python import cp_model
 from collections import Counter
 
 
-FORMATIONS = ((3,4,3), (3,5,2), (4,3,3), (4,4,2), (4,5,1), (5,3,2), (5,4,1))
+LEGACY_FORMATIONS = ((3,4,3), (3,5,2), (4,3,3), (4,4,2), (4,5,1), (5,3,2), (5,4,1))
 
 
-def _optimize_formation(players, formation, budget=100.0, max_per_team=3, time_limit=4, risk_profile="balanced"):
+def valid_formations():
+    """Official standard XI: one GK, 3–5 DEF, 2–5 MID, 1–3 FWD."""
+    return tuple((defenders, midfielders, forwards)
+                 for defenders in range(3, 6)
+                 for midfielders in range(2, 6)
+                 for forwards in range(1, 4)
+                 if defenders + midfielders + forwards == 10)
+
+
+FORMATIONS = valid_formations()
+FORMATION_POLICIES = {'current_tff_v2': FORMATIONS, 'legacy_pre39_v1': LEGACY_FORMATIONS}
+
+
+def _optimize_formation(players, formation, budget=100.0, max_per_team=3, time_limit=4, risk_profile="balanced", force_squad_ids=(), force_start_ids=()):
     """Maximise projected starting XI + captain bonus under fantasy squad rules.
 
     Each player: id, name, team, position (GK/DEF/MID/FWD), price, xpts.
@@ -22,6 +35,12 @@ def _optimize_formation(players, formation, budget=100.0, max_per_team=3, time_l
     squad = {p['id']: model.NewBoolVar(f"s_{p['id']}") for p in players}
     start = {p['id']: model.NewBoolVar(f"x_{p['id']}") for p in players}
     captain = {p['id']: model.NewBoolVar(f"c_{p['id']}") for p in players}
+    if not ((set(force_squad_ids) | set(force_start_ids)) <= set(squad)):
+        raise ValueError('Forced player is not in the eligible pool')
+    for player_id in force_squad_ids:
+        model.Add(squad[player_id] == 1)
+    for player_id in force_start_ids:
+        model.Add(start[player_id] == 1)
     model.Add(sum(squad.values()) == 15)
     model.Add(sum(start.values()) == 11)
     model.Add(sum(captain.values()) == 1)
@@ -81,24 +100,29 @@ def _optimize_formation(players, formation, budget=100.0, max_per_team=3, time_l
         'starting_xi': [p for p in players if solver.Value(start[p['id']])],
         'captain': next(p for p in players if solver.Value(captain[p['id']])),
         'expected_points': round(sum(float(p['xpts']) * solver.Value(start[p['id']]) + float(p.get('captain_bonus_xpts', p['xpts'])) * solver.Value(captain[p['id']]) for p in players), 2),
+        'expected_fantasy_points': round(sum(float(p['xpts']) * (solver.Value(start[p['id']]) + solver.Value(captain[p['id']])) for p in players), 2),
         'status': 'optimal' if status == cp_model.OPTIMAL else 'feasible',
         'formation': '-'.join(map(str, formation)),
         'squad_cost': round(sum(float(p['price']) * solver.Value(squad[p['id']]) for p in players), 2),
     }
 
 
-def optimize(players, budget=100.0, max_per_team=3, risk_profile="balanced"):
+def optimize(players, budget=100.0, max_per_team=3, risk_profile="balanced", force_squad_ids=(), force_start_ids=(), time_limit=4, formation_policy='current_tff_v2'):
     """Jointly choose 15 players, starting XI, captain, and best legal formation.
 
     Each formation is solved independently against the *entire* player pool.
     A time-limited feasible solution is not a proof of global optimality.
     """
+    if formation_policy not in FORMATION_POLICIES:
+        raise ValueError('Unknown formation policy')
     comparisons = []
     solutions = {}
     errors = []
-    for formation in FORMATIONS:
+    for formation in FORMATION_POLICIES[formation_policy]:
         name = '-'.join(map(str, formation))
-        result = _optimize_formation(players, formation, budget, max_per_team, risk_profile=risk_profile)
+        result = _optimize_formation(players, formation, budget, max_per_team, risk_profile=risk_profile,
+                                     force_squad_ids=force_squad_ids, force_start_ids=force_start_ids,
+                                     time_limit=time_limit)
         if 'error' in result:
             errors.append(result['error'])
             comparisons.append({'formation': name, 'status': 'infeasible', 'expected_points': None})
@@ -114,6 +138,7 @@ def optimize(players, budget=100.0, max_per_team=3, risk_profile="balanced"):
     # Keep the actual solutions returned by each solve; never re-solve the winner
     # because time-limited CP-SAT runs can yield different feasible squads.
     output = dict(best)
+    output['formation_policy'] = formation_policy
     output['formation_comparison'] = sorted(
         comparisons, key=lambda r: r.get('risk_adjusted_objective') if r.get('risk_adjusted_objective') is not None else -1,
         reverse=True)

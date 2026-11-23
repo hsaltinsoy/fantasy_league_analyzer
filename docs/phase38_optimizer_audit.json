@@ -1,0 +1,462 @@
+{
+  "classification": "approximate_retrospective_optimizer_audit",
+  "reconstructed_weeks": {
+    "6": {
+      "week": 6,
+      "candidate_count": 572,
+      "status": "optimal",
+      "all_formations_proven_optimal": true,
+      "formation_statuses": [
+        {
+          "formation": "3-4-3",
+          "status": "optimal",
+          "risk_adjusted_objective": 68.1174
+        },
+        {
+          "formation": "4-3-3",
+          "status": "optimal",
+          "risk_adjusted_objective": 67.7471
+        },
+        {
+          "formation": "4-4-2",
+          "status": "optimal",
+          "risk_adjusted_objective": 66.9729
+        },
+        {
+          "formation": "3-5-2",
+          "status": "optimal",
+          "risk_adjusted_objective": 66.5898
+        },
+        {
+          "formation": "5-3-2",
+          "status": "optimal",
+          "risk_adjusted_objective": 66.4443
+        },
+        {
+          "formation": "5-4-1",
+          "status": "optimal",
+          "risk_adjusted_objective": 65.1711
+        },
+        {
+          "formation": "4-5-1",
+          "status": "optimal",
+          "risk_adjusted_objective": 64.9464
+        }
+      ],
+      "checks": {
+        "unique_ids": true,
+        "squad_count": true,
+        "xi_count": true,
+        "squad_positions": {
+          "MID": 5,
+          "DEF": 5,
+          "FWD": 3,
+          "GK": 2
+        },
+        "positions_legal": true,
+        "xi_formation": "3-4-3",
+        "formation_legal": true,
+        "club_limit": true,
+        "cost": 88.0,
+        "budget_legal": true,
+        "xi_in_squad": true,
+        "captain_in_xi": true
+      },
+      "objective": 68.1174,
+      "fantasy_xpts": 67.94,
+      "formation": "3-4-3",
+      "captain_id": 75,
+      "captain_is_highest_xpts_in_xi": true,
+      "xi_ids": [
+        12,
+        132,
+        148,
+        172,
+        362,
+        404,
+        532,
+        539,
+        567,
+        573,
+        75
+      ],
+      "bench_ids": [
+        120,
+        273,
+        436,
+        554
+      ],
+      "feasible_one_swap_count": 1725,
+      "best_one_swap_objective": [
+        67.7664,
+        132,
+        516
+      ],
+      "best_one_swap_gap": 0.351,
+      "best_one_swap_ids": [
+        132,
+        516
+      ],
+      "sensitivity": null,
+      "human": null
+    },
+    "8": {
+      "week": 8,
+      "candidate_count": 572,
+      "status": "optimal",
+      "all_formations_proven_optimal": true,
+      "formation_statuses": [
+        {
+          "formation": "3-4-3",
+          "status": "optimal",
+          "risk_adjusted_objective": 73.9088
+        },
+        {
+          "formation": "4-4-2",
+          "status": "optimal",
+          "risk_adjusted_objective": 73.7652
+        },
+        {
+          "formation": "3-5-2",
+          "status": "optimal",
+          "risk_adjusted_objective": 73.7326
+        },
+        {
+          "formation": "4-3-3",
+          "status": "optimal",
+          "risk_adjusted_objective": 73.491
+        },
+        {
+          "formation": "5-3-2",
+          "status": "optimal",
+          "risk_adjusted_objective": 73.3133
+        },
+        {
+          "formation": "4-5-1",
+          "status": "optimal",
+          "risk_adjusted_objective": 72.9762
+        },
+        {
+          "formation": "5-4-1",
+          "status": "optimal",
+          "risk_adjusted_objective": 72.8835
+        }
+      ],
+      "checks": {
+        "unique_ids": true,
+        "squad_count": true,
+        "xi_count": true,
+        "squad_positions": {
+          "MID": 5,
+          "FWD": 3,
+          "DEF": 5,
+          "GK": 2
+        },
+        "positions_legal": true,
+        "xi_formation": "3-4-3",
+        "formation_legal": true,
+        "club_limit": true,
+        "cost": 92.0,
+        "budget_legal": true,
+        "xi_in_squad": true,
+        "captain_in_xi": true
+      },
+      "objective": 73.9088,
+      "fantasy_xpts": 73.71,
+      "formation": "3-4-3",
+      "captain_id": 12,
+      "captain_is_highest_xpts_in_xi": true,
+      "xi_ids": [
+        12,
+        136,
+        148,
+        15,
+        166,
+        172,
+        176,
+        37,
+        404,
+        608,
+        75
+      ],
+      "bench_ids": [
+        281,
+        47,
+        48,
+        51
+      ],
+      "feasible_one_swap_count": 1537,
+      "best_one_swap_objective": [
+        73.8528,
+        75,
+        237
+      ],
+      "best_one_swap_gap": 0.056,
+      "best_one_swap_ids": [
+        75,
+        237
+      ],
+      "sensitivity": {
+        "perturbed_player_id": 237,
+        "delta_xpts": 0.1,
+        "xi_overlap": 10,
+        "formation": "3-4-3",
+        "captain_id": 12,
+        "bench_overlap": 4
+      },
+      "human": null
+    },
+    "11": {
+      "week": 11,
+      "candidate_count": 572,
+      "status": "optimal",
+      "all_formations_proven_optimal": true,
+      "formation_statuses": [
+        {
+          "formation": "3-4-3",
+          "status": "optimal",
+          "risk_adjusted_objective": 72.5836
+        },
+        {
+          "formation": "3-5-2",
+          "status": "optimal",
+          "risk_adjusted_objective": 72.0025
+        },
+        {
+          "formation": "4-3-3",
+          "status": "optimal",
+          "risk_adjusted_objective": 71.6986
+        },
+        {
+          "formation": "4-4-2",
+          "status": "optimal",
+          "risk_adjusted_objective": 71.6451
+        },
+        {
+          "formation": "4-5-1",
+          "status": "optimal",
+          "risk_adjusted_objective": 70.8799
+        },
+        {
+          "formation": "5-3-2",
+          "status": "optimal",
+          "risk_adjusted_objective": 70.3344
+        },
+        {
+          "formation": "5-4-1",
+          "status": "optimal",
+          "risk_adjusted_objective": 70.0968
+        }
+      ],
+      "checks": {
+        "unique_ids": true,
+        "squad_count": true,
+        "xi_count": true,
+        "squad_positions": {
+          "MID": 5,
+          "FWD": 3,
+          "GK": 2,
+          "DEF": 5
+        },
+        "positions_legal": true,
+        "xi_formation": "3-4-3",
+        "formation_legal": true,
+        "club_limit": true,
+        "cost": 80.0,
+        "budget_legal": true,
+        "xi_in_squad": true,
+        "captain_in_xi": true
+      },
+      "objective": 72.5836,
+      "fantasy_xpts": 72.4,
+      "formation": "3-4-3",
+      "captain_id": 148,
+      "captain_is_highest_xpts_in_xi": true,
+      "xi_ids": [
+        12,
+        136,
+        148,
+        212,
+        22,
+        27,
+        404,
+        48,
+        600,
+        75,
+        94
+      ],
+      "bench_ids": [
+        216,
+        346,
+        516,
+        53
+      ],
+      "feasible_one_swap_count": 1649,
+      "best_one_swap_objective": [
+        72.0506,
+        75,
+        237
+      ],
+      "best_one_swap_gap": 0.533,
+      "best_one_swap_ids": [
+        75,
+        237
+      ],
+      "sensitivity": null,
+      "human": {
+        "checks": {
+          "unique_ids": true,
+          "squad_count": true,
+          "xi_count": true,
+          "squad_positions": {
+            "GK": 2,
+            "DEF": 5,
+            "MID": 5,
+            "FWD": 3
+          },
+          "positions_legal": true,
+          "xi_formation": "3-4-3",
+          "formation_legal": true,
+          "club_limit": true,
+          "cost": 97.0,
+          "budget_legal": true,
+          "xi_in_squad": true,
+          "captain_in_xi": true
+        },
+        "predicted_objective": 50.12,
+        "optimizer_objective": 72.5836,
+        "objective_gap": 22.4636,
+        "human_xi_ids": [
+          130,
+          120,
+          94,
+          27,
+          212,
+          176,
+          281,
+          877,
+          507,
+          148,
+          593
+        ],
+        "optimizer_xi_ids": [
+          12,
+          136,
+          148,
+          212,
+          22,
+          27,
+          404,
+          48,
+          600,
+          75,
+          94
+        ],
+        "human_captain_xpts": 2.389,
+        "optimizer_captain_xpts": 7.064,
+        "human_only": [
+          {
+            "id": 130,
+            "name": "Serhat Öztaşdelen",
+            "xpts": 4.638
+          },
+          {
+            "id": 877,
+            "name": "Aleksey Batrakov",
+            "xpts": 3.676
+          },
+          {
+            "id": 176,
+            "name": "Mason Will John Greenwood",
+            "xpts": 2.389
+          },
+          {
+            "id": 593,
+            "name": "Dusan Vlahovic",
+            "xpts": 4.761
+          },
+          {
+            "id": 120,
+            "name": "Anfernee Jamal Dijksteel",
+            "xpts": 3.314
+          },
+          {
+            "id": 281,
+            "name": "Orkun Kökçü",
+            "xpts": 1.112
+          },
+          {
+            "id": 507,
+            "name": "Victor James Osimhen",
+            "xpts": 3.647
+          }
+        ],
+        "optimizer_only": [
+          {
+            "id": 136,
+            "name": "Diaa Sabi'a",
+            "xpts": 5.562
+          },
+          {
+            "id": 75,
+            "name": "Adrian Dawid Benedyczak",
+            "xpts": 5.612
+          },
+          {
+            "id": 12,
+            "name": "Mohamed Salah Hamed Mahrous Ghaly",
+            "xpts": 6.803
+          },
+          {
+            "id": 48,
+            "name": "Guram Giorbelidze",
+            "xpts": 5.657
+          },
+          {
+            "id": 404,
+            "name": "Eldor Shomurodov",
+            "xpts": 5.798
+          },
+          {
+            "id": 22,
+            "name": "Andre Onana Onana",
+            "xpts": 6.087
+          },
+          {
+            "id": 600,
+            "name": "Samuel Leo Beat Ballet",
+            "xpts": 5.796
+          }
+        ]
+      }
+    }
+  },
+  "constraints": {
+    "budget": 100,
+    "squad_positions": {
+      "GK": 2,
+      "DEF": 5,
+      "MID": 5,
+      "FWD": 3
+    },
+    "xi_size": 11,
+    "captain_count": 1,
+    "max_per_club": 3,
+    "formations": [
+      "3-4-3",
+      "3-5-2",
+      "4-3-3",
+      "4-4-2",
+      "4-5-1",
+      "5-3-2",
+      "5-4-1"
+    ],
+    "declared_objective": "XI xPts + risk-adjusted captain bonus + 0.01 bench xPts - opposing-pair risk penalty"
+  },
+  "warnings": [
+    "Phase 36 historical pool uses current archived club identity and postmatch price proxies",
+    "GW11 human comparison uses Phase 36 baseline pool, not Phase 32 frozen GW11 input bundle",
+    "One-swap neighborhood is not a global optimality proof",
+    "Only CP-SAT OPTIMAL status for every legal formation proves its modeled global objective"
+  ]
+}
