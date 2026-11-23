@@ -8,9 +8,14 @@ from storage.football_data_repository import FootballDataRepository
 
 
 def make_adjuster(engine, archive, week, cutoff, mode, strength):
+    matches = FootballDataRepository(engine).matches_before(cutoff)
+    return make_adjuster_from_matches(matches, archive, week, cutoff, mode, strength)
+
+
+def make_adjuster_from_matches(matches, archive, week, cutoff, mode, strength):
+    """Build the same adjustment from frozen, pre-cutoff match evidence."""
     if mode not in ('position_aware_xg', 'uniform_xg') or strength not in (0.0, .4):
         raise ValueError('Unsupported experimental adjustment or sensitivity')
-    matches = FootballDataRepository(engine).matches_before(cutoff)
     features = team_features(matches)
     if not features:
         raise ValueError('No pre-cutoff Football-Data matches available')

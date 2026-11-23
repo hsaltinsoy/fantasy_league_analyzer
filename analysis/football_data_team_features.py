@@ -2,6 +2,7 @@
 from collections import defaultdict
 from statistics import mean
 from math import exp
+from datetime import date
 
 
 def _avg(values):
@@ -39,6 +40,10 @@ def team_features(matches):
         away = [game for game in games if not game['home']]
         result[team] = {
             'matches': len(games), 'last3_points': sum(g['points'] for g in games[-3:]),
+            'last_match_date': str(games[-1]['date'])[:10],
+            'days_between_last_matches': ((date.fromisoformat(str(games[-1]['date'])[:10]) -
+                                           date.fromisoformat(str(games[-2]['date'])[:10])).days
+                                          if len(games) > 1 else None),
             'last5_points': sum(g['points'] for g in games[-5:]),
             'goals_scored': _avg(g['goals'] for g in games),
             'goals_conceded': _avg(g['conceded'] for g in games),

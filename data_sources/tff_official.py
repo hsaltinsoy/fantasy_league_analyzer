@@ -4,6 +4,7 @@ from pathlib import Path
 
 BASE = 'https://tfffantezilig.com'
 ENDPOINT = '/api/backend/projection/stats/player-stats?league-id=1'
+HISTORY_ENDPOINT = '/api/backend/projection/stats/players/{player_id}/history?league-id=1'
 PROFILE = Path(os.getenv('TFF_BROWSER_PROFILE', str(Path.home() / '.tff-optimizer-browser'))).expanduser()
 
 class TFFFeedError(Exception):
@@ -77,6 +78,94 @@ def fetch_players(*, include_evidence=False):
             return result
         finally:
             browser.close()
+
+
+def fetch_player_histories(player_ids, *, completed_through, target_week,
+                           min_interval_seconds=0, max_retries=0,
+                           continue_on_error=False, include_metrics=False,
+                           progress=None):
+    """Read official weekly rows once, retaining only completed prior gameweeks."""
+    from datetime import datetime, timezone
+    from collections import Counter
+    from time import monotonic, sleep
+    if completed_through >= target_week or completed_through < 1:
+        raise ValueError('Completed week must precede target week')
+    if not PROFILE.exists():
+        raise TFFFeedError('TFF browser profile is missing')
+    result = {}
+    metrics = {'requests': 0, 'successful_requests': 0, 'failed_requests': 0,
+               'retries': 0, 'errors': {}, 'raw_week_coverage': {},
+               'inconsistent_records': {}, 'concurrency': 1}
+    raw_weeks = Counter()
+    started = monotonic()
+    last_request = None
+    with _browser() as pw:
+        browser = pw.chromium.launch_persistent_context(str(PROFILE), headless=True)
+        try:
+            for pid in sorted({str(pid) for pid in player_ids}, key=int):
+                rows = None
+                for attempt in range(max_retries + 1):
+                    if last_request is not None:
+                        sleep(max(0, min_interval_seconds - (monotonic() - last_request)))
+                    last_request = monotonic()
+                    metrics['requests'] += 1
+                    try:
+                        response = browser.request.get(BASE + HISTORY_ENDPOINT.format(player_id=pid),
+                                                       timeout=45000)
+                        if response.status in (401, 403, 429):
+                            raise TFFFeedError(f'Official player history HTTP {response.status} for {pid}')
+                        if not response.ok:
+                            raise TFFFeedError(f'Official player history HTTP {response.status} for {pid}')
+                        payload = response.json()
+                        rows = payload.get('data', payload) if isinstance(payload, dict) else payload
+                        if not isinstance(rows, list):
+                            raise TFFFeedError(f'Invalid official player history for {pid}')
+                        metrics['successful_requests'] += 1
+                        break
+                    except Exception as exc:
+                        retryable = not isinstance(exc, TFFFeedError) or 'HTTP 5' in str(exc)
+                        if attempt < max_retries and retryable:
+                            metrics['retries'] += 1
+                            continue
+                        metrics['failed_requests'] += 1
+                        metrics['errors'][pid] = str(exc)
+                        if not continue_on_error or 'HTTP 401' in str(exc) or 'HTTP 403' in str(exc) or 'HTTP 429' in str(exc):
+                            raise
+                if rows is None:
+                    result[pid] = []
+                    if progress:
+                        progress(len(result), len(player_ids), metrics)
+                    continue
+                valid = []
+                seen = set()
+                for row in rows:
+                    if not isinstance(row, dict) or not str(row.get('gameweekOrder', '')).isdigit():
+                        metrics['inconsistent_records'][pid] = metrics['inconsistent_records'].get(pid, 0) + 1
+                        continue
+                    week = int(row['gameweekOrder'])
+                    raw_weeks[week] += 1
+                    if week > completed_through:
+                        continue
+                    if week in seen:
+                        if not continue_on_error:
+                            raise TFFFeedError(f'Duplicate history week {week} for {pid}')
+                        metrics['inconsistent_records'][pid] = metrics['inconsistent_records'].get(pid, 0) + 1
+                        continue
+                    seen.add(week)
+                    valid.append(row)
+                result[pid] = sorted(valid, key=lambda row: int(row['gameweekOrder']))
+                if progress:
+                    progress(len(result), len(player_ids), metrics)
+        finally:
+            browser.close()
+    output = {'rows_by_player': result, 'retrieved_at': datetime.now(timezone.utc).isoformat(),
+              'source_url': BASE + HISTORY_ENDPOINT}
+    if include_metrics:
+        metrics['elapsed_seconds'] = round(monotonic() - started, 3)
+        metrics['requests_per_second'] = round(metrics['requests'] / max(metrics['elapsed_seconds'], .001), 3)
+        metrics['raw_week_coverage'] = dict(sorted(raw_weeks.items()))
+        output['metrics'] = metrics
+    return output
 
 if __name__=='__main__':
     import sys
