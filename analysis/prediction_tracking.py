@@ -85,17 +85,28 @@ def verification(captured_at, deadline_at, deadline_source=None, classification=
 
 def save_snapshot(gameweek, players, fixtures, histories, source, *, deadline_at=None,
                   deadline_source=None, classification='live', data_quality=None, path=DEFAULT_DB,
-                  require_pre_deadline=False, snapshot_id=None):
+                  require_pre_deadline=False, snapshot_id=None, feature_evidence=None):
     if not isinstance(gameweek, int) or gameweek < 1 or not isinstance(players, list) or not players:
         raise ValueError('Gameweek and player data required')
     if not isinstance(fixtures, list) or not isinstance(histories, list):
         raise ValueError('Fixtures and historical statistics must be lists')
+    if require_pre_deadline:
+        from analysis.capture_integrity import validate_inputs
+        validate_inputs(gameweek, players, fixtures, histories)
     captured_at = utc_now()
     snapshot_id = snapshot_id or str(uuid.uuid4())
     payload = {'gameweek': gameweek, 'players': players, 'fixtures': fixtures,
                'histories': histories, 'source': source, 'retrieved_at': captured_at,
                'deadline_at': deadline_at, 'deadline_source': deadline_source,
                'data_quality': data_quality}
+    if feature_evidence is not None:
+        payload['feature_evidence'] = feature_evidence
+    from analysis.capture_integrity import digest
+    payload['input_sha256'] = digest({'gameweek': gameweek, 'players': players,
+                                      'fixtures': fixtures, 'histories': histories,
+                                      'source': source, 'deadline_at': deadline_at,
+                                      'deadline_source': deadline_source,
+                                      'feature_evidence': feature_evidence})
     status = verification(captured_at, deadline_at, deadline_source, classification)
     if require_pre_deadline and status != 'locally_recorded_pre_deadline_not_verified':
         raise ValueError('Official pre-deadline snapshot required; no snapshot saved')

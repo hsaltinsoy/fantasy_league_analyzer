@@ -99,7 +99,8 @@ def _fixture_lookup(entry):
 
 def generate(*, fixture_archive=None, players=None, records=None, path=DEFAULT_DB,
              now=None, cached=False, strict_pre_deadline=False,
-             players_retrieved_at=None):
+             players_retrieved_at=None, external_matches=None,
+             history_freshness=None):
     """Capture once; run each model on deep copies of that snapshot's inputs."""
     now = now or datetime.now(timezone.utc)
     pg_runtime = _postgres(path)
@@ -127,6 +128,18 @@ def generate(*, fixture_archive=None, players=None, records=None, path=DEFAULT_D
             records = [(p, histories.get(str(p['id']), [])) for p in players]
         else:
             records = load_history()
+    if strict_pre_deadline:
+        from analysis.history_freshness import audit, require_capture_ready
+        own_freshness = audit(week, players, {str(p['id']): rows for p, rows in records},
+                              fixture_archive)
+        if history_freshness is None:
+            history_freshness = own_freshness
+        elif (history_freshness['latest_stored_historical_gameweek'] !=
+              own_freshness['latest_stored_historical_gameweek'] or
+              history_freshness['latest_completed_gameweek'] !=
+              own_freshness['latest_completed_gameweek']):
+            raise ValueError('History freshness evidence differs from frozen inputs')
+        require_capture_ready(history_freshness)
     if strict_pre_deadline:
         deadline=parse_time(entry.get('deadline'))
         retrieved=parse_time(fixture_archive.get('captured_utc'))
@@ -172,11 +185,15 @@ def generate(*, fixture_archive=None, players=None, records=None, path=DEFAULT_D
               'official_gameweek_id':entry.get('gameweek_id'),
               'histories':'local_player_archives_filtered_before_target_week',
               'deadline_evidence':'official_api_value; local capture timestamp is not independent proof'}
+    if history_freshness is not None:
+        source['history_freshness'] = history_freshness
+        quality['history_freshness'] = history_freshness
     snapshot_args = dict(deadline_at=entry.get('deadline'),
                          deadline_source=source['deadline_source_url'] if parse_time(entry.get('deadline')) else None,
                          classification='historical_reconstruction' if cached else 'live',
                          data_quality=quality, path=path,
-                         require_pre_deadline=strict_pre_deadline)
+                         require_pre_deadline=strict_pre_deadline,
+                         feature_evidence={'football_data_matches': external_matches} if external_matches is not None else None)
     if pg_runtime:
         snapshot = {'id': str(uuid.uuid4())}
     else:

@@ -1,0 +1,2759 @@
+{
+  "classification": "retrospective_experimental_not_prospective",
+  "source_csv_sha256": "86af3b956c49ea86c5e1a58c8ac45237ba0b7bd52e46e5874e9697f09336bf08",
+  "source_observed_at": "2026-11-09T11:25:38.562794+00:00",
+  "local_import_path": "historical_data\\experimental_phase36\\missing_gw10_gw11.json",
+  "imported_missing_fixture_ids": [
+    208,
+    209,
+    210,
+    211,
+    212,
+    213,
+    214,
+    215,
+    216,
+    217,
+    218,
+    219,
+    220,
+    221,
+    222,
+    223,
+    224,
+    225
+  ],
+  "imported_missing_matches": [
+    {
+      "fixture_id": 208,
+      "gameweek": 11,
+      "date": "2026-11-07",
+      "home_id": "15",
+      "away_id": "7",
+      "home_goals": 1,
+      "away_goals": 0,
+      "home_xg": 0.66,
+      "away_xg": 0.96,
+      "home_shots": 6,
+      "away_shots": 7,
+      "home_sot": 3,
+      "away_sot": 1
+    },
+    {
+      "fixture_id": 209,
+      "gameweek": 11,
+      "date": "2026-11-08",
+      "home_id": "9",
+      "away_id": "11",
+      "home_goals": 3,
+      "away_goals": 0,
+      "home_xg": 3.94,
+      "away_xg": 0.29,
+      "home_shots": 20,
+      "away_shots": 3,
+      "home_sot": 10,
+      "away_sot": 1
+    },
+    {
+      "fixture_id": 210,
+      "gameweek": 11,
+      "date": "2026-11-07",
+      "home_id": "17",
+      "away_id": "5",
+      "home_goals": 4,
+      "away_goals": 3,
+      "home_xg": 1.73,
+      "away_xg": 1.39,
+      "home_shots": 17,
+      "away_shots": 14,
+      "home_sot": 6,
+      "away_sot": 5
+    },
+    {
+      "fixture_id": 211,
+      "gameweek": 11,
+      "date": "2026-11-08",
+      "home_id": "8",
+      "away_id": "6",
+      "home_goals": 0,
+      "away_goals": 5,
+      "home_xg": 2.27,
+      "away_xg": 1.17,
+      "home_shots": 22,
+      "away_shots": 10,
+      "home_sot": 8,
+      "away_sot": 6
+    },
+    {
+      "fixture_id": 212,
+      "gameweek": 11,
+      "date": "2026-11-07",
+      "home_id": "10",
+      "away_id": "13",
+      "home_goals": 1,
+      "away_goals": 2,
+      "home_xg": 1.54,
+      "away_xg": 1.4,
+      "home_shots": 19,
+      "away_shots": 15,
+      "home_sot": 4,
+      "away_sot": 5
+    },
+    {
+      "fixture_id": 213,
+      "gameweek": 11,
+      "date": "2026-11-08",
+      "home_id": "12",
+      "away_id": "2",
+      "home_goals": 2,
+      "away_goals": 1,
+      "home_xg": 3.59,
+      "away_xg": 0.68,
+      "home_shots": 24,
+      "away_shots": 9,
+      "home_sot": 6,
+      "away_sot": 4
+    },
+    {
+      "fixture_id": 214,
+      "gameweek": 11,
+      "date": "2026-11-08",
+      "home_id": "14",
+      "away_id": "1",
+      "home_goals": 0,
+      "away_goals": 2,
+      "home_xg": 2.13,
+      "away_xg": 2.84,
+      "home_shots": 14,
+      "away_shots": 21,
+      "home_sot": 2,
+      "away_sot": 5
+    },
+    {
+      "fixture_id": 215,
+      "gameweek": 11,
+      "date": "2026-11-07",
+      "home_id": "16",
+      "away_id": "4",
+      "home_goals": 0,
+      "away_goals": 2,
+      "home_xg": 0.58,
+      "away_xg": 1.14,
+      "home_shots": 6,
+      "away_shots": 12,
+      "home_sot": 3,
+      "away_sot": 7
+    },
+    {
+      "fixture_id": 216,
+      "gameweek": 11,
+      "date": "2026-11-06",
+      "home_id": "18",
+      "away_id": "3",
+      "home_goals": 0,
+      "away_goals": 2,
+      "home_xg": 1.15,
+      "away_xg": 2.46,
+      "home_shots": 16,
+      "away_shots": 11,
+      "home_sot": 4,
+      "away_sot": 5
+    },
+    {
+      "fixture_id": 217,
+      "gameweek": 10,
+      "date": "2026-10-31",
+      "home_id": "2",
+      "away_id": "8",
+      "home_goals": 1,
+      "away_goals": 3,
+      "home_xg": 0.59,
+      "away_xg": 1.22,
+      "home_shots": 13,
+      "away_shots": 7,
+      "home_sot": 3,
+      "away_sot": 3
+    },
+    {
+      "fixture_id": 218,
+      "gameweek": 10,
+      "date": "2026-10-31",
+      "home_id": "4",
+      "away_id": "12",
+      "home_goals": 0,
+      "away_goals": 0,
+      "home_xg": 0.62,
+      "away_xg": 1.17,
+      "home_shots": 14,
+      "away_shots": 17,
+      "home_sot": 4,
+      "away_sot": 4
+    },
+    {
+      "fixture_id": 219,
+      "gameweek": 10,
+      "date": "2026-10-31",
+      "home_id": "6",
+      "away_id": "10",
+      "home_goals": 1,
+      "away_goals": 2,
+      "home_xg": 1.51,
+      "away_xg": 1.4,
+      "home_shots": 18,
+      "away_shots": 12,
+      "home_sot": 6,
+      "away_sot": 6
+    },
+    {
+      "fixture_id": 220,
+      "gameweek": 10,
+      "date": "2026-10-30",
+      "home_id": "7",
+      "away_id": "17",
+      "home_goals": 0,
+      "away_goals": 4,
+      "home_xg": 1.38,
+      "away_xg": 2.8,
+      "home_shots": 9,
+      "away_shots": 16,
+      "home_sot": 1,
+      "away_sot": 8
+    },
+    {
+      "fixture_id": 221,
+      "gameweek": 10,
+      "date": "2026-11-02",
+      "home_id": "11",
+      "away_id": "14",
+      "home_goals": 5,
+      "away_goals": 0,
+      "home_xg": 1.91,
+      "away_xg": 0.5,
+      "home_shots": 12,
+      "away_shots": 9,
+      "home_sot": 7,
+      "away_sot": 3
+    },
+    {
+      "fixture_id": 222,
+      "gameweek": 10,
+      "date": "2026-11-01",
+      "home_id": "5",
+      "away_id": "16",
+      "home_goals": 5,
+      "away_goals": 1,
+      "home_xg": 4.95,
+      "away_xg": 0.98,
+      "home_shots": 20,
+      "away_shots": 8,
+      "home_sot": 7,
+      "away_sot": 2
+    },
+    {
+      "fixture_id": 223,
+      "gameweek": 10,
+      "date": "2026-11-01",
+      "home_id": "13",
+      "away_id": "15",
+      "home_goals": 5,
+      "away_goals": 2,
+      "home_xg": 3.89,
+      "away_xg": 0.99,
+      "home_shots": 24,
+      "away_shots": 9,
+      "home_sot": 10,
+      "away_sot": 4
+    },
+    {
+      "fixture_id": 224,
+      "gameweek": 10,
+      "date": "2026-11-01",
+      "home_id": "3",
+      "away_id": "9",
+      "home_goals": 2,
+      "away_goals": 2,
+      "home_xg": 1.33,
+      "away_xg": 1.26,
+      "home_shots": 16,
+      "away_shots": 8,
+      "home_sot": 6,
+      "away_sot": 4
+    },
+    {
+      "fixture_id": 225,
+      "gameweek": 10,
+      "date": "2026-11-01",
+      "home_id": "1",
+      "away_id": "18",
+      "home_goals": 2,
+      "away_goals": 0,
+      "home_xg": 1.37,
+      "away_xg": 0.51,
+      "home_shots": 18,
+      "away_shots": 13,
+      "home_sot": 6,
+      "away_sot": 6
+    }
+  ],
+  "matched_csv_fixtures": 99,
+  "mapped_teams": 18,
+  "source_coverage": {
+    "team_xg": 99,
+    "shots": 99,
+    "shots_on_target": 99,
+    "player_appearances": 0,
+    "starting_lineups": 0,
+    "injuries_suspensions": 0,
+    "player_xg_xa": 0
+  },
+  "historical_experiments": {
+    "6": {
+      "cutoff_date": "2026-09-18",
+      "prior_match_count": 45,
+      "feature_team_count": 18,
+      "variants": {
+        "baseline": {
+          "mae": 1.343,
+          "rmse": 2.606,
+          "n": 572,
+          "actual_squad_points": 67.0,
+          "predicted_squad_points": 67.94,
+          "formation": "3-4-3",
+          "captain_id": 75,
+          "captain_actual": 2.0,
+          "xi_ids": [
+            12,
+            132,
+            148,
+            172,
+            362,
+            404,
+            532,
+            539,
+            567,
+            573,
+            75
+          ],
+          "bench_ids": [
+            120,
+            273,
+            436,
+            554
+          ],
+          "xi_players": [
+            {
+              "id": 12,
+              "name": "Mohamed Salah Hamed Mahrous Ghaly",
+              "predicted": 6.541,
+              "actual": 23.0
+            },
+            {
+              "id": 132,
+              "name": "Massadio Haidara",
+              "predicted": 4.58,
+              "actual": 1.0
+            },
+            {
+              "id": 148,
+              "name": "Gift Emmanuel Orban",
+              "predicted": 6.147,
+              "actual": 12.0
+            },
+            {
+              "id": 172,
+              "name": "Milan Skriniar",
+              "predicted": 5.139,
+              "actual": 6.0
+            },
+            {
+              "id": 362,
+              "name": "Yahia Fofana",
+              "predicted": 5.283,
+              "actual": 3.0
+            },
+            {
+              "id": 404,
+              "name": "Eldor Shomurodov",
+              "predicted": 5.643,
+              "actual": 12.0
+            },
+            {
+              "id": 532,
+              "name": "Gabriel Davi Gomes Sara",
+              "predicted": 5.105,
+              "actual": 2.0
+            },
+            {
+              "id": 539,
+              "name": "Lucas Sebastian Torreira di Pascua",
+              "predicted": 5.017,
+              "actual": 2.0
+            },
+            {
+              "id": 567,
+              "name": "Deian Cristian Sorescu",
+              "predicted": 5.691,
+              "actual": 1.0
+            },
+            {
+              "id": 573,
+              "name": "Kacper Szymon Kozlowski",
+              "predicted": 4.861,
+              "actual": 1.0
+            },
+            {
+              "id": 75,
+              "name": "Adrian Dawid Benedyczak",
+              "predicted": 6.965,
+              "actual": 2.0
+            }
+          ],
+          "zero_minute_starters": 0,
+          "missing_feature_candidates": 0,
+          "candidate_count": 572
+        },
+        "team_form": {
+          "mae": 1.345,
+          "rmse": 2.609,
+          "n": 572,
+          "actual_squad_points": 56.0,
+          "predicted_squad_points": 70.29,
+          "formation": "3-4-3",
+          "captain_id": 75,
+          "captain_actual": 2.0,
+          "xi_ids": [
+            12,
+            148,
+            172,
+            362,
+            436,
+            507,
+            532,
+            539,
+            567,
+            573,
+            75
+          ],
+          "bench_ids": [
+            132,
+            136,
+            261,
+            554
+          ],
+          "xi_players": [
+            {
+              "id": 12,
+              "name": "Mohamed Salah Hamed Mahrous Ghaly",
+              "predicted": 6.735,
+              "actual": 23.0
+            },
+            {
+              "id": 148,
+              "name": "Gift Emmanuel Orban",
+              "predicted": 6.946,
+              "actual": 12.0
+            },
+            {
+              "id": 172,
+              "name": "Milan Skriniar",
+              "predicted": 5.346,
+              "actual": 6.0
+            },
+            {
+              "id": 362,
+              "name": "Yahia Fofana",
+              "predicted": 5.531,
+              "actual": 3.0
+            },
+            {
+              "id": 436,
+              "name": "Nuno Miguel Reis Lima",
+              "predicted": 4.474,
+              "actual": 2.0
+            },
+            {
+              "id": 507,
+              "name": "Victor James Osimhen",
+              "predicted": 5.536,
+              "actual": 0.0
+            },
+            {
+              "id": 532,
+              "name": "Gabriel Davi Gomes Sara",
+              "predicted": 5.601,
+              "actual": 2.0
+            },
+            {
+              "id": 539,
+              "name": "Lucas Sebastian Torreira di Pascua",
+              "predicted": 5.505,
+              "actual": 2.0
+            },
+            {
+              "id": 567,
+              "name": "Deian Cristian Sorescu",
+              "predicted": 5.511,
+              "actual": 1.0
+            },
+            {
+              "id": 573,
+              "name": "Kacper Szymon Kozlowski",
+              "predicted": 4.707,
+              "actual": 1.0
+            },
+            {
+              "id": 75,
+              "name": "Adrian Dawid Benedyczak",
+              "predicted": 7.197,
+              "actual": 2.0
+            }
+          ],
+          "zero_minute_starters": 1,
+          "missing_feature_candidates": 0,
+          "candidate_count": 572
+        },
+        "opponent_defense": {
+          "mae": 1.352,
+          "rmse": 2.606,
+          "n": 572,
+          "actual_squad_points": 67.0,
+          "predicted_squad_points": 69.71,
+          "formation": "3-4-3",
+          "captain_id": 75,
+          "captain_actual": 2.0,
+          "xi_ids": [
+            12,
+            132,
+            148,
+            172,
+            362,
+            404,
+            532,
+            539,
+            567,
+            573,
+            75
+          ],
+          "bench_ids": [
+            120,
+            326,
+            436,
+            554
+          ],
+          "xi_players": [
+            {
+              "id": 12,
+              "name": "Mohamed Salah Hamed Mahrous Ghaly",
+              "predicted": 6.511,
+              "actual": 23.0
+            },
+            {
+              "id": 132,
+              "name": "Massadio Haidara",
+              "predicted": 4.759,
+              "actual": 1.0
+            },
+            {
+              "id": 148,
+              "name": "Gift Emmanuel Orban",
+              "predicted": 5.847,
+              "actual": 12.0
+            },
+            {
+              "id": 172,
+              "name": "Milan Skriniar",
+              "predicted": 5.222,
+              "actual": 6.0
+            },
+            {
+              "id": 362,
+              "name": "Yahia Fofana",
+              "predicted": 5.691,
+              "actual": 3.0
+            },
+            {
+              "id": 404,
+              "name": "Eldor Shomurodov",
+              "predicted": 6.132,
+              "actual": 12.0
+            },
+            {
+              "id": 532,
+              "name": "Gabriel Davi Gomes Sara",
+              "predicted": 5.281,
+              "actual": 2.0
+            },
+            {
+              "id": 539,
+              "name": "Lucas Sebastian Torreira di Pascua",
+              "predicted": 5.19,
+              "actual": 2.0
+            },
+            {
+              "id": 567,
+              "name": "Deian Cristian Sorescu",
+              "predicted": 5.881,
+              "actual": 1.0
+            },
+            {
+              "id": 573,
+              "name": "Kacper Szymon Kozlowski",
+              "predicted": 5.023,
+              "actual": 1.0
+            },
+            {
+              "id": 75,
+              "name": "Adrian Dawid Benedyczak",
+              "predicted": 7.086,
+              "actual": 2.0
+            }
+          ],
+          "zero_minute_starters": 0,
+          "missing_feature_candidates": 0,
+          "candidate_count": 572
+        },
+        "combined": {
+          "mae": 1.355,
+          "rmse": 2.612,
+          "n": 572,
+          "actual_squad_points": 66.0,
+          "predicted_squad_points": 71.36,
+          "formation": "3-4-3",
+          "captain_id": 75,
+          "captain_actual": 2.0,
+          "xi_ids": [
+            12,
+            148,
+            172,
+            362,
+            404,
+            516,
+            532,
+            539,
+            567,
+            573,
+            75
+          ],
+          "bench_ids": [
+            132,
+            435,
+            436,
+            554
+          ],
+          "xi_players": [
+            {
+              "id": 12,
+              "name": "Mohamed Salah Hamed Mahrous Ghaly",
+              "predicted": 6.508,
+              "actual": 23.0
+            },
+            {
+              "id": 148,
+              "name": "Gift Emmanuel Orban",
+              "predicted": 6.462,
+              "actual": 12.0
+            },
+            {
+              "id": 172,
+              "name": "Milan Skriniar",
+              "predicted": 5.5,
+              "actual": 6.0
+            },
+            {
+              "id": 362,
+              "name": "Yahia Fofana",
+              "predicted": 5.947,
+              "actual": 3.0
+            },
+            {
+              "id": 404,
+              "name": "Eldor Shomurodov",
+              "predicted": 5.726,
+              "actual": 12.0
+            },
+            {
+              "id": 516,
+              "name": "Davinson Sanchez Mina",
+              "predicted": 4.797,
+              "actual": 0.0
+            },
+            {
+              "id": 532,
+              "name": "Gabriel Davi Gomes Sara",
+              "predicted": 5.791,
+              "actual": 2.0
+            },
+            {
+              "id": 539,
+              "name": "Lucas Sebastian Torreira di Pascua",
+              "predicted": 5.691,
+              "actual": 2.0
+            },
+            {
+              "id": 567,
+              "name": "Deian Cristian Sorescu",
+              "predicted": 5.643,
+              "actual": 1.0
+            },
+            {
+              "id": 573,
+              "name": "Kacper Szymon Kozlowski",
+              "predicted": 4.82,
+              "actual": 1.0
+            },
+            {
+              "id": 75,
+              "name": "Adrian Dawid Benedyczak",
+              "predicted": 7.239,
+              "actual": 2.0
+            }
+          ],
+          "zero_minute_starters": 0,
+          "missing_feature_candidates": 0,
+          "candidate_count": 572
+        }
+      }
+    },
+    "7": {
+      "cutoff_date": "2026-10-09",
+      "prior_match_count": 54,
+      "feature_team_count": 18,
+      "variants": {
+        "baseline": {
+          "mae": 1.254,
+          "rmse": 2.348,
+          "n": 572,
+          "actual_squad_points": 41.0,
+          "predicted_squad_points": 76.76,
+          "formation": "3-4-3",
+          "captain_id": 12,
+          "captain_actual": 6.0,
+          "xi_ids": [
+            12,
+            120,
+            130,
+            148,
+            172,
+            176,
+            182,
+            212,
+            404,
+            435,
+            75
+          ],
+          "bench_ids": [
+            136,
+            362,
+            427,
+            567
+          ],
+          "xi_players": [
+            {
+              "id": 12,
+              "name": "Mohamed Salah Hamed Mahrous Ghaly",
+              "predicted": 9.948,
+              "actual": 6.0
+            },
+            {
+              "id": 120,
+              "name": "Anfernee Jamal Dijksteel",
+              "predicted": 4.767,
+              "actual": 0.0
+            },
+            {
+              "id": 130,
+              "name": "Serhat Öztaşdelen",
+              "predicted": 5.379,
+              "actual": 1.0
+            },
+            {
+              "id": 148,
+              "name": "Gift Emmanuel Orban",
+              "predicted": 6.636,
+              "actual": 2.0
+            },
+            {
+              "id": 172,
+              "name": "Milan Skriniar",
+              "predicted": 5.37,
+              "actual": 7.0
+            },
+            {
+              "id": 176,
+              "name": "Mason Will John Greenwood",
+              "predicted": 6.619,
+              "actual": 3.0
+            },
+            {
+              "id": 182,
+              "name": "Archibald Norman Brown",
+              "predicted": 4.878,
+              "actual": 7.0
+            },
+            {
+              "id": 212,
+              "name": "Berkan İsmail Kutlu",
+              "predicted": 5.274,
+              "actual": 2.0
+            },
+            {
+              "id": 404,
+              "name": "Eldor Shomurodov",
+              "predicted": 6.697,
+              "actual": 2.0
+            },
+            {
+              "id": 435,
+              "name": "Gaïus Abraham Jered Makouta",
+              "predicted": 5.277,
+              "actual": 3.0
+            },
+            {
+              "id": 75,
+              "name": "Adrian Dawid Benedyczak",
+              "predicted": 5.966,
+              "actual": 2.0
+            }
+          ],
+          "zero_minute_starters": 1,
+          "missing_feature_candidates": 0,
+          "candidate_count": 572
+        },
+        "team_form": {
+          "mae": 1.247,
+          "rmse": 2.338,
+          "n": 572,
+          "actual_squad_points": 41.0,
+          "predicted_squad_points": 77.61,
+          "formation": "3-4-3",
+          "captain_id": 12,
+          "captain_actual": 6.0,
+          "xi_ids": [
+            12,
+            120,
+            130,
+            148,
+            172,
+            176,
+            182,
+            212,
+            404,
+            435,
+            75
+          ],
+          "bench_ids": [
+            136,
+            362,
+            427,
+            567
+          ],
+          "xi_players": [
+            {
+              "id": 12,
+              "name": "Mohamed Salah Hamed Mahrous Ghaly",
+              "predicted": 10.127,
+              "actual": 6.0
+            },
+            {
+              "id": 120,
+              "name": "Anfernee Jamal Dijksteel",
+              "predicted": 4.622,
+              "actual": 0.0
+            },
+            {
+              "id": 130,
+              "name": "Serhat Öztaşdelen",
+              "predicted": 5.215,
+              "actual": 1.0
+            },
+            {
+              "id": 148,
+              "name": "Gift Emmanuel Orban",
+              "predicted": 7.004,
+              "actual": 2.0
+            },
+            {
+              "id": 172,
+              "name": "Milan Skriniar",
+              "predicted": 5.746,
+              "actual": 7.0
+            },
+            {
+              "id": 176,
+              "name": "Mason Will John Greenwood",
+              "predicted": 7.082,
+              "actual": 3.0
+            },
+            {
+              "id": 182,
+              "name": "Archibald Norman Brown",
+              "predicted": 5.219,
+              "actual": 7.0
+            },
+            {
+              "id": 212,
+              "name": "Berkan İsmail Kutlu",
+              "predicted": 5.113,
+              "actual": 2.0
+            },
+            {
+              "id": 404,
+              "name": "Eldor Shomurodov",
+              "predicted": 6.188,
+              "actual": 2.0
+            },
+            {
+              "id": 435,
+              "name": "Gaïus Abraham Jered Makouta",
+              "predicted": 5.222,
+              "actual": 3.0
+            },
+            {
+              "id": 75,
+              "name": "Adrian Dawid Benedyczak",
+              "predicted": 5.94,
+              "actual": 2.0
+            }
+          ],
+          "zero_minute_starters": 1,
+          "missing_feature_candidates": 0,
+          "candidate_count": 572
+        },
+        "opponent_defense": {
+          "mae": 1.25,
+          "rmse": 2.338,
+          "n": 572,
+          "actual_squad_points": 42.0,
+          "predicted_squad_points": 75.92,
+          "formation": "3-4-3",
+          "captain_id": 12,
+          "captain_actual": 6.0,
+          "xi_ids": [
+            12,
+            130,
+            148,
+            172,
+            176,
+            182,
+            212,
+            404,
+            435,
+            567,
+            75
+          ],
+          "bench_ids": [
+            120,
+            136,
+            362,
+            427
+          ],
+          "xi_players": [
+            {
+              "id": 12,
+              "name": "Mohamed Salah Hamed Mahrous Ghaly",
+              "predicted": 9.888,
+              "actual": 6.0
+            },
+            {
+              "id": 130,
+              "name": "Serhat Öztaşdelen",
+              "predicted": 5.022,
+              "actual": 1.0
+            },
+            {
+              "id": 148,
+              "name": "Gift Emmanuel Orban",
+              "predicted": 6.944,
+              "actual": 2.0
+            },
+            {
+              "id": 172,
+              "name": "Milan Skriniar",
+              "predicted": 5.331,
+              "actual": 7.0
+            },
+            {
+              "id": 176,
+              "name": "Mason Will John Greenwood",
+              "predicted": 6.571,
+              "actual": 3.0
+            },
+            {
+              "id": 182,
+              "name": "Archibald Norman Brown",
+              "predicted": 4.843,
+              "actual": 7.0
+            },
+            {
+              "id": 212,
+              "name": "Berkan İsmail Kutlu",
+              "predicted": 4.924,
+              "actual": 2.0
+            },
+            {
+              "id": 404,
+              "name": "Eldor Shomurodov",
+              "predicted": 6.474,
+              "actual": 2.0
+            },
+            {
+              "id": 435,
+              "name": "Gaïus Abraham Jered Makouta",
+              "predicted": 5.429,
+              "actual": 3.0
+            },
+            {
+              "id": 567,
+              "name": "Deian Cristian Sorescu",
+              "predicted": 4.62,
+              "actual": 1.0
+            },
+            {
+              "id": 75,
+              "name": "Adrian Dawid Benedyczak",
+              "predicted": 5.991,
+              "actual": 2.0
+            }
+          ],
+          "zero_minute_starters": 0,
+          "missing_feature_candidates": 0,
+          "candidate_count": 572
+        },
+        "combined": {
+          "mae": 1.242,
+          "rmse": 2.325,
+          "n": 572,
+          "actual_squad_points": 52.0,
+          "predicted_squad_points": 78.91,
+          "formation": "3-4-3",
+          "captain_id": 12,
+          "captain_actual": 6.0,
+          "xi_ids": [
+            12,
+            130,
+            136,
+            148,
+            172,
+            176,
+            182,
+            404,
+            427,
+            435,
+            75
+          ],
+          "bench_ids": [
+            15,
+            212,
+            22,
+            567
+          ],
+          "xi_players": [
+            {
+              "id": 12,
+              "name": "Mohamed Salah Hamed Mahrous Ghaly",
+              "predicted": 10.366,
+              "actual": 6.0
+            },
+            {
+              "id": 130,
+              "name": "Serhat Öztaşdelen",
+              "predicted": 4.947,
+              "actual": 1.0
+            },
+            {
+              "id": 136,
+              "name": "Diaa Sabi'a",
+              "predicted": 5.316,
+              "actual": 8.0
+            },
+            {
+              "id": 148,
+              "name": "Gift Emmanuel Orban",
+              "predicted": 7.511,
+              "actual": 2.0
+            },
+            {
+              "id": 172,
+              "name": "Milan Skriniar",
+              "predicted": 5.868,
+              "actual": 7.0
+            },
+            {
+              "id": 176,
+              "name": "Mason Will John Greenwood",
+              "predicted": 7.233,
+              "actual": 3.0
+            },
+            {
+              "id": 182,
+              "name": "Archibald Norman Brown",
+              "predicted": 5.331,
+              "actual": 7.0
+            },
+            {
+              "id": 404,
+              "name": "Eldor Shomurodov",
+              "predicted": 6.099,
+              "actual": 2.0
+            },
+            {
+              "id": 427,
+              "name": "Florent Hadergjonaj",
+              "predicted": 4.544,
+              "actual": 5.0
+            },
+            {
+              "id": 435,
+              "name": "Gaïus Abraham Jered Makouta",
+              "predicted": 5.4,
+              "actual": 3.0
+            },
+            {
+              "id": 75,
+              "name": "Adrian Dawid Benedyczak",
+              "predicted": 5.933,
+              "actual": 2.0
+            }
+          ],
+          "zero_minute_starters": 0,
+          "missing_feature_candidates": 0,
+          "candidate_count": 572
+        }
+      }
+    },
+    "8": {
+      "cutoff_date": "2026-10-16",
+      "prior_match_count": 63,
+      "feature_team_count": 18,
+      "variants": {
+        "baseline": {
+          "mae": 1.055,
+          "rmse": 2.059,
+          "n": 572,
+          "actual_squad_points": 85.0,
+          "predicted_squad_points": 73.71,
+          "formation": "3-4-3",
+          "captain_id": 12,
+          "captain_actual": 11.0,
+          "xi_ids": [
+            12,
+            136,
+            148,
+            15,
+            166,
+            172,
+            176,
+            37,
+            404,
+            608,
+            75
+          ],
+          "bench_ids": [
+            281,
+            47,
+            48,
+            51
+          ],
+          "xi_players": [
+            {
+              "id": 12,
+              "name": "Mohamed Salah Hamed Mahrous Ghaly",
+              "predicted": 9.073,
+              "actual": 11.0
+            },
+            {
+              "id": 136,
+              "name": "Diaa Sabi'a",
+              "predicted": 5.412,
+              "actual": 9.0
+            },
+            {
+              "id": 148,
+              "name": "Gift Emmanuel Orban",
+              "predicted": 5.754,
+              "actual": 2.0
+            },
+            {
+              "id": 15,
+              "name": "Mustafa Eskihellaç",
+              "predicted": 5.509,
+              "actual": 0.0
+            },
+            {
+              "id": 166,
+              "name": "Ederson Santana de Moraes",
+              "predicted": 5.589,
+              "actual": 9.0
+            },
+            {
+              "id": 172,
+              "name": "Milan Skriniar",
+              "predicted": 5.644,
+              "actual": 6.0
+            },
+            {
+              "id": 176,
+              "name": "Mason Will John Greenwood",
+              "predicted": 5.796,
+              "actual": 1.0
+            },
+            {
+              "id": 37,
+              "name": "Chibuike Godfrey Nwaiwu",
+              "predicted": 5.316,
+              "actual": 6.0
+            },
+            {
+              "id": 404,
+              "name": "Eldor Shomurodov",
+              "predicted": 5.771,
+              "actual": 12.0
+            },
+            {
+              "id": 608,
+              "name": "Alexandros Kyziridis",
+              "predicted": 5.641,
+              "actual": 7.0
+            },
+            {
+              "id": 75,
+              "name": "Adrian Dawid Benedyczak",
+              "predicted": 5.135,
+              "actual": 11.0
+            }
+          ],
+          "zero_minute_starters": 1,
+          "missing_feature_candidates": 0,
+          "candidate_count": 572
+        },
+        "team_form": {
+          "mae": 1.053,
+          "rmse": 2.055,
+          "n": 572,
+          "actual_squad_points": 74.0,
+          "predicted_squad_points": 79.82,
+          "formation": "3-5-2",
+          "captain_id": 12,
+          "captain_actual": 11.0,
+          "xi_ids": [
+            12,
+            136,
+            148,
+            15,
+            166,
+            172,
+            176,
+            281,
+            37,
+            404,
+            608
+          ],
+          "bench_ids": [
+            237,
+            47,
+            48,
+            51
+          ],
+          "xi_players": [
+            {
+              "id": 12,
+              "name": "Mohamed Salah Hamed Mahrous Ghaly",
+              "predicted": 9.788,
+              "actual": 11.0
+            },
+            {
+              "id": 136,
+              "name": "Diaa Sabi'a",
+              "predicted": 6.071,
+              "actual": 9.0
+            },
+            {
+              "id": 148,
+              "name": "Gift Emmanuel Orban",
+              "predicted": 6.455,
+              "actual": 2.0
+            },
+            {
+              "id": 15,
+              "name": "Mustafa Eskihellaç",
+              "predicted": 5.943,
+              "actual": 0.0
+            },
+            {
+              "id": 166,
+              "name": "Ederson Santana de Moraes",
+              "predicted": 6.275,
+              "actual": 9.0
+            },
+            {
+              "id": 172,
+              "name": "Milan Skriniar",
+              "predicted": 6.337,
+              "actual": 6.0
+            },
+            {
+              "id": 176,
+              "name": "Mason Will John Greenwood",
+              "predicted": 6.508,
+              "actual": 1.0
+            },
+            {
+              "id": 281,
+              "name": "Orkun Kökçü",
+              "predicted": 5.37,
+              "actual": 0.0
+            },
+            {
+              "id": 37,
+              "name": "Chibuike Godfrey Nwaiwu",
+              "predicted": 5.735,
+              "actual": 6.0
+            },
+            {
+              "id": 404,
+              "name": "Eldor Shomurodov",
+              "predicted": 5.683,
+              "actual": 12.0
+            },
+            {
+              "id": 608,
+              "name": "Alexandros Kyziridis",
+              "predicted": 5.871,
+              "actual": 7.0
+            }
+          ],
+          "zero_minute_starters": 2,
+          "missing_feature_candidates": 0,
+          "candidate_count": 572
+        },
+        "opponent_defense": {
+          "mae": 1.051,
+          "rmse": 2.047,
+          "n": 572,
+          "actual_squad_points": 76.0,
+          "predicted_squad_points": 75.52,
+          "formation": "5-3-2",
+          "captain_id": 12,
+          "captain_actual": 11.0,
+          "xi_ids": [
+            12,
+            148,
+            15,
+            172,
+            176,
+            182,
+            37,
+            404,
+            48,
+            51,
+            608
+          ],
+          "bench_ids": [
+            136,
+            237,
+            281,
+            419
+          ],
+          "xi_players": [
+            {
+              "id": 12,
+              "name": "Mohamed Salah Hamed Mahrous Ghaly",
+              "predicted": 9.095,
+              "actual": 11.0
+            },
+            {
+              "id": 148,
+              "name": "Gift Emmanuel Orban",
+              "predicted": 5.644,
+              "actual": 2.0
+            },
+            {
+              "id": 15,
+              "name": "Mustafa Eskihellaç",
+              "predicted": 5.522,
+              "actual": 0.0
+            },
+            {
+              "id": 172,
+              "name": "Milan Skriniar",
+              "predicted": 5.941,
+              "actual": 6.0
+            },
+            {
+              "id": 176,
+              "name": "Mason Will John Greenwood",
+              "predicted": 6.101,
+              "actual": 1.0
+            },
+            {
+              "id": 182,
+              "name": "Archibald Norman Brown",
+              "predicted": 5.621,
+              "actual": 1.0
+            },
+            {
+              "id": 37,
+              "name": "Chibuike Godfrey Nwaiwu",
+              "predicted": 5.329,
+              "actual": 6.0
+            },
+            {
+              "id": 404,
+              "name": "Eldor Shomurodov",
+              "predicted": 6.238,
+              "actual": 12.0
+            },
+            {
+              "id": 48,
+              "name": "Guram Giorbelidze",
+              "predicted": 5.465,
+              "actual": 12.0
+            },
+            {
+              "id": 51,
+              "name": "Mahmut Ertuğrul Taşkıran",
+              "predicted": 5.596,
+              "actual": 7.0
+            },
+            {
+              "id": 608,
+              "name": "Alexandros Kyziridis",
+              "predicted": 5.875,
+              "actual": 7.0
+            }
+          ],
+          "zero_minute_starters": 1,
+          "missing_feature_candidates": 0,
+          "candidate_count": 572
+        },
+        "combined": {
+          "mae": 1.051,
+          "rmse": 2.043,
+          "n": 572,
+          "actual_squad_points": 76.0,
+          "predicted_squad_points": 79.59,
+          "formation": "3-4-3",
+          "captain_id": 12,
+          "captain_actual": 11.0,
+          "xi_ids": [
+            12,
+            136,
+            148,
+            15,
+            166,
+            172,
+            176,
+            237,
+            37,
+            404,
+            608
+          ],
+          "bench_ids": [
+            281,
+            47,
+            48,
+            51
+          ],
+          "xi_players": [
+            {
+              "id": 12,
+              "name": "Mohamed Salah Hamed Mahrous Ghaly",
+              "predicted": 9.538,
+              "actual": 11.0
+            },
+            {
+              "id": 136,
+              "name": "Diaa Sabi'a",
+              "predicted": 5.849,
+              "actual": 9.0
+            },
+            {
+              "id": 148,
+              "name": "Gift Emmanuel Orban",
+              "predicted": 6.219,
+              "actual": 2.0
+            },
+            {
+              "id": 15,
+              "name": "Mustafa Eskihellaç",
+              "predicted": 5.791,
+              "actual": 0.0
+            },
+            {
+              "id": 166,
+              "name": "Ederson Santana de Moraes",
+              "predicted": 6.402,
+              "actual": 9.0
+            },
+            {
+              "id": 172,
+              "name": "Milan Skriniar",
+              "predicted": 6.465,
+              "actual": 6.0
+            },
+            {
+              "id": 176,
+              "name": "Mason Will John Greenwood",
+              "predicted": 6.639,
+              "actual": 1.0
+            },
+            {
+              "id": 237,
+              "name": "Jesus Andres Ramirez Diaz",
+              "predicted": 5.467,
+              "actual": 2.0
+            },
+            {
+              "id": 37,
+              "name": "Chibuike Godfrey Nwaiwu",
+              "predicted": 5.588,
+              "actual": 6.0
+            },
+            {
+              "id": 404,
+              "name": "Eldor Shomurodov",
+              "predicted": 6.017,
+              "actual": 12.0
+            },
+            {
+              "id": 608,
+              "name": "Alexandros Kyziridis",
+              "predicted": 6.072,
+              "actual": 7.0
+            }
+          ],
+          "zero_minute_starters": 1,
+          "missing_feature_candidates": 0,
+          "candidate_count": 572
+        }
+      }
+    },
+    "9": {
+      "cutoff_date": "2026-10-23",
+      "prior_match_count": 72,
+      "feature_team_count": 18,
+      "variants": {
+        "baseline": {
+          "mae": 1.227,
+          "rmse": 2.395,
+          "n": 572,
+          "actual_squad_points": 45.0,
+          "predicted_squad_points": 79.3,
+          "formation": "4-4-2",
+          "captain_id": 12,
+          "captain_actual": 2.0,
+          "xi_ids": [
+            12,
+            136,
+            172,
+            212,
+            22,
+            37,
+            404,
+            48,
+            608,
+            63,
+            75
+          ],
+          "bench_ids": [
+            148,
+            166,
+            176,
+            533
+          ],
+          "xi_players": [
+            {
+              "id": 12,
+              "name": "Mohamed Salah Hamed Mahrous Ghaly",
+              "predicted": 9.256,
+              "actual": 2.0
+            },
+            {
+              "id": 136,
+              "name": "Diaa Sabi'a",
+              "predicted": 6.168,
+              "actual": 7.0
+            },
+            {
+              "id": 172,
+              "name": "Milan Skriniar",
+              "predicted": 5.562,
+              "actual": 0.0
+            },
+            {
+              "id": 212,
+              "name": "Berkan İsmail Kutlu",
+              "predicted": 5.652,
+              "actual": 8.0
+            },
+            {
+              "id": 22,
+              "name": "Andre Onana Onana",
+              "predicted": 6.241,
+              "actual": 2.0
+            },
+            {
+              "id": 37,
+              "name": "Chibuike Godfrey Nwaiwu",
+              "predicted": 5.528,
+              "actual": 1.0
+            },
+            {
+              "id": 404,
+              "name": "Eldor Shomurodov",
+              "predicted": 6.79,
+              "actual": 2.0
+            },
+            {
+              "id": 48,
+              "name": "Guram Giorbelidze",
+              "predicted": 6.183,
+              "actual": 11.0
+            },
+            {
+              "id": 608,
+              "name": "Alexandros Kyziridis",
+              "predicted": 6.786,
+              "actual": 1.0
+            },
+            {
+              "id": 63,
+              "name": "Mustafa Yumlu",
+              "predicted": 5.804,
+              "actual": 1.0
+            },
+            {
+              "id": 75,
+              "name": "Adrian Dawid Benedyczak",
+              "predicted": 6.076,
+              "actual": 8.0
+            }
+          ],
+          "zero_minute_starters": 0,
+          "missing_feature_candidates": 0,
+          "candidate_count": 572
+        },
+        "team_form": {
+          "mae": 1.228,
+          "rmse": 2.401,
+          "n": 572,
+          "actual_squad_points": 49.0,
+          "predicted_squad_points": 82.5,
+          "formation": "4-3-3",
+          "captain_id": 12,
+          "captain_actual": 2.0,
+          "xi_ids": [
+            12,
+            136,
+            148,
+            172,
+            22,
+            37,
+            404,
+            48,
+            608,
+            63,
+            75
+          ],
+          "bench_ids": [
+            166,
+            193,
+            212,
+            533
+          ],
+          "xi_players": [
+            {
+              "id": 12,
+              "name": "Mohamed Salah Hamed Mahrous Ghaly",
+              "predicted": 9.904,
+              "actual": 2.0
+            },
+            {
+              "id": 136,
+              "name": "Diaa Sabi'a",
+              "predicted": 6.628,
+              "actual": 7.0
+            },
+            {
+              "id": 148,
+              "name": "Gift Emmanuel Orban",
+              "predicted": 5.741,
+              "actual": 12.0
+            },
+            {
+              "id": 172,
+              "name": "Milan Skriniar",
+              "predicted": 5.951,
+              "actual": 0.0
+            },
+            {
+              "id": 22,
+              "name": "Andre Onana Onana",
+              "predicted": 6.678,
+              "actual": 2.0
+            },
+            {
+              "id": 37,
+              "name": "Chibuike Godfrey Nwaiwu",
+              "predicted": 5.915,
+              "actual": 1.0
+            },
+            {
+              "id": 404,
+              "name": "Eldor Shomurodov",
+              "predicted": 6.508,
+              "actual": 2.0
+            },
+            {
+              "id": 48,
+              "name": "Guram Giorbelidze",
+              "predicted": 6.16,
+              "actual": 11.0
+            },
+            {
+              "id": 608,
+              "name": "Alexandros Kyziridis",
+              "predicted": 7.46,
+              "actual": 1.0
+            },
+            {
+              "id": 63,
+              "name": "Mustafa Yumlu",
+              "predicted": 5.782,
+              "actual": 1.0
+            },
+            {
+              "id": 75,
+              "name": "Adrian Dawid Benedyczak",
+              "predicted": 5.87,
+              "actual": 8.0
+            }
+          ],
+          "zero_minute_starters": 0,
+          "missing_feature_candidates": 0,
+          "candidate_count": 572
+        },
+        "opponent_defense": {
+          "mae": 1.225,
+          "rmse": 2.381,
+          "n": 572,
+          "actual_squad_points": 45.0,
+          "predicted_squad_points": 81.41,
+          "formation": "4-4-2",
+          "captain_id": 12,
+          "captain_actual": 2.0,
+          "xi_ids": [
+            12,
+            136,
+            172,
+            212,
+            22,
+            37,
+            404,
+            48,
+            608,
+            63,
+            75
+          ],
+          "bench_ids": [
+            148,
+            166,
+            193,
+            533
+          ],
+          "xi_players": [
+            {
+              "id": 12,
+              "name": "Mohamed Salah Hamed Mahrous Ghaly",
+              "predicted": 9.291,
+              "actual": 2.0
+            },
+            {
+              "id": 136,
+              "name": "Diaa Sabi'a",
+              "predicted": 6.286,
+              "actual": 7.0
+            },
+            {
+              "id": 172,
+              "name": "Milan Skriniar",
+              "predicted": 5.515,
+              "actual": 0.0
+            },
+            {
+              "id": 212,
+              "name": "Berkan İsmail Kutlu",
+              "predicted": 6.011,
+              "actual": 8.0
+            },
+            {
+              "id": 22,
+              "name": "Andre Onana Onana",
+              "predicted": 6.265,
+              "actual": 2.0
+            },
+            {
+              "id": 37,
+              "name": "Chibuike Godfrey Nwaiwu",
+              "predicted": 5.549,
+              "actual": 1.0
+            },
+            {
+              "id": 404,
+              "name": "Eldor Shomurodov",
+              "predicted": 6.637,
+              "actual": 2.0
+            },
+            {
+              "id": 48,
+              "name": "Guram Giorbelidze",
+              "predicted": 6.684,
+              "actual": 11.0
+            },
+            {
+              "id": 608,
+              "name": "Alexandros Kyziridis",
+              "predicted": 7.0,
+              "actual": 1.0
+            },
+            {
+              "id": 63,
+              "name": "Mustafa Yumlu",
+              "predicted": 6.274,
+              "actual": 1.0
+            },
+            {
+              "id": 75,
+              "name": "Adrian Dawid Benedyczak",
+              "predicted": 6.606,
+              "actual": 8.0
+            }
+          ],
+          "zero_minute_starters": 0,
+          "missing_feature_candidates": 0,
+          "candidate_count": 572
+        },
+        "combined": {
+          "mae": 1.231,
+          "rmse": 2.395,
+          "n": 572,
+          "actual_squad_points": 49.0,
+          "predicted_squad_points": 85.82,
+          "formation": "4-3-3",
+          "captain_id": 12,
+          "captain_actual": 2.0,
+          "xi_ids": [
+            12,
+            136,
+            148,
+            172,
+            22,
+            37,
+            404,
+            48,
+            608,
+            63,
+            75
+          ],
+          "bench_ids": [
+            166,
+            180,
+            193,
+            212
+          ],
+          "xi_players": [
+            {
+              "id": 12,
+              "name": "Mohamed Salah Hamed Mahrous Ghaly",
+              "predicted": 10.217,
+              "actual": 2.0
+            },
+            {
+              "id": 136,
+              "name": "Diaa Sabi'a",
+              "predicted": 6.902,
+              "actual": 7.0
+            },
+            {
+              "id": 148,
+              "name": "Gift Emmanuel Orban",
+              "predicted": 5.978,
+              "actual": 12.0
+            },
+            {
+              "id": 172,
+              "name": "Milan Skriniar",
+              "predicted": 6.071,
+              "actual": 0.0
+            },
+            {
+              "id": 22,
+              "name": "Andre Onana Onana",
+              "predicted": 6.889,
+              "actual": 2.0
+            },
+            {
+              "id": 37,
+              "name": "Chibuike Godfrey Nwaiwu",
+              "predicted": 6.102,
+              "actual": 1.0
+            },
+            {
+              "id": 404,
+              "name": "Eldor Shomurodov",
+              "predicted": 6.558,
+              "actual": 2.0
+            },
+            {
+              "id": 48,
+              "name": "Guram Giorbelidze",
+              "predicted": 6.643,
+              "actual": 11.0
+            },
+            {
+              "id": 608,
+              "name": "Alexandros Kyziridis",
+              "predicted": 7.526,
+              "actual": 1.0
+            },
+            {
+              "id": 63,
+              "name": "Mustafa Yumlu",
+              "predicted": 6.236,
+              "actual": 1.0
+            },
+            {
+              "id": 75,
+              "name": "Adrian Dawid Benedyczak",
+              "predicted": 6.478,
+              "actual": 8.0
+            }
+          ],
+          "zero_minute_starters": 0,
+          "missing_feature_candidates": 0,
+          "candidate_count": 572
+        }
+      }
+    },
+    "10": {
+      "cutoff_date": "2026-10-30",
+      "prior_match_count": 81,
+      "feature_team_count": 18,
+      "variants": {
+        "baseline": {
+          "mae": 1.406,
+          "rmse": 2.618,
+          "n": 572,
+          "actual_squad_points": 43.0,
+          "predicted_squad_points": 75.92,
+          "formation": "3-4-3",
+          "captain_id": 12,
+          "captain_actual": 3.0,
+          "xi_ids": [
+            12,
+            136,
+            148,
+            212,
+            216,
+            404,
+            48,
+            53,
+            608,
+            75,
+            94
+          ],
+          "bench_ids": [
+            166,
+            193,
+            37,
+            63
+          ],
+          "xi_players": [
+            {
+              "id": 12,
+              "name": "Mohamed Salah Hamed Mahrous Ghaly",
+              "predicted": 7.788,
+              "actual": 3.0
+            },
+            {
+              "id": 136,
+              "name": "Diaa Sabi'a",
+              "predicted": 6.387,
+              "actual": 2.0
+            },
+            {
+              "id": 148,
+              "name": "Gift Emmanuel Orban",
+              "predicted": 6.651,
+              "actual": 11.0
+            },
+            {
+              "id": 212,
+              "name": "Berkan İsmail Kutlu",
+              "predicted": 6.187,
+              "actual": 3.0
+            },
+            {
+              "id": 216,
+              "name": "Bahadır Han Güngördü",
+              "predicted": 6.423,
+              "actual": 0.0
+            },
+            {
+              "id": 404,
+              "name": "Eldor Shomurodov",
+              "predicted": 5.804,
+              "actual": 6.0
+            },
+            {
+              "id": 48,
+              "name": "Guram Giorbelidze",
+              "predicted": 6.897,
+              "actual": 0.0
+            },
+            {
+              "id": 53,
+              "name": "Amar Gerxhaliu",
+              "predicted": 5.459,
+              "actual": 1.0
+            },
+            {
+              "id": 608,
+              "name": "Alexandros Kyziridis",
+              "predicted": 5.19,
+              "actual": 2.0
+            },
+            {
+              "id": 75,
+              "name": "Adrian Dawid Benedyczak",
+              "predicted": 6.374,
+              "actual": 2.0
+            },
+            {
+              "id": 94,
+              "name": "Claudio Winck Neto",
+              "predicted": 4.976,
+              "actual": 10.0
+            }
+          ],
+          "zero_minute_starters": 0,
+          "missing_feature_candidates": 0,
+          "candidate_count": 572
+        },
+        "team_form": {
+          "mae": 1.407,
+          "rmse": 2.617,
+          "n": 572,
+          "actual_squad_points": 39.0,
+          "predicted_squad_points": 78.9,
+          "formation": "3-4-3",
+          "captain_id": 12,
+          "captain_actual": 3.0,
+          "xi_ids": [
+            12,
+            136,
+            148,
+            212,
+            216,
+            37,
+            404,
+            48,
+            53,
+            608,
+            75
+          ],
+          "bench_ids": [
+            166,
+            172,
+            4,
+            94
+          ],
+          "xi_players": [
+            {
+              "id": 12,
+              "name": "Mohamed Salah Hamed Mahrous Ghaly",
+              "predicted": 8.46,
+              "actual": 3.0
+            },
+            {
+              "id": 136,
+              "name": "Diaa Sabi'a",
+              "predicted": 7.1,
+              "actual": 2.0
+            },
+            {
+              "id": 148,
+              "name": "Gift Emmanuel Orban",
+              "predicted": 7.394,
+              "actual": 11.0
+            },
+            {
+              "id": 212,
+              "name": "Berkan İsmail Kutlu",
+              "predicted": 6.208,
+              "actual": 3.0
+            },
+            {
+              "id": 216,
+              "name": "Bahadır Han Güngördü",
+              "predicted": 6.476,
+              "actual": 0.0
+            },
+            {
+              "id": 37,
+              "name": "Chibuike Godfrey Nwaiwu",
+              "predicted": 5.079,
+              "actual": 6.0
+            },
+            {
+              "id": 404,
+              "name": "Eldor Shomurodov",
+              "predicted": 5.753,
+              "actual": 6.0
+            },
+            {
+              "id": 48,
+              "name": "Guram Giorbelidze",
+              "predicted": 6.835,
+              "actual": 0.0
+            },
+            {
+              "id": 53,
+              "name": "Amar Gerxhaliu",
+              "predicted": 5.41,
+              "actual": 1.0
+            },
+            {
+              "id": 608,
+              "name": "Alexandros Kyziridis",
+              "predicted": 5.326,
+              "actual": 2.0
+            },
+            {
+              "id": 75,
+              "name": "Adrian Dawid Benedyczak",
+              "predicted": 6.4,
+              "actual": 2.0
+            }
+          ],
+          "zero_minute_starters": 0,
+          "missing_feature_candidates": 0,
+          "candidate_count": 572
+        },
+        "opponent_defense": {
+          "mae": 1.411,
+          "rmse": 2.613,
+          "n": 572,
+          "actual_squad_points": 43.0,
+          "predicted_squad_points": 79.19,
+          "formation": "3-4-3",
+          "captain_id": 12,
+          "captain_actual": 3.0,
+          "xi_ids": [
+            12,
+            136,
+            148,
+            212,
+            216,
+            404,
+            48,
+            53,
+            608,
+            75,
+            94
+          ],
+          "bench_ids": [
+            172,
+            22,
+            37,
+            429
+          ],
+          "xi_players": [
+            {
+              "id": 12,
+              "name": "Mohamed Salah Hamed Mahrous Ghaly",
+              "predicted": 8.216,
+              "actual": 3.0
+            },
+            {
+              "id": 136,
+              "name": "Diaa Sabi'a",
+              "predicted": 7.1,
+              "actual": 2.0
+            },
+            {
+              "id": 148,
+              "name": "Gift Emmanuel Orban",
+              "predicted": 7.394,
+              "actual": 11.0
+            },
+            {
+              "id": 212,
+              "name": "Berkan İsmail Kutlu",
+              "predicted": 6.476,
+              "actual": 3.0
+            },
+            {
+              "id": 216,
+              "name": "Bahadır Han Güngördü",
+              "predicted": 6.417,
+              "actual": 0.0
+            },
+            {
+              "id": 404,
+              "name": "Eldor Shomurodov",
+              "predicted": 6.24,
+              "actual": 6.0
+            },
+            {
+              "id": 48,
+              "name": "Guram Giorbelidze",
+              "predicted": 6.869,
+              "actual": 0.0
+            },
+            {
+              "id": 53,
+              "name": "Amar Gerxhaliu",
+              "predicted": 5.437,
+              "actual": 1.0
+            },
+            {
+              "id": 608,
+              "name": "Alexandros Kyziridis",
+              "predicted": 5.204,
+              "actual": 2.0
+            },
+            {
+              "id": 75,
+              "name": "Adrian Dawid Benedyczak",
+              "predicted": 6.525,
+              "actual": 2.0
+            },
+            {
+              "id": 94,
+              "name": "Claudio Winck Neto",
+              "predicted": 5.094,
+              "actual": 10.0
+            }
+          ],
+          "zero_minute_starters": 0,
+          "missing_feature_candidates": 0,
+          "candidate_count": 572
+        },
+        "combined": {
+          "mae": 1.411,
+          "rmse": 2.611,
+          "n": 572,
+          "actual_squad_points": 39.0,
+          "predicted_squad_points": 81.46,
+          "formation": "3-4-3",
+          "captain_id": 12,
+          "captain_actual": 3.0,
+          "xi_ids": [
+            12,
+            136,
+            148,
+            212,
+            216,
+            37,
+            404,
+            48,
+            53,
+            608,
+            75
+          ],
+          "bench_ids": [
+            166,
+            172,
+            4,
+            94
+          ],
+          "xi_players": [
+            {
+              "id": 12,
+              "name": "Mohamed Salah Hamed Mahrous Ghaly",
+              "predicted": 8.781,
+              "actual": 3.0
+            },
+            {
+              "id": 136,
+              "name": "Diaa Sabi'a",
+              "predicted": 7.739,
+              "actual": 2.0
+            },
+            {
+              "id": 148,
+              "name": "Gift Emmanuel Orban",
+              "predicted": 8.059,
+              "actual": 11.0
+            },
+            {
+              "id": 212,
+              "name": "Berkan İsmail Kutlu",
+              "predicted": 6.488,
+              "actual": 3.0
+            },
+            {
+              "id": 216,
+              "name": "Bahadır Han Güngördü",
+              "predicted": 6.4,
+              "actual": 0.0
+            },
+            {
+              "id": 37,
+              "name": "Chibuike Godfrey Nwaiwu",
+              "predicted": 5.271,
+              "actual": 6.0
+            },
+            {
+              "id": 404,
+              "name": "Eldor Shomurodov",
+              "predicted": 6.015,
+              "actual": 6.0
+            },
+            {
+              "id": 48,
+              "name": "Guram Giorbelidze",
+              "predicted": 6.832,
+              "actual": 0.0
+            },
+            {
+              "id": 53,
+              "name": "Amar Gerxhaliu",
+              "predicted": 5.407,
+              "actual": 1.0
+            },
+            {
+              "id": 608,
+              "name": "Alexandros Kyziridis",
+              "predicted": 5.265,
+              "actual": 2.0
+            },
+            {
+              "id": 75,
+              "name": "Adrian Dawid Benedyczak",
+              "predicted": 6.42,
+              "actual": 2.0
+            }
+          ],
+          "zero_minute_starters": 0,
+          "missing_feature_candidates": 0,
+          "candidate_count": 572
+        }
+      }
+    },
+    "11": {
+      "cutoff_date": "2026-11-06",
+      "prior_match_count": 90,
+      "feature_team_count": 18,
+      "variants": {
+        "baseline": {
+          "mae": 1.217,
+          "rmse": 2.277,
+          "n": 572,
+          "actual_squad_points": 70.0,
+          "predicted_squad_points": 72.4,
+          "formation": "3-4-3",
+          "captain_id": 148,
+          "captain_actual": 5.0,
+          "xi_ids": [
+            12,
+            136,
+            148,
+            212,
+            22,
+            27,
+            404,
+            48,
+            600,
+            75,
+            94
+          ],
+          "bench_ids": [
+            216,
+            346,
+            516,
+            53
+          ],
+          "xi_players": [
+            {
+              "id": 12,
+              "name": "Mohamed Salah Hamed Mahrous Ghaly",
+              "predicted": 6.803,
+              "actual": 10.0
+            },
+            {
+              "id": 136,
+              "name": "Diaa Sabi'a",
+              "predicted": 5.562,
+              "actual": 10.0
+            },
+            {
+              "id": 148,
+              "name": "Gift Emmanuel Orban",
+              "predicted": 7.064,
+              "actual": 5.0
+            },
+            {
+              "id": 212,
+              "name": "Berkan İsmail Kutlu",
+              "predicted": 5.558,
+              "actual": 11.0
+            },
+            {
+              "id": 22,
+              "name": "Andre Onana Onana",
+              "predicted": 6.087,
+              "actual": 6.0
+            },
+            {
+              "id": 27,
+              "name": "Stefan Savic",
+              "predicted": 5.469,
+              "actual": 6.0
+            },
+            {
+              "id": 404,
+              "name": "Eldor Shomurodov",
+              "predicted": 5.798,
+              "actual": 2.0
+            },
+            {
+              "id": 48,
+              "name": "Guram Giorbelidze",
+              "predicted": 5.657,
+              "actual": 1.0
+            },
+            {
+              "id": 600,
+              "name": "Samuel Leo Beat Ballet",
+              "predicted": 5.796,
+              "actual": 0.0
+            },
+            {
+              "id": 75,
+              "name": "Adrian Dawid Benedyczak",
+              "predicted": 5.612,
+              "actual": 7.0
+            },
+            {
+              "id": 94,
+              "name": "Claudio Winck Neto",
+              "predicted": 5.926,
+              "actual": 7.0
+            }
+          ],
+          "zero_minute_starters": 1,
+          "missing_feature_candidates": 0,
+          "candidate_count": 572
+        },
+        "team_form": {
+          "mae": 1.214,
+          "rmse": 2.268,
+          "n": 572,
+          "actual_squad_points": 70.0,
+          "predicted_squad_points": 76.45,
+          "formation": "3-4-3",
+          "captain_id": 148,
+          "captain_actual": 5.0,
+          "xi_ids": [
+            12,
+            136,
+            148,
+            212,
+            22,
+            27,
+            404,
+            48,
+            600,
+            75,
+            94
+          ],
+          "bench_ids": [
+            166,
+            193,
+            516,
+            53
+          ],
+          "xi_players": [
+            {
+              "id": 12,
+              "name": "Mohamed Salah Hamed Mahrous Ghaly",
+              "predicted": 7.498,
+              "actual": 10.0
+            },
+            {
+              "id": 136,
+              "name": "Diaa Sabi'a",
+              "predicted": 5.982,
+              "actual": 10.0
+            },
+            {
+              "id": 148,
+              "name": "Gift Emmanuel Orban",
+              "predicted": 7.597,
+              "actual": 5.0
+            },
+            {
+              "id": 212,
+              "name": "Berkan İsmail Kutlu",
+              "predicted": 5.746,
+              "actual": 11.0
+            },
+            {
+              "id": 22,
+              "name": "Andre Onana Onana",
+              "predicted": 6.709,
+              "actual": 6.0
+            },
+            {
+              "id": 27,
+              "name": "Stefan Savic",
+              "predicted": 6.028,
+              "actual": 6.0
+            },
+            {
+              "id": 404,
+              "name": "Eldor Shomurodov",
+              "predicted": 6.182,
+              "actual": 2.0
+            },
+            {
+              "id": 48,
+              "name": "Guram Giorbelidze",
+              "predicted": 5.857,
+              "actual": 1.0
+            },
+            {
+              "id": 600,
+              "name": "Samuel Leo Beat Ballet",
+              "predicted": 6.233,
+              "actual": 0.0
+            },
+            {
+              "id": 75,
+              "name": "Adrian Dawid Benedyczak",
+              "predicted": 5.361,
+              "actual": 7.0
+            },
+            {
+              "id": 94,
+              "name": "Claudio Winck Neto",
+              "predicted": 5.661,
+              "actual": 7.0
+            }
+          ],
+          "zero_minute_starters": 1,
+          "missing_feature_candidates": 0,
+          "candidate_count": 572
+        },
+        "opponent_defense": {
+          "mae": 1.213,
+          "rmse": 2.264,
+          "n": 572,
+          "actual_squad_points": 75.0,
+          "predicted_squad_points": 74.72,
+          "formation": "3-4-3",
+          "captain_id": 12,
+          "captain_actual": 10.0,
+          "xi_ids": [
+            12,
+            136,
+            148,
+            212,
+            22,
+            27,
+            404,
+            48,
+            600,
+            75,
+            94
+          ],
+          "bench_ids": [
+            216,
+            346,
+            516,
+            53
+          ],
+          "xi_players": [
+            {
+              "id": 12,
+              "name": "Mohamed Salah Hamed Mahrous Ghaly",
+              "predicted": 7.396,
+              "actual": 10.0
+            },
+            {
+              "id": 136,
+              "name": "Diaa Sabi'a",
+              "predicted": 5.422,
+              "actual": 10.0
+            },
+            {
+              "id": 148,
+              "name": "Gift Emmanuel Orban",
+              "predicted": 6.886,
+              "actual": 5.0
+            },
+            {
+              "id": 212,
+              "name": "Berkan İsmail Kutlu",
+              "predicted": 6.191,
+              "actual": 11.0
+            },
+            {
+              "id": 22,
+              "name": "Andre Onana Onana",
+              "predicted": 6.617,
+              "actual": 6.0
+            },
+            {
+              "id": 27,
+              "name": "Stefan Savic",
+              "predicted": 5.946,
+              "actual": 6.0
+            },
+            {
+              "id": 404,
+              "name": "Eldor Shomurodov",
+              "predicted": 5.578,
+              "actual": 2.0
+            },
+            {
+              "id": 48,
+              "name": "Guram Giorbelidze",
+              "predicted": 5.919,
+              "actual": 1.0
+            },
+            {
+              "id": 600,
+              "name": "Samuel Leo Beat Ballet",
+              "predicted": 5.65,
+              "actual": 0.0
+            },
+            {
+              "id": 75,
+              "name": "Adrian Dawid Benedyczak",
+              "predicted": 5.699,
+              "actual": 7.0
+            },
+            {
+              "id": 94,
+              "name": "Claudio Winck Neto",
+              "predicted": 6.018,
+              "actual": 7.0
+            }
+          ],
+          "zero_minute_starters": 1,
+          "missing_feature_candidates": 0,
+          "candidate_count": 572
+        },
+        "combined": {
+          "mae": 1.213,
+          "rmse": 2.257,
+          "n": 572,
+          "actual_squad_points": 75.0,
+          "predicted_squad_points": 79.44,
+          "formation": "3-4-3",
+          "captain_id": 12,
+          "captain_actual": 10.0,
+          "xi_ids": [
+            12,
+            136,
+            148,
+            212,
+            22,
+            27,
+            404,
+            48,
+            600,
+            75,
+            94
+          ],
+          "bench_ids": [
+            130,
+            193,
+            516,
+            53
+          ],
+          "xi_players": [
+            {
+              "id": 12,
+              "name": "Mohamed Salah Hamed Mahrous Ghaly",
+              "predicted": 8.024,
+              "actual": 10.0
+            },
+            {
+              "id": 136,
+              "name": "Diaa Sabi'a",
+              "predicted": 5.978,
+              "actual": 10.0
+            },
+            {
+              "id": 148,
+              "name": "Gift Emmanuel Orban",
+              "predicted": 7.593,
+              "actual": 5.0
+            },
+            {
+              "id": 212,
+              "name": "Berkan İsmail Kutlu",
+              "predicted": 6.301,
+              "actual": 11.0
+            },
+            {
+              "id": 22,
+              "name": "Andre Onana Onana",
+              "predicted": 7.18,
+              "actual": 6.0
+            },
+            {
+              "id": 27,
+              "name": "Stefan Savic",
+              "predicted": 6.451,
+              "actual": 6.0
+            },
+            {
+              "id": 404,
+              "name": "Eldor Shomurodov",
+              "predicted": 6.135,
+              "actual": 2.0
+            },
+            {
+              "id": 48,
+              "name": "Guram Giorbelidze",
+              "predicted": 6.021,
+              "actual": 1.0
+            },
+            {
+              "id": 600,
+              "name": "Samuel Leo Beat Ballet",
+              "predicted": 6.23,
+              "actual": 0.0
+            },
+            {
+              "id": 75,
+              "name": "Adrian Dawid Benedyczak",
+              "predicted": 5.597,
+              "actual": 7.0
+            },
+            {
+              "id": 94,
+              "name": "Claudio Winck Neto",
+              "predicted": 5.91,
+              "actual": 7.0
+            }
+          ],
+          "zero_minute_starters": 1,
+          "missing_feature_candidates": 0,
+          "candidate_count": 572
+        }
+      }
+    }
+  },
+  "warnings": [
+    "CSV observed Nov 9; earlier publication times unknown",
+    "No verified historical club, availability or price snapshots",
+    "Experimental coefficients are fixed heuristics, not trained weights",
+    "No player-level external statistics in Football-Data CSV"
+  ]
+}

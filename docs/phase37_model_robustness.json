@@ -1,0 +1,1021 @@
+{
+  "classification": "retrospective_robustness_not_prospective",
+  "phase36_source_sha256": "86af3b956c49ea86c5e1a58c8ac45237ba0b7bd52e46e5874e9697f09336bf08",
+  "source_observed_at": "2026-11-09T11:25:38.562794+00:00",
+  "weekly": {
+    "6": {
+      "cutoff_date": "2026-09-18",
+      "prior_matches": 45,
+      "variants": {
+        "baseline": {
+          "shared_ids": [
+            12,
+            75,
+            132,
+            148,
+            172,
+            362,
+            404,
+            532,
+            539,
+            567,
+            573
+          ],
+          "baseline_only": [],
+          "experimental_only": [],
+          "xi_actual_delta": 0,
+          "captain_actual_delta": 0.0,
+          "total_actual_delta": 0.0,
+          "predicted_points": 67.94,
+          "actual_points": 67.0,
+          "captain_id": 75,
+          "captain_actual": 2.0,
+          "formation": "3-4-3",
+          "xi_overlap": 11,
+          "player_mae": 1.343,
+          "player_rmse": 2.606,
+          "zero_minute_starters": 0,
+          "missing_feature_candidates": 0
+        },
+        "team_form": {
+          "shared_ids": [
+            12,
+            75,
+            148,
+            172,
+            362,
+            532,
+            539,
+            567,
+            573
+          ],
+          "baseline_only": [
+            {
+              "id": 132,
+              "name": "Massadio Haidara",
+              "predicted": 4.58,
+              "actual": 1.0
+            },
+            {
+              "id": 404,
+              "name": "Eldor Shomurodov",
+              "predicted": 5.643,
+              "actual": 12.0
+            }
+          ],
+          "experimental_only": [
+            {
+              "id": 436,
+              "name": "Nuno Miguel Reis Lima",
+              "predicted": 4.474,
+              "actual": 2.0
+            },
+            {
+              "id": 507,
+              "name": "Victor James Osimhen",
+              "predicted": 5.536,
+              "actual": 0.0
+            }
+          ],
+          "xi_actual_delta": -11.0,
+          "captain_actual_delta": 0.0,
+          "total_actual_delta": -11.0,
+          "predicted_points": 70.29,
+          "actual_points": 56.0,
+          "captain_id": 75,
+          "captain_actual": 2.0,
+          "formation": "3-4-3",
+          "xi_overlap": 9,
+          "player_mae": 1.345,
+          "player_rmse": 2.609,
+          "zero_minute_starters": 1,
+          "missing_feature_candidates": 0
+        },
+        "opponent_defense": {
+          "shared_ids": [
+            12,
+            75,
+            132,
+            148,
+            172,
+            362,
+            404,
+            532,
+            539,
+            567,
+            573
+          ],
+          "baseline_only": [],
+          "experimental_only": [],
+          "xi_actual_delta": 0,
+          "captain_actual_delta": 0.0,
+          "total_actual_delta": 0.0,
+          "predicted_points": 69.71,
+          "actual_points": 67.0,
+          "captain_id": 75,
+          "captain_actual": 2.0,
+          "formation": "3-4-3",
+          "xi_overlap": 11,
+          "player_mae": 1.352,
+          "player_rmse": 2.606,
+          "zero_minute_starters": 0,
+          "missing_feature_candidates": 0
+        },
+        "combined": {
+          "shared_ids": [
+            12,
+            75,
+            148,
+            172,
+            362,
+            404,
+            532,
+            539,
+            567,
+            573
+          ],
+          "baseline_only": [
+            {
+              "id": 132,
+              "name": "Massadio Haidara",
+              "predicted": 4.58,
+              "actual": 1.0
+            }
+          ],
+          "experimental_only": [
+            {
+              "id": 516,
+              "name": "Davinson Sanchez Mina",
+              "predicted": 4.797,
+              "actual": 0.0
+            }
+          ],
+          "xi_actual_delta": -1.0,
+          "captain_actual_delta": 0.0,
+          "total_actual_delta": -1.0,
+          "predicted_points": 71.36,
+          "actual_points": 66.0,
+          "captain_id": 75,
+          "captain_actual": 2.0,
+          "formation": "3-4-3",
+          "xi_overlap": 10,
+          "player_mae": 1.355,
+          "player_rmse": 2.612,
+          "zero_minute_starters": 0,
+          "missing_feature_candidates": 0
+        }
+      }
+    },
+    "7": {
+      "cutoff_date": "2026-10-09",
+      "prior_matches": 54,
+      "variants": {
+        "baseline": {
+          "shared_ids": [
+            12,
+            75,
+            120,
+            130,
+            148,
+            172,
+            176,
+            182,
+            212,
+            404,
+            435
+          ],
+          "baseline_only": [],
+          "experimental_only": [],
+          "xi_actual_delta": 0,
+          "captain_actual_delta": 0.0,
+          "total_actual_delta": 0.0,
+          "predicted_points": 76.76,
+          "actual_points": 41.0,
+          "captain_id": 12,
+          "captain_actual": 6.0,
+          "formation": "3-4-3",
+          "xi_overlap": 11,
+          "player_mae": 1.254,
+          "player_rmse": 2.348,
+          "zero_minute_starters": 1,
+          "missing_feature_candidates": 0
+        },
+        "team_form": {
+          "shared_ids": [
+            12,
+            75,
+            120,
+            130,
+            148,
+            172,
+            176,
+            182,
+            212,
+            404,
+            435
+          ],
+          "baseline_only": [],
+          "experimental_only": [],
+          "xi_actual_delta": 0,
+          "captain_actual_delta": 0.0,
+          "total_actual_delta": 0.0,
+          "predicted_points": 77.61,
+          "actual_points": 41.0,
+          "captain_id": 12,
+          "captain_actual": 6.0,
+          "formation": "3-4-3",
+          "xi_overlap": 11,
+          "player_mae": 1.247,
+          "player_rmse": 2.338,
+          "zero_minute_starters": 1,
+          "missing_feature_candidates": 0
+        },
+        "opponent_defense": {
+          "shared_ids": [
+            12,
+            75,
+            130,
+            148,
+            172,
+            176,
+            182,
+            212,
+            404,
+            435
+          ],
+          "baseline_only": [
+            {
+              "id": 120,
+              "name": "Anfernee Jamal Dijksteel",
+              "predicted": 4.767,
+              "actual": 0.0
+            }
+          ],
+          "experimental_only": [
+            {
+              "id": 567,
+              "name": "Deian Cristian Sorescu",
+              "predicted": 4.62,
+              "actual": 1.0
+            }
+          ],
+          "xi_actual_delta": 1.0,
+          "captain_actual_delta": 0.0,
+          "total_actual_delta": 1.0,
+          "predicted_points": 75.92,
+          "actual_points": 42.0,
+          "captain_id": 12,
+          "captain_actual": 6.0,
+          "formation": "3-4-3",
+          "xi_overlap": 10,
+          "player_mae": 1.25,
+          "player_rmse": 2.338,
+          "zero_minute_starters": 0,
+          "missing_feature_candidates": 0
+        },
+        "combined": {
+          "shared_ids": [
+            12,
+            75,
+            130,
+            148,
+            172,
+            176,
+            182,
+            404,
+            435
+          ],
+          "baseline_only": [
+            {
+              "id": 120,
+              "name": "Anfernee Jamal Dijksteel",
+              "predicted": 4.767,
+              "actual": 0.0
+            },
+            {
+              "id": 212,
+              "name": "Berkan İsmail Kutlu",
+              "predicted": 5.274,
+              "actual": 2.0
+            }
+          ],
+          "experimental_only": [
+            {
+              "id": 136,
+              "name": "Diaa Sabi'a",
+              "predicted": 5.316,
+              "actual": 8.0
+            },
+            {
+              "id": 427,
+              "name": "Florent Hadergjonaj",
+              "predicted": 4.544,
+              "actual": 5.0
+            }
+          ],
+          "xi_actual_delta": 11.0,
+          "captain_actual_delta": 0.0,
+          "total_actual_delta": 11.0,
+          "predicted_points": 78.91,
+          "actual_points": 52.0,
+          "captain_id": 12,
+          "captain_actual": 6.0,
+          "formation": "3-4-3",
+          "xi_overlap": 9,
+          "player_mae": 1.242,
+          "player_rmse": 2.325,
+          "zero_minute_starters": 0,
+          "missing_feature_candidates": 0
+        }
+      }
+    },
+    "8": {
+      "cutoff_date": "2026-10-16",
+      "prior_matches": 63,
+      "variants": {
+        "baseline": {
+          "shared_ids": [
+            12,
+            15,
+            37,
+            75,
+            136,
+            148,
+            166,
+            172,
+            176,
+            404,
+            608
+          ],
+          "baseline_only": [],
+          "experimental_only": [],
+          "xi_actual_delta": 0,
+          "captain_actual_delta": 0.0,
+          "total_actual_delta": 0.0,
+          "predicted_points": 73.71,
+          "actual_points": 85.0,
+          "captain_id": 12,
+          "captain_actual": 11.0,
+          "formation": "3-4-3",
+          "xi_overlap": 11,
+          "player_mae": 1.055,
+          "player_rmse": 2.059,
+          "zero_minute_starters": 1,
+          "missing_feature_candidates": 0
+        },
+        "team_form": {
+          "shared_ids": [
+            12,
+            15,
+            37,
+            136,
+            148,
+            166,
+            172,
+            176,
+            404,
+            608
+          ],
+          "baseline_only": [
+            {
+              "id": 75,
+              "name": "Adrian Dawid Benedyczak",
+              "predicted": 5.135,
+              "actual": 11.0
+            }
+          ],
+          "experimental_only": [
+            {
+              "id": 281,
+              "name": "Orkun Kökçü",
+              "predicted": 5.37,
+              "actual": 0.0
+            }
+          ],
+          "xi_actual_delta": -11.0,
+          "captain_actual_delta": 0.0,
+          "total_actual_delta": -11.0,
+          "predicted_points": 79.82,
+          "actual_points": 74.0,
+          "captain_id": 12,
+          "captain_actual": 11.0,
+          "formation": "3-5-2",
+          "xi_overlap": 10,
+          "player_mae": 1.053,
+          "player_rmse": 2.055,
+          "zero_minute_starters": 2,
+          "missing_feature_candidates": 0
+        },
+        "opponent_defense": {
+          "shared_ids": [
+            12,
+            15,
+            37,
+            148,
+            172,
+            176,
+            404,
+            608
+          ],
+          "baseline_only": [
+            {
+              "id": 75,
+              "name": "Adrian Dawid Benedyczak",
+              "predicted": 5.135,
+              "actual": 11.0
+            },
+            {
+              "id": 136,
+              "name": "Diaa Sabi'a",
+              "predicted": 5.412,
+              "actual": 9.0
+            },
+            {
+              "id": 166,
+              "name": "Ederson Santana de Moraes",
+              "predicted": 5.589,
+              "actual": 9.0
+            }
+          ],
+          "experimental_only": [
+            {
+              "id": 48,
+              "name": "Guram Giorbelidze",
+              "predicted": 5.465,
+              "actual": 12.0
+            },
+            {
+              "id": 51,
+              "name": "Mahmut Ertuğrul Taşkıran",
+              "predicted": 5.596,
+              "actual": 7.0
+            },
+            {
+              "id": 182,
+              "name": "Archibald Norman Brown",
+              "predicted": 5.621,
+              "actual": 1.0
+            }
+          ],
+          "xi_actual_delta": -9.0,
+          "captain_actual_delta": 0.0,
+          "total_actual_delta": -9.0,
+          "predicted_points": 75.52,
+          "actual_points": 76.0,
+          "captain_id": 12,
+          "captain_actual": 11.0,
+          "formation": "5-3-2",
+          "xi_overlap": 8,
+          "player_mae": 1.051,
+          "player_rmse": 2.047,
+          "zero_minute_starters": 1,
+          "missing_feature_candidates": 0
+        },
+        "combined": {
+          "shared_ids": [
+            12,
+            15,
+            37,
+            136,
+            148,
+            166,
+            172,
+            176,
+            404,
+            608
+          ],
+          "baseline_only": [
+            {
+              "id": 75,
+              "name": "Adrian Dawid Benedyczak",
+              "predicted": 5.135,
+              "actual": 11.0
+            }
+          ],
+          "experimental_only": [
+            {
+              "id": 237,
+              "name": "Jesus Andres Ramirez Diaz",
+              "predicted": 5.467,
+              "actual": 2.0
+            }
+          ],
+          "xi_actual_delta": -9.0,
+          "captain_actual_delta": 0.0,
+          "total_actual_delta": -9.0,
+          "predicted_points": 79.59,
+          "actual_points": 76.0,
+          "captain_id": 12,
+          "captain_actual": 11.0,
+          "formation": "3-4-3",
+          "xi_overlap": 10,
+          "player_mae": 1.051,
+          "player_rmse": 2.043,
+          "zero_minute_starters": 1,
+          "missing_feature_candidates": 0
+        }
+      }
+    },
+    "9": {
+      "cutoff_date": "2026-10-23",
+      "prior_matches": 72,
+      "variants": {
+        "baseline": {
+          "shared_ids": [
+            12,
+            22,
+            37,
+            48,
+            63,
+            75,
+            136,
+            172,
+            212,
+            404,
+            608
+          ],
+          "baseline_only": [],
+          "experimental_only": [],
+          "xi_actual_delta": 0,
+          "captain_actual_delta": 0.0,
+          "total_actual_delta": 0.0,
+          "predicted_points": 79.3,
+          "actual_points": 45.0,
+          "captain_id": 12,
+          "captain_actual": 2.0,
+          "formation": "4-4-2",
+          "xi_overlap": 11,
+          "player_mae": 1.227,
+          "player_rmse": 2.395,
+          "zero_minute_starters": 0,
+          "missing_feature_candidates": 0
+        },
+        "team_form": {
+          "shared_ids": [
+            12,
+            22,
+            37,
+            48,
+            63,
+            75,
+            136,
+            172,
+            404,
+            608
+          ],
+          "baseline_only": [
+            {
+              "id": 212,
+              "name": "Berkan İsmail Kutlu",
+              "predicted": 5.652,
+              "actual": 8.0
+            }
+          ],
+          "experimental_only": [
+            {
+              "id": 148,
+              "name": "Gift Emmanuel Orban",
+              "predicted": 5.741,
+              "actual": 12.0
+            }
+          ],
+          "xi_actual_delta": 4.0,
+          "captain_actual_delta": 0.0,
+          "total_actual_delta": 4.0,
+          "predicted_points": 82.5,
+          "actual_points": 49.0,
+          "captain_id": 12,
+          "captain_actual": 2.0,
+          "formation": "4-3-3",
+          "xi_overlap": 10,
+          "player_mae": 1.228,
+          "player_rmse": 2.401,
+          "zero_minute_starters": 0,
+          "missing_feature_candidates": 0
+        },
+        "opponent_defense": {
+          "shared_ids": [
+            12,
+            22,
+            37,
+            48,
+            63,
+            75,
+            136,
+            172,
+            212,
+            404,
+            608
+          ],
+          "baseline_only": [],
+          "experimental_only": [],
+          "xi_actual_delta": 0,
+          "captain_actual_delta": 0.0,
+          "total_actual_delta": 0.0,
+          "predicted_points": 81.41,
+          "actual_points": 45.0,
+          "captain_id": 12,
+          "captain_actual": 2.0,
+          "formation": "4-4-2",
+          "xi_overlap": 11,
+          "player_mae": 1.225,
+          "player_rmse": 2.381,
+          "zero_minute_starters": 0,
+          "missing_feature_candidates": 0
+        },
+        "combined": {
+          "shared_ids": [
+            12,
+            22,
+            37,
+            48,
+            63,
+            75,
+            136,
+            172,
+            404,
+            608
+          ],
+          "baseline_only": [
+            {
+              "id": 212,
+              "name": "Berkan İsmail Kutlu",
+              "predicted": 5.652,
+              "actual": 8.0
+            }
+          ],
+          "experimental_only": [
+            {
+              "id": 148,
+              "name": "Gift Emmanuel Orban",
+              "predicted": 5.978,
+              "actual": 12.0
+            }
+          ],
+          "xi_actual_delta": 4.0,
+          "captain_actual_delta": 0.0,
+          "total_actual_delta": 4.0,
+          "predicted_points": 85.82,
+          "actual_points": 49.0,
+          "captain_id": 12,
+          "captain_actual": 2.0,
+          "formation": "4-3-3",
+          "xi_overlap": 10,
+          "player_mae": 1.231,
+          "player_rmse": 2.395,
+          "zero_minute_starters": 0,
+          "missing_feature_candidates": 0
+        }
+      }
+    },
+    "10": {
+      "cutoff_date": "2026-10-30",
+      "prior_matches": 81,
+      "variants": {
+        "baseline": {
+          "shared_ids": [
+            12,
+            48,
+            53,
+            75,
+            94,
+            136,
+            148,
+            212,
+            216,
+            404,
+            608
+          ],
+          "baseline_only": [],
+          "experimental_only": [],
+          "xi_actual_delta": 0,
+          "captain_actual_delta": 0.0,
+          "total_actual_delta": 0.0,
+          "predicted_points": 75.92,
+          "actual_points": 43.0,
+          "captain_id": 12,
+          "captain_actual": 3.0,
+          "formation": "3-4-3",
+          "xi_overlap": 11,
+          "player_mae": 1.406,
+          "player_rmse": 2.618,
+          "zero_minute_starters": 0,
+          "missing_feature_candidates": 0
+        },
+        "team_form": {
+          "shared_ids": [
+            12,
+            48,
+            53,
+            75,
+            136,
+            148,
+            212,
+            216,
+            404,
+            608
+          ],
+          "baseline_only": [
+            {
+              "id": 94,
+              "name": "Claudio Winck Neto",
+              "predicted": 4.976,
+              "actual": 10.0
+            }
+          ],
+          "experimental_only": [
+            {
+              "id": 37,
+              "name": "Chibuike Godfrey Nwaiwu",
+              "predicted": 5.079,
+              "actual": 6.0
+            }
+          ],
+          "xi_actual_delta": -4.0,
+          "captain_actual_delta": 0.0,
+          "total_actual_delta": -4.0,
+          "predicted_points": 78.9,
+          "actual_points": 39.0,
+          "captain_id": 12,
+          "captain_actual": 3.0,
+          "formation": "3-4-3",
+          "xi_overlap": 10,
+          "player_mae": 1.407,
+          "player_rmse": 2.617,
+          "zero_minute_starters": 0,
+          "missing_feature_candidates": 0
+        },
+        "opponent_defense": {
+          "shared_ids": [
+            12,
+            48,
+            53,
+            75,
+            94,
+            136,
+            148,
+            212,
+            216,
+            404,
+            608
+          ],
+          "baseline_only": [],
+          "experimental_only": [],
+          "xi_actual_delta": 0,
+          "captain_actual_delta": 0.0,
+          "total_actual_delta": 0.0,
+          "predicted_points": 79.19,
+          "actual_points": 43.0,
+          "captain_id": 12,
+          "captain_actual": 3.0,
+          "formation": "3-4-3",
+          "xi_overlap": 11,
+          "player_mae": 1.411,
+          "player_rmse": 2.613,
+          "zero_minute_starters": 0,
+          "missing_feature_candidates": 0
+        },
+        "combined": {
+          "shared_ids": [
+            12,
+            48,
+            53,
+            75,
+            136,
+            148,
+            212,
+            216,
+            404,
+            608
+          ],
+          "baseline_only": [
+            {
+              "id": 94,
+              "name": "Claudio Winck Neto",
+              "predicted": 4.976,
+              "actual": 10.0
+            }
+          ],
+          "experimental_only": [
+            {
+              "id": 37,
+              "name": "Chibuike Godfrey Nwaiwu",
+              "predicted": 5.271,
+              "actual": 6.0
+            }
+          ],
+          "xi_actual_delta": -4.0,
+          "captain_actual_delta": 0.0,
+          "total_actual_delta": -4.0,
+          "predicted_points": 81.46,
+          "actual_points": 39.0,
+          "captain_id": 12,
+          "captain_actual": 3.0,
+          "formation": "3-4-3",
+          "xi_overlap": 10,
+          "player_mae": 1.411,
+          "player_rmse": 2.611,
+          "zero_minute_starters": 0,
+          "missing_feature_candidates": 0
+        }
+      }
+    },
+    "11": {
+      "cutoff_date": "2026-11-06",
+      "prior_matches": 90,
+      "variants": {
+        "baseline": {
+          "shared_ids": [
+            12,
+            22,
+            27,
+            48,
+            75,
+            94,
+            136,
+            148,
+            212,
+            404,
+            600
+          ],
+          "baseline_only": [],
+          "experimental_only": [],
+          "xi_actual_delta": 0,
+          "captain_actual_delta": 0.0,
+          "total_actual_delta": 0.0,
+          "predicted_points": 72.4,
+          "actual_points": 70.0,
+          "captain_id": 148,
+          "captain_actual": 5.0,
+          "formation": "3-4-3",
+          "xi_overlap": 11,
+          "player_mae": 1.217,
+          "player_rmse": 2.277,
+          "zero_minute_starters": 1,
+          "missing_feature_candidates": 0
+        },
+        "team_form": {
+          "shared_ids": [
+            12,
+            22,
+            27,
+            48,
+            75,
+            94,
+            136,
+            148,
+            212,
+            404,
+            600
+          ],
+          "baseline_only": [],
+          "experimental_only": [],
+          "xi_actual_delta": 0,
+          "captain_actual_delta": 0.0,
+          "total_actual_delta": 0.0,
+          "predicted_points": 76.45,
+          "actual_points": 70.0,
+          "captain_id": 148,
+          "captain_actual": 5.0,
+          "formation": "3-4-3",
+          "xi_overlap": 11,
+          "player_mae": 1.214,
+          "player_rmse": 2.268,
+          "zero_minute_starters": 1,
+          "missing_feature_candidates": 0
+        },
+        "opponent_defense": {
+          "shared_ids": [
+            12,
+            22,
+            27,
+            48,
+            75,
+            94,
+            136,
+            148,
+            212,
+            404,
+            600
+          ],
+          "baseline_only": [],
+          "experimental_only": [],
+          "xi_actual_delta": 0,
+          "captain_actual_delta": 5.0,
+          "total_actual_delta": 5.0,
+          "predicted_points": 74.72,
+          "actual_points": 75.0,
+          "captain_id": 12,
+          "captain_actual": 10.0,
+          "formation": "3-4-3",
+          "xi_overlap": 11,
+          "player_mae": 1.213,
+          "player_rmse": 2.264,
+          "zero_minute_starters": 1,
+          "missing_feature_candidates": 0
+        },
+        "combined": {
+          "shared_ids": [
+            12,
+            22,
+            27,
+            48,
+            75,
+            94,
+            136,
+            148,
+            212,
+            404,
+            600
+          ],
+          "baseline_only": [],
+          "experimental_only": [],
+          "xi_actual_delta": 0,
+          "captain_actual_delta": 5.0,
+          "total_actual_delta": 5.0,
+          "predicted_points": 79.44,
+          "actual_points": 75.0,
+          "captain_id": 12,
+          "captain_actual": 10.0,
+          "formation": "3-4-3",
+          "xi_overlap": 11,
+          "player_mae": 1.213,
+          "player_rmse": 2.257,
+          "zero_minute_starters": 1,
+          "missing_feature_candidates": 0
+        }
+      }
+    }
+  },
+  "robustness": {
+    "weekly_differences": [
+      -1.0,
+      11.0,
+      -9.0,
+      4.0,
+      -4.0,
+      5.0
+    ],
+    "total": 6.0,
+    "wins": 3,
+    "losses": 3,
+    "ties": 0,
+    "mean": 1.0,
+    "median": 1.5,
+    "sample_stddev": 7.127,
+    "xi_total": 1.0,
+    "captain_total": 5.0,
+    "leave_one_week_out": {
+      "6": 7.0,
+      "7": -5.0,
+      "8": 15.0,
+      "9": 2.0,
+      "10": 10.0,
+      "11": 1.0
+    },
+    "player_accounting_contributions": {
+      "148": 12.0,
+      "75": -11.0,
+      "212": -10.0,
+      "94": -10.0,
+      "136": 8.0,
+      "37": 6.0,
+      "427": 5.0,
+      "237": 2.0,
+      "132": -1.0,
+      "516": 0.0,
+      "120": 0.0
+    },
+    "leave_one_player_contribution_out": {
+      "516": 6.0,
+      "132": 7.0,
+      "136": -2.0,
+      "427": 1.0,
+      "120": 6.0,
+      "212": 16.0,
+      "237": 4.0,
+      "75": 17.0,
+      "148": -6.0,
+      "37": 0.0,
+      "94": 16.0
+    },
+    "mean_player_mae_delta": 0.0002,
+    "mean_player_rmse_delta": -0.01
+  },
+  "feature_availability": {
+    "verified_predeadline_external_rows": 0,
+    "retrospectively_observed_matches": 99,
+    "event_date_filtered": true,
+    "team_xg_goals_shots_sot": "retrospectively_obtained; prior match date but publication time unverified",
+    "opponent_and_venue": "fixture archive captured 2026-10-28; earlier-week prospective availability unverified",
+    "player_club_price_availability": "current/archive proxy; deadline-time historical status unverified"
+  },
+  "warnings": [
+    "CSV observed Nov 9; earlier publication times unknown",
+    "No verified historical club, availability or price snapshots",
+    "Experimental coefficients are fixed heuristics, not trained weights",
+    "No player-level external statistics in Football-Data CSV",
+    "Six weekly observations do not support significance claims",
+    "Player-removal accounting is not a reoptimized squad counterfactual"
+  ]
+}

@@ -1,0 +1,3080 @@
+{
+  "classification": "approximate_retrospective_simulation",
+  "scoring_rule": "XI official points plus captain points once; no autosub in project evaluator",
+  "source_artifacts": [
+    "docs\\phase32_gw11_walkforward.json",
+    "docs\\phase32b_gw11_price_sensitivity.json",
+    "docs\\phase28_official_histories.json"
+  ],
+  "limitations": [
+    "GW10 history first retrieved after deadline",
+    "Oct 31 player metadata may be stale at Nov 6 deadline",
+    "220 positive GW10 history costs differ from snapshot prices",
+    "Legacy availability policy can include DEPARTED",
+    "No automatic substitutions modeled"
+  ],
+  "models": {
+    "baseline_5w": {
+      "eligible_players": 317,
+      "excluded": {
+        "history": 0,
+        "fixture": 0,
+        "minutes": 248,
+        "availability": 7,
+        "price": 0
+      },
+      "starting_xi": [
+        {
+          "id": 22,
+          "name": "Andre Onana Onana",
+          "position": "GK",
+          "club_id": "1",
+          "predicted_xpts": 6.174,
+          "actual_points": 6,
+          "difference": 0.174,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "club_id": "3",
+          "predicted_xpts": 6.37,
+          "actual_points": 7,
+          "difference": -0.63,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "club_id": "2",
+          "predicted_xpts": 5.978,
+          "actual_points": 1,
+          "difference": 4.978,
+          "actual_minutes": 89,
+          "captain": false
+        },
+        {
+          "id": 27,
+          "name": "Stefan Savic",
+          "position": "DEF",
+          "club_id": "1",
+          "predicted_xpts": 5.592,
+          "actual_points": 6,
+          "difference": -0.408,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 12,
+          "name": "Mohamed Salah Hamed Mahrous Ghaly",
+          "position": "MID",
+          "club_id": "1",
+          "predicted_xpts": 7.148,
+          "actual_points": 10,
+          "difference": -2.852,
+          "actual_minutes": 89,
+          "captain": true
+        },
+        {
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "club_id": "4",
+          "predicted_xpts": 5.975,
+          "actual_points": 11,
+          "difference": -5.025,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "club_id": "5",
+          "predicted_xpts": 5.647,
+          "actual_points": 0,
+          "difference": 5.647,
+          "actual_minutes": 0,
+          "captain": false
+        },
+        {
+          "id": 136,
+          "name": "Diaa Sabi'a",
+          "position": "MID",
+          "club_id": "5",
+          "predicted_xpts": 5.358,
+          "actual_points": 10,
+          "difference": -4.642,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 148,
+          "name": "Gift Emmanuel Orban",
+          "position": "FWD",
+          "club_id": "5",
+          "predicted_xpts": 6.492,
+          "actual_points": 5,
+          "difference": 1.492,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 404,
+          "name": "Eldor Shomurodov",
+          "position": "FWD",
+          "club_id": "13",
+          "predicted_xpts": 5.789,
+          "actual_points": 2,
+          "difference": 3.789,
+          "actual_minutes": 86,
+          "captain": false
+        },
+        {
+          "id": 75,
+          "name": "Adrian Dawid Benedyczak",
+          "position": "FWD",
+          "club_id": "3",
+          "predicted_xpts": 5.615,
+          "actual_points": 7,
+          "difference": -1.385,
+          "actual_minutes": 86,
+          "captain": false
+        }
+      ],
+      "bench": [
+        {
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "club_id": "4",
+          "predicted_xpts": 4.986,
+          "actual_points": 9,
+          "difference": -4.014,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 53,
+          "name": "Amar Gerxhaliu",
+          "position": "DEF",
+          "club_id": "2",
+          "predicted_xpts": 4.929,
+          "actual_points": 1,
+          "difference": 3.929,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 217,
+          "name": "Chidozie Collins Awaziem",
+          "position": "DEF",
+          "club_id": "7",
+          "predicted_xpts": 4.061,
+          "actual_points": 2,
+          "difference": 2.061,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 346,
+          "name": "Franco Daryl Tongya Heubang",
+          "position": "MID",
+          "club_id": "11",
+          "predicted_xpts": 4.91,
+          "actual_points": 2,
+          "difference": 2.91,
+          "actual_minutes": 90,
+          "captain": false
+        }
+      ],
+      "captain_id": 12,
+      "captain": "Mohamed Salah Hamed Mahrous Ghaly",
+      "formation": "3-4-3",
+      "squad_cost": 82.0,
+      "predicted_points": 73.29,
+      "actual_xi_points": 65,
+      "captain_extra_points": 10,
+      "actual_points": 75,
+      "predicted_minus_actual": -1.71,
+      "optimization_objective": 72.8809,
+      "mae_selected_15": 2.929,
+      "rmse_selected_15": 3.415,
+      "spearman_selected_15": 0.259
+    },
+    "short_form_3w": {
+      "eligible_players": 317,
+      "excluded": {
+        "history": 0,
+        "fixture": 0,
+        "minutes": 248,
+        "availability": 7,
+        "price": 0
+      },
+      "starting_xi": [
+        {
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "club_id": "4",
+          "predicted_xpts": 5.3,
+          "actual_points": 9,
+          "difference": -3.7,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "club_id": "3",
+          "predicted_xpts": 6.748,
+          "actual_points": 7,
+          "difference": -0.252,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 27,
+          "name": "Stefan Savic",
+          "position": "DEF",
+          "club_id": "1",
+          "predicted_xpts": 5.923,
+          "actual_points": 6,
+          "difference": -0.077,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "club_id": "2",
+          "predicted_xpts": 5.289,
+          "actual_points": 1,
+          "difference": 4.289,
+          "actual_minutes": 89,
+          "captain": false
+        },
+        {
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "club_id": "1",
+          "predicted_xpts": 7.672,
+          "actual_points": 3,
+          "difference": 4.672,
+          "actual_minutes": 80,
+          "captain": true
+        },
+        {
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "club_id": "5",
+          "predicted_xpts": 6.052,
+          "actual_points": 0,
+          "difference": 6.052,
+          "actual_minutes": 0,
+          "captain": false
+        },
+        {
+          "id": 12,
+          "name": "Mohamed Salah Hamed Mahrous Ghaly",
+          "position": "MID",
+          "club_id": "1",
+          "predicted_xpts": 6.018,
+          "actual_points": 10,
+          "difference": -3.982,
+          "actual_minutes": 89,
+          "captain": false
+        },
+        {
+          "id": 346,
+          "name": "Franco Daryl Tongya Heubang",
+          "position": "MID",
+          "club_id": "11",
+          "predicted_xpts": 5.687,
+          "actual_points": 2,
+          "difference": 3.687,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "club_id": "4",
+          "predicted_xpts": 5.606,
+          "actual_points": 11,
+          "difference": -5.394,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 148,
+          "name": "Gift Emmanuel Orban",
+          "position": "FWD",
+          "club_id": "5",
+          "predicted_xpts": 6.623,
+          "actual_points": 5,
+          "difference": 1.623,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 507,
+          "name": "Victor James Osimhen",
+          "position": "FWD",
+          "club_id": "17",
+          "predicted_xpts": 5.802,
+          "actual_points": 0,
+          "difference": 5.802,
+          "actual_minutes": 0,
+          "captain": false
+        }
+      ],
+      "bench": [
+        {
+          "id": 195,
+          "name": "İrfan Can Eğribayat",
+          "position": "GK",
+          "club_id": "11",
+          "predicted_xpts": 4.654,
+          "actual_points": 3,
+          "difference": 1.654,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 217,
+          "name": "Chidozie Collins Awaziem",
+          "position": "DEF",
+          "club_id": "7",
+          "predicted_xpts": 5.149,
+          "actual_points": 2,
+          "difference": 3.149,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 84,
+          "name": "Adem Arous",
+          "position": "DEF",
+          "club_id": "3",
+          "predicted_xpts": 4.927,
+          "actual_points": 7,
+          "difference": -2.073,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 404,
+          "name": "Eldor Shomurodov",
+          "position": "FWD",
+          "club_id": "13",
+          "predicted_xpts": 5.453,
+          "actual_points": 2,
+          "difference": 3.453,
+          "actual_minutes": 86,
+          "captain": false
+        }
+      ],
+      "captain_id": 4,
+      "captain": "Ernest Muçi",
+      "formation": "3-5-2",
+      "squad_cost": 90.5,
+      "predicted_points": 74.39,
+      "actual_xi_points": 54,
+      "captain_extra_points": 3,
+      "actual_points": 57,
+      "predicted_minus_actual": 17.39,
+      "optimization_objective": 74.1378,
+      "mae_selected_15": 3.324,
+      "rmse_selected_15": 3.78,
+      "spearman_selected_15": 0.0485
+    },
+    "stable_8w": {
+      "eligible_players": 317,
+      "excluded": {
+        "history": 0,
+        "fixture": 0,
+        "minutes": 248,
+        "availability": 7,
+        "price": 0
+      },
+      "starting_xi": [
+        {
+          "id": 22,
+          "name": "Andre Onana Onana",
+          "position": "GK",
+          "club_id": "1",
+          "predicted_xpts": 5.912,
+          "actual_points": 6,
+          "difference": -0.088,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "club_id": "2",
+          "predicted_xpts": 5.635,
+          "actual_points": 1,
+          "difference": 4.635,
+          "actual_minutes": 89,
+          "captain": false
+        },
+        {
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "club_id": "3",
+          "predicted_xpts": 5.32,
+          "actual_points": 7,
+          "difference": -1.68,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 53,
+          "name": "Amar Gerxhaliu",
+          "position": "DEF",
+          "club_id": "2",
+          "predicted_xpts": 4.557,
+          "actual_points": 1,
+          "difference": 3.557,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 12,
+          "name": "Mohamed Salah Hamed Mahrous Ghaly",
+          "position": "MID",
+          "club_id": "1",
+          "predicted_xpts": 8.37,
+          "actual_points": 10,
+          "difference": -1.63,
+          "actual_minutes": 89,
+          "captain": true
+        },
+        {
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "club_id": "4",
+          "predicted_xpts": 5.667,
+          "actual_points": 11,
+          "difference": -5.333,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 136,
+          "name": "Diaa Sabi'a",
+          "position": "MID",
+          "club_id": "5",
+          "predicted_xpts": 5.252,
+          "actual_points": 10,
+          "difference": -4.748,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "club_id": "1",
+          "predicted_xpts": 4.68,
+          "actual_points": 3,
+          "difference": 1.68,
+          "actual_minutes": 80,
+          "captain": false
+        },
+        {
+          "id": 404,
+          "name": "Eldor Shomurodov",
+          "position": "FWD",
+          "club_id": "13",
+          "predicted_xpts": 6.225,
+          "actual_points": 2,
+          "difference": 4.225,
+          "actual_minutes": 86,
+          "captain": false
+        },
+        {
+          "id": 75,
+          "name": "Adrian Dawid Benedyczak",
+          "position": "FWD",
+          "club_id": "3",
+          "predicted_xpts": 6.055,
+          "actual_points": 7,
+          "difference": -0.945,
+          "actual_minutes": 86,
+          "captain": false
+        },
+        {
+          "id": 148,
+          "name": "Gift Emmanuel Orban",
+          "position": "FWD",
+          "club_id": "5",
+          "predicted_xpts": 5.795,
+          "actual_points": 5,
+          "difference": 0.795,
+          "actual_minutes": 90,
+          "captain": false
+        }
+      ],
+      "bench": [
+        {
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "club_id": "4",
+          "predicted_xpts": 4.953,
+          "actual_points": 9,
+          "difference": -4.047,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 172,
+          "name": "Milan Skriniar",
+          "position": "DEF",
+          "club_id": "6",
+          "predicted_xpts": 4.301,
+          "actual_points": 6,
+          "difference": -1.699,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 120,
+          "name": "Anfernee Jamal Dijksteel",
+          "position": "DEF",
+          "club_id": "4",
+          "predicted_xpts": 3.955,
+          "actual_points": 6,
+          "difference": -2.045,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "club_id": "5",
+          "predicted_xpts": 4.315,
+          "actual_points": 0,
+          "difference": 4.315,
+          "actual_minutes": 0,
+          "captain": false
+        }
+      ],
+      "captain_id": 12,
+      "captain": "Mohamed Salah Hamed Mahrous Ghaly",
+      "formation": "3-4-3",
+      "squad_cost": 86.0,
+      "predicted_points": 71.84,
+      "actual_xi_points": 63,
+      "captain_extra_points": 10,
+      "actual_points": 73,
+      "predicted_minus_actual": -1.16,
+      "optimization_objective": 71.3182,
+      "mae_selected_15": 2.761,
+      "rmse_selected_15": 3.213,
+      "spearman_selected_15": 0.2947
+    },
+    "uniform_xg": {
+      "eligible_players": 317,
+      "excluded": {
+        "history": 0,
+        "fixture": 0,
+        "minutes": 248,
+        "availability": 7,
+        "price": 0
+      },
+      "starting_xi": [
+        {
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "club_id": "4",
+          "predicted_xpts": 5.555,
+          "actual_points": 9,
+          "difference": -3.445,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "club_id": "3",
+          "predicted_xpts": 6.584,
+          "actual_points": 7,
+          "difference": -0.416,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 27,
+          "name": "Stefan Savic",
+          "position": "DEF",
+          "club_id": "1",
+          "predicted_xpts": 6.511,
+          "actual_points": 6,
+          "difference": 0.511,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 217,
+          "name": "Chidozie Collins Awaziem",
+          "position": "DEF",
+          "club_id": "7",
+          "predicted_xpts": 5.136,
+          "actual_points": 2,
+          "difference": 3.136,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "club_id": "1",
+          "predicted_xpts": 8.434,
+          "actual_points": 3,
+          "difference": 5.434,
+          "actual_minutes": 80,
+          "captain": true
+        },
+        {
+          "id": 12,
+          "name": "Mohamed Salah Hamed Mahrous Ghaly",
+          "position": "MID",
+          "club_id": "1",
+          "predicted_xpts": 6.616,
+          "actual_points": 10,
+          "difference": -3.384,
+          "actual_minutes": 89,
+          "captain": false
+        },
+        {
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "club_id": "5",
+          "predicted_xpts": 6.093,
+          "actual_points": 0,
+          "difference": 6.093,
+          "actual_minutes": 0,
+          "captain": false
+        },
+        {
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "club_id": "4",
+          "predicted_xpts": 5.876,
+          "actual_points": 11,
+          "difference": -5.124,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 148,
+          "name": "Gift Emmanuel Orban",
+          "position": "FWD",
+          "club_id": "5",
+          "predicted_xpts": 6.667,
+          "actual_points": 5,
+          "difference": 1.667,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 507,
+          "name": "Victor James Osimhen",
+          "position": "FWD",
+          "club_id": "17",
+          "predicted_xpts": 6.041,
+          "actual_points": 0,
+          "difference": 6.041,
+          "actual_minutes": 0,
+          "captain": false
+        },
+        {
+          "id": 404,
+          "name": "Eldor Shomurodov",
+          "position": "FWD",
+          "club_id": "13",
+          "predicted_xpts": 5.615,
+          "actual_points": 2,
+          "difference": 3.615,
+          "actual_minutes": 86,
+          "captain": false
+        }
+      ],
+      "bench": [
+        {
+          "id": 280,
+          "name": "Alexander Nübel",
+          "position": "GK",
+          "club_id": "9",
+          "predicted_xpts": 4.587,
+          "actual_points": 7,
+          "difference": -2.413,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 277,
+          "name": "Michael Amir Murillo Bermudez",
+          "position": "DEF",
+          "club_id": "9",
+          "predicted_xpts": 4.9,
+          "actual_points": 5,
+          "difference": -0.1,
+          "actual_minutes": 70,
+          "captain": false
+        },
+        {
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "club_id": "2",
+          "predicted_xpts": 4.837,
+          "actual_points": 1,
+          "difference": 3.837,
+          "actual_minutes": 89,
+          "captain": false
+        },
+        {
+          "id": 273,
+          "name": "Leandro Trossard",
+          "position": "MID",
+          "club_id": "9",
+          "predicted_xpts": 5.104,
+          "actual_points": 15,
+          "difference": -9.896,
+          "actual_minutes": 90,
+          "captain": false
+        }
+      ],
+      "captain_id": 4,
+      "captain": "Ernest Muçi",
+      "formation": "3-4-3",
+      "squad_cost": 96.0,
+      "predicted_points": 77.56,
+      "actual_xi_points": 55,
+      "captain_extra_points": 3,
+      "actual_points": 58,
+      "predicted_minus_actual": 19.56,
+      "optimization_objective": 77.2543,
+      "mae_selected_15": 3.674,
+      "rmse_selected_15": 4.452,
+      "spearman_selected_15": -0.0197
+    },
+    "position_aware_xg": {
+      "eligible_players": 317,
+      "excluded": {
+        "history": 0,
+        "fixture": 0,
+        "minutes": 248,
+        "availability": 7,
+        "price": 0
+      },
+      "starting_xi": [
+        {
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "club_id": "4",
+          "predicted_xpts": 6.095,
+          "actual_points": 9,
+          "difference": -2.905,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "club_id": "3",
+          "predicted_xpts": 7.285,
+          "actual_points": 7,
+          "difference": 0.285,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 27,
+          "name": "Stefan Savic",
+          "position": "DEF",
+          "club_id": "1",
+          "predicted_xpts": 6.078,
+          "actual_points": 6,
+          "difference": 0.078,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 217,
+          "name": "Chidozie Collins Awaziem",
+          "position": "DEF",
+          "club_id": "7",
+          "predicted_xpts": 5.528,
+          "actual_points": 2,
+          "difference": 3.528,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "club_id": "2",
+          "predicted_xpts": 5.427,
+          "actual_points": 1,
+          "difference": 4.427,
+          "actual_minutes": 89,
+          "captain": false
+        },
+        {
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "club_id": "1",
+          "predicted_xpts": 8.365,
+          "actual_points": 3,
+          "difference": 5.365,
+          "actual_minutes": 80,
+          "captain": true
+        },
+        {
+          "id": 12,
+          "name": "Mohamed Salah Hamed Mahrous Ghaly",
+          "position": "MID",
+          "club_id": "1",
+          "predicted_xpts": 6.561,
+          "actual_points": 10,
+          "difference": -3.439,
+          "actual_minutes": 89,
+          "captain": false
+        },
+        {
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "club_id": "5",
+          "predicted_xpts": 5.935,
+          "actual_points": 0,
+          "difference": 5.935,
+          "actual_minutes": 0,
+          "captain": false
+        },
+        {
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "club_id": "4",
+          "predicted_xpts": 5.926,
+          "actual_points": 11,
+          "difference": -5.074,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 148,
+          "name": "Gift Emmanuel Orban",
+          "position": "FWD",
+          "club_id": "5",
+          "predicted_xpts": 6.482,
+          "actual_points": 5,
+          "difference": 1.482,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 507,
+          "name": "Victor James Osimhen",
+          "position": "FWD",
+          "club_id": "17",
+          "predicted_xpts": 6.055,
+          "actual_points": 0,
+          "difference": 6.055,
+          "actual_minutes": 0,
+          "captain": false
+        }
+      ],
+      "bench": [
+        {
+          "id": 280,
+          "name": "Alexander Nübel",
+          "position": "GK",
+          "club_id": "9",
+          "predicted_xpts": 4.543,
+          "actual_points": 7,
+          "difference": -2.457,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 84,
+          "name": "Adem Arous",
+          "position": "DEF",
+          "club_id": "3",
+          "predicted_xpts": 5.319,
+          "actual_points": 7,
+          "difference": -1.681,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 346,
+          "name": "Franco Daryl Tongya Heubang",
+          "position": "MID",
+          "club_id": "11",
+          "predicted_xpts": 5.339,
+          "actual_points": 2,
+          "difference": 3.339,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 404,
+          "name": "Eldor Shomurodov",
+          "position": "FWD",
+          "club_id": "13",
+          "predicted_xpts": 5.42,
+          "actual_points": 2,
+          "difference": 3.42,
+          "actual_minutes": 86,
+          "captain": false
+        }
+      ],
+      "captain_id": 4,
+      "captain": "Ernest Muçi",
+      "formation": "4-4-2",
+      "squad_cost": 91.0,
+      "predicted_points": 78.1,
+      "actual_xi_points": 54,
+      "captain_extra_points": 3,
+      "actual_points": 57,
+      "predicted_minus_actual": 21.1,
+      "optimization_objective": 77.8102,
+      "mae_selected_15": 3.298,
+      "rmse_selected_15": 3.766,
+      "spearman_selected_15": 0.1926
+    },
+    "rest_days_control": {
+      "eligible_players": 317,
+      "excluded": {
+        "history": 0,
+        "fixture": 0,
+        "minutes": 248,
+        "availability": 7,
+        "price": 0
+      },
+      "starting_xi": [
+        {
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "club_id": "4",
+          "predicted_xpts": 5.3,
+          "actual_points": 9,
+          "difference": -3.7,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "club_id": "3",
+          "predicted_xpts": 6.748,
+          "actual_points": 7,
+          "difference": -0.252,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 27,
+          "name": "Stefan Savic",
+          "position": "DEF",
+          "club_id": "1",
+          "predicted_xpts": 5.923,
+          "actual_points": 6,
+          "difference": -0.077,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "club_id": "2",
+          "predicted_xpts": 5.289,
+          "actual_points": 1,
+          "difference": 4.289,
+          "actual_minutes": 89,
+          "captain": false
+        },
+        {
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "club_id": "1",
+          "predicted_xpts": 7.672,
+          "actual_points": 3,
+          "difference": 4.672,
+          "actual_minutes": 80,
+          "captain": true
+        },
+        {
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "club_id": "5",
+          "predicted_xpts": 6.052,
+          "actual_points": 0,
+          "difference": 6.052,
+          "actual_minutes": 0,
+          "captain": false
+        },
+        {
+          "id": 12,
+          "name": "Mohamed Salah Hamed Mahrous Ghaly",
+          "position": "MID",
+          "club_id": "1",
+          "predicted_xpts": 6.018,
+          "actual_points": 10,
+          "difference": -3.982,
+          "actual_minutes": 89,
+          "captain": false
+        },
+        {
+          "id": 346,
+          "name": "Franco Daryl Tongya Heubang",
+          "position": "MID",
+          "club_id": "11",
+          "predicted_xpts": 5.687,
+          "actual_points": 2,
+          "difference": 3.687,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "club_id": "4",
+          "predicted_xpts": 5.606,
+          "actual_points": 11,
+          "difference": -5.394,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 148,
+          "name": "Gift Emmanuel Orban",
+          "position": "FWD",
+          "club_id": "5",
+          "predicted_xpts": 6.623,
+          "actual_points": 5,
+          "difference": 1.623,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 507,
+          "name": "Victor James Osimhen",
+          "position": "FWD",
+          "club_id": "17",
+          "predicted_xpts": 5.802,
+          "actual_points": 0,
+          "difference": 5.802,
+          "actual_minutes": 0,
+          "captain": false
+        }
+      ],
+      "bench": [
+        {
+          "id": 195,
+          "name": "İrfan Can Eğribayat",
+          "position": "GK",
+          "club_id": "11",
+          "predicted_xpts": 4.654,
+          "actual_points": 3,
+          "difference": 1.654,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 217,
+          "name": "Chidozie Collins Awaziem",
+          "position": "DEF",
+          "club_id": "7",
+          "predicted_xpts": 5.149,
+          "actual_points": 2,
+          "difference": 3.149,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 84,
+          "name": "Adem Arous",
+          "position": "DEF",
+          "club_id": "3",
+          "predicted_xpts": 4.927,
+          "actual_points": 7,
+          "difference": -2.073,
+          "actual_minutes": 90,
+          "captain": false
+        },
+        {
+          "id": 404,
+          "name": "Eldor Shomurodov",
+          "position": "FWD",
+          "club_id": "13",
+          "predicted_xpts": 5.453,
+          "actual_points": 2,
+          "difference": 3.453,
+          "actual_minutes": 86,
+          "captain": false
+        }
+      ],
+      "captain_id": 4,
+      "captain": "Ernest Muçi",
+      "formation": "3-5-2",
+      "squad_cost": 90.5,
+      "predicted_points": 74.39,
+      "actual_xi_points": 54,
+      "captain_extra_points": 3,
+      "actual_points": 57,
+      "predicted_minus_actual": 17.39,
+      "optimization_objective": 74.1378,
+      "mae_selected_15": 3.324,
+      "rmse_selected_15": 3.78,
+      "spearman_selected_15": 0.0485
+    }
+  },
+  "pairwise": {
+    "baseline_5w__vs__short_form_3w": {
+      "shared": [
+        {
+          "id": 12,
+          "name": "Mohamed Salah Hamed Mahrous Ghaly",
+          "position": "MID",
+          "predicted": 7.148,
+          "actual": 10
+        },
+        {
+          "id": 27,
+          "name": "Stefan Savic",
+          "position": "DEF",
+          "predicted": 5.592,
+          "actual": 6
+        },
+        {
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "predicted": 5.978,
+          "actual": 1
+        },
+        {
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "predicted": 6.37,
+          "actual": 7
+        },
+        {
+          "id": 148,
+          "name": "Gift Emmanuel Orban",
+          "position": "FWD",
+          "predicted": 6.492,
+          "actual": 5
+        },
+        {
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "predicted": 5.975,
+          "actual": 11
+        },
+        {
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "predicted": 5.647,
+          "actual": 0
+        }
+      ],
+      "a_only": [
+        {
+          "id": 22,
+          "name": "Andre Onana Onana",
+          "position": "GK",
+          "predicted": 6.174,
+          "actual": 6
+        },
+        {
+          "id": 75,
+          "name": "Adrian Dawid Benedyczak",
+          "position": "FWD",
+          "predicted": 5.615,
+          "actual": 7
+        },
+        {
+          "id": 136,
+          "name": "Diaa Sabi'a",
+          "position": "MID",
+          "predicted": 5.358,
+          "actual": 10
+        },
+        {
+          "id": 404,
+          "name": "Eldor Shomurodov",
+          "position": "FWD",
+          "predicted": 5.789,
+          "actual": 2
+        }
+      ],
+      "b_only": [
+        {
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "predicted": 7.672,
+          "actual": 3
+        },
+        {
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "predicted": 5.3,
+          "actual": 9
+        },
+        {
+          "id": 346,
+          "name": "Franco Daryl Tongya Heubang",
+          "position": "MID",
+          "predicted": 5.687,
+          "actual": 2
+        },
+        {
+          "id": 507,
+          "name": "Victor James Osimhen",
+          "position": "FWD",
+          "predicted": 5.802,
+          "actual": 0
+        }
+      ],
+      "a_only_actual": 25,
+      "b_only_actual": 14,
+      "xi_delta": 11,
+      "captain_delta": 7,
+      "substitution_delta": 0,
+      "total_delta": 18
+    },
+    "baseline_5w__vs__stable_8w": {
+      "shared": [
+        {
+          "id": 12,
+          "name": "Mohamed Salah Hamed Mahrous Ghaly",
+          "position": "MID",
+          "predicted": 7.148,
+          "actual": 10
+        },
+        {
+          "id": 22,
+          "name": "Andre Onana Onana",
+          "position": "GK",
+          "predicted": 6.174,
+          "actual": 6
+        },
+        {
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "predicted": 5.978,
+          "actual": 1
+        },
+        {
+          "id": 75,
+          "name": "Adrian Dawid Benedyczak",
+          "position": "FWD",
+          "predicted": 5.615,
+          "actual": 7
+        },
+        {
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "predicted": 6.37,
+          "actual": 7
+        },
+        {
+          "id": 136,
+          "name": "Diaa Sabi'a",
+          "position": "MID",
+          "predicted": 5.358,
+          "actual": 10
+        },
+        {
+          "id": 148,
+          "name": "Gift Emmanuel Orban",
+          "position": "FWD",
+          "predicted": 6.492,
+          "actual": 5
+        },
+        {
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "predicted": 5.975,
+          "actual": 11
+        },
+        {
+          "id": 404,
+          "name": "Eldor Shomurodov",
+          "position": "FWD",
+          "predicted": 5.789,
+          "actual": 2
+        }
+      ],
+      "a_only": [
+        {
+          "id": 27,
+          "name": "Stefan Savic",
+          "position": "DEF",
+          "predicted": 5.592,
+          "actual": 6
+        },
+        {
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "predicted": 5.647,
+          "actual": 0
+        }
+      ],
+      "b_only": [
+        {
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "predicted": 4.68,
+          "actual": 3
+        },
+        {
+          "id": 53,
+          "name": "Amar Gerxhaliu",
+          "position": "DEF",
+          "predicted": 4.557,
+          "actual": 1
+        }
+      ],
+      "a_only_actual": 6,
+      "b_only_actual": 4,
+      "xi_delta": 2,
+      "captain_delta": 0,
+      "substitution_delta": 0,
+      "total_delta": 2
+    },
+    "baseline_5w__vs__uniform_xg": {
+      "shared": [
+        {
+          "id": 12,
+          "name": "Mohamed Salah Hamed Mahrous Ghaly",
+          "position": "MID",
+          "predicted": 7.148,
+          "actual": 10
+        },
+        {
+          "id": 27,
+          "name": "Stefan Savic",
+          "position": "DEF",
+          "predicted": 5.592,
+          "actual": 6
+        },
+        {
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "predicted": 6.37,
+          "actual": 7
+        },
+        {
+          "id": 148,
+          "name": "Gift Emmanuel Orban",
+          "position": "FWD",
+          "predicted": 6.492,
+          "actual": 5
+        },
+        {
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "predicted": 5.975,
+          "actual": 11
+        },
+        {
+          "id": 404,
+          "name": "Eldor Shomurodov",
+          "position": "FWD",
+          "predicted": 5.789,
+          "actual": 2
+        },
+        {
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "predicted": 5.647,
+          "actual": 0
+        }
+      ],
+      "a_only": [
+        {
+          "id": 22,
+          "name": "Andre Onana Onana",
+          "position": "GK",
+          "predicted": 6.174,
+          "actual": 6
+        },
+        {
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "predicted": 5.978,
+          "actual": 1
+        },
+        {
+          "id": 75,
+          "name": "Adrian Dawid Benedyczak",
+          "position": "FWD",
+          "predicted": 5.615,
+          "actual": 7
+        },
+        {
+          "id": 136,
+          "name": "Diaa Sabi'a",
+          "position": "MID",
+          "predicted": 5.358,
+          "actual": 10
+        }
+      ],
+      "b_only": [
+        {
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "predicted": 8.434,
+          "actual": 3
+        },
+        {
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "predicted": 5.555,
+          "actual": 9
+        },
+        {
+          "id": 217,
+          "name": "Chidozie Collins Awaziem",
+          "position": "DEF",
+          "predicted": 5.136,
+          "actual": 2
+        },
+        {
+          "id": 507,
+          "name": "Victor James Osimhen",
+          "position": "FWD",
+          "predicted": 6.041,
+          "actual": 0
+        }
+      ],
+      "a_only_actual": 24,
+      "b_only_actual": 14,
+      "xi_delta": 10,
+      "captain_delta": 7,
+      "substitution_delta": 0,
+      "total_delta": 17
+    },
+    "baseline_5w__vs__position_aware_xg": {
+      "shared": [
+        {
+          "id": 12,
+          "name": "Mohamed Salah Hamed Mahrous Ghaly",
+          "position": "MID",
+          "predicted": 7.148,
+          "actual": 10
+        },
+        {
+          "id": 27,
+          "name": "Stefan Savic",
+          "position": "DEF",
+          "predicted": 5.592,
+          "actual": 6
+        },
+        {
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "predicted": 5.978,
+          "actual": 1
+        },
+        {
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "predicted": 6.37,
+          "actual": 7
+        },
+        {
+          "id": 148,
+          "name": "Gift Emmanuel Orban",
+          "position": "FWD",
+          "predicted": 6.492,
+          "actual": 5
+        },
+        {
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "predicted": 5.975,
+          "actual": 11
+        },
+        {
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "predicted": 5.647,
+          "actual": 0
+        }
+      ],
+      "a_only": [
+        {
+          "id": 22,
+          "name": "Andre Onana Onana",
+          "position": "GK",
+          "predicted": 6.174,
+          "actual": 6
+        },
+        {
+          "id": 75,
+          "name": "Adrian Dawid Benedyczak",
+          "position": "FWD",
+          "predicted": 5.615,
+          "actual": 7
+        },
+        {
+          "id": 136,
+          "name": "Diaa Sabi'a",
+          "position": "MID",
+          "predicted": 5.358,
+          "actual": 10
+        },
+        {
+          "id": 404,
+          "name": "Eldor Shomurodov",
+          "position": "FWD",
+          "predicted": 5.789,
+          "actual": 2
+        }
+      ],
+      "b_only": [
+        {
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "predicted": 8.365,
+          "actual": 3
+        },
+        {
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "predicted": 6.095,
+          "actual": 9
+        },
+        {
+          "id": 217,
+          "name": "Chidozie Collins Awaziem",
+          "position": "DEF",
+          "predicted": 5.528,
+          "actual": 2
+        },
+        {
+          "id": 507,
+          "name": "Victor James Osimhen",
+          "position": "FWD",
+          "predicted": 6.055,
+          "actual": 0
+        }
+      ],
+      "a_only_actual": 25,
+      "b_only_actual": 14,
+      "xi_delta": 11,
+      "captain_delta": 7,
+      "substitution_delta": 0,
+      "total_delta": 18
+    },
+    "baseline_5w__vs__rest_days_control": {
+      "shared": [
+        {
+          "id": 12,
+          "name": "Mohamed Salah Hamed Mahrous Ghaly",
+          "position": "MID",
+          "predicted": 7.148,
+          "actual": 10
+        },
+        {
+          "id": 27,
+          "name": "Stefan Savic",
+          "position": "DEF",
+          "predicted": 5.592,
+          "actual": 6
+        },
+        {
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "predicted": 5.978,
+          "actual": 1
+        },
+        {
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "predicted": 6.37,
+          "actual": 7
+        },
+        {
+          "id": 148,
+          "name": "Gift Emmanuel Orban",
+          "position": "FWD",
+          "predicted": 6.492,
+          "actual": 5
+        },
+        {
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "predicted": 5.975,
+          "actual": 11
+        },
+        {
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "predicted": 5.647,
+          "actual": 0
+        }
+      ],
+      "a_only": [
+        {
+          "id": 22,
+          "name": "Andre Onana Onana",
+          "position": "GK",
+          "predicted": 6.174,
+          "actual": 6
+        },
+        {
+          "id": 75,
+          "name": "Adrian Dawid Benedyczak",
+          "position": "FWD",
+          "predicted": 5.615,
+          "actual": 7
+        },
+        {
+          "id": 136,
+          "name": "Diaa Sabi'a",
+          "position": "MID",
+          "predicted": 5.358,
+          "actual": 10
+        },
+        {
+          "id": 404,
+          "name": "Eldor Shomurodov",
+          "position": "FWD",
+          "predicted": 5.789,
+          "actual": 2
+        }
+      ],
+      "b_only": [
+        {
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "predicted": 7.672,
+          "actual": 3
+        },
+        {
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "predicted": 5.3,
+          "actual": 9
+        },
+        {
+          "id": 346,
+          "name": "Franco Daryl Tongya Heubang",
+          "position": "MID",
+          "predicted": 5.687,
+          "actual": 2
+        },
+        {
+          "id": 507,
+          "name": "Victor James Osimhen",
+          "position": "FWD",
+          "predicted": 5.802,
+          "actual": 0
+        }
+      ],
+      "a_only_actual": 25,
+      "b_only_actual": 14,
+      "xi_delta": 11,
+      "captain_delta": 7,
+      "substitution_delta": 0,
+      "total_delta": 18
+    },
+    "short_form_3w__vs__stable_8w": {
+      "shared": [
+        {
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "predicted": 7.672,
+          "actual": 3
+        },
+        {
+          "id": 12,
+          "name": "Mohamed Salah Hamed Mahrous Ghaly",
+          "position": "MID",
+          "predicted": 6.018,
+          "actual": 10
+        },
+        {
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "predicted": 5.289,
+          "actual": 1
+        },
+        {
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "predicted": 6.748,
+          "actual": 7
+        },
+        {
+          "id": 148,
+          "name": "Gift Emmanuel Orban",
+          "position": "FWD",
+          "predicted": 6.623,
+          "actual": 5
+        },
+        {
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "predicted": 5.606,
+          "actual": 11
+        }
+      ],
+      "a_only": [
+        {
+          "id": 27,
+          "name": "Stefan Savic",
+          "position": "DEF",
+          "predicted": 5.923,
+          "actual": 6
+        },
+        {
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "predicted": 5.3,
+          "actual": 9
+        },
+        {
+          "id": 346,
+          "name": "Franco Daryl Tongya Heubang",
+          "position": "MID",
+          "predicted": 5.687,
+          "actual": 2
+        },
+        {
+          "id": 507,
+          "name": "Victor James Osimhen",
+          "position": "FWD",
+          "predicted": 5.802,
+          "actual": 0
+        },
+        {
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "predicted": 6.052,
+          "actual": 0
+        }
+      ],
+      "b_only": [
+        {
+          "id": 22,
+          "name": "Andre Onana Onana",
+          "position": "GK",
+          "predicted": 5.912,
+          "actual": 6
+        },
+        {
+          "id": 53,
+          "name": "Amar Gerxhaliu",
+          "position": "DEF",
+          "predicted": 4.557,
+          "actual": 1
+        },
+        {
+          "id": 75,
+          "name": "Adrian Dawid Benedyczak",
+          "position": "FWD",
+          "predicted": 6.055,
+          "actual": 7
+        },
+        {
+          "id": 136,
+          "name": "Diaa Sabi'a",
+          "position": "MID",
+          "predicted": 5.252,
+          "actual": 10
+        },
+        {
+          "id": 404,
+          "name": "Eldor Shomurodov",
+          "position": "FWD",
+          "predicted": 6.225,
+          "actual": 2
+        }
+      ],
+      "a_only_actual": 17,
+      "b_only_actual": 26,
+      "xi_delta": -9,
+      "captain_delta": -7,
+      "substitution_delta": 0,
+      "total_delta": -16
+    },
+    "short_form_3w__vs__uniform_xg": {
+      "shared": [
+        {
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "predicted": 7.672,
+          "actual": 3
+        },
+        {
+          "id": 12,
+          "name": "Mohamed Salah Hamed Mahrous Ghaly",
+          "position": "MID",
+          "predicted": 6.018,
+          "actual": 10
+        },
+        {
+          "id": 27,
+          "name": "Stefan Savic",
+          "position": "DEF",
+          "predicted": 5.923,
+          "actual": 6
+        },
+        {
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "predicted": 6.748,
+          "actual": 7
+        },
+        {
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "predicted": 5.3,
+          "actual": 9
+        },
+        {
+          "id": 148,
+          "name": "Gift Emmanuel Orban",
+          "position": "FWD",
+          "predicted": 6.623,
+          "actual": 5
+        },
+        {
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "predicted": 5.606,
+          "actual": 11
+        },
+        {
+          "id": 507,
+          "name": "Victor James Osimhen",
+          "position": "FWD",
+          "predicted": 5.802,
+          "actual": 0
+        },
+        {
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "predicted": 6.052,
+          "actual": 0
+        }
+      ],
+      "a_only": [
+        {
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "predicted": 5.289,
+          "actual": 1
+        },
+        {
+          "id": 346,
+          "name": "Franco Daryl Tongya Heubang",
+          "position": "MID",
+          "predicted": 5.687,
+          "actual": 2
+        }
+      ],
+      "b_only": [
+        {
+          "id": 217,
+          "name": "Chidozie Collins Awaziem",
+          "position": "DEF",
+          "predicted": 5.136,
+          "actual": 2
+        },
+        {
+          "id": 404,
+          "name": "Eldor Shomurodov",
+          "position": "FWD",
+          "predicted": 5.615,
+          "actual": 2
+        }
+      ],
+      "a_only_actual": 3,
+      "b_only_actual": 4,
+      "xi_delta": -1,
+      "captain_delta": 0,
+      "substitution_delta": 0,
+      "total_delta": -1
+    },
+    "short_form_3w__vs__position_aware_xg": {
+      "shared": [
+        {
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "predicted": 7.672,
+          "actual": 3
+        },
+        {
+          "id": 12,
+          "name": "Mohamed Salah Hamed Mahrous Ghaly",
+          "position": "MID",
+          "predicted": 6.018,
+          "actual": 10
+        },
+        {
+          "id": 27,
+          "name": "Stefan Savic",
+          "position": "DEF",
+          "predicted": 5.923,
+          "actual": 6
+        },
+        {
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "predicted": 5.289,
+          "actual": 1
+        },
+        {
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "predicted": 6.748,
+          "actual": 7
+        },
+        {
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "predicted": 5.3,
+          "actual": 9
+        },
+        {
+          "id": 148,
+          "name": "Gift Emmanuel Orban",
+          "position": "FWD",
+          "predicted": 6.623,
+          "actual": 5
+        },
+        {
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "predicted": 5.606,
+          "actual": 11
+        },
+        {
+          "id": 507,
+          "name": "Victor James Osimhen",
+          "position": "FWD",
+          "predicted": 5.802,
+          "actual": 0
+        },
+        {
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "predicted": 6.052,
+          "actual": 0
+        }
+      ],
+      "a_only": [
+        {
+          "id": 346,
+          "name": "Franco Daryl Tongya Heubang",
+          "position": "MID",
+          "predicted": 5.687,
+          "actual": 2
+        }
+      ],
+      "b_only": [
+        {
+          "id": 217,
+          "name": "Chidozie Collins Awaziem",
+          "position": "DEF",
+          "predicted": 5.528,
+          "actual": 2
+        }
+      ],
+      "a_only_actual": 2,
+      "b_only_actual": 2,
+      "xi_delta": 0,
+      "captain_delta": 0,
+      "substitution_delta": 0,
+      "total_delta": 0
+    },
+    "short_form_3w__vs__rest_days_control": {
+      "shared": [
+        {
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "predicted": 7.672,
+          "actual": 3
+        },
+        {
+          "id": 12,
+          "name": "Mohamed Salah Hamed Mahrous Ghaly",
+          "position": "MID",
+          "predicted": 6.018,
+          "actual": 10
+        },
+        {
+          "id": 27,
+          "name": "Stefan Savic",
+          "position": "DEF",
+          "predicted": 5.923,
+          "actual": 6
+        },
+        {
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "predicted": 5.289,
+          "actual": 1
+        },
+        {
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "predicted": 6.748,
+          "actual": 7
+        },
+        {
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "predicted": 5.3,
+          "actual": 9
+        },
+        {
+          "id": 148,
+          "name": "Gift Emmanuel Orban",
+          "position": "FWD",
+          "predicted": 6.623,
+          "actual": 5
+        },
+        {
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "predicted": 5.606,
+          "actual": 11
+        },
+        {
+          "id": 346,
+          "name": "Franco Daryl Tongya Heubang",
+          "position": "MID",
+          "predicted": 5.687,
+          "actual": 2
+        },
+        {
+          "id": 507,
+          "name": "Victor James Osimhen",
+          "position": "FWD",
+          "predicted": 5.802,
+          "actual": 0
+        },
+        {
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "predicted": 6.052,
+          "actual": 0
+        }
+      ],
+      "a_only": [],
+      "b_only": [],
+      "a_only_actual": 0,
+      "b_only_actual": 0,
+      "xi_delta": 0,
+      "captain_delta": 0,
+      "substitution_delta": 0,
+      "total_delta": 0
+    },
+    "stable_8w__vs__uniform_xg": {
+      "shared": [
+        {
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "predicted": 4.68,
+          "actual": 3
+        },
+        {
+          "id": 12,
+          "name": "Mohamed Salah Hamed Mahrous Ghaly",
+          "position": "MID",
+          "predicted": 8.37,
+          "actual": 10
+        },
+        {
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "predicted": 5.32,
+          "actual": 7
+        },
+        {
+          "id": 148,
+          "name": "Gift Emmanuel Orban",
+          "position": "FWD",
+          "predicted": 5.795,
+          "actual": 5
+        },
+        {
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "predicted": 5.667,
+          "actual": 11
+        },
+        {
+          "id": 404,
+          "name": "Eldor Shomurodov",
+          "position": "FWD",
+          "predicted": 6.225,
+          "actual": 2
+        }
+      ],
+      "a_only": [
+        {
+          "id": 22,
+          "name": "Andre Onana Onana",
+          "position": "GK",
+          "predicted": 5.912,
+          "actual": 6
+        },
+        {
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "predicted": 5.635,
+          "actual": 1
+        },
+        {
+          "id": 53,
+          "name": "Amar Gerxhaliu",
+          "position": "DEF",
+          "predicted": 4.557,
+          "actual": 1
+        },
+        {
+          "id": 75,
+          "name": "Adrian Dawid Benedyczak",
+          "position": "FWD",
+          "predicted": 6.055,
+          "actual": 7
+        },
+        {
+          "id": 136,
+          "name": "Diaa Sabi'a",
+          "position": "MID",
+          "predicted": 5.252,
+          "actual": 10
+        }
+      ],
+      "b_only": [
+        {
+          "id": 27,
+          "name": "Stefan Savic",
+          "position": "DEF",
+          "predicted": 6.511,
+          "actual": 6
+        },
+        {
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "predicted": 5.555,
+          "actual": 9
+        },
+        {
+          "id": 217,
+          "name": "Chidozie Collins Awaziem",
+          "position": "DEF",
+          "predicted": 5.136,
+          "actual": 2
+        },
+        {
+          "id": 507,
+          "name": "Victor James Osimhen",
+          "position": "FWD",
+          "predicted": 6.041,
+          "actual": 0
+        },
+        {
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "predicted": 6.093,
+          "actual": 0
+        }
+      ],
+      "a_only_actual": 25,
+      "b_only_actual": 17,
+      "xi_delta": 8,
+      "captain_delta": 7,
+      "substitution_delta": 0,
+      "total_delta": 15
+    },
+    "stable_8w__vs__position_aware_xg": {
+      "shared": [
+        {
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "predicted": 4.68,
+          "actual": 3
+        },
+        {
+          "id": 12,
+          "name": "Mohamed Salah Hamed Mahrous Ghaly",
+          "position": "MID",
+          "predicted": 8.37,
+          "actual": 10
+        },
+        {
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "predicted": 5.635,
+          "actual": 1
+        },
+        {
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "predicted": 5.32,
+          "actual": 7
+        },
+        {
+          "id": 148,
+          "name": "Gift Emmanuel Orban",
+          "position": "FWD",
+          "predicted": 5.795,
+          "actual": 5
+        },
+        {
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "predicted": 5.667,
+          "actual": 11
+        }
+      ],
+      "a_only": [
+        {
+          "id": 22,
+          "name": "Andre Onana Onana",
+          "position": "GK",
+          "predicted": 5.912,
+          "actual": 6
+        },
+        {
+          "id": 53,
+          "name": "Amar Gerxhaliu",
+          "position": "DEF",
+          "predicted": 4.557,
+          "actual": 1
+        },
+        {
+          "id": 75,
+          "name": "Adrian Dawid Benedyczak",
+          "position": "FWD",
+          "predicted": 6.055,
+          "actual": 7
+        },
+        {
+          "id": 136,
+          "name": "Diaa Sabi'a",
+          "position": "MID",
+          "predicted": 5.252,
+          "actual": 10
+        },
+        {
+          "id": 404,
+          "name": "Eldor Shomurodov",
+          "position": "FWD",
+          "predicted": 6.225,
+          "actual": 2
+        }
+      ],
+      "b_only": [
+        {
+          "id": 27,
+          "name": "Stefan Savic",
+          "position": "DEF",
+          "predicted": 6.078,
+          "actual": 6
+        },
+        {
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "predicted": 6.095,
+          "actual": 9
+        },
+        {
+          "id": 217,
+          "name": "Chidozie Collins Awaziem",
+          "position": "DEF",
+          "predicted": 5.528,
+          "actual": 2
+        },
+        {
+          "id": 507,
+          "name": "Victor James Osimhen",
+          "position": "FWD",
+          "predicted": 6.055,
+          "actual": 0
+        },
+        {
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "predicted": 5.935,
+          "actual": 0
+        }
+      ],
+      "a_only_actual": 26,
+      "b_only_actual": 17,
+      "xi_delta": 9,
+      "captain_delta": 7,
+      "substitution_delta": 0,
+      "total_delta": 16
+    },
+    "stable_8w__vs__rest_days_control": {
+      "shared": [
+        {
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "predicted": 4.68,
+          "actual": 3
+        },
+        {
+          "id": 12,
+          "name": "Mohamed Salah Hamed Mahrous Ghaly",
+          "position": "MID",
+          "predicted": 8.37,
+          "actual": 10
+        },
+        {
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "predicted": 5.635,
+          "actual": 1
+        },
+        {
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "predicted": 5.32,
+          "actual": 7
+        },
+        {
+          "id": 148,
+          "name": "Gift Emmanuel Orban",
+          "position": "FWD",
+          "predicted": 5.795,
+          "actual": 5
+        },
+        {
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "predicted": 5.667,
+          "actual": 11
+        }
+      ],
+      "a_only": [
+        {
+          "id": 22,
+          "name": "Andre Onana Onana",
+          "position": "GK",
+          "predicted": 5.912,
+          "actual": 6
+        },
+        {
+          "id": 53,
+          "name": "Amar Gerxhaliu",
+          "position": "DEF",
+          "predicted": 4.557,
+          "actual": 1
+        },
+        {
+          "id": 75,
+          "name": "Adrian Dawid Benedyczak",
+          "position": "FWD",
+          "predicted": 6.055,
+          "actual": 7
+        },
+        {
+          "id": 136,
+          "name": "Diaa Sabi'a",
+          "position": "MID",
+          "predicted": 5.252,
+          "actual": 10
+        },
+        {
+          "id": 404,
+          "name": "Eldor Shomurodov",
+          "position": "FWD",
+          "predicted": 6.225,
+          "actual": 2
+        }
+      ],
+      "b_only": [
+        {
+          "id": 27,
+          "name": "Stefan Savic",
+          "position": "DEF",
+          "predicted": 5.923,
+          "actual": 6
+        },
+        {
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "predicted": 5.3,
+          "actual": 9
+        },
+        {
+          "id": 346,
+          "name": "Franco Daryl Tongya Heubang",
+          "position": "MID",
+          "predicted": 5.687,
+          "actual": 2
+        },
+        {
+          "id": 507,
+          "name": "Victor James Osimhen",
+          "position": "FWD",
+          "predicted": 5.802,
+          "actual": 0
+        },
+        {
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "predicted": 6.052,
+          "actual": 0
+        }
+      ],
+      "a_only_actual": 26,
+      "b_only_actual": 17,
+      "xi_delta": 9,
+      "captain_delta": 7,
+      "substitution_delta": 0,
+      "total_delta": 16
+    },
+    "uniform_xg__vs__position_aware_xg": {
+      "shared": [
+        {
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "predicted": 8.434,
+          "actual": 3
+        },
+        {
+          "id": 12,
+          "name": "Mohamed Salah Hamed Mahrous Ghaly",
+          "position": "MID",
+          "predicted": 6.616,
+          "actual": 10
+        },
+        {
+          "id": 27,
+          "name": "Stefan Savic",
+          "position": "DEF",
+          "predicted": 6.511,
+          "actual": 6
+        },
+        {
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "predicted": 6.584,
+          "actual": 7
+        },
+        {
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "predicted": 5.555,
+          "actual": 9
+        },
+        {
+          "id": 148,
+          "name": "Gift Emmanuel Orban",
+          "position": "FWD",
+          "predicted": 6.667,
+          "actual": 5
+        },
+        {
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "predicted": 5.876,
+          "actual": 11
+        },
+        {
+          "id": 217,
+          "name": "Chidozie Collins Awaziem",
+          "position": "DEF",
+          "predicted": 5.136,
+          "actual": 2
+        },
+        {
+          "id": 507,
+          "name": "Victor James Osimhen",
+          "position": "FWD",
+          "predicted": 6.041,
+          "actual": 0
+        },
+        {
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "predicted": 6.093,
+          "actual": 0
+        }
+      ],
+      "a_only": [
+        {
+          "id": 404,
+          "name": "Eldor Shomurodov",
+          "position": "FWD",
+          "predicted": 5.615,
+          "actual": 2
+        }
+      ],
+      "b_only": [
+        {
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "predicted": 5.427,
+          "actual": 1
+        }
+      ],
+      "a_only_actual": 2,
+      "b_only_actual": 1,
+      "xi_delta": 1,
+      "captain_delta": 0,
+      "substitution_delta": 0,
+      "total_delta": 1
+    },
+    "uniform_xg__vs__rest_days_control": {
+      "shared": [
+        {
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "predicted": 8.434,
+          "actual": 3
+        },
+        {
+          "id": 12,
+          "name": "Mohamed Salah Hamed Mahrous Ghaly",
+          "position": "MID",
+          "predicted": 6.616,
+          "actual": 10
+        },
+        {
+          "id": 27,
+          "name": "Stefan Savic",
+          "position": "DEF",
+          "predicted": 6.511,
+          "actual": 6
+        },
+        {
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "predicted": 6.584,
+          "actual": 7
+        },
+        {
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "predicted": 5.555,
+          "actual": 9
+        },
+        {
+          "id": 148,
+          "name": "Gift Emmanuel Orban",
+          "position": "FWD",
+          "predicted": 6.667,
+          "actual": 5
+        },
+        {
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "predicted": 5.876,
+          "actual": 11
+        },
+        {
+          "id": 507,
+          "name": "Victor James Osimhen",
+          "position": "FWD",
+          "predicted": 6.041,
+          "actual": 0
+        },
+        {
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "predicted": 6.093,
+          "actual": 0
+        }
+      ],
+      "a_only": [
+        {
+          "id": 217,
+          "name": "Chidozie Collins Awaziem",
+          "position": "DEF",
+          "predicted": 5.136,
+          "actual": 2
+        },
+        {
+          "id": 404,
+          "name": "Eldor Shomurodov",
+          "position": "FWD",
+          "predicted": 5.615,
+          "actual": 2
+        }
+      ],
+      "b_only": [
+        {
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "predicted": 5.289,
+          "actual": 1
+        },
+        {
+          "id": 346,
+          "name": "Franco Daryl Tongya Heubang",
+          "position": "MID",
+          "predicted": 5.687,
+          "actual": 2
+        }
+      ],
+      "a_only_actual": 4,
+      "b_only_actual": 3,
+      "xi_delta": 1,
+      "captain_delta": 0,
+      "substitution_delta": 0,
+      "total_delta": 1
+    },
+    "position_aware_xg__vs__rest_days_control": {
+      "shared": [
+        {
+          "id": 4,
+          "name": "Ernest Muçi",
+          "position": "MID",
+          "predicted": 8.365,
+          "actual": 3
+        },
+        {
+          "id": 12,
+          "name": "Mohamed Salah Hamed Mahrous Ghaly",
+          "position": "MID",
+          "predicted": 6.561,
+          "actual": 10
+        },
+        {
+          "id": 27,
+          "name": "Stefan Savic",
+          "position": "DEF",
+          "predicted": 6.078,
+          "actual": 6
+        },
+        {
+          "id": 48,
+          "name": "Guram Giorbelidze",
+          "position": "DEF",
+          "predicted": 5.427,
+          "actual": 1
+        },
+        {
+          "id": 94,
+          "name": "Claudio Winck Neto",
+          "position": "DEF",
+          "predicted": 7.285,
+          "actual": 7
+        },
+        {
+          "id": 130,
+          "name": "Serhat Öztaşdelen",
+          "position": "GK",
+          "predicted": 6.095,
+          "actual": 9
+        },
+        {
+          "id": 148,
+          "name": "Gift Emmanuel Orban",
+          "position": "FWD",
+          "predicted": 6.482,
+          "actual": 5
+        },
+        {
+          "id": 212,
+          "name": "Berkan İsmail Kutlu",
+          "position": "MID",
+          "predicted": 5.926,
+          "actual": 11
+        },
+        {
+          "id": 507,
+          "name": "Victor James Osimhen",
+          "position": "FWD",
+          "predicted": 6.055,
+          "actual": 0
+        },
+        {
+          "id": 600,
+          "name": "Samuel Leo Beat Ballet",
+          "position": "MID",
+          "predicted": 5.935,
+          "actual": 0
+        }
+      ],
+      "a_only": [
+        {
+          "id": 217,
+          "name": "Chidozie Collins Awaziem",
+          "position": "DEF",
+          "predicted": 5.528,
+          "actual": 2
+        }
+      ],
+      "b_only": [
+        {
+          "id": 346,
+          "name": "Franco Daryl Tongya Heubang",
+          "position": "MID",
+          "predicted": 5.687,
+          "actual": 2
+        }
+      ],
+      "a_only_actual": 2,
+      "b_only_actual": 2,
+      "xi_delta": 0,
+      "captain_delta": 0,
+      "substitution_delta": 0,
+      "total_delta": 0
+    }
+  },
+  "largest_overpredictions": [
+    {
+      "id": 600,
+      "name": "Samuel Leo Beat Ballet",
+      "position": "MID",
+      "club_id": "5",
+      "predicted_xpts": 6.093,
+      "actual_points": 0,
+      "difference": 6.093,
+      "actual_minutes": 0,
+      "captain": false,
+      "model": "uniform_xg",
+      "slot": "XI"
+    },
+    {
+      "id": 507,
+      "name": "Victor James Osimhen",
+      "position": "FWD",
+      "club_id": "17",
+      "predicted_xpts": 6.055,
+      "actual_points": 0,
+      "difference": 6.055,
+      "actual_minutes": 0,
+      "captain": false,
+      "model": "position_aware_xg",
+      "slot": "XI"
+    },
+    {
+      "id": 4,
+      "name": "Ernest Muçi",
+      "position": "MID",
+      "club_id": "1",
+      "predicted_xpts": 8.434,
+      "actual_points": 3,
+      "difference": 5.434,
+      "actual_minutes": 80,
+      "captain": true,
+      "model": "uniform_xg",
+      "slot": "XI"
+    },
+    {
+      "id": 48,
+      "name": "Guram Giorbelidze",
+      "position": "DEF",
+      "club_id": "2",
+      "predicted_xpts": 5.978,
+      "actual_points": 1,
+      "difference": 4.978,
+      "actual_minutes": 89,
+      "captain": false,
+      "model": "baseline_5w",
+      "slot": "XI"
+    },
+    {
+      "id": 404,
+      "name": "Eldor Shomurodov",
+      "position": "FWD",
+      "club_id": "13",
+      "predicted_xpts": 6.225,
+      "actual_points": 2,
+      "difference": 4.225,
+      "actual_minutes": 86,
+      "captain": false,
+      "model": "stable_8w",
+      "slot": "XI"
+    }
+  ],
+  "largest_underpredictions": [
+    {
+      "id": 273,
+      "name": "Leandro Trossard",
+      "position": "MID",
+      "club_id": "9",
+      "predicted_xpts": 5.104,
+      "actual_points": 15,
+      "difference": -9.896,
+      "actual_minutes": 90,
+      "captain": false,
+      "model": "uniform_xg",
+      "slot": "bench"
+    },
+    {
+      "id": 212,
+      "name": "Berkan İsmail Kutlu",
+      "position": "MID",
+      "club_id": "4",
+      "predicted_xpts": 5.606,
+      "actual_points": 11,
+      "difference": -5.394,
+      "actual_minutes": 90,
+      "captain": false,
+      "model": "short_form_3w",
+      "slot": "XI"
+    },
+    {
+      "id": 136,
+      "name": "Diaa Sabi'a",
+      "position": "MID",
+      "club_id": "5",
+      "predicted_xpts": 5.252,
+      "actual_points": 10,
+      "difference": -4.748,
+      "actual_minutes": 90,
+      "captain": false,
+      "model": "stable_8w",
+      "slot": "XI"
+    },
+    {
+      "id": 130,
+      "name": "Serhat Öztaşdelen",
+      "position": "GK",
+      "club_id": "4",
+      "predicted_xpts": 4.953,
+      "actual_points": 9,
+      "difference": -4.047,
+      "actual_minutes": 90,
+      "captain": false,
+      "model": "stable_8w",
+      "slot": "bench"
+    },
+    {
+      "id": 12,
+      "name": "Mohamed Salah Hamed Mahrous Ghaly",
+      "position": "MID",
+      "club_id": "1",
+      "predicted_xpts": 6.018,
+      "actual_points": 10,
+      "difference": -3.982,
+      "actual_minutes": 89,
+      "captain": false,
+      "model": "short_form_3w",
+      "slot": "XI"
+    }
+  ],
+  "high_actual_not_in_any_xi": [
+    {
+      "id": 176,
+      "name": "Mason Will John Greenwood",
+      "points": 16,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 28,
+      "name": "Wagner Fabricio Cardoso de Pina",
+      "points": 15,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 273,
+      "name": "Leandro Trossard",
+      "points": 15,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 178,
+      "name": "Oğuz Aydın",
+      "points": 13,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 199,
+      "name": "İrfan Can Kahveci",
+      "points": 13,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 353,
+      "name": "Ali Sowe",
+      "points": 13,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 593,
+      "name": "Dusan Vlahovic",
+      "points": 12,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 92,
+      "name": "Haris Hajradinovic",
+      "points": 11,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 463,
+      "name": "Yirigue Foungognan Sekongo",
+      "points": 11,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 37,
+      "name": "Chibuike Godfrey Nwaiwu",
+      "points": 10,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 520,
+      "name": "Barış Alper Yılmaz",
+      "points": 10,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 877,
+      "name": "Aleksey Batrakov",
+      "points": 10,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 80,
+      "name": "Andreas Gianniotis",
+      "points": 9,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 108,
+      "name": "Daniel Ebenezer Kwasi Agyei",
+      "points": 9,
+      "short_form_eligibility": "eligible"
+    },
+    {
+      "id": 166,
+      "name": "Ederson Santana de Moraes",
+      "points": 9,
+      "short_form_eligibility": "eligible"
+    }
+  ],
+  "saved_gw11_predictions_separate": {
+    "short_form_3w_actual": 57,
+    "stable_8w_actual": 76
+  }
+}
