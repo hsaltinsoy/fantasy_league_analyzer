@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 
 from analysis.capture_integrity import validate_inputs
-from analysis.phase32_gw11_walkforward import prepare, predict_only, evaluate_predictions
+from archive.analysis.phase32_gw11_walkforward import prepare, predict_only, evaluate_predictions
 from analysis.six_model_batch import NAMES
 
 OUT = Path('docs/phase32b_gw11_price_sensitivity.json')

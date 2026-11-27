@@ -3,7 +3,7 @@ import argparse,json
 import os
 from pathlib import Path
 from datetime import datetime,timezone
-from analysis.multiweek_backtest import load_history, MODELS, project
+from analysis.multiweek_backtest import load_history, MODELS, LIVE_MODELS, project
 from analysis.walkforward_backtest import participation
 from analysis.walkforward_v27 import fixture_multipliers
 from analysis.verified_fixtures_v34 import load_verified
@@ -113,7 +113,7 @@ def main():
     parser.add_argument('--week',type=int,default=10)
     parser.add_argument('--risk-profile',choices=['aggressive','balanced','cautious'],default='balanced')
     parser.add_argument('--live',action='store_true',help='Fetch current prices/status from official TFF')
-    parser.add_argument('--model',choices=sorted(MODELS),default='short_form_3w')
+    parser.add_argument('--model',choices=sorted(LIVE_MODELS),default='short_form_3w')
     parser.add_argument('--tow-weight',type=float,default=0.)
     parser.add_argument('--experimental-covariance',action='store_true')
     parser.add_argument('--as-of', help='ISO 8601 evidence cutoff for a historical forecast')

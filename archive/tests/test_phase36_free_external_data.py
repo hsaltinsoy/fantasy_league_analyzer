@@ -3,7 +3,7 @@ import json
 
 import pytest
 
-from analysis import phase36_free_external_data as p
+from archive.analysis import phase36_free_external_data as p
 
 
 def test_import_is_idempotent_and_conflicts_fail(tmp_path, monkeypatch):

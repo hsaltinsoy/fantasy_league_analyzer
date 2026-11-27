@@ -6,7 +6,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 from data_sources.tff_official import BASE, PROFILE, _browser, TFFFeedError
 
-OUT = Path('tff_fixture_matches_capture.json')
+OUT = Path('artifacts/tff_fixture_matches_capture.json')
 TARGET = set(range(5, 10))
 
 
@@ -83,7 +83,7 @@ def main():
               'endpoints': {k: {'responses': v['responses'], 'matches': v['matches'],
                                 'schemas': sorted(v['schemas'])} for k, v in observed.items()},
               'note': 'Week hints may be missing. Validate match IDs and week membership before backtesting. No credentials or full API bodies exported.'}
-    OUT.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding='utf-8')
+    OUT.parent.mkdir(exist_ok=True); OUT.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding='utf-8')
     print(f'{len(matches)} maç kaydı yakalandı. Dosya: {OUT.resolve()}')
     if not matches:
         print('Maç kaydı bulunamadı. endpoints alanı hangi API yanıtlarının görüldüğünü gösterecek.')

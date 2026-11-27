@@ -3,7 +3,7 @@ import os
 import pytest
 from sqlalchemy import create_engine
 
-from analysis.football_data_replay import run
+from archive.analysis.football_data_replay import run
 
 
 def test_frozen_replay_without_live_api(monkeypatch):

@@ -47,7 +47,7 @@ price or historical position can be inferred from current values.
 ## Architecture and cutover gates
 
 1. Back up the SQLite source and all historical evidence without changing it.
-   Current SQLite copy: `.phase17_backup_20261029/prediction_tracking.sqlite3`.
+   Current SQLite copy: `backups/legacy/phase17_backup_20261029/prediction_tracking.sqlite3` (moved from the repo root).
    Its SHA-256 and the live source SHA-256 both equal
    `F01E15224A77A9B65076A17EDD85B75770B3F4E1753CE7FB820E524B52D220C0`.
    Back up the remaining historical files before any destructive operation.

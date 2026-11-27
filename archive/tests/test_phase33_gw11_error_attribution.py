@@ -1,7 +1,7 @@
 """Exact GW11 score-gap accounting from player and captain contributions."""
 import pytest
 
-from analysis.phase33_gw11_error_attribution import pair_attribution, unique_errors
+from archive.analysis.phase33_gw11_error_attribution import pair_attribution, unique_errors
 
 
 def model(players, captain):

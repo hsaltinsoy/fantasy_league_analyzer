@@ -5,7 +5,7 @@ from pathlib import Path
 from data_sources.tff_official import BASE, PROFILE, _browser, TFFFeedError
 
 ENDPOINT = '/api/backend/fixture/leagues/1/gameweeks'
-OUT = Path('tff_fixture_ids_gw5_gw9.json')
+OUT = Path('artifacts/tff_fixture_ids_gw5_gw9.json')
 
 
 def extract(payload):
@@ -56,7 +56,7 @@ def main():
               'source_endpoint': ENDPOINT, 'weeks': weeks,
               'debug_first_week_keys': keys,
               'note': 'Club IDs are directly from API. No club names or historical membership proof. No cookies exported.'}
-    OUT.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding='utf-8')
+    OUT.parent.mkdir(exist_ok=True); OUT.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding='utf-8')
     print(f'Exported {sum(map(len, weeks.values()))} matches from {len(weeks)} weeks to {OUT.resolve()}')
     if not weeks:
         print('No weeks matched: send JSON with debug_first_week_keys for schema adjustment.')

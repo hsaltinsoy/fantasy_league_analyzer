@@ -1,6 +1,6 @@
 """v3.5 retrospective walk-forward: risk-aware captain + prior-minutes trend.
 
-Run: python -m analysis.verified_fixtures_v35
+Run: python -m archive.analysis.verified_fixtures_v35
 No target-week information enters player features or model selection.
 """
 import argparse

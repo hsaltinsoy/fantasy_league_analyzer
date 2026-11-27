@@ -43,3 +43,18 @@ def test_partial_variant_failure_never_returns_valid_batch(monkeypatch):
     assert result['status'] == 'incomplete'
     assert result['predictions'] == {}
     assert 'failed' in result['statuses']['stable_8w']
+
+
+def test_expanding_window_uses_every_played_week():
+    from analysis.multiweek_backtest import MODELS, LIVE_MODELS, project
+    past = [{'points': 2 + i % 3, 'minutesPlayed': 90} for i in range(12)]
+    assert project({'position': 'MID'}, past, LIVE_MODELS['expanding_all']) == \
+        project({'position': 'MID'}, past, {**MODELS['stable_8w'], 'window': 12})
+    assert project({'position': 'MID'}, past, LIVE_MODELS['expanding_all']) != \
+        project({'position': 'MID'}, past, MODELS['stable_8w'])
+
+
+def test_names_switch_to_expanding_from_gw14():
+    from analysis.six_model_batch import names_for
+    assert 'stable_8w' in names_for(13) and 'expanding_all' not in names_for(13)
+    assert 'expanding_all' in names_for(14) and 'stable_8w' not in names_for(14)

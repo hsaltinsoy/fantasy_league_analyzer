@@ -1,4 +1,4 @@
-from analysis.phase40_projection_error_analysis import feasible_replacement, run, summary
+from archive.analysis.phase40_projection_error_analysis import feasible_replacement, run, summary
 
 
 def test_summary_preserves_prediction_error_definition():

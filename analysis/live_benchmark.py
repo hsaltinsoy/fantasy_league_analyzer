@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from collections import Counter
 
-from analysis.multiweek_backtest import MODELS, load_history
+from analysis.multiweek_backtest import MODELS, LIVE_MODELS, load_history
 from analysis.predict_next_week import predict
 from analysis.prediction_tracking import DEFAULT_DB, _postgres, connect, get_prediction, get_snapshot, latest_evaluation_run, parse_time, save_prediction, save_prediction_batch, save_snapshot
 from analysis.production_evaluation import _metrics
@@ -216,7 +216,7 @@ def generate(*, fixture_archive=None, players=None, records=None, path=DEFAULT_D
                 continue
             raise
         result['benchmark'] = {'variant':'production' if model == 'short_form_3w' else 'experimental_form',
-                               'parameters':copy.deepcopy(MODELS[model]), 'fixture_weight':.5,
+                               'parameters':copy.deepcopy(LIVE_MODELS[model]), 'fixture_weight':.5,
                                'tow_weight':0.0, 'snapshot_id':snapshot['id']}
         if strict_pre_deadline or pg_runtime:
             prepared.append(result)

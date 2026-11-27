@@ -401,7 +401,7 @@ def create_app():
         import json
         from pathlib import Path
         from analysis.predict_next_week import predict
-        from analysis.multiweek_backtest import load_history, MODELS
+        from analysis.multiweek_backtest import load_history, LIVE_MODELS
         from analysis.verified_fixtures_v34 import load_verified
         from analysis.team_of_week_v36 import load as load_tow
         from analysis.prediction_tracking import save_snapshot, save_prediction
@@ -420,7 +420,7 @@ def create_app():
                (adjustment_model == 'none' and sensitivity != 0) or \
                (adjustment_model != 'none' and sensitivity != .4):
                 return jsonify(error='Invalid experimental adjustment or sensitivity'),400
-            if not 2 <= week <= 34 or model not in MODELS or weight not in (0,.05,.1) or risk_profile not in ("aggressive","balanced","cautious"):
+            if not 2 <= week <= 34 or model not in LIVE_MODELS or weight not in (0,.05,.1) or risk_profile not in ("aggressive","balanced","cautious"):
                 return jsonify(error='Geçersiz parametre'),400
             if os.environ.get('STORAGE_BACKEND', 'postgres').lower() == 'postgres':
                 if not live:

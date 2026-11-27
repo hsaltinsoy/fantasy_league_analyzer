@@ -1,5 +1,5 @@
 """Lagged appearance benchmark and classification accounting."""
-from analysis.phase35_availability_audit import alternative, scores
+from archive.analysis.phase35_availability_audit import alternative, scores
 
 
 def test_alternative_uses_only_prior_minutes():

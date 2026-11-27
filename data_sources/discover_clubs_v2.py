@@ -75,6 +75,6 @@ def main():
          'club_evidence':{k:[{'name':n,'endpoint':s,'json_path':p} for n,s,p in sorted(v)] for k,v in candidates.items()},
          'response_field_shapes':dict(shapes),
          'note':'No response bodies, auth tokens, cookies, or profile data exported. Historical memberships not verified.'}
-    target=Path('tff_club_mapping_v2.json');target.write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+    target=Path('artifacts/tff_club_mapping_v2.json');target.parent.mkdir(exist_ok=True); target.write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
     print(f'{len(candidates)} explicit club candidates; saved {target.resolve()}')
 if __name__=='__main__': main()

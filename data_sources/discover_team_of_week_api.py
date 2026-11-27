@@ -30,8 +30,8 @@ def main():
             input("Bittiğinde terminalde Enter'a basın...")
             page.wait_for_timeout(1500)
         finally:ctx.close()
-    target=Path('tff_team_of_week_api_discovery.json')
-    target.write_text(json.dumps({'created_utc':datetime.now(timezone.utc).isoformat(),
+    target=Path('artifacts/tff_team_of_week_api_discovery.json')
+    target.parent.mkdir(exist_ok=True); target.write_text(json.dumps({'created_utc':datetime.now(timezone.utc).isoformat(),
         'classification':'API_SHAPES_ONLY_NOT_VERIFIED_TEAM_OF_WEEK_DATA',
         'requests':rows},ensure_ascii=False,indent=2),encoding='utf-8')
     print('Kaydedildi:',target)

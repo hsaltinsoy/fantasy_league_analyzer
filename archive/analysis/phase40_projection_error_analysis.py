@@ -7,7 +7,7 @@ from statistics import mean
 
 from analysis.multiweek_backtest import MODELS, build_week
 from analysis.walkforward_backtest import participation
-from analysis.phase38_optimizer_audit import objective
+from archive.analysis.phase38_optimizer_audit import objective
 
 ROOT=Path('docs')
 WEEKS=range(6,12)

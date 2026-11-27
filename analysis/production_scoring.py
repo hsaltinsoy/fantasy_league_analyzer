@@ -1,12 +1,12 @@
 """Production player scoring, kept separate from squad optimization."""
 import math
 
-from analysis.multiweek_backtest import MODELS, project
+from analysis.multiweek_backtest import MODELS, LIVE_MODELS, project
 
 
 def lineup_player_points(player, past, model, fixture_factor=1.0, availability_factor=1.0):
     """The /lineup form forecast before captain and risk preferences."""
-    return round(max(.1, project(player, past, MODELS[model]) * fixture_factor * availability_factor), 3)
+    return round(max(.1, project(player, past, LIVE_MODELS[model]) * fixture_factor * availability_factor), 3)
 
 
 def _js_number(value):

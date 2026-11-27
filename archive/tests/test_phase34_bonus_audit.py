@@ -1,5 +1,5 @@
 """Bonus decomposition uses only lagged bonus and avoids double counting."""
-from analysis.phase34_bonus_audit import bonus_value, experimental
+from archive.analysis.phase34_bonus_audit import bonus_value, experimental
 from analysis.multiweek_backtest import MODELS, project
 
 

@@ -2,7 +2,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
-from analysis.audit_v33 import paired_ablation, verify_mapping
+from archive.analysis.audit_v33 import paired_ablation, verify_mapping
 
 class TestAuditV33(unittest.TestCase):
     def test_paired(self):

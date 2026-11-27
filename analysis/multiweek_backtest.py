@@ -24,6 +24,11 @@ MODELS = {
     'stable_8w': {'window': 8, 'shrinkage': 8, 'recent_mix': .30, 'recency': False},
     'robust_5w': {'window': 5, 'shrinkage': 9, 'recent_mix': .38, 'recency': True, 'robust': True},
 }
+# Canlı modeller: walk-forward değerlendirmeleri MODELS üzerinde döner, bunlar dışarıda kalır.
+# Genişleyen pencere: oynanmış tüm haftalar (GW13'te 12 hafta, GW14'te 13 hafta ...).
+LIVE_MODELS = {**MODELS,
+    'expanding_all': {'window': None, 'shrinkage': 8, 'recent_mix': .30, 'recency': False},
+}
 
 
 def load_history(store=STORE):
@@ -43,7 +48,7 @@ def load_history(store=STORE):
 
 
 def project(p, past, config):
-    recent = past[-config['window']:]
+    recent = past if config['window'] is None else past[-config['window']:]
     points = [number(r.get('points'), 0) for r in recent]
     minutes = [number(r.get('minutesPlayed'), 0) for r in recent]
     weights = list(range(1, len(points)+1)) if config['recency'] else [1] * len(points)

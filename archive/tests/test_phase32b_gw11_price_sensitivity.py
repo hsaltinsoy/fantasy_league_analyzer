@@ -1,7 +1,7 @@
 """Price-only scenario construction and outcome isolation."""
 from copy import deepcopy
 
-from analysis.phase32b_gw11_price_sensitivity import generate_all, price_scenarios
+from archive.analysis.phase32b_gw11_price_sensitivity import generate_all, price_scenarios
 
 
 def test_price_scenarios_only_change_price_and_use_fallback():

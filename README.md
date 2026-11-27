@@ -1,5 +1,27 @@
 # TFF Fantasy Optimizer v0.6
 
+## Proje yapısı
+
+| Klasör / dosya | Ne işe yarar |
+| --- | --- |
+| `run.py`, `app/` | Flask arayüzü (`RUN_UI.bat`) |
+| `analysis/` | Üretim hattı: tahmin, optimizasyon, yakalama (`capture_week`), değerlendirme |
+| `data_sources/` | TFF ve harici veri kaynakları (çıktıları `artifacts/` altına yazılır) |
+| `storage/` | PostgreSQL modelleri, repository'ler, migrasyonlar |
+| `tests/` | Canlı kodun testleri (`python -m pytest`) |
+| `archive/` | Eski faz 25–40 deneyleri ve testleri; `python -m pytest archive/tests`, `python -m archive.analysis.<modül>` |
+| `artifacts/` | Üretilmiş JSON çıktıları (git dışı) |
+| `docs/`, `docs/readmes/` | Faz raporları ve eski sürüm README'leri |
+| `backups/`, `backups/legacy/` | Yedekler ve eski kurtarma kopyaları (git dışı) |
+| `historical_data/` | Oyuncu geçmişi arşivi ve doğrulanmış fikstürler (git dışı) |
+
+Haftalık yakalama (son tarihten önce, TFF oturumu açık ve PostgreSQL çalışırken):
+
+```powershell
+python -m storage.ingest_current
+python -m analysis.capture_week --week 13   # veya RUN_CAPTURE.bat 13
+```
+
 ## PostgreSQL runtime (Windows 11)
 
 PostgreSQL 17 is the application's runtime store. Docker Desktop must be running.
@@ -342,7 +364,7 @@ for a strict v3.0 baseline run v3.0 itself.
 ## v3.2 — fixture snapshot ablation (strict input)
 
 Use **real pre-deadline fixture snapshots** for all requested weeks. See
-`fixture_snapshot_v32.example.json` for the structure; replace placeholders and
+`examples/fixture_snapshot_v32.example.json` for the structure; replace placeholders and
 include every team present in the player pool for each week. `home_club_id` and
 `away_club_id` must use **the same identifier strings as the `team` field** in
 `historical_data/players.json` (do not use opponentClubId if it uses another namespace).

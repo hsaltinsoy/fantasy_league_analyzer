@@ -1,4 +1,4 @@
-from analysis.playing_time_risk import valid_appearance, probability, chronological_report
+from archive.analysis.playing_time_risk import valid_appearance, probability, chronological_report
 
 
 def fixture(status='FT'):

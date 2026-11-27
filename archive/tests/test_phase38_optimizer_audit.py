@@ -2,7 +2,7 @@
 import itertools
 
 from analysis.optimizer import FORMATIONS, optimize
-from analysis.phase38_optimizer_audit import objective, validate
+from archive.analysis.phase38_optimizer_audit import objective, validate
 
 
 def test_exact_small_pool_matches_independent_enumeration():

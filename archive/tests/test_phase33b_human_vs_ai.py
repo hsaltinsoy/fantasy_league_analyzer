@@ -1,5 +1,5 @@
 """Official-point reconciliation and human/model selection accounting."""
-from analysis.phase33b_human_vs_ai import XI, BENCH, CAPTAIN, SUBSTITUTE, calculate_human, compare
+from archive.analysis.phase33b_human_vs_ai import XI, BENCH, CAPTAIN, SUBSTITUTE, calculate_human, compare
 
 
 def test_human_score_reconciles_with_substitution():

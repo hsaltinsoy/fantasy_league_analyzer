@@ -1,5 +1,5 @@
 """Exact XI/captain attribution and robustness arithmetic."""
-from analysis.phase37_model_robustness import attribution
+from archive.analysis.phase37_model_robustness import attribution
 
 
 def squad(players, captain, captain_points):

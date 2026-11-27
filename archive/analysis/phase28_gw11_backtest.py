@@ -66,7 +66,7 @@ def run():
     for s in snapshots:
         for pid in pg.prediction_ids(s['id']):
             predictions.append((s, get_prediction(pid)))
-    from analysis.phase27_history_impact import SNAPSHOT
+    from archive.analysis.phase27_history_impact import SNAPSHOT
     gw12 = get_snapshot(SNAPSHOT)
     player_ids = sorted({str(p['id']) for p in gw12['payload']['players']} |
                         {str(p['id']) for s in snapshots for p in s['payload']['players']}, key=int)

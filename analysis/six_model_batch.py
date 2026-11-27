@@ -11,6 +11,15 @@ from analysis.live_benchmark import _fixture_lookup
 BASE_MODEL = 'short_form_3w'
 NAMES = ('baseline_5w', 'short_form_3w', 'stable_8w',
          'uniform_xg', 'position_aware_xg', 'rest_days_control')
+# GW14 ve sonrası: stable_8w yerine her hafta genişleyen pencere (tüm oynanmış haftalar).
+# GW13 ve öncesi dondurulmuş yakalamalar NAMES ile doğrulanmaya devam eder.
+EXPANDING_FROM_WEEK = 14
+NAMES_V2 = tuple('expanding_all' if n == 'stable_8w' else n for n in NAMES)
+HISTORY_MODELS = ('baseline_5w', 'short_form_3w', 'stable_8w', 'expanding_all')
+
+
+def names_for(week):
+    return NAMES_V2 if int(week) >= EXPANDING_FROM_WEEK else NAMES
 
 
 def replay(bundle, *, predictor=predict):
@@ -22,7 +31,8 @@ def replay(bundle, *, predictor=predict):
     input_hash = validate_inputs(week, players, fixtures, histories)
     if bundle.get('input_hash') != input_hash:
         raise ValueError('Frozen input hash mismatch')
-    batch_id = digest({'input_hash': input_hash, 'variants': NAMES})
+    names = names_for(week)
+    batch_id = digest({'input_hash': input_hash, 'variants': names})
     cutoff = datetime.fromisoformat(bundle['cutoff_utc'].replace('Z', '+00:00'))
     if cutoff.tzinfo is None:
         raise ValueError('Cutoff must include timezone')
@@ -34,10 +44,10 @@ def replay(bundle, *, predictor=predict):
     records = [(p, next(h['rows'] for h in histories if str(h['player_id']) == str(p['id'])))
                for p in players]
     outputs, statuses = {}, {}
-    for name in NAMES:
+    for name in names:
         try:
             adjuster = None
-            model = name if name in ('baseline_5w', 'short_form_3w', 'stable_8w') else BASE_MODEL
+            model = name if name in HISTORY_MODELS else BASE_MODEL
             if name in ('uniform_xg', 'position_aware_xg'):
                 matches = bundle.get('external_matches')
                 if not matches:
@@ -70,5 +80,5 @@ def replay(bundle, *, predictor=predict):
     return {'batch_id': batch_id,
             'input_hash': input_hash, 'capture_timestamp': bundle['cutoff_utc'],
             'model_version': 'phase24b_v1', 'statuses': statuses,
-            'status': 'complete' if len(outputs) == len(NAMES) else 'incomplete',
-            'predictions': outputs if len(outputs) == len(NAMES) else {}}
+            'status': 'complete' if len(outputs) == len(names) else 'incomplete',
+            'predictions': outputs if len(outputs) == len(names) else {}}

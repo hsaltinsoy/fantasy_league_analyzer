@@ -1,7 +1,7 @@
 """Outcome isolation and captain scoring for the GW11 retrospective replay."""
 from copy import deepcopy
 
-from analysis.phase32_gw11_walkforward import evaluate_predictions, predict_only
+from archive.analysis.phase32_gw11_walkforward import evaluate_predictions, predict_only
 from analysis.six_model_batch import NAMES
 
 
@@ -13,7 +13,7 @@ def test_actual_changes_do_not_change_predictions(monkeypatch):
         calls.append(deepcopy(bundle))
         return deepcopy(expected)
 
-    monkeypatch.setattr('analysis.phase32_gw11_walkforward.replay', fake_replay)
+    monkeypatch.setattr('archive.analysis.phase32_gw11_walkforward.replay', fake_replay)
     bundle = {'gameweek': 11, 'histories': [{'player_id': 1, 'rows': [{'gameweekOrder': 10}]}]}
     before = predict_only(bundle)
     actual_a = {'1': [{'gameweekOrder': 11, 'points': 1}]}

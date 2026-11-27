@@ -1,6 +1,6 @@
 import json
 import pytest
-from analysis.walkforward_v31 import audit_fixture_snapshot, walk_forward
+from archive.analysis.walkforward_v31 import audit_fixture_snapshot, walk_forward
 
 
 def test_missing_snapshot():

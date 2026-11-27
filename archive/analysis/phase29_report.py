@@ -2,7 +2,7 @@
 import json
 from pathlib import Path
 
-from analysis.phase29_gw12_capture import ORIGINAL
+from archive.analysis.phase29_gw12_capture import ORIGINAL
 
 DOCS = Path('docs')
 

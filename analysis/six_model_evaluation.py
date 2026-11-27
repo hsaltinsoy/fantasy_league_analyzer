@@ -2,7 +2,7 @@
 from math import sqrt
 from statistics import mean
 
-from analysis.six_model_batch import NAMES
+from analysis.six_model_batch import NAMES, NAMES_V2
 
 
 def _ranks(values):
@@ -30,7 +30,7 @@ def _spearman(a, b):
 
 
 def evaluate(predictions, actuals, *, official_finalized):
-    if set(predictions) != set(NAMES):
+    if set(predictions) not in (set(NAMES), set(NAMES_V2)):
         return {'status': 'incomplete_batch'}
     if not official_finalized:
         return {'status': 'official_results_not_final'}

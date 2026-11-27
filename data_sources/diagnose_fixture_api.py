@@ -5,7 +5,7 @@ from pathlib import Path
 from urllib.parse import urlsplit, parse_qsl
 from data_sources.tff_official import BASE, PROFILE, _browser, TFFFeedError
 
-OUT = Path('tff_fixture_diagnostic_v4.json')
+OUT = Path('artifacts/tff_fixture_diagnostic_v4.json')
 PATHS = ('/api/backend/projection/stats/fixtures', '/api/backend/fixture/leagues/1/gameweeks')
 
 def scan(obj, path='$', depth=0):
@@ -67,7 +67,7 @@ def main():
                     except Exception as e: entry['error_type']=type(e).__name__
                     records.append(entry)
         finally: ctx.close()
-    OUT.write_text(json.dumps({'classification':'API_DIAGNOSTIC_NOT_HISTORICAL_PROOF','captured_utc':datetime.now(timezone.utc).isoformat(),'requests':records,'note':'No raw response bodies, cookies, auth tokens, or user data exported. Match samples only contain club IDs and fixture metadata.'},ensure_ascii=False,indent=2),encoding='utf-8')
+    OUT.parent.mkdir(exist_ok=True); OUT.write_text(json.dumps({'classification':'API_DIAGNOSTIC_NOT_HISTORICAL_PROOF','captured_utc':datetime.now(timezone.utc).isoformat(),'requests':records,'note':'No raw response bodies, cookies, auth tokens, or user data exported. Match samples only contain club IDs and fixture metadata.'},ensure_ascii=False,indent=2),encoding='utf-8')
     print('Kaydedildi:',OUT.resolve())
     for r in records: print(r['source'],r['path'],r.get('query_parameter_names'),r.get('status'),r.get('summary',{}).get('match_count',0))
 

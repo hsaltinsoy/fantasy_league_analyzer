@@ -4,7 +4,7 @@ import itertools
 import pytest
 
 from analysis.optimizer import FORMATIONS, LEGACY_FORMATIONS, optimize, valid_formations
-from analysis.phase38_optimizer_audit import objective
+from archive.analysis.phase38_optimizer_audit import objective
 from analysis.capture_integrity import validate_inputs
 from analysis.six_model_batch import replay
 

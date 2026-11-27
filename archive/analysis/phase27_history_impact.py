@@ -2,7 +2,7 @@
 import json
 from pathlib import Path
 
-from analysis.phase25_diagnostics import SNAPSHOT, BATCH, INPUT_HASH
+from archive.analysis.phase25_diagnostics import SNAPSHOT, BATCH, INPUT_HASH
 from analysis.capture_integrity import validate_inputs
 from analysis.prediction_tracking import get_snapshot, _postgres, DEFAULT_DB
 from analysis.predict_next_week import build_candidate_pool
